@@ -154,7 +154,7 @@ _peas_plugin_info_new (const gchar *filename,
     }
   else
     {
-      g_warning ("Could not find 'Module' in '%s'", filename);
+      g_warning ("Could not find 'Module' in '[Plugin]' section in '%s'", filename);
       goto error;
     }
 
@@ -165,7 +165,7 @@ _peas_plugin_info_new (const gchar *filename,
     info->name = str;
   else
     {
-      g_warning ("Could not find 'Name' in '%s'", filename);
+      g_warning ("Could not find 'Name' in '[Plugin]' section in '%s'", filename);
       goto error;
     }
 
