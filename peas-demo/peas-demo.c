@@ -105,7 +105,7 @@ main (int    argc,
   gchar *plugin_dir;
   PeasEngine *engine;
 
-  option_context = g_option_context_new (_("- libpeas demo application"));
+  option_context = g_option_context_new (_("— libpeas demo application"));
   g_option_context_add_main_entries (option_context, demo_args, GETTEXT_PACKAGE);
   g_option_context_add_group (option_context, gtk_get_option_group (TRUE));
 

@@ -99,7 +99,7 @@ build_multiple_dependent_plugins (PeasGtkDisablePluginsDialog *dialog)
   g_free (message);
 
   gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-      _("The following plugins depend on '%s' and will also be disabled:"),
+      _("The following plugins depend on “%s” and will also be disabled:"),
       peas_plugin_info_get_name (priv->plugin_info));
 
   message_area = gtk_message_dialog_get_message_area (GTK_MESSAGE_DIALOG (dialog));
@@ -165,8 +165,8 @@ build_single_dependent_plugin (PeasGtkDisablePluginsDialog *dialog)
   g_free (message);
 
   gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-      _("The '%s' plugin depends on the '%s' plugin.\n"
-        "If you disable '%s', '%s' will also be disabled."),
+      _("The “%s” plugin depends on the “%s” plugin.\n"
+        "If you disable “%s”, “%s” will also be disabled."),
       peas_plugin_info_get_name (priv->plugin_info),
       peas_plugin_info_get_name (priv->dep_plugins->data),
       peas_plugin_info_get_name (priv->plugin_info),

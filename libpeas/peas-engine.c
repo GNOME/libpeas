@@ -1115,7 +1115,7 @@ peas_engine_load_plugin_real (PeasEngine     *engine,
           g_set_error (&info->error,
                        PEAS_PLUGIN_INFO_ERROR,
                        PEAS_PLUGIN_INFO_ERROR_DEP_NOT_FOUND,
-                       _("Dependency '%s' was not found"),
+                       _("Dependency “%s” was not found"),
                        dependencies[i]);
           goto error;
         }
@@ -1125,7 +1125,7 @@ peas_engine_load_plugin_real (PeasEngine     *engine,
           g_set_error (&info->error,
                        PEAS_PLUGIN_INFO_ERROR,
                        PEAS_PLUGIN_INFO_ERROR_LOADING_FAILED,
-                       _("Dependency '%s' failed to load"),
+                       _("Dependency “%s” failed to load"),
                        peas_plugin_info_get_name (dep_info));
           goto error;
         }
@@ -1139,7 +1139,7 @@ peas_engine_load_plugin_real (PeasEngine     *engine,
       g_set_error (&info->error,
                    PEAS_PLUGIN_INFO_ERROR,
                    PEAS_PLUGIN_INFO_ERROR_LOADER_NOT_FOUND,
-                   _("Plugin loader '%s' was not found"),
+                   _("Plugin loader “%s” was not found"),
                    peas_utils_get_loader_from_id (info->loader_id));
       goto error;
     }
