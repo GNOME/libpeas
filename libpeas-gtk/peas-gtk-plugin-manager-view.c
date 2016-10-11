@@ -631,7 +631,7 @@ peas_gtk_plugin_manager_view_query_tooltip (GtkWidget  *widget,
     return FALSE;
 
   /* Avoid having markup in a translated string */
-  to_bold = g_strdup_printf (_("The plugin '%s' could not be loaded"),
+  to_bold = g_strdup_printf (_("The plugin “%s” could not be loaded"),
                              peas_plugin_info_get_name (info));
 
   /* Keep separate because some translations do special things
