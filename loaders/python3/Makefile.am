@@ -23,8 +23,7 @@ libpython3loader_la_SOURCES = \
 
 libpython3loader_la_LDFLAGS = \
 	$(LOADER_LIBTOOL_FLAGS)		\
-	$(GCOV_LDFLAGS)			\
-	$(PYTHON3_LDFLAGS)
+	$(GCOV_LDFLAGS)
 
 libpython3loader_la_LIBADD = \
 	$(top_builddir)/libpeas/libpeas-1.0.la	\
