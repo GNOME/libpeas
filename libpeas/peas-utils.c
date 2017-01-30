@@ -181,6 +181,60 @@ find_param_spec_for_prerequisites (const gchar  *name,
 }
 
 gboolean
+peas_utils_properties_array_to_parameter_list (GType          exten_type,
+                                               guint          n_properties,
+                                               const gchar  **prop_names,
+                                               const GValue  *prop_values,
+                                               GParameter    *parameters)
+{
+  guint i;
+  gpointer *ifaces;
+  GObjectClass *base_class;
+
+  g_return_val_if_fail (n_properties == 0 || prop_names != NULL, FALSE);
+  g_return_val_if_fail (n_properties == 0 || prop_values != NULL, FALSE);
+  g_return_val_if_fail (n_properties == 0 || parameters != NULL, FALSE);
+
+  ifaces = get_base_class_and_interfaces (exten_type, &base_class);
+  memset (parameters, 0, sizeof (GParameter) * n_properties);
+  for (i = 0; i < n_properties; i++)
+    {
+      GParamSpec *pspec;
+      if (prop_names[i] == NULL)
+        {
+          g_warning ("The property name at index %u should not be NULL.", i);
+          goto error;
+        }
+      if (!G_IS_VALUE (&prop_values[i]))
+        {
+          g_warning ("The property value at index %u should be an initialized GValue.", i);
+          goto error;
+        }
+      pspec = find_param_spec_for_prerequisites (prop_names[i], base_class,
+                                                 ifaces);
+      if (!pspec)
+        {
+          g_warning ("%s: type '%s' has no property named '%s'",
+                     G_STRFUNC, g_type_name (exten_type), prop_names[i]);
+          goto error;
+        }
+
+      parameters[i].name = prop_names[i];
+
+      g_value_init (&parameters[i].value,
+                    G_VALUE_TYPE (&prop_values[i]));
+      g_value_copy (&prop_values[i], &parameters[i].value);
+    }
+  return TRUE;
+
+error:
+  n_properties = i;
+  for (i = 0; i < n_properties; i++)
+    g_value_unset (&parameters[i].value);
+  return FALSE;
+}
+
+gboolean
 peas_utils_valist_to_parameter_list (GType         exten_type,
                                      const gchar  *first_property,
                                      va_list       args,

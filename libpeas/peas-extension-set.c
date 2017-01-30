@@ -642,6 +642,72 @@ peas_extension_set_newv (PeasEngine *engine,
 }
 
 /**
+ * peas_extension_set_new_with_properties: (rename-to peas_extension_set_new)
+ * @engine: (allow-none): A #PeasEngine, or %NULL.
+ * @exten_type: the extension #GType.
+ * @n_properties: the length of the @prop_names and @prop_values array.
+ * @prop_names: (array length=n_properties): an array of property names.
+ * @prop_values: (array length=n_properties): an array of property values.
+ *
+ * Create a new #PeasExtensionSet for the @exten_type extension type.
+ *
+ * If @engine is %NULL, then the default engine will be used.
+ *
+ * Since libpeas 1.22, @exten_type can be an Abstract #GType
+ * and not just an Interface #GType.
+ *
+ * See peas_extension_set_new() for more information.
+ *
+ * Returns: (transfer full): a new instance of #PeasExtensionSet.
+ *
+ * Since 1.22.0
+ */
+PeasExtensionSet *
+peas_extension_set_new_with_properties (PeasEngine    *engine,
+                                        GType          exten_type,
+                                        guint          n_properties,
+                                        const gchar  **prop_names,
+                                        const GValue  *prop_values)
+{
+  PeasExtensionSet *ret;
+  PeasParameterArray construct_properties;
+  GParameter *parameters = NULL;
+
+  g_return_val_if_fail (engine == NULL || PEAS_IS_ENGINE (engine), NULL);
+  g_return_val_if_fail (G_TYPE_IS_INTERFACE (exten_type) ||
+                        G_TYPE_IS_ABSTRACT (exten_type), NULL);
+  g_return_val_if_fail (n_properties == 0 || prop_names != NULL, NULL);
+  g_return_val_if_fail (n_properties == 0 || prop_values != NULL, NULL);
+
+  if (n_properties > 0)
+    {
+      parameters = g_new0 (GParameter, n_properties);
+      if (!peas_utils_properties_array_to_parameter_list (exten_type,
+                                                          n_properties,
+                                                          prop_names,
+                                                          prop_values,
+                                                          parameters))
+        {
+          /* Already warned */
+          g_free (parameters);
+          return NULL;
+        }
+    }
+
+  construct_properties.n_parameters = n_properties;
+  construct_properties.parameters = parameters;
+
+  ret = g_object_new (PEAS_TYPE_EXTENSION_SET,
+                      "engine", engine,
+                      "extension-type", exten_type,
+                      "construct-properties", &construct_properties,
+                      NULL);
+
+  g_free (parameters);
+  return ret;
+}
+
+/**
  * peas_extension_set_new_valist: (skip)
  * @engine: (allow-none): A #PeasEngine, or %NULL.
  * @exten_type: the extension #GType.
