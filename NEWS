@@ -1,3 +1,16 @@
+Overview of Changes in libpeas 1.21.0
+====================================
+
+* Consider all an interfaces potential properties
+* Fix PeasEngine virtual annotations
+* Allow extensions to be an Abstract Base Class
+* Cache an extension type's base class and interfaces
+
+* Translation updates:
+  - Belarusian
+  - Croatian
+  - Simplified Chinese
+
 Overview of Changes in libpeas 1.20.0
 ====================================
 
