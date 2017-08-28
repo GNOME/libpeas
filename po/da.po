@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libpeas master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=libpeas&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-19 11:01+0000\n"
+"Report-Msgid-Bugs-To: "
+"https://bugzilla.gnome.org/enter_bug.cgi?product=libpeas&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2017-03-25 04:28+0000\n"
 "PO-Revision-Date: 2015-09-19 18:27+0200\n"
 "Last-Translator: Joe Hansen <joedalton2@yahoo.dk>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -45,22 +45,22 @@ msgstr "Vis builtin"
 msgid "Peas Gtk"
 msgstr "Peas Gtk"
 
-#: ../libpeas/peas-engine.c:976
+#: ../libpeas/peas-engine.c:1118
 #, c-format
 msgid "Dependency '%s' was not found"
-msgstr "Afhængighed \"%s\" blev ikke fundet"
+msgstr "Afhængighed “%s” blev ikke fundet"
 
-#: ../libpeas/peas-engine.c:986
+#: ../libpeas/peas-engine.c:1128
 #, c-format
 msgid "Dependency '%s' failed to load"
-msgstr "Afhængighed \"%s\" kunne ikke indlæses"
+msgstr "Afhængighed “%s” kunne ikke indlæses"
 
-#: ../libpeas/peas-engine.c:1000
+#: ../libpeas/peas-engine.c:1142
 #, c-format
 msgid "Plugin loader '%s' was not found"
-msgstr "Indlæser \"%s\" for udvidelsesmoduler blev ikke fundet"
+msgstr "Indlæser “%s” for udvidelsesmoduler blev ikke fundet"
 
-#: ../libpeas/peas-engine.c:1012
+#: ../libpeas/peas-engine.c:1154
 #, c-format
 msgid "Failed to load"
 msgstr "Kunne ikke indlæse"
@@ -73,8 +73,7 @@ msgstr "Yderligere udvidelsesmoduler skal deaktiveres"
 #, c-format
 msgid "The following plugins depend on '%s' and will also be disabled:"
 msgstr ""
-"De følgende udvidelsesmoduler afhænger af \"%s\" og vil også blive "
-"deaktiveret:"
+"De følgende udvidelsesmoduler afhænger af “%s” og vil også blive deaktiveret:"
 
 #: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:144
 msgid "Plugins"
@@ -90,9 +89,9 @@ msgid ""
 "The '%s' plugin depends on the '%s' plugin.\n"
 "If you disable '%s', '%s' will also be disabled."
 msgstr ""
-"Udvidelsesmodulet \"%s\" afhænger af\n"
-"udvidelsesmodulet \"%s\".\n"
-"Hvis du deaktiverer \"%s\", vil \"%s\" også blive\n"
+"Udvidelsesmodulet “%s” afhænger af\n"
+"udvidelsesmodulet “%s”.\n"
+"Hvis du deaktiverer “%s”, vil “%s” også blive\n"
 "deaktiveret."
 
 #: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:182
@@ -152,7 +151,7 @@ msgstr "Udvidelsesmodul"
 #: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:634
 #, c-format
 msgid "The plugin '%s' could not be loaded"
-msgstr "Udvidelsesmodulet \"%s\" kunne ikke indlæses"
+msgstr "Udvidelsesmodulet “%s” kunne ikke indlæses"
 
 #. Keep separate because some translations do special things
 #. * for the ':' and might accidentally not keep the space after it
@@ -188,3 +187,5 @@ msgstr "Indstillinger"
 
 #~ msgid "_Plugins:"
 #~ msgstr "_Udvidelsesmoduler:"
+
+
