@@ -1,14 +1,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Sveinn í Felli <sv1@fellsnet.is>, 2015.
+# Sveinn í Felli <sv1@fellsnet.is>, 2015, 2017.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=libpeas&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-03-25 11:17+0000\n"
-"PO-Revision-Date: 2015-04-21 14:39+0000\n"
+"POT-Creation-Date: 2017-03-25 04:28+0000\n"
+"PO-Revision-Date: 2017-12-07 07:19+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
 "Language: is\n"
@@ -40,34 +40,34 @@ msgstr "Sýna innbyggðar"
 msgid "Peas Gtk"
 msgstr "Peas Gtk"
 
-#: ../libpeas/peas-engine.c:976
+#: ../libpeas/peas-engine.c:1118
 #, c-format
 msgid "Dependency '%s' was not found"
-msgstr ""
+msgstr "Kerfisháða '%s' fannst ekki"
 
-#: ../libpeas/peas-engine.c:986
+#: ../libpeas/peas-engine.c:1128
 #, c-format
 msgid "Dependency '%s' failed to load"
-msgstr ""
+msgstr "Kerfisháða '%s' hlóðst ekki inn"
 
-#: ../libpeas/peas-engine.c:1000
+#: ../libpeas/peas-engine.c:1142
 #, c-format
 msgid "Plugin loader '%s' was not found"
-msgstr ""
+msgstr "Viðbótahleðslan '%s' fannst ekki"
 
-#: ../libpeas/peas-engine.c:1012
+#: ../libpeas/peas-engine.c:1154
 #, c-format
 msgid "Failed to load"
 msgstr "Mistókst að hlaða inn"
 
 #: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:95
 msgid "Additional plugins must be disabled"
-msgstr ""
+msgstr "Gera þarf aðrar viðbætur óvirkar"
 
 #: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:102
 #, c-format
 msgid "The following plugins depend on '%s' and will also be disabled:"
-msgstr ""
+msgstr "Eftirfarandi viðbætur eru háðar '%s' og verða einnig gerðar óvirkar:"
 
 #: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:144
 msgid "Plugins"
@@ -75,7 +75,7 @@ msgstr "Viðbætur"
 
 #: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:161
 msgid "An additional plugin must be disabled"
-msgstr ""
+msgstr "Gera þarf aðra viðbót óvirka"
 
 #: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:168
 #, c-format
@@ -83,6 +83,8 @@ msgid ""
 "The '%s' plugin depends on the '%s' plugin.\n"
 "If you disable '%s', '%s' will also be disabled."
 msgstr ""
+"'%s' viðbótin er háð '%s' viðbótinni.\n"
+"Ef þú gerir '%s' óvirka, verður '%s' einnig gerð óvirk."
 
 #: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:182
 msgid "_Cancel"
@@ -143,9 +145,14 @@ msgstr "Viðbót"
 msgid "The plugin '%s' could not be loaded"
 msgstr "Ekki var hægt að hlaða inn '%s' viðbótinni"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:638
-msgid "An error occurred: "
-msgstr "Villa kom upp: "
+#. Keep separate because some translations do special things
+#. * for the ':' and might accidentally not keep the space after it
+#.
+#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:640
+#, c-format
+#| msgid "An error occurred: "
+msgid "An error occurred: %s"
+msgstr "Villa kom upp: %s"
 
 #. Translators: The directory in which the demo program was compiled at
 #: ../peas-demo/peas-demo.c:41
