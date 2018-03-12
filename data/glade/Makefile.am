@@ -9,5 +9,3 @@ validate: $(catalog_DATA)
 	xmllint --dtdvalid $(GLADE_CATALOG_DIR)/glade-catalog.dtd --noout $<
 
 CLEANFILES = $(catalog_DATA)
-
-@INTLTOOL_XML_NOMERGE_RULE@
