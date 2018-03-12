@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!--
+See the gettext documentation for the file format:
+http://www.gnu.org/software/gettext/manual/html_node/Preparing-ITS-Rules.html
+-->
+<locatingRules>
+  <locatingRule name="Glade catalog" pattern="*.xml">
+    <documentRule localName="glade-catalog" target="glade-catalog.its"/>
+  </locatingRule>
+</locatingRules>

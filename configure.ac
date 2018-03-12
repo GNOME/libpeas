@@ -70,7 +70,9 @@ dnl ================================================================
 dnl Gettext stuff.
 dnl ================================================================
 
-IT_PROG_INTLTOOL([0.40.0])
+AM_GNU_GETTEXT([external])
+AM_GNU_GETTEXT_VERSION([0.19.8])
+
 AS_IF([test "$USE_NLS" = "yes"],
       [AC_DEFINE([ENABLE_NLS], [1], [Defined if native language support should be enabled.])])
 
@@ -543,6 +545,7 @@ loaders/python/Makefile
 loaders/python3/Makefile
 data/Makefile
 data/glade/Makefile
+data/glade/libpeas-gtk.xml
 data/icons/Makefile
 data/libpeas-1.0.pc
 data/libpeas-gtk-1.0.pc
