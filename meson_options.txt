@@ -1,0 +1,32 @@
+option('lua51',
+       type: 'boolean', value: true,
+       description: 'Enable Lua 5.1 support (requires lua-lgi)')
+
+option('python2',
+       type: 'boolean', value: false,
+       description: 'Enable Python 2 support (requires pygobject)')
+option('python3',
+       type: 'boolean', value: true,
+       description: 'Enable Python 3 support (requires pygobject)')
+
+option('introspection',
+       type: 'boolean', value: true,
+       description: 'Generate introspection data (requires gobject-introspection)')
+option('vapi',
+       type: 'boolean', value: false,
+       description: 'Generate vapi data (requires vapigen)')
+
+option('widgetry',
+       type: 'boolean', value: true,
+       description: 'Build GTK+ widgetry (requires gtk+)')
+option('glade_catalog',
+       type: 'boolean', value: true,
+       description: 'Install Glade catalog (requires gladeui)')
+
+option('demos',
+       type: 'boolean', value: true,
+       description: 'Build demo programs')
+
+option('gtk_doc',
+       type: 'boolean', value: false,
+       description: 'Build reference manual (requires gtk-doc)')
