@@ -1,0 +1,59 @@
+image: fedora:29
+
+stages:
+  - build
+  - deploy
+
+.build-job:
+  stage: build
+  before_script:
+    - dnf install -y gcc ccache gettext gtk-doc meson ninja-build redhat-rpm-config
+    - dnf install -y glib2-devel gtk3-devel gobject-introspection-devel python2-devel python3-devel
+    - dnf install -y xorg-x11-server-Xvfb
+    - mkdir -p _ccache
+    - ccache --zero-stats
+    - ccache --show-stats
+  after_script:
+    - ccache --show-stats
+  variables:
+    CCACHE_BASEDIR: "${PWD}"
+    CCACHE_DIR: "${CCACHE_BASEDIR}/_ccache"
+
+build-peas:
+  extends: .build-job
+  script:
+    - meson -Dwidgetry=false -Dintrospection=true -Dvapi=true -Ddemos=false _build .
+    - ninja -C _build test
+  cache:
+    key: "$CI_JOB_NAME"
+    paths:
+      - _ccache/
+
+build-peas-gtk:
+  extends: .build-job
+  script:
+    - meson -Dwidgetry=true -Dglade_catalog=true -Dintrospection=true -Dvapi=true -Dgtk_doc=true _build .
+    - xvfb-run -a -s "-screen 0 1024x768x24"  ninja -C _build test
+    - ninja -C _build libpeas-doc
+  artifacts:
+    name: libpeas-doc
+    paths:
+      - _build/docs/reference/html
+  cache:
+    key: "$CI_JOB_NAME"
+    paths:
+      - _ccache/
+
+pages:
+  stage: deploy
+  dependencies:
+    - build-peas
+    - build-peas-gtk
+  script:
+    - mkdir -p public/
+    - mv _build/docs/reference/html/ public/libpeas/
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
