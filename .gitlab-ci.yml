@@ -1,14 +1,68 @@
 stages:
-- test
+  - 'build'
+  - 'deploy'
 
-build-fedora:
-  image: fedora:latest
-  stage: test
+.build:
+  image: 'registry.fedoraproject.org/fedora:30'
+  stage: 'build'
+  variables:
+    DEPS: >-
+      gcc
+      ccache
+      gettext
+      gtk-doc
+      meson
+      ninja-build
+      redhat-rpm-config
+      glib2-devel
+      gtk3-devel
+      gobject-introspection-devel
+      python2-devel
+      python3-devel
+      xorg-x11-server-Xvfb
   before_script:
-    - dnf install -y gcc redhat-rpm-config which intltool gtk-doc gnome-common make gtk3-devel glade-devel gobject-introspection-devel pygobject3-devel python3-devel xorg-x11-server-Xvfb
-  script:
-    - ./autogen.sh --disable-dependency-tracking
-    - make
-    - make install
-    - G_MESSAGES_DEBUG=all xvfb-run -a -s "-screen 0 1024x768x24" make check
+    - dnf install -y $DEPS
+    - mkdir -p _ccache
+    - ccache --zero-stats
+    - ccache --show-stats
+  after_script:
+    - ccache --show-stats
+  variables:
+    CCACHE_BASEDIR: "${CI_PROJECT_DIR}"
+    CCACHE_DIR: "${CCACHE_BASEDIR}/_ccache"
+  cache:
+    key: "$CI_JOB_NAME"
+    paths:
+      - '_ccache/'
 
+build peas:
+  extends: '.build'
+  script:
+    - meson -Dwidgetry=false -Dintrospection=true -Dvapi=true -Ddemos=false _build .
+    - ninja -C _build test
+
+build peas-gtk:
+  extends: '.build'
+  script:
+    - meson -Dwidgetry=true -Dglade_catalog=true -Dintrospection=true -Dvapi=true -Dgtk_doc=true _build .
+    - xvfb-run -a -s "-screen 0 1024x768x24"  ninja -C _build test
+    - ninja -C _build libpeas-doc
+  artifacts:
+    name: 'libpeas-doc'
+    paths:
+      - '_build/docs/reference/html'
+
+pages:
+  image: 'registry.fedoraproject.org/fedora:30'
+  stage: deploy
+  dependencies:
+    - 'build peas'
+    - 'build peas-gtk'
+  script:
+    - mkdir -p public/
+    - mv _build/docs/reference/html/ public/libpeas/
+  artifacts:
+    paths:
+      - 'public'
+  only:
+    - 'master'
