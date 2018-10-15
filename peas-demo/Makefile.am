@@ -10,10 +10,9 @@ AM_CPPFLAGS = \
 	$(WARN_CFLAGS)		\
 	$(DISABLE_DEPRECATED)
 
-peas_demo_SOURCES = \
-	peas-demo-window.c		\
-	peas-demo-window.h		\
-	peas-demo.c
+include peas-demo-srcs.mak
+
+peas_demo_SOURCES = $(PEAS_DEMO_SOURCES)
 
 peas_demo_LDADD = \
 	../libpeas/libpeas-1.0.la		\

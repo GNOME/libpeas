@@ -7,9 +7,9 @@ AM_CPPFLAGS = \
 
 plugin_LTLIBRARIES = libsecondtime.la
 
-libsecondtime_la_SOURCES = \
-	second-time.h		\
-	second-time.c
+include demo-secondtime-srcs.mak
+
+libsecondtime_la_SOURCES = $(DEMO_SECONDTIME_SOURCES)
 
 libsecondtime_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libsecondtime_la_LIBADD  = \

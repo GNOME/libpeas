@@ -7,11 +7,9 @@ AM_CPPFLAGS = \
 
 plugin_LTLIBRARIES = libhelloworld.la
 
-libhelloworld_la_SOURCES = \
-	peasdemo-hello-world-plugin.h		\
-	peasdemo-hello-world-plugin.c		\
-	peasdemo-hello-world-configurable.h	\
-	peasdemo-hello-world-configurable.c
+include demo-helloworld-srcs.mak
+
+libhelloworld_la_SOURCES = $(DEMO_HELLOWORLD_SOURCES)
 
 libhelloworld_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libhelloworld_la_LIBADD  = \
