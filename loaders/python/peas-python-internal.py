@@ -43,7 +43,12 @@ class Hooks(object):
 
         sys.argv = [PRGNAME]
 
-        gettext.install(GETTEXT_PACKAGE, PEAS_LOCALEDIR)
+        if os.name == 'nt':
+            basedir = GLib.win32_get_package_installation_directory_of_module(None)
+            peas_locale_dir = os.path.join (basedir, 'share', 'locale')
+            gettext.install(GETTEXT_PACKAGE, peas_locale_dir)
+        else:
+            gettext.install(GETTEXT_PACKAGE, PEAS_LOCALEDIR)
 
         self.__module_cache = {}
         self.__extension_cache = {}

@@ -68,6 +68,7 @@ peas_python_internal_setup (gboolean already_initialized)
   PyObject *builtins_module, *globals, *result;
   PyObject *code = NULL, *failed_method = NULL;
   gboolean success = FALSE;
+  char *localedir = NULL;
 
 #define goto_error_if_failed(cond) \
   G_STMT_START { \
@@ -128,8 +129,11 @@ peas_python_internal_setup (gboolean already_initialized)
                                                     prgname) == 0);
   goto_error_if_failed (PyModule_AddStringMacro (internal_module,
                                                  GETTEXT_PACKAGE) == 0);
+
+#ifndef G_OS_WIN32
   goto_error_if_failed (PyModule_AddStringMacro (internal_module,
                                                  PEAS_LOCALEDIR) == 0);
+#endif
 
   globals = PyModule_GetDict (internal_module);
   result = PyEval_EvalCode ((gpointer) code, globals, globals);
