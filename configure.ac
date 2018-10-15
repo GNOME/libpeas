@@ -574,6 +574,7 @@ tests/plugins/has-dep/Makefile
 tests/plugins/loadable/Makefile
 tests/plugins/self-dep/Makefile
 tests/testing-util/Makefile
+win32/config.h.win32
 ])
 
 AC_OUTPUT

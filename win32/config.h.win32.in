@@ -1,0 +1,133 @@
+/* config.h.in.  Generated from configure.ac by autoheader.  */
+
+/* Define to compile with Lua support */
+/* #undef ENABLE_LUA51 */
+
+/* Defined if native language support should be enabled. */
+#define ENABLE_NLS 1
+
+/* Define to compile with Python 2 support */
+/* #undef ENABLE_PYTHON2 */
+
+/* Define to compile with Python 3 support */
+/* #undef ENABLE_PYTHON3 */
+
+/* maximum gdk version */
+#define GDK_VERSION_MAX_ALLOWED GDK_VERSION_3_0
+
+/* minimum gdk version */
+#define GDK_VERSION_MIN_REQUIRED GDK_VERSION_3_0
+
+/* Gettext package */
+#define GETTEXT_PACKAGE "libpeas"
+
+/* maximum glib version */
+#define GLIB_VERSION_MAX_ALLOWED GLIB_VERSION_2_38
+
+/* minimum glib version */
+#define GLIB_VERSION_MIN_REQUIRED GLIB_VERSION_2_36
+
+/* Log domain */
+#define G_LOG_DOMAIN "libpeas"
+
+/* Define to 1 if you have the <dlfcn.h> header file. */
+/* #undef HAVE_DLFCN_H */
+
+/* Define to 1 if you have the `fsync' function. */
+/* #undef HAVE_FSYNC */
+
+/* Define to 1 if you have the <inttypes.h> header file. */
+#if !defined (_MSC_VER) || (_MSC_VER >= 1800)
+#define HAVE_INTTYPES_H 1
+#endif
+
+/* Define to 1 if you have the <memory.h> header file. */
+#define HAVE_MEMORY_H 1
+
+/* Define to 1 if you have the <stdint.h> header file. */
+#if !defined (_MSC_VER) || (_MSC_VER >= 1600)
+#define HAVE_STDINT_H 1
+#endif
+
+/* Define to 1 if you have the <stdlib.h> header file. */
+#define HAVE_STDLIB_H 1
+
+/* Define to 1 if you have the <strings.h> header file. */
+#ifndef _MSC_VER
+#define HAVE_STRINGS_H 1
+#endif
+
+/* Define to 1 if you have the <string.h> header file. */
+#define HAVE_STRING_H 1
+
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#define HAVE_SYS_STAT_H 1
+
+/* Define to 1 if you have the <sys/types.h> header file. */
+#define HAVE_SYS_TYPES_H 1
+
+/* Define to 1 if you have the <unistd.h> header file. */
+#ifndef _MSC_VER
+#define HAVE_UNISTD_H 1
+#endif
+
+/* LGI major version. */
+#define LGI_MAJOR_VERSION 0
+
+/* LGI micro version. */
+#define LGI_MICRO_VERSION 2
+
+/* LGI minor version. */
+#define LGI_MINOR_VERSION 9
+
+/* Define to the sub-directory in which libtool stores uninstalled libraries.
+   */
+#define LT_OBJDIR ".libs/"
+
+/* Defined if os is Mac OSX */
+/* #undef OS_OSX */
+
+/* Name of package */
+#define PACKAGE "@PACKAGE@"
+
+/* Define to the address where bug reports for this package should be sent. */
+#define PACKAGE_BUGREPORT "@PACKAGE_BUGREPORT@"
+
+/* Define to the full name of this package. */
+#define PACKAGE_NAME "@PACKAGE_NAME@"
+
+/* Define to the full name and version of this package. */
+#define PACKAGE_STRING "@PACKAGE_NAME@ @PACKAGE_VERSION@"
+
+/* Define to the one symbol short name of this package. */
+#define PACKAGE_TARNAME "@PACKAGE_TARNAME@"
+
+/* Define to the home page for this package. */
+#define PACKAGE_URL "@PACKAGE_URL@"
+
+/* Define to the version of this package. */
+#define PACKAGE_VERSION "@PACKAGE_VERSION@"
+
+/* Gedit Plugins Engine major version */
+#define PEAS_MAJOR_VERSION @PEAS_MAJOR_VERSION@
+
+/* Gedit Plugins Engine micro version */
+#define PEAS_MICRO_VERSION @PEAS_MICRO_VERSION@
+
+/* Gedit Plugins Engine minor version */
+#define PEAS_MINOR_VERSION @PEAS_MINOR_VERSION@
+
+/* PyGObject major version. */
+#define PYGOBJECT_MAJOR_VERSION 3
+
+/* PyGObject micro version. */
+#define PYGOBJECT_MICRO_VERSION 1
+
+/* PyGObject minor version. */
+#define PYGOBJECT_MINOR_VERSION 30
+
+/* Define to 1 if you have the ANSI C header files. */
+#define STDC_HEADERS 1
+
+/* Version number of package */
+#define VERSION "@PACKAGE_VERSION"
