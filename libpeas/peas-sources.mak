@@ -1,5 +1,6 @@
 PEAS_PUBLIC_HDRS	=	\
 	peas-autocleanups.h	\
+	peas-macros.h		\
 	peas-plugin-info.h	\
 	peas-object-module.h	\
 	peas-extension-base.h	\
