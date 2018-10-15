@@ -154,9 +154,36 @@ main (int    argc,
   if (run_from_build_dir)
     peas_engine_add_search_path (engine, PEAS_BUILDDIR "/peas-demo/plugins", NULL);
   else
-    peas_engine_add_search_path (engine,
-                                 PEAS_LIBDIR "/peas-demo/plugins/",
-                                 PEAS_PREFIX "/share/peas-demo/plugins");
+    {
+      char *prefix;
+      char *demo_pluginlibdir, *demo_plugindatadir;
+
+      peas_engine_add_search_path (engine,
+                                   PEAS_LIBDIR "/peas-demo/plugins/",
+                                   PEAS_PREFIX "/share/peas-demo/plugins");
+
+#ifdef G_OS_WIN32
+      /* this is so that the paths are relocatable on Windows */
+      prefix = g_win32_get_package_installation_directory_of_module (NULL);
+      demo_pluginlibdir = g_build_filename (prefix,
+                                            "lib",
+                                            "peas-demo",
+                                            "plugins",
+                                            NULL);
+      demo_plugindatadir = g_build_filename (prefix,
+                                             "share",
+                                             "peas-demo",
+                                             "plugins",
+                                             NULL);
+      peas_engine_add_search_path (engine,
+                                   demo_pluginlibdir,
+                                   demo_plugindatadir);
+
+      g_free (demo_plugindatadir);
+      g_free (demo_pluginlibdir);
+      g_free (prefix);
+#endif
+    }
 
   n_windows = 0;
   main_window = create_main_window ();
