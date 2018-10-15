@@ -14,13 +14,10 @@ AM_CPPFLAGS = \
 
 loader_LTLIBRARIES = liblua51loader.la
 
+include lua-loader-srcs.mak
+
 liblua51loader_la_SOURCES = \
-	peas-lua-internal.c		\
-	peas-lua-internal.h		\
-	peas-plugin-loader-lua.c	\
-	peas-plugin-loader-lua.h	\
-	peas-lua-utils.c		\
-	peas-lua-utils.h                \
+	$(lua51loader_sources)  \
 	resources/peas-lua-resources.c
 
 liblua51loader_la_LDFLAGS = \

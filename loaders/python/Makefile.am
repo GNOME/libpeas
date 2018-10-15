@@ -14,11 +14,10 @@ AM_CPPFLAGS = \
 
 loader_LTLIBRARIES = libpythonloader.la
 
+include python-loader-sources.mak
+
 libpythonloader_la_SOURCES = \
-	peas-plugin-loader-python.c 	\
-	peas-plugin-loader-python.h	\
-	peas-python-internal.c 		\
-	peas-python-internal.h 		\
+	$(PYTHON_LOADER_SOURCES)	\
 	peas-python-resources.c
 
 libpythonloader_la_LDFLAGS = \
