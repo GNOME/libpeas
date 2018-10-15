@@ -24,23 +24,13 @@ AM_CPPFLAGS += -xobjective-c
 libpeas_gtk_1_0_la_LDFLAGS += -framework Cocoa
 endif
 
-INST_H_FILES = \
-	peas-gtk-autocleanups.h		\
-	peas-gtk-configurable.h		\
-	peas-gtk-plugin-manager.h	\
-	peas-gtk-plugin-manager-view.h	\
-	peas-gtk.h
+include peas-gtk-sources.mak
 
-NOINST_H_FILES = \
-	peas-gtk-disable-plugins-dialog.h	\
-	peas-gtk-plugin-manager-store.h
+INST_H_FILES = $(PEAS_GTK_PUBLIC_HDRS)
 
-C_FILES = \
-	peas-gtk-configurable.c			\
-	peas-gtk-disable-plugins-dialog.c	\
-	peas-gtk-plugin-manager.c		\
-	peas-gtk-plugin-manager-store.c		\
-	peas-gtk-plugin-manager-view.c
+NOINST_H_FILES = $(PEAS_GTK_PRIVATE_HDRS)
+
+C_FILES = $(PEAS_GTK_SRCS)
 
 libpeas_gtk_1_0_la_SOURCES = \
 	$(INST_H_FILES)			\
