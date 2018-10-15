@@ -17,7 +17,7 @@
 --
 -- Modified version of: http://metalua.luaforge.net/src/lib/strict.lua.html
 
-__STRICT = true
+__STRICT = false
 
 local mt = getmetatable(_G)
 if mt == nil then
