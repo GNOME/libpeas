@@ -6,7 +6,7 @@ DISTCHECK_CONFIGURE_FLAGS = \
 	--enable-gtk-doc		\
 	--disable-doc-cross-references
 
-SUBDIRS = libpeas loaders
+SUBDIRS = libpeas loaders win32
 GCOVDIRS = libpeas loaders
 
 if ENABLE_GTK

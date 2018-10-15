@@ -1,0 +1,61 @@
+# NMake Makefile for building HarfBuzz as a DLL on Windows
+
+# The items below this line should not be changed, unless one is maintaining
+# the NMake Makefiles.  Customizations can be done in the following NMake Makefile
+# portions (please see comments in the these files to see what can be customized):
+#
+# detectenv-msvc.mak
+# config-msvc.mak
+
+!include pythonconfig.mak
+!include detectenv-msvc.mak
+
+# Include the Makefile portions with the source listings
+!include ..\libpeas\peas-sources.mak
+!include ..\libpeas-gtk\peas-gtk-sources.mak
+!include ..\loaders\python\python-loader-sources.mak
+!include ..\loaders\lua5.1\lua-loader-srcs.mak
+!include ..\peas-demo\peas-demo-srcs.mak
+!include ..\peas-demo\plugins\helloworld\demo-helloworld-srcs.mak
+!include ..\peas-demo\plugins\secondtime\demo-secondtime-srcs.mak
+
+# Include the Makefile portion that enables features based on user input
+!include config-msvc.mak
+
+!if "$(VALID_CFGSET)" == "TRUE"
+
+!if "$(INTROSPECTION)" == "1"
+INTROSPECTION_ITEMS =	\
+	$(CFG)\$(PLAT)\Peas-1.0.gir	\
+	$(CFG)\$(PLAT)\Peas-1.0.typelib	\
+	$(CFG)\$(PLAT)\PeasGtk-1.0.gir	\
+	$(CFG)\$(PLAT)\PeasGtk-1.0.typelib
+!else
+INTROSPECTION_ITEMS =
+!endif
+
+# Include the Makefile portion to convert the source and header lists
+# into the lists we need for compilation and introspection
+!include create-lists-msvc.mak
+
+all: $(PEAS_LIBS) $(PEAS_LOADERS) $(INTROSPECTION_ITEMS) $(PEAS_DEMOS) all-build-info
+
+tests: all $(HB_TESTS)
+
+!include peas-introspection-msvc.mak
+
+# Include the build rules for sources, DLLs and executables
+!include build-rules-msvc.mak
+
+# Include the rules for build directory creation and code generation
+!include generate-msvc.mak
+
+#!include install.mak
+
+!else
+all: help
+	@echo You need to specify a valid configuration, via
+	@echo CFG=release or CFG=debug
+!endif
+
+!include info-msvc.mak
