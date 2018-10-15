@@ -23,47 +23,15 @@ endif
 
 libpeas_1_0_la_LIBADD = $(PEAS_LIBS)
 
-INST_H_FILES =			\
-	peas-autocleanups.h	\
-	peas-plugin-info.h	\
-	peas-object-module.h	\
-	peas-extension-base.h	\
-	peas-extension.h	\
-	peas-extension-set.h	\
-	peas-activatable.h	\
-	peas-engine.h		\
-	peas.h
+include peas-sources.mak
 
-NOINST_H_FILES =			\
-	peas-debug.h			\
-	peas-dirs.h			\
-	peas-engine-priv.h		\
-	peas-i18n.h			\
-	peas-introspection.h		\
-	peas-plugin-info-priv.h		\
-	peas-plugin-loader.h		\
-	peas-plugin-loader-c.h		\
-	peas-utils.h
+INST_H_FILES = $(PEAS_PUBLIC_HDRS)
 
-C_FILES =				\
-	peas-activatable.c		\
-	peas-debug.c			\
-	peas-dirs.c			\
-	peas-engine.c			\
-	peas-extension.c		\
-	peas-extension-base.c		\
-	peas-extension-set.c		\
-	peas-i18n.c			\
-	peas-introspection.c		\
-	peas-object-module.c		\
-	peas-plugin-info.c		\
-	peas-plugin-loader.c		\
-	peas-plugin-loader-c.c		\
-	peas-utils.c
+NOINST_H_FILES = $(PEAS_PRIVATE_HDRS)
 
-BUILT_SOURCES = \
-	peas-marshal.c			\
-	peas-marshal.h
+C_FILES = $(PEAS_SRCS)
+
+BUILT_SOURCES = $(PEAS_MARSHAL_SRCS)
 
 libpeas_1_0_la_SOURCES = 	\
 	$(INST_H_FILES)		\
