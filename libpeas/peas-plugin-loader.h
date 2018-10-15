@@ -65,24 +65,32 @@ struct _PeasPluginLoaderClass {
   void           (*garbage_collect)       (PeasPluginLoader *loader);
 };
 
+_PEAS_EXTERN
 GType         peas_plugin_loader_get_type             (void)  G_GNUC_CONST;
 
+_PEAS_EXTERN
 gboolean      peas_plugin_loader_initialize           (PeasPluginLoader *loader);
+_PEAS_EXTERN
 gboolean      peas_plugin_loader_is_global            (PeasPluginLoader *loader);
 
+_PEAS_EXTERN
 gboolean      peas_plugin_loader_load                 (PeasPluginLoader *loader,
                                                        PeasPluginInfo   *info);
+_PEAS_EXTERN
 void          peas_plugin_loader_unload               (PeasPluginLoader *loader,
                                                        PeasPluginInfo   *info);
 
+_PEAS_EXTERN
 gboolean      peas_plugin_loader_provides_extension   (PeasPluginLoader *loader,
                                                        PeasPluginInfo   *info,
                                                        GType             ext_type);
+_PEAS_EXTERN
 PeasExtension *peas_plugin_loader_create_extension    (PeasPluginLoader *loader,
                                                        PeasPluginInfo   *info,
                                                        GType             ext_type,
                                                        guint             n_parameters,
                                                        GParameter       *parameters);
+_PEAS_EXTERN
 void          peas_plugin_loader_garbage_collect      (PeasPluginLoader *loader);
 
 G_END_DECLS

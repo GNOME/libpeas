@@ -69,9 +69,14 @@ struct _PeasExtensionBaseClass {
 /*
  * Public methods
  */
+PEAS_API
 GType            peas_extension_base_get_type         (void)  G_GNUC_CONST;
 
+
+PEAS_API
 PeasPluginInfo  *peas_extension_base_get_plugin_info  (PeasExtensionBase *extbase);
+
+PEAS_API
 gchar           *peas_extension_base_get_data_dir     (PeasExtensionBase *extbase);
 
 G_END_DECLS

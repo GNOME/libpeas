@@ -110,37 +110,50 @@ typedef void (*PeasExtensionSetForeachFunc) (PeasExtensionSet *set,
 /*
  * Public methods
  */
+PEAS_API
 GType              peas_extension_set_get_type    (void)  G_GNUC_CONST;
 
 #ifndef __GI_SCANNER__
 #ifndef PEAS_DISABLE_DEPRECATED
+PEAS_API
 gboolean           peas_extension_set_call        (PeasExtensionSet *set,
                                                    const gchar      *method_name,
                                                    ...);
+
+PEAS_API
 gboolean           peas_extension_set_call_valist (PeasExtensionSet *set,
                                                    const gchar      *method_name,
                                                    va_list           va_args);
+
+PEAS_API
 gboolean           peas_extension_set_callv       (PeasExtensionSet *set,
                                                    const gchar      *method_name,
                                                    GIArgument       *args);
 #endif
 #endif
 
+PEAS_API
 void               peas_extension_set_foreach     (PeasExtensionSet *set,
                                                    PeasExtensionSetForeachFunc func,
                                                    gpointer          data);
 
+PEAS_API
 PeasExtension     *peas_extension_set_get_extension (PeasExtensionSet *set,
                                                      PeasPluginInfo   *info);
 
+PEAS_API
 PeasExtensionSet  *peas_extension_set_newv        (PeasEngine       *engine,
                                                    GType             exten_type,
                                                    guint             n_parameters,
                                                    GParameter       *parameters);
+
+PEAS_API
 PeasExtensionSet  *peas_extension_set_new_valist  (PeasEngine       *engine,
                                                    GType             exten_type,
                                                    const gchar      *first_property,
                                                    va_list           var_args);
+
+PEAS_API
 PeasExtensionSet  *peas_extension_set_new         (PeasEngine       *engine,
                                                    GType             exten_type,
                                                    const gchar      *first_property,

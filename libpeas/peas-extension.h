@@ -24,6 +24,7 @@
 
 #include <glib-object.h>
 #include <girepository.h>
+#include "peas-macros.h"
 
 G_BEGIN_DECLS
 
@@ -48,17 +49,26 @@ typedef GObject PeasExtension;
  */
 #ifndef __GI_SCANNER__
 #ifndef PEAS_DISABLE_DEPRECATED
+PEAS_API
 GType        peas_extension_get_type        (void)  G_GNUC_CONST;
 
+
+PEAS_API
 GType        peas_extension_get_extension_type
                                             (PeasExtension *exten);
 
+
+PEAS_API
 gboolean     peas_extension_call            (PeasExtension *exten,
                                              const gchar   *method_name,
                                              ...);
+
+PEAS_API
 gboolean     peas_extension_call_valist     (PeasExtension *exten,
                                              const gchar   *method_name,
                                              va_list        args);
+
+PEAS_API
 gboolean     peas_extension_callv           (PeasExtension *exten,
                                              const gchar   *method_name,
                                              GIArgument    *args,
