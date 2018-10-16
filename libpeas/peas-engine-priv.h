@@ -19,11 +19,14 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA.
  */
 
+#include "peas-macros.h"
+
 #ifndef __PEAS_ENGINE_PRIV_H__
 #define __PEAS_ENGINE_PRIV_H__
 
 G_BEGIN_DECLS
 
+_PEAS_EXTERN
 void peas_engine_shutdown (void);
 
 G_END_DECLS
