@@ -44,6 +44,7 @@ struct _TestingEmbeddedPluginClass {
   PeasExtensionBaseClass parent_class;
 };
 
+_PEAS_EXTERN
 GType                testing_embedded_plugin_get_type       (void) G_GNUC_CONST;
 G_MODULE_EXPORT void testing_embedded_plugin_register_types (PeasObjectModule *module);
 
