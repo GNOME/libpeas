@@ -12,19 +12,9 @@ libintrospection_1_0_la_LIBADD = \
 	$(PEAS_LIBS)				\
 	$(top_builddir)/libpeas/libpeas-1.0.la
 
-libintrospection_1_0_la_SOURCES = \
-	introspection-abstract.c		\
-	introspection-abstract.h		\
-	introspection-base.c			\
-	introspection-base.h			\
-	introspection-callable.c		\
-	introspection-callable.h		\
-	introspection-has-prerequisite.c	\
-	introspection-has-prerequisite.h	\
-	introspection-prerequisite.c	        \
-	introspection-prerequisite.h	        \
-	introspection-unimplemented.c		\
-	introspection-unimplemented.h
+include test-introspection-srcs.mak
+
+libintrospection_1_0_la_SOURCES = $(PEAS_TEST_INTROSPECTION_SRCS)
 
 -include $(INTROSPECTION_MAKEFILE)
 INTROSPECTION_GIRS = Introspection-1.0.gir
