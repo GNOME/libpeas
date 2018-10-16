@@ -77,10 +77,10 @@ testing_engine_new_full (gboolean nonglobal_loaders)
   testing_util_push_log_hook ("*Error loading *unkown-loader.plugin*");
 
   testing_util_push_log_hook ("Bad plugin file '"
-                              BUILDDIR "*/embedded*.plugin': "
+                              BUILDDIR "*" G_DIR_SEPARATOR_S "embedded*.plugin': "
                               "embedded plugins must be a resource");
   testing_util_push_log_hook ("Error loading '"
-                              BUILDDIR "*/embedded*.plugin'*");
+                              BUILDDIR "*" G_DIR_SEPARATOR_S "embedded*.plugin'*");
 
   testing_util_push_log_hook ("Bad plugin file '"
                               BUILDDIR "*embedded-invalid-loader.plugin': "
