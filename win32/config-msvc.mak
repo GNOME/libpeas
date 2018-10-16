@@ -132,9 +132,10 @@ PEAS_LOADERS = $(CFG)\$(PLAT)\libpythonloader.dll $(PEAS_LOADERS)
 PEAS_LOADERS_BUILT = python2 $(PEAS_LOADERS_BUILT)
 !endif
 !if "$(BUILD_PY3_LOADER)" == "1"
-PEAS_LOADERS = $(CFG)\$(PLAT)\libpython3loader.dll $(PEAS_LOADERS)
+PEAS_LOADERS = $(CFG)\$(PLAT)\libpythonloader3.dll $(PEAS_LOADERS)
 PEAS_LOADERS_BUILT = python3 $(PEAS_LOADERS_BUILT)
 !endif
+
 
 !if "$(LGI_ERR)" == "0"
 PEAS_LOADERS = $(CFG)\$(PLAT)\liblua51loader.dll $(PEAS_LOADERS)
@@ -145,3 +146,64 @@ LUA_CFLAGS = $(PEAS_DEFINES) $(PEAS_CFLAGS)
 LUA_CFLAGS = $(LUA_EXTRA_CFLAGS) $(LUA_CFLAGS)
 !endif
 !endif
+
+TESTS_DLLS =	\
+	$(CFG)\$(PLAT)\libbuiltin.dll	\
+	$(CFG)\$(PLAT)\libembedded.dll	\
+	$(CFG)\$(PLAT)\libloadable.dll	\
+	$(CFG)\$(PLAT)\libhas-dep.dll	\
+	$(CFG)\$(PLAT)\libself-dep.dll	\
+	$(CFG)\$(PLAT)\libextension-c.dll	\
+	$(CFG)\$(PLAT)\libextension-c-missing-symbol.dll
+
+TEST_PROGS =	\
+	$(CFG)\$(PLAT)\engine.exe	\
+	$(CFG)\$(PLAT)\extension-c.exe	\
+	$(CFG)\$(PLAT)\extension-set.exe	\
+	$(CFG)\$(PLAT)\plugin-info.exe
+
+!if "$(PEAS_NO_GTK)" == ""
+TESTS_DLLS =	\
+	$(TESTS_DLLS)	\
+	$(CFG)\$(PLAT)\libbuiltin-configurable.dll	\
+	$(CFG)\$(PLAT)\libconfigurable.dll
+
+TEST_PROGS =	\
+	$(TEST_PROGS)	\
+	$(CFG)\$(PLAT)\plugin-manager.exe	\
+	$(CFG)\$(PLAT)\plugin-manager-store.exe	\
+	$(CFG)\$(PLAT)\plugin-manager-view.exe
+
+!endif
+
+!if "$(LGI_ERR)" == "0"
+TEST_PROGS = $(TEST_PROGS) $(CFG)\$(PLAT)\extension-lua.exe
+!endif
+
+!if "$(BUILD_PY2_LOADER)" == "1"
+TEST_PROGS = $(TEST_PROGS) $(CFG)\$(PLAT)\extension-python.exe
+PYTHON_EXT_TEST_CFLAG = $(PYTHON_EXT_TEST_CFLAG) /DENABLE_PYTHON2=1 $(PYTHON_LOADER_CFLAGS)
+!endif
+!if "$(BUILD_PY3_LOADER)" == "1"
+TEST_PROGS = $(TEST_PROGS) $(CFG)\$(PLAT)\extension-python3.exe
+PYTHON3_EXT_TEST_CFLAG = $(PYTHON_EXT_TEST_CFLAG) /DENABLE_PYTHON3=1 $(PYTHON3_LOADER_CFLAGS)
+!endif
+
+BASE_TESTING_UTIL_OBJS = $(CFG)\$(PLAT)\peas-test\testing-util.obj
+
+TESTING_UTIL_OBJS =	\
+	$(BASE_TESTING_UTIL_OBJS)	\
+	$(CFG)\$(PLAT)\peas-test\testing.obj
+
+TESTING_GTK_UTIL_OBJS =	\
+	$(BASE_TESTING_UTIL_OBJS)	\
+	$(CFG)\$(PLAT)\peas-test\testing-gtk.obj
+
+TESTING_EXT_UTIL_OBJS =	\
+	$(TESTING_UTIL_OBJS)	\
+	$(CFG)\$(PLAT)\peas-test\testing-extension.obj
+
+TEST_UTIL_DEFINES = /DSRCDIR=\"$(PEAS_BUILDDIR)\" /DBUILDDIR=\"$(PEAS_BUILDDIR)\"
+BASE_TEST_UTIL_CLFAGS = /I..\tests\testing-util
+TEST_UTIL_CFLAGS = $(BASE_TEST_UTIL_CLFAGS) /I..\tests\libpeas\testing
+TEST_GTK_UTIL_CFLAGS = $(BASE_TEST_UTIL_CLFAGS) /I..\tests\libpeas-gtk\testing

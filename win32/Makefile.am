@@ -12,4 +12,5 @@ EXTRA_DIST =	\
 	luaconfig.mak	\
 	Makefile.vc	\
 	pythonconfig.mak	\
-	peas-introspection-msvc.mak
+	peas-introspection-msvc.mak	\
+	replace.py

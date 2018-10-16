@@ -47,6 +47,23 @@ $(CFG)\$(PLAT)\loaders-lua\peas-lua-resources.c:	\
 	--internal			\
 	$**
 
+..\tests\libpeas\plugins\embedded\embedded.gresource.xml: $(embedded_plugins)
+
+embedded_resource_sources =	\
+	$(CFG)\$(PLAT)\peas-test\embedded-resources.h	\
+	$(CFG)\$(PLAT)\peas-test\embedded-resources.c
+
+$(CFG)\$(PLAT)\peas-test\embedded-resources.h	\
+$(CFG)\$(PLAT)\peas-test\embedded-resources.c: ..\tests\libpeas\plugins\embedded\embedded.gresource.xml
+	$(PREFIX)\bin\glib-compile-resources.exe	\
+	--target=$@			\
+	--sourcedir=$(**D)	\
+	--generate	\
+	--c-name="embedded"	\
+	--manual-register	\
+	--internal			\
+	$**
+
 # Create the build directories
 
 $(CFG)\$(PLAT)\peas	\
@@ -56,5 +73,7 @@ $(CFG)\$(PLAT)\loaders-py3	\
 $(CFG)\$(PLAT)\loaders-lua	\
 $(CFG)\$(PLAT)\peas-demo	\
 $(CFG)\$(PLAT)\peas-demo-helloworld	\
-$(CFG)\$(PLAT)\peas-demo-secondtime:
+$(CFG)\$(PLAT)\peas-demo-secondtime	\
+$(CFG)\$(PLAT)\peas-test-introspection	\
+$(CFG)\$(PLAT)\peas-test:
 	@-mkdir $@

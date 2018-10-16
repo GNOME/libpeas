@@ -18,6 +18,7 @@
 !include ..\peas-demo\peas-demo-srcs.mak
 !include ..\peas-demo\plugins\helloworld\demo-helloworld-srcs.mak
 !include ..\peas-demo\plugins\secondtime\demo-secondtime-srcs.mak
+!include ..\tests\libpeas\introspection\test-introspection-srcs.mak
 
 # Include the Makefile portion that enables features based on user input
 !include config-msvc.mak
@@ -39,8 +40,6 @@ INTROSPECTION_ITEMS =
 !include create-lists-msvc.mak
 
 all: $(PEAS_LIBS) $(PEAS_LOADERS) $(INTROSPECTION_ITEMS) $(PEAS_DEMOS) all-build-info
-
-tests: all $(HB_TESTS)
 
 !include peas-introspection-msvc.mak
 

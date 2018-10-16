@@ -38,13 +38,6 @@ $(CFG)/$(PLAT)/Peas-$(APIVERSION).gir: $(peas_introspection_sources) $(PEAS_DLL)
 	-L $(CFG)\$(PLAT)	\
 	-o $@
 
-$(CFG)/$(PLAT)/Peas-$(APIVERSION).typelib: $(CFG)/$(PLAT)/Peas-$(APIVERSION).gir
-	@-echo Compiling $@...
-	$(G_IR_COMPILER)	\
-	--includedir=$(CFG)/$(PLAT)/Peas-$(APIVERSION).gir --debug --verbose	\
-	$**	\
-	-o $@
-
 $(CFG)/$(PLAT)/PeasGtk-$(APIVERSION).gir: $(peas_introspection_sources) $(PEAS_DLL) $(CFG)/$(PLAT)/Peas-$(APIVERSION).gir
 	@-echo Generating $@...
 	$(PYTHON) $(G_IR_SCANNER)	\
@@ -65,7 +58,41 @@ $(CFG)/$(PLAT)/PeasGtk-$(APIVERSION).gir: $(peas_introspection_sources) $(PEAS_D
 	-L $(CFG)\$(PLAT)	\
 	-o $@
 
+$(CFG)/$(PLAT)/Introspection-1.0.gir: $(peas_test_introspection_sources) $(CFG)/$(PLAT)/introspection.lib $(CFG)/$(PLAT)/Peas-$(APIVERSION).gir
+	@-echo Generating $@...
+	$(PYTHON) $(G_IR_SCANNER)	\
+	--verbose -no-libtool	\
+	--namespace=Introspection	\
+	--nsversion=1.0	\
+		\
+	--library=introspection	--library=peas-1.0	\
+		\
+	--add-include-path=$(G_IR_INCLUDEDIR)	\
+	--include=GObject-2.0	\
+	--pkg-export=libpeas-1.0	\
+	--cflags-begin	\
+	$(PEAS_CFLAGS)	\
+	--cflags-end	\
+	--warn-all	\
+	$(peas_test_introspection_sources)	\
+	-L $(CFG)\$(PLAT)	\
+	-o $@
+
+$(CFG)/$(PLAT)/Peas-$(APIVERSION).typelib: $(CFG)/$(PLAT)/Peas-$(APIVERSION).gir
+	@-echo Compiling $@...
+	$(G_IR_COMPILER)	\
+	--debug --verbose	\
+	$**	\
+	-o $@
+
 $(CFG)/$(PLAT)/PeasGtk-$(APIVERSION).typelib: $(CFG)/$(PLAT)/PeasGtk-$(APIVERSION).gir $(CFG)/$(PLAT)/Peas-$(APIVERSION).typelib
+	@-echo Compiling $@...
+	$(G_IR_COMPILER)	\
+	--includedir=$(CFG)/$(PLAT) --debug --verbose	\
+	$**	\
+	-o $@
+
+$(CFG)/$(PLAT)/Introspection-1.0.typelib: $(CFG)/$(PLAT)/Introspection-1.0.gir $(CFG)/$(PLAT)/Peas-$(APIVERSION).typelib
 	@-echo Compiling $@...
 	$(G_IR_COMPILER)	\
 	--includedir=$(CFG)/$(PLAT) --debug --verbose	\

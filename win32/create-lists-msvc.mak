@@ -135,6 +135,115 @@ NULL=
 !if [call create-lists.bat footer peas_objs.mak]
 !endif
 
+# For introspection test
+!if [call create-lists.bat header peas_objs.mak peas_test_introspection_OBJS]
+!endif
+
+!if [for %c in ($(PEAS_TEST_INTROSPECTION_SRCS)) do @if "%~xc" == ".c" @call create-lists.bat file peas_objs.mak ^$(CFG)\^$(PLAT)\peas-test-introspection\%~nc.obj]
+!endif
+
+!if [call create-lists.bat footer peas_objs.mak]
+!endif
+
+!if [call create-lists.bat header peas_objs.mak peas_test_introspection_sources]
+!endif
+
+!if [for %c in ($(PEAS_TEST_INTROSPECTION_SRCS)) do @call create-lists.bat file peas_objs.mak ..\tests\libpeas\introspection\%c]
+!endif
+
+!if [call create-lists.bat footer peas_objs.mak]
+!endif
+
+!if [call create-lists.bat header peas_objs.mak embedded_plugins]
+!endif
+
+!if [for %p in (..\tests\libpeas\plugins\embedded\*.plugin) do @call create-lists.bat file peas_objs.mak %p]
+!endif
+
+!if [call create-lists.bat footer peas_objs.mak]
+!endif
+
+!if [call create-lists.bat header peas_objs.mak peas_test_embedded_OBJS]
+!endif
+
+!if [for %c in (embedded-plugin.c embedded-resources.c) do @call create-lists.bat file peas_objs.mak ^$(CFG)\^$(PLAT)\peas-test\%~nc.obj]
+!endif
+
+!if [call create-lists.bat footer peas_objs.mak]
+!endif
+
+!if [call create-lists.bat header peas_objs.mak peas_test_loadable_OBJS]
+!endif
+
+!if [for %c in (..\tests\plugins\loadable\*.c) do @call create-lists.bat file peas_objs.mak ^$(CFG)\^$(PLAT)\peas-test\%~nc.obj]
+!endif
+
+!if [call create-lists.bat footer peas_objs.mak]
+!endif
+
+!if [call create-lists.bat header peas_objs.mak peas_test_builtin_OBJS]
+!endif
+
+!if [for %c in (..\tests\plugins\builtin\*.c) do @call create-lists.bat file peas_objs.mak ^$(CFG)\^$(PLAT)\peas-test\%~nc.obj]
+!endif
+
+!if [call create-lists.bat footer peas_objs.mak]
+!endif
+
+!if [call create-lists.bat header peas_objs.mak peas_test_has_dep_OBJS]
+!endif
+
+!if [for %c in (..\tests\plugins\has-dep\*.c) do @call create-lists.bat file peas_objs.mak ^$(CFG)\^$(PLAT)\peas-test\%~nc.obj]
+!endif
+
+!if [call create-lists.bat footer peas_objs.mak]
+!endif
+
+!if [call create-lists.bat header peas_objs.mak peas_test_self_dep_OBJS]
+!endif
+
+!if [for %c in (..\tests\plugins\self-dep\*.c) do @call create-lists.bat file peas_objs.mak ^$(CFG)\^$(PLAT)\peas-test\%~nc.obj]
+!endif
+
+!if [call create-lists.bat footer peas_objs.mak]
+!endif
+
+!if [call create-lists.bat header peas_objs.mak peas_test_extension_c_mod_OBJS]
+!endif
+
+!if [for %c in (..\tests\libpeas\plugins\extension-c\*.c) do @if not "%~nc" == "extension-c-missing-symbol-plugin" call create-lists.bat file peas_objs.mak ^$(CFG)\^$(PLAT)\peas-test\%~nc.obj]
+!endif
+
+!if [call create-lists.bat footer peas_objs.mak]
+!endif
+
+!if [call create-lists.bat header peas_objs.mak peas_test_extension_c_missing_symbol_mod_OBJS]
+!endif
+
+!if [for %c in (..\tests\libpeas\plugins\extension-c\*.c) do @if "%~nc" == "extension-c-missing-symbol-plugin" call create-lists.bat file peas_objs.mak ^$(CFG)\^$(PLAT)\peas-test\%~nc.obj]
+!endif
+
+!if [call create-lists.bat footer peas_objs.mak]
+!endif
+
+!if [call create-lists.bat header peas_objs.mak peas_test_gtk_configurable_OBJS]
+!endif
+
+!if [for %c in (..\tests\libpeas-gtk\plugins\configurable\*.c) do @if not "%~nc" == "extension-c-missing-symbol-plugin" call create-lists.bat file peas_objs.mak ^$(CFG)\^$(PLAT)\peas-test\%~nc.obj]
+!endif
+
+!if [call create-lists.bat footer peas_objs.mak]
+!endif
+
+!if [call create-lists.bat header peas_objs.mak peas_test_gtk_builtin_configurable_OBJS]
+!endif
+
+!if [for %c in (..\tests\libpeas-gtk\plugins\builtin-configurable\*.c) do @if not "%~nc" == "extension-c-missing-symbol-plugin" call create-lists.bat file peas_objs.mak ^$(CFG)\^$(PLAT)\peas-test\%~nc.obj]
+!endif
+
+!if [call create-lists.bat footer peas_objs.mak]
+!endif
+
 !include peas_objs.mak
 
 !if [del /f /q peas_objs.mak]
