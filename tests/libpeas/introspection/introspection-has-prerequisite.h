@@ -22,6 +22,8 @@
 #ifndef __INTROSPECTION_HAS_PREREQUISITE_H__
 #define __INTROSPECTION_HAS_PREREQUISITE_H__
 
+#include <libpeas/peas.h>
+
 #include <glib-object.h>
 
 G_BEGIN_DECLS
@@ -45,6 +47,7 @@ struct _IntrospectionHasPrerequisiteInterface {
 /*
  * Public methods
  */
+_PEAS_EXTERN
 GType        introspection_has_prerequisite_get_type         (void) G_GNUC_CONST;
 
 G_END_DECLS

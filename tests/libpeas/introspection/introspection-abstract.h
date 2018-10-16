@@ -49,9 +49,12 @@ struct _IntrospectionAbstractClass {
 /*
  * Public methods
  */
+_PEAS_EXTERN
 GType  introspection_abstract_get_type  (void) G_GNUC_CONST;
 
+_PEAS_EXTERN
 gint   introspection_abstract_get_value (IntrospectionAbstract *abstract);
+_PEAS_EXTERN
 void   introspection_abstract_set_value (IntrospectionAbstract *abstract,
                                          gint                   value);
 

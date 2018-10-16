@@ -49,9 +49,12 @@ struct _IntrospectionBaseInterface {
 /*
  * Public methods
  */
+_PEAS_EXTERN
 GType      introspection_base_get_type     (void) G_GNUC_CONST;
 
+_PEAS_EXTERN
 const PeasPluginInfo *introspection_base_get_plugin_info (IntrospectionBase *base);
+_PEAS_EXTERN
 GSettings            *introspection_base_get_settings    (IntrospectionBase *base);
 
 G_END_DECLS

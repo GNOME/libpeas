@@ -22,6 +22,8 @@
 #ifndef __INTROSPECTION_UNIMPLEMENTED_H__
 #define __INTROSPECTION_UNIMPLEMENTED_H__
 
+#include <libpeas/peas.h>
+
 #include <glib-object.h>
 
 G_BEGIN_DECLS
@@ -45,6 +47,7 @@ struct _IntrospectionUnimplementedInterface {
 /*
  * Public methods
  */
+_PEAS_EXTERN
 GType introspection_unimplemented_get_type (void)  G_GNUC_CONST;
 
 G_END_DECLS
