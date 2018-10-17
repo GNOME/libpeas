@@ -99,3 +99,4 @@ Makefile.in
 /tests/libpeas-gtk/plugin-manager-store
 /tests/libpeas-gtk/plugin-manager-view
 /xmldocs.make
+/win32/config.h.win32
