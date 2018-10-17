@@ -64,27 +64,37 @@ struct _PeasGtkPluginManagerStoreClass {
   GtkListStoreClass parent_class;
 };
 
+_PEAS_EXTERN
 GType                       peas_gtk_plugin_manager_store_get_type              (void) G_GNUC_CONST;
+_PEAS_EXTERN
 PeasGtkPluginManagerStore  *peas_gtk_plugin_manager_store_new                   (PeasEngine                *engine);
 
+_PEAS_EXTERN
 void                        peas_gtk_plugin_manager_store_reload                (PeasGtkPluginManagerStore *store);
 
+_PEAS_EXTERN
 void                        peas_gtk_plugin_manager_store_set_enabled           (PeasGtkPluginManagerStore *store,
                                                                                  GtkTreeIter               *iter,
                                                                                  gboolean                   enabled);
+_PEAS_EXTERN
 gboolean                    peas_gtk_plugin_manager_store_get_enabled           (PeasGtkPluginManagerStore *store,
                                                                                  GtkTreeIter               *iter);
+_PEAS_EXTERN
 void                        peas_gtk_plugin_manager_store_set_all_enabled       (PeasGtkPluginManagerStore *store,
                                                                                  gboolean                  enabled);
+_PEAS_EXTERN
 void                        peas_gtk_plugin_manager_store_toggle_enabled        (PeasGtkPluginManagerStore *store,
                                                                                  GtkTreeIter               *iter);
 
+_PEAS_EXTERN
 gboolean                    peas_gtk_plugin_manager_store_can_enable            (PeasGtkPluginManagerStore *store,
                                                                                  GtkTreeIter               *iter);
 
+_PEAS_EXTERN
 PeasPluginInfo             *peas_gtk_plugin_manager_store_get_plugin            (PeasGtkPluginManagerStore *store,
                                                                                  GtkTreeIter               *iter);
 
+_PEAS_EXTERN
 gboolean                    peas_gtk_plugin_manager_store_get_iter_from_plugin  (PeasGtkPluginManagerStore *store,
                                                                                  GtkTreeIter               *iter,
                                                                                  const PeasPluginInfo      *info);
