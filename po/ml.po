@@ -6,133 +6,172 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libpeas master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=libpeas&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-03-21 02:17+0000\n"
-"PO-Revision-Date: 2012-03-21 02:17+0000\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues\n"
+"POT-Creation-Date: 2018-06-10 15:00+0000\n"
+"PO-Revision-Date: 2018-10-28 22:24+0800\n"
 "Last-Translator: Manilal K M <libregeek@gmail.com>\n"
 "Language-Team: Malayalam <discuss@lists.smc.org.in>\n"
 "Language: ml\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #: ../data/glade/libpeas-gtk.xml.in.h:1
 msgid "Plugin Manager"
 msgstr "സംയോജക പാലകന്‍"
 
-#: ../data/glade/libpeas-gtk.xml.in.h:2
+#. Translators: What PeasGtkPluginManagerView to use
+#: ../data/glade/libpeas-gtk.xml.in.h:3
 msgid "View"
 msgstr "ദൃശ്യം"
 
-#: ../data/glade/libpeas-gtk.xml.in.h:3
+#: ../data/glade/libpeas-gtk.xml.in.h:4
 msgid "Plugin Manager View"
 msgstr "സംയോജക പാലകന്റെ കാഴ്ചപ്പാടു്"
 
 #. Translators: Whether builtin plugins should appear in the view (property name)
-#: ../data/glade/libpeas-gtk.xml.in.h:5
+#: ../data/glade/libpeas-gtk.xml.in.h:6
 msgid "Show Builtin"
 msgstr "നേരത്തെയുള്ളതു കാണിക്കുക"
 
-#: ../data/glade/libpeas-gtk.xml.in.h:6
+#: ../data/glade/libpeas-gtk.xml.in.h:7
 msgid "Peas Gtk"
 msgstr "പീസ് ജിടികെ"
 
-#: ../libpeas/peas-engine.c:789
+#: ../libpeas/peas-engine.c:1118
 #, c-format
 msgid "Dependency '%s' was not found"
 msgstr "'%s' എന്ന ആശ്രയത്വം കാണുന്നില്ല"
 
-#: ../libpeas/peas-engine.c:799
+#: ../libpeas/peas-engine.c:1128
 #, c-format
 msgid "Dependency '%s' failed to load"
 msgstr "'%s' എന്ന ആശ്രയത്വം എടുക്കുന്നതു പരാജയപ്പെട്ടു"
 
-#: ../libpeas/peas-engine.c:814
+#: ../libpeas/peas-engine.c:1142
 #, c-format
 msgid "Plugin loader '%s' was not found"
 msgstr "'%s' എന്ന സംയോജക ലോഡറിനെ കാണുന്നില്ല"
 
-#: ../libpeas/peas-engine.c:826
+#: ../libpeas/peas-engine.c:1154
 #, c-format
 msgid "Failed to load"
 msgstr "എടുക്കുന്നതില്‍ പരാജയപ്പെട്ടു"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:91
+#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:95
 msgid "Additional plugins must be disabled"
 msgstr "അധികമുള്ള സംയോജകങ്ങള്‍ നിര്‍വീര്യമാക്കണം"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:98
+#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:102
 #, c-format
 msgid "The following plugins depend on '%s' and will also be disabled:"
-msgstr "ഇനി പറയുന്ന സംയോജകങ്ങള്‍ '%s' നെ ആശ്രയിക്കുന്നതിനാല്‍ അവയും നിര്‍വീര്യമാക്കപ്പെടും"
+msgstr "ഇനി പറയുന്ന സംയോജകങ്ങള്‍ '%s' നെ ആശ്രയിക്കുന്നതിനാല്‍ അവയും നിര്‍വീര്യമാക്കപ്പെടും:"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:140
+#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:144
 msgid "Plugins"
 msgstr "സംയോജകങ്ങള്‍"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:156
+#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:161
 msgid "An additional plugin must be disabled"
 msgstr "അധികമുള്ള ഒരു സംയോജകം നിര്‍വീര്യമാക്കണം"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:163
+#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:168
 #, c-format
 msgid ""
 "The '%s' plugin depends on the '%s' plugin.\n"
 "If you disable '%s', '%s' will also be disabled."
 msgstr ""
 "'%s' എന്ന സംയോജകം '%s' എന്ന സംയോജകത്തിനെ ആശ്രയിച്ചിരിക്കുന്നു.\n"
-"താങ്കള്‍ '%s' നിര്‍വീര്യമാക്കിയാല്‍ '%s' നിര്‍വീര്യമാക്കപ്പെടും"
+"താങ്കള്‍ '%s' നിര്‍വീര്യമാക്കിയാല്‍ '%s' നിര്‍വീര്യമാക്കപ്പെടും."
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:183
+# _റദ്ദാക്കുക
+#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:182
+msgid "_Cancel"
+msgstr "റദ്ദാക്കുക (_C)"
+
+#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:184
 msgid "Disable Plugins"
 msgstr "സംയോജകങ്ങള്‍ നിര്‍വീര്യമാക്കൂ"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:182
+#: ../libpeas-gtk/peas-gtk-plugin-manager.c:207
 msgid "There was an error displaying the help."
-msgstr "സഹായം കാണിക്കുന്നതില്‍ ഒരു പിശകു്"
+msgstr "സഹായം കാണിക്കുന്നതില്‍ ഒരു പിശക്."
+
+#: ../libpeas-gtk/peas-gtk-plugin-manager.c:253
+msgid "_Close"
+msgstr "അടയ്ക്കുക (_C)"
+
+# _സഹായം
+#: ../libpeas-gtk/peas-gtk-plugin-manager.c:265
+msgid "_Help"
+msgstr "സഹായം (_H)"
+
+#: ../libpeas-gtk/peas-gtk-plugin-manager.c:323
+msgid "Pr_eferences"
+msgstr "മുന്‍ഗണനകള്‍ (_e)"
+
+#: ../libpeas-gtk/peas-gtk-plugin-manager.c:328
+#: ../libpeas-gtk/peas-gtk-plugin-manager.c:379
+msgid "_About"
+msgstr "സംബന്ധിച്ചു് (_A)"
 
 #: ../libpeas-gtk/peas-gtk-plugin-manager.c:387
-msgid "_About"
-msgstr "_കുറിച്ച്"
-
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:395
 msgid "_Preferences"
-msgstr "_മുന്‍ഗണനകള്‍"
+msgstr "മുന്‍ഗണനകള്‍ (_P)"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:334
+#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:351
 msgid "_Enabled"
-msgstr "_പ്രവര്‍ത്തന സജ്ജം"
+msgstr "പ്രവര്‍ത്തന സജ്ജം (_E)"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:345
+#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:362
 msgid "E_nable All"
-msgstr "_എല്ലാം പ്രവര്‍ത്തന സജ്ജമാക്കുക"
+msgstr "എല്ലാം പ്രവര്‍ത്തന സജ്ജമാക്കുക (_n)"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:349
+#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:366
 msgid "_Disable All"
-msgstr "എല്ലാം _നിര്‍വീര്യമാക്കുക"
+msgstr "എല്ലാം നിര്‍വീര്യമാക്കുക (_D)"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:508
+#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:526
 msgid "Enabled"
 msgstr "പ്രവര്‍ത്തന സജ്ജം"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:529
+#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:547
 msgid "Plugin"
 msgstr "സംയോജകം"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:619
+#. Avoid having markup in a translated string
+#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:634
 #, c-format
-msgid ""
-"<b>The plugin '%s' could not be loaded</b>\n"
-"An error occurred: %s"
-msgstr ""
-"<b>'%s' എന്ന സംയോജകം എടുത്തുവയ്ക്കുവാന്‍ സാധിച്ചില്ല</b>\n"
-"ഒരു പിശകുണ്ടായി: %s"
+msgid "The plugin '%s' could not be loaded"
+msgstr "'%s' എന്ന സംയോജകം എടുത്തുവയ്ക്കുവാന്‍ സാധിച്ചില്ല"
 
-#: ../peas-demo/peas-demo.c:40
+#. Keep separate because some translations do special things
+#. * for the ':' and might accidentally not keep the space after it
+#.
+#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:640
+#, c-format
+msgid "An error occurred: %s"
+msgstr "ഒരു പിശക് സംഭവിച്ചു: %s"
+
+#. Translators: The directory in which the demo program was compiled at
+#: ../peas-demo/peas-demo.c:41
 msgid "Run from build directory"
 msgstr "ബില്‍ഡ് ചെയ്യുന്ന അറയില്‍ നിന്നും ഓടിക്കുക"
 
-#: ../peas-demo/peas-demo.c:100
+# _പുറത്തുകടക്കുക
+#: ../peas-demo/peas-demo.c:92
+msgid "_Quit"
+msgstr "പുറത്തിറങ്ങൂ (_Q)"
+
+#: ../peas-demo/peas-demo.c:108
 msgid "- libpeas demo application"
 msgstr "- ലിബ്പീസ് മാതൃക പ്രയോഗം"
+
+#: ../tests/libpeas-gtk/plugin-manager.c:77
+msgid "About"
+msgstr "സംബന്ധിച്ചു് (_A)"
+
+#: ../tests/libpeas-gtk/plugin-manager.c:82
+msgid "Preferences"
+msgstr "മുന്‍ഗണനകള്‍ (_P)"
