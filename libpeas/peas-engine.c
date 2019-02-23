@@ -75,6 +75,7 @@ enum {
   PROP_PLUGIN_LIST,
   PROP_LOADED_PLUGINS,
   PROP_NONGLOBAL_LOADERS,
+  PROP_LOADED_EXTERNAL_PLUGINS,
   N_PROPERTIES
 };
 
@@ -551,6 +552,10 @@ peas_engine_set_property (GObject      *object,
     case PROP_NONGLOBAL_LOADERS:
       priv->use_nonglobal_loaders = g_value_get_boolean (value);
       break;
+    case PROP_LOADED_EXTERNAL_PLUGINS:
+      peas_engine_set_loaded_external_plugins (engine,
+                                               (const gchar **) g_value_get_boxed (value));
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -578,6 +583,10 @@ peas_engine_get_property (GObject    *object,
       break;
     case PROP_NONGLOBAL_LOADERS:
       g_value_set_boolean (value, priv->use_nonglobal_loaders);
+      break;
+    case PROP_LOADED_EXTERNAL_PLUGINS:
+      g_value_take_boxed (value,
+                          (gconstpointer) peas_engine_get_loaded_external_plugins (engine));
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -685,15 +694,8 @@ peas_engine_class_init (PeasEngineClass *klass)
    * This will be modified when peas_engine_load_plugin() or
    * peas_engine_unload_plugin() is called.
    *
-   * This can be used with GSettings to save the loaded plugins by binding
-   * to this property after instantiating the engine by doing:
-   * |[
-   *   g_settings_bind (gsettings_object,
-   *                    LOADED_PLUGINS_KEY,
-   *                    engine,
-   *                    "loaded-plugins",
-   *                    G_SETTINGS_BIND_DEFAULT);
-   * ]|
+   * It is recommended that you bind a GSettings to
+   * PeasEngine:loaded-external-plugins instead.
    *
    * Note: notify will not be called when the engine is being destroyed.
    */
@@ -722,6 +724,37 @@ peas_engine_class_init (PeasEngineClass *klass)
                           G_PARAM_READWRITE |
                           G_PARAM_CONSTRUCT_ONLY |
                           G_PARAM_STATIC_STRINGS);
+
+  /**
+   * PeasEngine:loaded-external-plugins:
+   *
+   * The list of loaded external plugins.
+   *
+   * The same list of plugins as PeasEngine:loaded-plugins, minus builtin
+   * ones.
+   *
+   * This can be used with GSettings to save the loaded plugins in a setting
+   * by binding to this property after instantiating the engine by doing:
+   * |[
+   *   g_settings_bind (gsettings_object,
+   *                    LOADED_PLUGINS_KEY,
+   *                    engine,
+   *                    "loaded-external-plugins",
+   *                    G_SETTINGS_BIND_DEFAULT);
+   * ]|
+   *
+   * Note that you will need to load and activate the builtin plugins
+   * after doing this.
+   *
+   * Note: notify will not be called when the engine is being destroyed.
+   */
+  properties[PROP_LOADED_EXTERNAL_PLUGINS] =
+    g_param_spec_boxed ("loaded-external-plugins",
+                        "Loaded external plugins",
+                        "The list of loaded external plugins",
+                        G_TYPE_STRV,
+                        G_PARAM_READWRITE |
+                        G_PARAM_STATIC_STRINGS);
 
   /**
    * PeasEngine::load-plugin:
@@ -1160,6 +1193,12 @@ peas_engine_load_plugin_real (PeasEngine     *engine,
   g_object_notify_by_pspec (G_OBJECT (engine),
                             properties[PROP_LOADED_PLUGINS]);
 
+  if (!peas_plugin_info_is_builtin (info))
+    {
+      g_object_notify_by_pspec (G_OBJECT (engine),
+                                properties[PROP_LOADED_EXTERNAL_PLUGINS]);
+    }
+
   return;
 
 error:
@@ -1238,8 +1277,15 @@ peas_engine_unload_plugin_real (PeasEngine     *engine,
    * loaded plugins can easily be kept in GSettings
    */
   if (!priv->in_dispose)
-    g_object_notify_by_pspec (G_OBJECT (engine),
-                              properties[PROP_LOADED_PLUGINS]);
+    {
+      g_object_notify_by_pspec (G_OBJECT (engine),
+                                properties[PROP_LOADED_PLUGINS]);
+      if (!peas_plugin_info_is_builtin (info))
+        {
+          g_object_notify_by_pspec (G_OBJECT (engine),
+                                    properties[PROP_LOADED_EXTERNAL_PLUGINS]);
+        }
+    }
 }
 
 /**
@@ -1461,6 +1507,34 @@ peas_engine_create_extension (PeasEngine     *engine,
   return exten;
 }
 
+static gchar **
+_peas_engine_get_loaded_plugins (PeasEngine *engine,
+                                 gboolean    with_builtin)
+{
+  PeasEnginePrivate *priv = GET_PRIV (engine);
+  GArray *array;
+  GList *pl;
+
+  g_return_val_if_fail (PEAS_IS_ENGINE (engine), NULL);
+
+  array = g_array_new (TRUE, FALSE, sizeof (gchar *));
+
+  for (pl = priv->plugin_list.head; pl != NULL; pl = pl->next)
+    {
+      PeasPluginInfo *info = (PeasPluginInfo *) pl->data;
+      gchar *module_name;
+
+      if (peas_plugin_info_is_loaded (info) &&
+          (with_builtin || !peas_plugin_info_is_builtin (info)))
+        {
+          module_name = g_strdup (peas_plugin_info_get_module_name (info));
+          g_array_append_val (array, module_name);
+        }
+    }
+
+  return (gchar **) g_array_free (array, FALSE);
+}
+
 /**
  * peas_engine_get_loaded_plugins:
  * @engine: A #PeasEngine.
@@ -1477,27 +1551,27 @@ peas_engine_create_extension (PeasEngine     *engine,
 gchar **
 peas_engine_get_loaded_plugins (PeasEngine *engine)
 {
-  PeasEnginePrivate *priv = GET_PRIV (engine);
-  GArray *array;
-  GList *pl;
+  return _peas_engine_get_loaded_plugins (engine, TRUE);
+}
 
-  g_return_val_if_fail (PEAS_IS_ENGINE (engine), NULL);
-
-  array = g_array_new (TRUE, FALSE, sizeof (gchar *));
-
-  for (pl = priv->plugin_list.head; pl != NULL; pl = pl->next)
-    {
-      PeasPluginInfo *info = (PeasPluginInfo *) pl->data;
-      gchar *module_name;
-
-      if (peas_plugin_info_is_loaded (info))
-        {
-          module_name = g_strdup (peas_plugin_info_get_module_name (info));
-          g_array_append_val (array, module_name);
-        }
-    }
-
-  return (gchar **) g_array_free (array, FALSE);
+/**
+ * peas_engine_get_loaded_external_plugins:
+ * @engine: A #PeasEngine.
+ *
+ * Returns the list of the names of all the loaded external plugins, or an array
+ * containing a single %NULL element if there is no external plugin currently
+ * loaded.
+ *
+ * Please note that the returned array is a newly allocated one: you will need
+ * to free it using g_strfreev().
+ *
+ * Returns: (transfer full) (array zero-terminated=1): A newly-allocated
+ * %NULL-terminated array of strings.
+ */
+gchar **
+peas_engine_get_loaded_external_plugins (PeasEngine *engine)
+{
+  return _peas_engine_get_loaded_plugins (engine, FALSE);
 }
 
 static gboolean
@@ -1518,21 +1592,10 @@ string_in_strv (const gchar  *needle,
   return FALSE;
 }
 
-/**
- * peas_engine_set_loaded_plugins:
- * @engine: A #PeasEngine.
- * @plugin_names: (allow-none) (array zero-terminated=1): A %NULL-terminated
- *  array of plugin names, or %NULL.
- *
- * Sets the list of loaded plugins for @engine. When this function is called,
- * the #PeasEngine will load all the plugins whose names are in @plugin_names,
- * and ensures all other active plugins are unloaded.
- *
- * If @plugin_names is %NULL, all plugins will be unloaded.
- */
-void
-peas_engine_set_loaded_plugins (PeasEngine   *engine,
-                                const gchar **plugin_names)
+static void
+_peas_engine_set_loaded_plugins (PeasEngine   *engine,
+                                 const gchar **plugin_names,
+                                 gboolean      with_builtin)
 {
   PeasEnginePrivate *priv = GET_PRIV (engine);
   GList *pl;
@@ -1549,6 +1612,12 @@ peas_engine_set_loaded_plugins (PeasEngine   *engine,
       if (!peas_plugin_info_is_available (info, NULL))
         continue;
 
+      /* If we're not modifying builtin plugins, then we don't
+       * care whether they're to loaded or not, skip them */
+      if (!with_builtin &&
+          peas_plugin_info_is_builtin (info))
+        continue;
+
       module_name = peas_plugin_info_get_module_name (info);
       is_loaded = peas_plugin_info_is_loaded (info);
 
@@ -1559,6 +1628,45 @@ peas_engine_set_loaded_plugins (PeasEngine   *engine,
       else if (is_loaded && !to_load)
         g_signal_emit (engine, signals[UNLOAD_PLUGIN], 0, info);
     }
+
+}
+
+/**
+ * peas_engine_set_loaded_plugins:
+ * @engine: A #PeasEngine.
+ * @plugin_names: (allow-none) (array zero-terminated=1): A %NULL-terminated
+ *  array of plugin names, or %NULL.
+ *
+ * Sets the list of loaded plugins for @engine. When this function is called,
+ * the #PeasEngine will load all the plugins whose names are in @plugin_names,
+ * and ensures all other active plugins are unloaded.
+ *
+ * If @plugin_names is %NULL, all plugins will be unloaded.
+ */
+void
+peas_engine_set_loaded_plugins (PeasEngine   *engine,
+                                const gchar **plugin_names)
+{
+  _peas_engine_set_loaded_plugins (engine, plugin_names, TRUE);
+}
+
+/**
+ * peas_engine_set_loaded_external_plugins:
+ * @engine: A #PeasEngine.
+ * @plugin_names: (allow-none) (array zero-terminated=1): A %NULL-terminated
+ *  array of plugin names, or %NULL.
+ *
+ * Sets the list of loaded external plugins for @engine. When this function is
+ * called, the #PeasEngine will load all the external plugins whose names are in
+ * @plugin_names, and ensures all other active external plugins are unloaded.
+ *
+ * If @plugin_names is %NULL, all external plugins will be unloaded.
+ */
+void
+peas_engine_set_loaded_external_plugins (PeasEngine   *engine,
+                                         const gchar **plugin_names)
+{
+  _peas_engine_set_loaded_plugins (engine, plugin_names, FALSE);
 }
 
 /**

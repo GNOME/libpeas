@@ -31,6 +31,24 @@
 
 #include "testing/testing.h"
 
+static void
+peas_engine_dump_loaded_plugins (PeasEngine *engine)
+{
+  char **plugins;
+  char *list;
+
+  plugins = peas_engine_get_loaded_plugins (engine);
+  if (plugins[0] == NULL)
+    {
+      g_print ("Plugins loaded: (none)\n");
+      return;
+    }
+  list = g_strjoinv (", ", plugins);
+  g_strfreev (plugins);
+  g_print ("Plugins loaded: %s\n", list);
+  g_free (list);
+}
+
 typedef struct _TestFixture TestFixture;
 
 struct _TestFixture {
@@ -356,6 +374,20 @@ test_engine_loaded_plugins (PeasEngine *engine)
 
   g_object_notify (G_OBJECT (engine), "loaded-plugins");
 
+  /* Unload all the external plugins */
+  info = peas_engine_get_plugin_info (engine, "builtin");
+  g_assert (peas_engine_load_plugin (engine, info));
+  info = peas_engine_get_plugin_info (engine, "loadable");
+  g_assert (peas_engine_load_plugin (engine, info));
+  g_assert_cmpint (loaded, ==, 2);
+  g_assert (loaded_plugins[0] != NULL);
+  g_assert (loaded_plugins[1] != NULL);
+  g_assert (loaded_plugins[2] == NULL);
+  peas_engine_set_loaded_external_plugins (engine, NULL);
+  g_assert_cmpint (loaded, ==, 1);
+  g_assert (loaded_plugins != NULL);
+  g_assert (loaded_plugins[0] != NULL);
+  g_assert_cmpstr (loaded_plugins[0], ==, "builtin");
 
   /* Unload all plugins */
   peas_engine_set_loaded_plugins (engine, NULL);
@@ -382,6 +414,16 @@ test_engine_loaded_plugins (PeasEngine *engine)
   g_assert (loaded_plugins != NULL);
   g_assert_cmpstr (loaded_plugins[0], ==, "loadable");
   g_assert (loaded_plugins[1] == NULL);
+
+  /* Unload loadable, and don't load builtin */
+  load_plugins = g_new0 (gchar *, 2);
+  load_plugins[0] = g_strdup ("builtin");
+  peas_engine_set_loaded_external_plugins (engine, (const gchar **) load_plugins);
+  g_strfreev (load_plugins);
+
+  g_assert_cmpint (loaded, ==, 0);
+  g_assert (loaded_plugins != NULL);
+  g_assert (loaded_plugins[0] == NULL);
 
 
   /* Try to load an unavailable plugin */

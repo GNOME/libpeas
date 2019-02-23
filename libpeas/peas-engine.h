@@ -94,6 +94,11 @@ const GList      *peas_engine_get_plugin_list     (PeasEngine      *engine);
 gchar           **peas_engine_get_loaded_plugins  (PeasEngine      *engine);
 void              peas_engine_set_loaded_plugins  (PeasEngine      *engine,
                                                    const gchar    **plugin_names);
+gchar           **peas_engine_get_loaded_external_plugins
+                                                  (PeasEngine      *engine);
+void              peas_engine_set_loaded_external_plugins
+                                                  (PeasEngine      *engine,
+                                                   const gchar    **plugin_names);
 PeasPluginInfo   *peas_engine_get_plugin_info     (PeasEngine      *engine,
                                                    const gchar     *plugin_name);
 
