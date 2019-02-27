@@ -1,0 +1,14 @@
+stages:
+- test
+
+build-fedora:
+  image: fedora:latest
+  stage: test
+  before_script:
+    - dnf install -y gcc redhat-rpm-config which intltool gnome-common make gtk3-devel glade-devel gobject-introspection-devel pygobject3-devel python3-devel xorg-x11-server-Xvfb
+  script:
+    - ./autogen.sh --disable-dependency-tracking
+    - make
+    - make install
+    - G_MESSAGES_DEBUG=all xvfb-run -a -s "-screen 0 1024x768x24" make check
+
