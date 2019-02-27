@@ -1,0 +1,14 @@
+stages:
+- test
+
+build-fedora:
+  image: fedora:latest
+  stage: test
+  before_script:
+    - dnf install -y gcc redhat-rpm-config which gettext-devel gnome-common make gtk3-devel glade-devel gobject-introspection-devel pygobject3-devel python3-devel
+  script:
+    - ./autogen.sh --disable-dependency-tracking
+    - make
+    - make install
+    - make check
+
