@@ -442,7 +442,7 @@ else
                 found_python3=yes
                 PYTHON3_BIN="$PYTHON"
                 PYTHON3_CFLAGS=`${PYTHON3_CONFIG} --includes`
-                PYTHON3_LIBS=`${PYTHON3_CONFIG} --libs`
+                PYTHON3_LIBS=`${PYTHON3_CONFIG} --libs --embed` || PYTHON3_LIBS=`${PYTHON3_CONFIG} --libs`
                 PYTHON3_LDFLAGS=`${PYTHON3_CONFIG} --ldflags`
                 AC_SUBST(PYTHON3_BIN)
                 AC_SUBST(PYTHON3_CFLAGS)
