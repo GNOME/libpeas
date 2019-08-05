@@ -7,21 +7,18 @@ configure_file(
   input: 'extension-py.gschema.xml.in',
   output: 'extension-python.gschema.xml',
   configuration: python2_in,
-  install: false,
 )
 
 configure_file(
   input: 'extension-py.plugin.in',
   output: 'extension-python.plugin',
   configuration: python2_in,
-  install: false,
 )
 
 configure_file(
   input: 'extension-py.py.in',
   output: 'extension-python.py',
   configuration: python2_in,
-  install: false,
 )
 
 python3_in = configuration_data()
@@ -31,19 +28,16 @@ configure_file(
   input: 'extension-py.gschema.xml.in',
   output: 'extension-python3.gschema.xml',
   configuration: python3_in,
-  install: false,
 )
 
 configure_file(
   input: 'extension-py.plugin.in',
   output: 'extension-python3.plugin',
   configuration: python3_in,
-  install: false,
 )
 
 configure_file(
   input: 'extension-py.py.in',
   output: 'extension-python3.py',
   configuration: python3_in,
-  install: false,
 )

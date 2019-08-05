@@ -5,7 +5,6 @@ peas_glade_catalog = configure_file(
   input: 'libpeas-gtk.xml.in',
   output: 'libpeas-gtk.xml',
   configuration: glade_catalog_xml,
-  install: true,
   install_dir: catalogdir,
 )
 
