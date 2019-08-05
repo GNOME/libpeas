@@ -148,7 +148,7 @@ show_about_cb (GtkWidget            *widget,
   modal = toplevel == NULL ? FALSE : gtk_window_get_modal (toplevel);
 
   /* If there is another about dialog already open destroy it */
-  g_clear_pointer (&priv->about, (GDestroyNotify) gtk_widget_destroy);
+  g_clear_pointer (&priv->about, gtk_widget_destroy);
 
   priv->about = GTK_WIDGET (g_object_new (GTK_TYPE_ABOUT_DIALOG,
                                           "program-name", peas_plugin_info_get_name (info),
@@ -529,7 +529,7 @@ peas_gtk_plugin_manager_dispose (GObject *object)
   PeasGtkPluginManagerPrivate *priv = peas_gtk_plugin_manager_get_instance_private (pm);
 
   g_clear_object (&priv->engine);
-  g_clear_pointer (&priv->about, (GDestroyNotify) gtk_widget_destroy);
+  g_clear_pointer (&priv->about, gtk_widget_destroy);
 
   G_OBJECT_CLASS (peas_gtk_plugin_manager_parent_class)->dispose (object);
 }
