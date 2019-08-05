@@ -180,6 +180,7 @@ find_param_spec_for_prerequisites (const gchar  *name,
   return pspec;
 }
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 gboolean
 peas_utils_valist_to_parameter_list (GType         exten_type,
                                      const gchar  *first_property,
@@ -250,6 +251,7 @@ error:
   g_free (*params);
   return FALSE;
 }
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 
 gint
 peas_utils_get_loader_id (const gchar *loader)

@@ -27,11 +27,13 @@
 #define PEAS_UTILS_C_LOADER_ID  0
 #define PEAS_UTILS_N_LOADERS    4
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 gboolean  peas_utils_valist_to_parameter_list (GType         exten_type,
                                                const gchar  *first_property,
                                                va_list       var_args,
                                                GParameter  **params,
                                                guint        *n_params);
+G_GNUC_END_IGNORE_DEPRECATIONS
 
 gint     peas_utils_get_loader_id             (const gchar  *loader) G_GNUC_CONST;
 const gchar *

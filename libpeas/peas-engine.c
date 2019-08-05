@@ -1301,6 +1301,7 @@ peas_engine_provides_extension (PeasEngine     *engine,
   return peas_plugin_loader_provides_extension (loader, info, extension_type);
 }
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 /**
  * peas_engine_create_extensionv: (rename-to peas_engine_create_extension)
  * @engine: A #PeasEngine.
@@ -1352,6 +1353,7 @@ peas_engine_create_extensionv (PeasEngine     *engine,
 
   return extension;
 }
+G_GNUC_END_IGNORE_DEPRECATIONS
 
 /**
  * peas_engine_create_extension_valist: (skip)
@@ -1381,9 +1383,12 @@ peas_engine_create_extension_valist (PeasEngine     *engine,
                                      const gchar    *first_property,
                                      va_list         var_args)
 {
-  guint n_parameters;
+  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   GParameter *parameters;
+  G_GNUC_END_IGNORE_DEPRECATIONS
+
   PeasExtension *exten;
+  guint n_parameters;
 
   g_return_val_if_fail (PEAS_IS_ENGINE (engine), NULL);
   g_return_val_if_fail (info != NULL, NULL);

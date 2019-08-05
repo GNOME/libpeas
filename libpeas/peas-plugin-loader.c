@@ -116,6 +116,7 @@ peas_plugin_loader_provides_extension (PeasPluginLoader *loader,
   return klass->provides_extension (loader, info, ext_type);
 }
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 PeasExtension *
 peas_plugin_loader_create_extension (PeasPluginLoader *loader,
                                      PeasPluginInfo   *info,
@@ -131,6 +132,7 @@ peas_plugin_loader_create_extension (PeasPluginLoader *loader,
   return klass->create_extension (loader, info, ext_type,
                                   n_parameters, parameters);
 }
+G_GNUC_END_IGNORE_DEPRECATIONS
 
 void
 peas_plugin_loader_garbage_collect (PeasPluginLoader *loader)
