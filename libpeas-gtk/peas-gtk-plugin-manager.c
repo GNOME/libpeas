@@ -193,7 +193,7 @@ help_button_cb (GtkWidget      *button,
   [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithUTF8String:help_uri]]];
 #else
 
-  gtk_show_uri (NULL, help_uri, GDK_CURRENT_TIME, &error);
+  gtk_show_uri_on_window (get_toplevel (button), help_uri, GDK_CURRENT_TIME, &error);
   if (error == NULL)
     return;
 
