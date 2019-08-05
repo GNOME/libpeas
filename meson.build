@@ -171,7 +171,7 @@ if build_python2_loader and not python2_found
   build_python2_loader = false
 endif
 
-build_python3_loader = get_option('python2')
+build_python3_loader = get_option('python3')
 python3_found = python3_dep.found() and pygobject_dep.found()
 if build_python3_loader and not python3_found
   build_python3_loader = false
