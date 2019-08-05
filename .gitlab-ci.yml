@@ -2,13 +2,13 @@ stages:
 - test
 
 build-fedora:
-  image: fedora:latest
+  image: 'registry.fedoraproject.org/fedora:30'
   stage: test
   before_script:
-    - dnf install -y gcc redhat-rpm-config which intltool gtk-doc gnome-common make gtk3-devel glade-devel gobject-introspection-devel pygobject3-devel python3-devel xorg-x11-server-Xvfb
+    - dnf install -y gcc redhat-rpm-config which gtk-doc gtk3-devel glade-devel gobject-introspection-devel pygobject3-devel python3-devel xorg-x11-server-Xvfb meson
   script:
-    - ./autogen.sh --disable-dependency-tracking
-    - make
-    - make install
-    - G_MESSAGES_DEBUG=all xvfb-run -a -s "-screen 0 1024x768x24" make check
+    - meson build
+    - ninja -C build
+    - ninja -C build install
+    - G_MESSAGES_DEBUG=all xvfb-run -a -s "-screen 0 1024x768x24" meson test -C build --print-errorlogs
 
