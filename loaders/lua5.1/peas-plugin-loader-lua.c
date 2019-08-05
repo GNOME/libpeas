@@ -364,7 +364,7 @@ peas_plugin_loader_lua_finalize (GObject *object)
     priv->lgi_enter_func (priv->lgi_lock);
 
   peas_lua_internal_shutdown (priv->L);
-  g_clear_pointer (&priv->L, (GDestroyNotify) lua_close);
+  g_clear_pointer (&priv->L, lua_close);
 
   G_OBJECT_CLASS (peas_plugin_loader_lua_parent_class)->finalize (object);
 }
