@@ -754,8 +754,7 @@ peas_gtk_plugin_manager_view_dispose (GObject *object)
   PeasGtkPluginManagerView *view = PEAS_GTK_PLUGIN_MANAGER_VIEW (object);
   PeasGtkPluginManagerViewPrivate *priv = GET_PRIV (view);
 
-  g_clear_pointer (&priv->popup_menu,
-                   (GDestroyNotify) gtk_widget_destroy);
+  g_clear_pointer (&priv->popup_menu, gtk_widget_destroy);
 
   g_clear_object (&priv->engine);
   g_clear_object (&priv->store);
