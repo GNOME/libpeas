@@ -155,7 +155,7 @@ peas_plugin_loader_lua_provides_extension (PeasPluginLoader *loader,
   return the_type != G_TYPE_INVALID;
 }
 
-G_GNUC_BEGIN_DISABLE_DEPRECATIONS
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 static PeasExtension *
 peas_plugin_loader_lua_create_extension (PeasPluginLoader *loader,
                                          PeasPluginInfo   *info,
@@ -196,7 +196,7 @@ out:
   thread_leave (lua_loader, info, &L);
   return object;
 }
-G_GNUC_END_DISABLE_DEPRECATIONS
+G_GNUC_END_IGNORE_DEPRECATIONS
 
 static gboolean
 peas_plugin_loader_lua_load (PeasPluginLoader *loader,
