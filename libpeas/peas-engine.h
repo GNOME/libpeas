@@ -109,11 +109,14 @@ gboolean          peas_engine_provides_extension  (PeasEngine      *engine,
                                                    GType            extension_type);
 
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 PeasExtension    *peas_engine_create_extensionv   (PeasEngine      *engine,
                                                    PeasPluginInfo  *info,
                                                    GType            extension_type,
                                                    guint            n_parameters,
                                                    GParameter      *parameters);
+G_GNUC_END_IGNORE_DEPRECATIONS
+
 PeasExtension    *peas_engine_create_extension_valist
                                                   (PeasEngine      *engine,
                                                    PeasPluginInfo  *info,

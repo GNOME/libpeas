@@ -41,6 +41,7 @@ typedef struct _PeasObjectModule         PeasObjectModule;
 typedef struct _PeasObjectModuleClass    PeasObjectModuleClass;
 typedef struct _PeasObjectModulePrivate  PeasObjectModulePrivate;
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 /**
  * PeasFactoryFunc:
  * @n_parameters: The number of paramteters.
@@ -57,6 +58,7 @@ typedef struct _PeasObjectModulePrivate  PeasObjectModulePrivate;
 typedef GObject *(*PeasFactoryFunc)   (guint          n_parameters,
                                        GParameter    *parameters,
                                        gpointer       user_data);
+G_GNUC_END_IGNORE_DEPRECATIONS
 
 /**
  * PeasObjectModule:
@@ -94,10 +96,12 @@ PeasObjectModule   *peas_object_module_new_full               (const gchar      
 PeasObjectModule   *peas_object_module_new_embedded           (const gchar      *module_name,
                                                                const gchar      *symbol);
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 GObject            *peas_object_module_create_object          (PeasObjectModule *module,
                                                                GType             exten_type,
                                                                guint             n_parameters,
                                                                GParameter       *parameters);
+G_GNUC_END_IGNORE_DEPRECATIONS
 gboolean            peas_object_module_provides_object        (PeasObjectModule *module,
                                                                GType             exten_type);
 

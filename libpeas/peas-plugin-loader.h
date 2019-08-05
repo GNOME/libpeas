@@ -43,6 +43,7 @@ struct _PeasPluginLoader {
   GObject parent;
 };
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 struct _PeasPluginLoaderClass {
   GObjectClass parent;
 
@@ -64,6 +65,7 @@ struct _PeasPluginLoaderClass {
 
   void           (*garbage_collect)       (PeasPluginLoader *loader);
 };
+G_GNUC_END_IGNORE_DEPRECATIONS
 
 GType         peas_plugin_loader_get_type             (void)  G_GNUC_CONST;
 
@@ -78,11 +80,13 @@ void          peas_plugin_loader_unload               (PeasPluginLoader *loader,
 gboolean      peas_plugin_loader_provides_extension   (PeasPluginLoader *loader,
                                                        PeasPluginInfo   *info,
                                                        GType             ext_type);
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 PeasExtension *peas_plugin_loader_create_extension    (PeasPluginLoader *loader,
                                                        PeasPluginInfo   *info,
                                                        GType             ext_type,
                                                        guint             n_parameters,
                                                        GParameter       *parameters);
+G_GNUC_END_IGNORE_DEPRECATIONS
 void          peas_plugin_loader_garbage_collect      (PeasPluginLoader *loader);
 
 G_END_DECLS

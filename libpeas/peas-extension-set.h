@@ -133,10 +133,13 @@ void               peas_extension_set_foreach     (PeasExtensionSet *set,
 PeasExtension     *peas_extension_set_get_extension (PeasExtensionSet *set,
                                                      PeasPluginInfo   *info);
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 PeasExtensionSet  *peas_extension_set_newv        (PeasEngine       *engine,
                                                    GType             exten_type,
                                                    guint             n_parameters,
                                                    GParameter       *parameters);
+G_GNUC_END_IGNORE_DEPRECATIONS
+
 PeasExtensionSet  *peas_extension_set_new_valist  (PeasEngine       *engine,
                                                    GType             exten_type,
                                                    const gchar      *first_property,
