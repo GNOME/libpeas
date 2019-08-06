@@ -1,3 +1,10 @@
+Overview of Changes in libpeas 1.23.90.1
+========================================
+
+This is a followup release to yesterdays 1.23.90 which includes a
+fix to ensure that programs linking against libpeas-1.0 also link
+against gobject-introspection-1.0.
+
 Overview of Changes in libpeas 1.23.90
 ======================================
 
