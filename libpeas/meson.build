@@ -140,10 +140,19 @@ libpeas_dep = declare_dependency(
   sources: libpeas_dep_sources,
 )
 
+libpeas_pc_reqs = [
+  'glib-2.0 @0@'.format(glib_req),
+  'gobject-2.0 @0@'.format(glib_req),
+  'gmodule-2.0 @0@'.format(glib_req),
+  'gio-2.0 @0@'.format(glib_req),
+  'gobject-introspection-1.0 @0@'.format(introspection_req),
+]
+
 libpeas_pc = pkg.generate(
   libpeas_sha,
   name: package_string,
   description: 'GObject plugins library',
   subdirs: package_string,
   install_dir: pkgconfigdir,
+  requires: libpeas_pc_reqs,
 )
