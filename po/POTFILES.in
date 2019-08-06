@@ -1,6 +1,5 @@
 # List of source files containing translatable strings.
 # Please keep this file sorted alphabetically.
-data/glade/libpeas-gtk.xml.in
 libpeas/peas-dirs.c
 libpeas/peas-engine.c
 libpeas/peas-extension-set.c
