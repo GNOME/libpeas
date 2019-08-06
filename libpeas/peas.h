@@ -28,5 +28,7 @@
 #include "peas-extension-set.h"
 #include "peas-object-module.h"
 #include "peas-plugin-info.h"
+#include "peas-version.h"
+#include "peas-version-macros.h"
 
 #endif

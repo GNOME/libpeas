@@ -69,9 +69,12 @@ struct _PeasGtkPluginManagerClass
   gpointer padding[8];
 };
 
+PEAS_AVAILABLE_IN_ALL
 GType       peas_gtk_plugin_manager_get_type  (void)  G_GNUC_CONST;
+PEAS_AVAILABLE_IN_ALL
 GtkWidget  *peas_gtk_plugin_manager_new       (PeasEngine           *engine);
 
+PEAS_AVAILABLE_IN_ALL
 GtkWidget  *peas_gtk_plugin_manager_get_view  (PeasGtkPluginManager *pm);
 
 G_END_DECLS

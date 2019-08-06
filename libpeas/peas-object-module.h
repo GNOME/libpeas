@@ -28,6 +28,8 @@
 #include <glib-object.h>
 #include <gmodule.h>
 
+#include "peas-version-macros.h"
+
 G_BEGIN_DECLS
 
 #define PEAS_TYPE_OBJECT_MODULE             (peas_object_module_get_type ())
@@ -85,38 +87,50 @@ struct _PeasObjectModuleClass {
   gpointer padding[8];
 };
 
+PEAS_AVAILABLE_IN_ALL
 GType               peas_object_module_get_type               (void) G_GNUC_CONST;
+PEAS_AVAILABLE_IN_ALL
 PeasObjectModule   *peas_object_module_new                    (const gchar      *module_name,
                                                                const gchar      *path,
                                                                gboolean          resident);
+PEAS_AVAILABLE_IN_ALL
 PeasObjectModule   *peas_object_module_new_full               (const gchar      *module_name,
                                                                const gchar      *path,
                                                                gboolean          resident,
                                                                gboolean          local_linkage);
+PEAS_AVAILABLE_IN_ALL
 PeasObjectModule   *peas_object_module_new_embedded           (const gchar      *module_name,
                                                                const gchar      *symbol);
 
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+PEAS_AVAILABLE_IN_ALL
 GObject            *peas_object_module_create_object          (PeasObjectModule *module,
                                                                GType             exten_type,
                                                                guint             n_parameters,
                                                                GParameter       *parameters);
 G_GNUC_END_IGNORE_DEPRECATIONS
+PEAS_AVAILABLE_IN_ALL
 gboolean            peas_object_module_provides_object        (PeasObjectModule *module,
                                                                GType             exten_type);
 
+PEAS_AVAILABLE_IN_ALL
 const gchar        *peas_object_module_get_path               (PeasObjectModule *module);
+PEAS_AVAILABLE_IN_ALL
 const gchar        *peas_object_module_get_module_name        (PeasObjectModule *module);
+PEAS_AVAILABLE_IN_ALL
 const gchar        *peas_object_module_get_symbol             (PeasObjectModule *module);
 
+PEAS_AVAILABLE_IN_ALL
 GModule            *peas_object_module_get_library            (PeasObjectModule *module);
 
+PEAS_AVAILABLE_IN_ALL
 void                peas_object_module_register_extension_factory
                                                               (PeasObjectModule *module,
                                                                GType             exten_type,
                                                                PeasFactoryFunc   factory_func,
                                                                gpointer          user_data,
                                                                GDestroyNotify    destroy_func);
+PEAS_AVAILABLE_IN_ALL
 void                peas_object_module_register_extension_type
                                                               (PeasObjectModule *module,
                                                                GType             exten_type,

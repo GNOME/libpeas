@@ -1,5 +1,21 @@
 libpeas_srcdir = include_directories('.')
 
+version_data = configuration_data()
+version_data.set('PEAS_MAJOR_VERSION', version_major)
+version_data.set('PEAS_MINOR_VERSION', version_minor)
+version_data.set('PEAS_MICRO_VERSION', version_micro)
+version_data.set('PEAS_VERSION', meson.project_version())
+
+peas_version_h = configure_file(
+  input: 'peas-version.h.in',
+  output: 'peas-version.h',
+  configuration: version_data,
+  install_dir: join_paths(
+    pkgincludedir,
+    package_name,
+  ),
+)
+
 libpeas_public_h = files(
   'peas-activatable.h',
   'peas-autocleanups.h',
@@ -9,6 +25,7 @@ libpeas_public_h = files(
   'peas-extension-set.h',
   'peas-object-module.h',
   'peas-plugin-info.h',
+  'peas-version-macros.h',
   'peas.h',
 )
 
@@ -72,7 +89,7 @@ libpeas_sha = library(
   package_string.strip('lib'),
   libpeas_sources,
   version: lib_version,
-  include_directories: rootdir,
+  include_directories: [rootdir, libpeas_srcdir],
   dependencies: libpeas_deps,
   c_args: libpeas_c_args,
   link_args: libpeas_link_args,
@@ -118,7 +135,7 @@ endif
 
 libpeas_dep = declare_dependency(
   link_with: libpeas_sha,
-  include_directories: rootdir,
+  include_directories: [rootdir, libpeas_srcdir],
   dependencies: libpeas_deps,
   sources: libpeas_dep_sources,
 )
