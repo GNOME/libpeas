@@ -7,7 +7,7 @@ stages:
   stage: 'build'
   variables:
     CCACHE_BASEDIR: "${CI_PROJECT_DIR}"
-    CCACHE_DIR: "${CCACHE_BASEDIR}/_ccache"
+    CCACHE_DIR: "${CI_PROJECT_DIR}/_ccache"
     DEPS: >-
       gcc
       ccache
