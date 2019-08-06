@@ -116,6 +116,6 @@ libpeas_gtk_pc = pkg.generate(
   libpeas_gtk_sha,
   name: package_gtk_string,
   description: 'GObject plugins library widgetery',
-  subdirs: join_paths(package_string, package_gtk_name),
+  subdirs: package_string,
   install_dir: pkgconfigdir,
 )
