@@ -251,7 +251,7 @@ error:
   g_free (*params);
   return FALSE;
 }
-G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+G_GNUC_END_IGNORE_DEPRECATIONS
 
 gint
 peas_utils_get_loader_id (const gchar *loader)
