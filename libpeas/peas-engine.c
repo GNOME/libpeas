@@ -1635,7 +1635,7 @@ peas_engine_get_default (void)
 }
 
 /* < private >
- * peas_engine_shutdown:
+ * _peas_engine_shutdown:
  *
  * Frees memory shared by PeasEngines.
  * No libpeas API should be called after calling this.
@@ -1643,7 +1643,7 @@ peas_engine_get_default (void)
  * Note: this is private API and as such is not thread-safe.
  */
 void
-peas_engine_shutdown (void)
+_peas_engine_shutdown (void)
 {
   gint i;
 

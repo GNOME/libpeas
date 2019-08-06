@@ -169,7 +169,7 @@ test_extension_py_already_initialized_subprocess (void)
   PyDict_Clear (dict);
   testing_engine_free (engine);
 
-  peas_engine_shutdown ();
+  _peas_engine_shutdown ();
 
   /* Should still be initialized */
   g_assert (Py_IsInitialized ());

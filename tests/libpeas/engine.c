@@ -449,8 +449,8 @@ test_engine_shutdown_subprocess (PeasEngine *engine)
     testing_engine_free (engine);
 
     /* Should be able to shutdown multiple times */
-    peas_engine_shutdown ();
-    peas_engine_shutdown ();
+    _peas_engine_shutdown ();
+    _peas_engine_shutdown ();
 
     /* Cannot create an engine because libpeas has been shutdown */
     engine = peas_engine_new ();

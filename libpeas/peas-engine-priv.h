@@ -22,9 +22,12 @@
 #ifndef __PEAS_ENGINE_PRIV_H__
 #define __PEAS_ENGINE_PRIV_H__
 
+#include "peas-version-macros.h"
+
 G_BEGIN_DECLS
 
-void peas_engine_shutdown (void);
+PEAS_AVAILABLE_IN_ALL
+void _peas_engine_shutdown (void);
 
 G_END_DECLS
 

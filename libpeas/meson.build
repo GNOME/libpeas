@@ -91,7 +91,7 @@ libpeas_sha = library(
   version: lib_version,
   include_directories: [rootdir, libpeas_srcdir],
   dependencies: libpeas_deps,
-  c_args: libpeas_c_args,
+  c_args: libpeas_c_args + hidden_visibility_args,
   link_args: libpeas_link_args,
   install: true,
   install_dir: libdir,
