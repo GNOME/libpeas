@@ -6,8 +6,6 @@ stages:
   image: 'registry.fedoraproject.org/fedora:30'
   stage: 'build'
   variables:
-    CCACHE_BASEDIR: "${CI_PROJECT_DIR}"
-    CCACHE_DIR: "${CCACHE_BASEDIR}/_ccache"
     DEPS: >-
       gcc
       ccache
@@ -25,6 +23,8 @@ stages:
   before_script:
     - "dnf install -y $DEPS"
     - 'mkdir -p _ccache'
+    - "export CCACHE_BASEDIR=${CI_PROJECT_DIR}"
+    - "export CCACHE_DIR=${CCACHE_BASEDIR}/ccache"
     - 'ccache --zero-stats'
     - 'ccache --show-stats'
   after_script:
