@@ -104,8 +104,13 @@ gtk_dep = dependency('gtk+-3.0', version: gtk_req, required: false)
 gtk_doc_dep = dependency('gtk-doc', version: gtk_doc_req, required: false)
 gladeui_dep = dependency('gladeui-2.0', required: false)
 
+# From python 3.8 we neeed python3-embed
+python3_dep = dependency('python3-embed', required: false)
+if not python3_dep.found()
+  python3_dep = dependency('python3', version: python3_req, required: false)
+endif
+
 python2_dep = dependency('python2', version: python2_req, required: false)
-python3_dep = dependency('python3', version: python3_req, required: false)
 pygobject_dep = dependency('pygobject-3.0', version: pygobject_req, required: false)
 lua51_dep = dependency('lua5.1', version: lua_req, required: false)
 lua51_lgi_dep = dependency('lua5.1-lgi', version: lua_lgi_req, required: false)
