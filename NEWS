@@ -1,3 +1,34 @@
+Overview of Changes in libpeas 1.23.90
+======================================
+
+This release is the first to use the meson build system. Autotools
+has been removed. In most cases, the transition to meson should be
+relatively painless, and has many examples from other projects in
+the GNOME ecosystem to serve as examples.
+
+See meson_options.txt for the updated parameters.
+
+We'll have a series of .90, .91, .92 releases up to 1.24 if they
+are necessary following the GNOME release schedule for 3.34 in
+September.
+
+* Port to meson build system, autotools has been removed
+* Support for python3.8 in the python3 loader
+* Reduce warning impact of GParameter deprecations on API consumers
+* Fix a number of deprecations in internal API
+* Remove use of intltool in favor of gettext
+* Add versioning macros and hide non-public symbols
+* Translation updates:
+  - Catalan
+  - Dutch
+  - Esperanto
+  - French
+  - Icelandic
+  - Malayalam
+  - Polish
+
+Thanks to everyone who provided patches along the way.
+
 Overview of Changes in libpeas 1.22.0
 ====================================
 
