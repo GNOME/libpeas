@@ -25,6 +25,7 @@
 #include <glib-object.h>
 
 #include "peas-plugin-info.h"
+#include "peas-version-macros.h"
 
 G_BEGIN_DECLS
 
@@ -69,9 +70,12 @@ struct _PeasExtensionBaseClass {
 /*
  * Public methods
  */
+PEAS_AVAILABLE_IN_ALL
 GType            peas_extension_base_get_type         (void)  G_GNUC_CONST;
 
+PEAS_AVAILABLE_IN_ALL
 PeasPluginInfo  *peas_extension_base_get_plugin_info  (PeasExtensionBase *extbase);
+PEAS_AVAILABLE_IN_ALL
 gchar           *peas_extension_base_get_data_dir     (PeasExtensionBase *extbase);
 
 G_END_DECLS

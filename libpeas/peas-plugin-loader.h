@@ -67,26 +67,34 @@ struct _PeasPluginLoaderClass {
 };
 G_GNUC_END_IGNORE_DEPRECATIONS
 
+PEAS_AVAILABLE_IN_ALL
 GType         peas_plugin_loader_get_type             (void)  G_GNUC_CONST;
 
+PEAS_AVAILABLE_IN_ALL
 gboolean      peas_plugin_loader_initialize           (PeasPluginLoader *loader);
+PEAS_AVAILABLE_IN_ALL
 gboolean      peas_plugin_loader_is_global            (PeasPluginLoader *loader);
 
+PEAS_AVAILABLE_IN_ALL
 gboolean      peas_plugin_loader_load                 (PeasPluginLoader *loader,
                                                        PeasPluginInfo   *info);
+PEAS_AVAILABLE_IN_ALL
 void          peas_plugin_loader_unload               (PeasPluginLoader *loader,
                                                        PeasPluginInfo   *info);
 
+PEAS_AVAILABLE_IN_ALL
 gboolean      peas_plugin_loader_provides_extension   (PeasPluginLoader *loader,
                                                        PeasPluginInfo   *info,
                                                        GType             ext_type);
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+PEAS_AVAILABLE_IN_ALL
 PeasExtension *peas_plugin_loader_create_extension    (PeasPluginLoader *loader,
                                                        PeasPluginInfo   *info,
                                                        GType             ext_type,
                                                        guint             n_parameters,
                                                        GParameter       *parameters);
 G_GNUC_END_IGNORE_DEPRECATIONS
+PEAS_AVAILABLE_IN_ALL
 void          peas_plugin_loader_garbage_collect      (PeasPluginLoader *loader);
 
 G_END_DECLS

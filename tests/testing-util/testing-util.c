@@ -19,9 +19,7 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA.
  */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include "config.h"
 
 #include <stdlib.h>
 
@@ -300,7 +298,7 @@ testing_util_run_tests (void)
   g_private_replace (&engine_key, NULL);
   g_private_replace (&unhandled_key, NULL);
   g_private_replace (&log_hooks_key, NULL);
-  peas_engine_shutdown ();
+  _peas_engine_shutdown ();
 
   return retval;
 }

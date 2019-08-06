@@ -24,6 +24,8 @@
 
 #include <glib-object.h>
 
+#include "peas-version-macros.h"
+
 G_BEGIN_DECLS
 
 /*
@@ -65,10 +67,14 @@ struct _PeasActivatableInterface {
 /*
  * Public methods
  */
+PEAS_AVAILABLE_IN_ALL
 GType             peas_activatable_get_type       (void)  G_GNUC_CONST;
 
+PEAS_AVAILABLE_IN_ALL
 void              peas_activatable_activate       (PeasActivatable *activatable);
+PEAS_AVAILABLE_IN_ALL
 void              peas_activatable_deactivate     (PeasActivatable *activatable);
+PEAS_AVAILABLE_IN_ALL
 void              peas_activatable_update_state   (PeasActivatable *activatable);
 
 G_END_DECLS

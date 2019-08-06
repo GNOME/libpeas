@@ -23,6 +23,7 @@
 #define __PEAS_GTK_CONFIGURABLE_H__
 
 #include <gtk/gtk.h>
+#include <libpeas/peas.h>
 
 G_BEGIN_DECLS
 
@@ -57,7 +58,9 @@ struct _PeasGtkConfigurableInterface
   GtkWidget  *(*create_configure_widget)  (PeasGtkConfigurable  *configurable);
 };
 
+PEAS_AVAILABLE_IN_ALL
 GType       peas_gtk_configurable_get_type                (void)  G_GNUC_CONST;
+PEAS_AVAILABLE_IN_ALL
 GtkWidget  *peas_gtk_configurable_create_configure_widget (PeasGtkConfigurable  *configurable);
 
 G_END_DECLS

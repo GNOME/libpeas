@@ -75,17 +75,23 @@ struct _PeasGtkPluginManagerViewClass {
   gpointer padding[8];
 };
 
+PEAS_AVAILABLE_IN_ALL
 GType           peas_gtk_plugin_manager_view_get_type             (void) G_GNUC_CONST;
+PEAS_AVAILABLE_IN_ALL
 GtkWidget      *peas_gtk_plugin_manager_view_new                  (PeasEngine               *engine);
 
 #ifndef PEAS_DISABLE_DEPRECATED
+PEAS_AVAILABLE_IN_ALL
 void            peas_gtk_plugin_manager_view_set_show_builtin     (PeasGtkPluginManagerView *view,
                                                                    gboolean                  show_builtin);
+PEAS_AVAILABLE_IN_ALL
 gboolean        peas_gtk_plugin_manager_view_get_show_builtin     (PeasGtkPluginManagerView *view);
 #endif
 
+PEAS_AVAILABLE_IN_ALL
 void            peas_gtk_plugin_manager_view_set_selected_plugin  (PeasGtkPluginManagerView *view,
                                                                    PeasPluginInfo           *info);
+PEAS_AVAILABLE_IN_ALL
 PeasPluginInfo *peas_gtk_plugin_manager_view_get_selected_plugin  (PeasGtkPluginManagerView *view);
 
 G_END_DECLS

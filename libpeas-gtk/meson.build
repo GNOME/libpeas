@@ -29,6 +29,8 @@ libpeas_gtk_c_args = [
   '-DG_LOG_DOMAIN="libpeas-gtk"',
 ]
 
+libpeas_gtk_c_args += hidden_visibility_args
+
 libpeas_gtk_link_args = [
 ]
 
@@ -38,6 +40,17 @@ install_headers(
     pkgincludedir,
     package_gtk_name,
   )
+)
+
+# Static library used for testing symbol access
+libpeas_gtk_test = static_library(
+  package_gtk_string.strip('lib'),
+  libpeas_gtk_c,
+  version: lib_version,
+  include_directories: rootdir,
+  dependencies: libpeas_gtk_deps,
+  c_args: libpeas_gtk_c_args,
+  link_args: libpeas_gtk_link_args,
 )
 
 libpeas_gtk_sha = library(
@@ -87,6 +100,13 @@ endif
 
 libpeas_gtk_dep = declare_dependency(
   link_with: libpeas_gtk_sha,
+  dependencies: libpeas_gtk_deps,
+  include_directories: rootdir,
+  sources: libpeas_gtk_dep_sources,
+)
+
+libpeas_gtk_test_dep = declare_dependency(
+  link_with: libpeas_gtk_test,
   dependencies: libpeas_gtk_deps,
   include_directories: rootdir,
   sources: libpeas_gtk_dep_sources,

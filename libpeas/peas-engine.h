@@ -23,8 +23,10 @@
 #define __PEAS_ENGINE_H__
 
 #include <glib.h>
+
 #include "peas-plugin-info.h"
 #include "peas-extension.h"
+#include "peas-version-macros.h"
 
 G_BEGIN_DECLS
 
@@ -73,43 +75,60 @@ struct _PeasEngineClass {
   gpointer padding[8];
 };
 
+PEAS_AVAILABLE_IN_ALL
 GType             peas_engine_get_type            (void) G_GNUC_CONST;
+PEAS_AVAILABLE_IN_ALL
 PeasEngine       *peas_engine_new                 (void);
+PEAS_AVAILABLE_IN_ALL
 PeasEngine       *peas_engine_new_with_nonglobal_loaders
                                                   (void);
+PEAS_AVAILABLE_IN_ALL
 PeasEngine       *peas_engine_get_default         (void);
 
+PEAS_AVAILABLE_IN_ALL
 void              peas_engine_add_search_path     (PeasEngine      *engine,
                                                    const gchar     *module_dir,
                                                    const gchar     *data_dir);
+PEAS_AVAILABLE_IN_ALL
 void              peas_engine_prepend_search_path (PeasEngine      *engine,
                                                    const gchar     *module_dir,
                                                    const gchar     *data_dir);
 
 /* plugin management */
+PEAS_AVAILABLE_IN_ALL
 void              peas_engine_enable_loader       (PeasEngine      *engine,
                                                    const gchar     *loader_name);
+PEAS_AVAILABLE_IN_ALL
 void              peas_engine_rescan_plugins      (PeasEngine      *engine);
+PEAS_AVAILABLE_IN_ALL
 const GList      *peas_engine_get_plugin_list     (PeasEngine      *engine);
+PEAS_AVAILABLE_IN_ALL
 gchar           **peas_engine_get_loaded_plugins  (PeasEngine      *engine);
+PEAS_AVAILABLE_IN_ALL
 void              peas_engine_set_loaded_plugins  (PeasEngine      *engine,
                                                    const gchar    **plugin_names);
+PEAS_AVAILABLE_IN_ALL
 PeasPluginInfo   *peas_engine_get_plugin_info     (PeasEngine      *engine,
                                                    const gchar     *plugin_name);
 
 /* plugin loading and unloading */
+PEAS_AVAILABLE_IN_ALL
 gboolean          peas_engine_load_plugin         (PeasEngine      *engine,
                                                    PeasPluginInfo  *info);
+PEAS_AVAILABLE_IN_ALL
 gboolean          peas_engine_unload_plugin       (PeasEngine      *engine,
                                                    PeasPluginInfo  *info);
+PEAS_AVAILABLE_IN_ALL
 void              peas_engine_garbage_collect     (PeasEngine      *engine);
 
+PEAS_AVAILABLE_IN_ALL
 gboolean          peas_engine_provides_extension  (PeasEngine      *engine,
                                                    PeasPluginInfo  *info,
                                                    GType            extension_type);
 
 
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+PEAS_AVAILABLE_IN_ALL
 PeasExtension    *peas_engine_create_extensionv   (PeasEngine      *engine,
                                                    PeasPluginInfo  *info,
                                                    GType            extension_type,
@@ -117,12 +136,14 @@ PeasExtension    *peas_engine_create_extensionv   (PeasEngine      *engine,
                                                    GParameter      *parameters);
 G_GNUC_END_IGNORE_DEPRECATIONS
 
+PEAS_AVAILABLE_IN_ALL
 PeasExtension    *peas_engine_create_extension_valist
                                                   (PeasEngine      *engine,
                                                    PeasPluginInfo  *info,
                                                    GType            extension_type,
                                                    const gchar     *first_property,
                                                    va_list          var_args);
+PEAS_AVAILABLE_IN_ALL
 PeasExtension    *peas_engine_create_extension    (PeasEngine      *engine,
                                                    PeasPluginInfo  *info,
                                                    GType            extension_type,
