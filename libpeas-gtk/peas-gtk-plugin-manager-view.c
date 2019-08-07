@@ -384,6 +384,35 @@ popup_menu_detach (PeasGtkPluginManagerView *view,
 }
 
 static void
+get_selected_area (GtkTreeView  *tree_view,
+                   GdkRectangle *area)
+{
+  GtkTreeSelection *selection;
+  GtkTreeIter iter;
+
+  selection = gtk_tree_view_get_selection (tree_view);
+
+  if (gtk_tree_selection_get_selected (selection, NULL, &iter))
+    {
+      GtkTreeModel *model;
+      GtkTreePath *path;
+
+      model = gtk_tree_view_get_model (tree_view);
+      path = gtk_tree_model_get_path (model, &iter);
+      gtk_tree_view_get_cell_area (tree_view,
+                                   path,
+                                   gtk_tree_view_get_column (tree_view, 0),
+                                   area);
+      gtk_tree_path_free (path);
+    }
+  else
+    {
+      gtk_widget_get_allocation (GTK_WIDGET (tree_view), area);
+    }
+}
+
+#if !GTK_CHECK_VERSION(3, 22, 0)
+static void
 menu_position_under_tree_view (GtkMenu     *menu,
                                gint        *x,
                                gint        *y,
@@ -446,6 +475,7 @@ menu_position_under_tree_view (GtkMenu     *menu,
 
   *push_in = TRUE;
 }
+#endif
 
 static gboolean
 show_popup_menu (GtkTreeView              *tree_view,
@@ -468,14 +498,33 @@ show_popup_menu (GtkTreeView              *tree_view,
 
   if (event != NULL)
     {
+#if GTK_CHECK_VERSION(3, 22, 0)
+      gtk_menu_popup_at_pointer (GTK_MENU (priv->popup_menu),
+                                (const GdkEvent *)event);
+#else
       gtk_menu_popup (GTK_MENU (priv->popup_menu), NULL, NULL,
                       NULL, NULL, event->button, event->time);
+#endif
     }
   else
     {
+#if GTK_CHECK_VERSION(3, 22, 0)
+      GdkRectangle cell_area;
+
+      get_selected_area (GTK_TREE_VIEW (view), &cell_area);
+
+      gtk_menu_popup_at_rect (GTK_MENU (priv->popup_menu),
+                              gtk_widget_get_window (GTK_WIDGET (view)),
+                              &cell_area,
+                              GDK_GRAVITY_SOUTH_WEST,
+                              GDK_GRAVITY_NORTH_WEST,
+                              (const GdkEvent *)event);
+
+#else
       gtk_menu_popup (GTK_MENU (priv->popup_menu), NULL, NULL,
                       (GtkMenuPositionFunc) menu_position_under_tree_view,
                       view, 0, gtk_get_current_event_time ());
+#endif
 
       gtk_menu_shell_select_first (GTK_MENU_SHELL (priv->popup_menu),
                                    FALSE);
