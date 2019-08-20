@@ -46,7 +46,6 @@ install_headers(
 libpeas_gtk_test = static_library(
   package_gtk_string.strip('lib'),
   libpeas_gtk_c,
-  version: lib_version,
   include_directories: rootdir,
   dependencies: libpeas_gtk_deps,
   c_args: libpeas_gtk_c_args,
