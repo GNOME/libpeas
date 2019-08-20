@@ -11,4 +11,6 @@ custom_target(
   output: luahello_plugin_data,
   command: ['cp', '@INPUT@', '@OUTDIR@'],
   build_by_default: true,
+  install_dir: join_paths(peas_demo_plugins_dir, 'luahello'),
+  install: true,
 )

@@ -11,4 +11,6 @@ custom_target(
   output: pythonhello_plugin_data,
   command: ['cp', '@INPUT@', '@OUTDIR@'],
   build_by_default: true,
+  install_dir: join_paths(peas_demo_plugins_dir, 'pythonhello'),
+  install: true,
 )

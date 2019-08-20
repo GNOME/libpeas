@@ -1,5 +1,8 @@
+if get_option('demos')
+
 peas_demo_name = 'peas-demo'
 peas_demo_string = '@0@-@1@'.format(peas_demo_name, api_version)
+peas_demo_plugins_dir = join_paths(get_option('libdir'), 'peas-demo', 'plugins')
 
 peas_demo_c = [
   'peas-demo-window.c',
@@ -14,10 +17,13 @@ peas_demo_c_args = [
 ]
 
 executable(
-  peas_demo_string,
+  peas_demo_name,
   peas_demo_c,
   c_args: peas_demo_c_args,
   dependencies: [libpeas_gtk_dep],
+  install: true,
 )
 
 subdir('plugins')
+
+endif

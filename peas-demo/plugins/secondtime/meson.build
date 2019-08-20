@@ -18,7 +18,8 @@ libsecondtime_lib = shared_library(
   include_directories: rootdir,
   dependencies: [gtk_dep, libpeas_dep],
   c_args: libsecondtime_c_args,
-  install: false,
+  install_dir: join_paths(peas_demo_plugins_dir, 'secondtime'),
+  install: true,
 )
 
 custom_target(
@@ -27,4 +28,6 @@ custom_target(
   output: libsecondtime_plugin_data,
   command: ['cp', '@INPUT@', '@OUTDIR@'],
   build_by_default: true,
+  install_dir: join_paths(peas_demo_plugins_dir, 'secondtime'),
+  install: true,
 )

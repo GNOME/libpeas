@@ -19,7 +19,8 @@ libhelloworld_lib = shared_library(
   include_directories: rootdir,
   dependencies: [gtk_dep, libpeas_gtk_dep],
   c_args: libhelloworld_c_args,
-  install: false,
+  install_dir: join_paths(peas_demo_plugins_dir, 'helloworld'),
+  install: true,
 )
 
 custom_target(
@@ -28,4 +29,6 @@ custom_target(
   output: libhelloworld_plugin_data,
   command: ['cp', '@INPUT@', '@OUTDIR@'],
   build_by_default: true,
+  install_dir: join_paths(peas_demo_plugins_dir, 'helloworld'),
+  install: true,
 )
