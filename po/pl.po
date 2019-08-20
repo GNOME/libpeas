@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libpeas\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-21 17:51+0100\n"
-"PO-Revision-Date: 2019-02-21 17:52+0100\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues\n"
+"POT-Creation-Date: 2019-08-06 16:59+0000\n"
+"PO-Revision-Date: 2019-08-20 19:42+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -19,158 +19,136 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
-#: ../data/glade/libpeas-gtk.xml.in.h:1
-msgid "Plugin Manager"
-msgstr "Menedżer wtyczek"
-
-#. Translators: What PeasGtkPluginManagerView to use
-#: ../data/glade/libpeas-gtk.xml.in.h:3
-msgid "View"
-msgstr "Widok"
-
-#: ../data/glade/libpeas-gtk.xml.in.h:4
-msgid "Plugin Manager View"
-msgstr "Widok menedżera wtyczek"
-
-#. Translators: Whether builtin plugins should appear in the view (property name)
-#: ../data/glade/libpeas-gtk.xml.in.h:6
-msgid "Show Builtin"
-msgstr "Wyświetlanie wbudowanych"
-
-#: ../data/glade/libpeas-gtk.xml.in.h:7
-msgid "Peas Gtk"
-msgstr "Peas GTK"
-
-#: ../libpeas/peas-engine.c:1118
+#: libpeas/peas-engine.c:1116
 #, c-format
-msgid "Dependency '%s' was not found"
+msgid "Dependency “%s” was not found"
 msgstr "Nie odnaleziono zależności „%s”"
 
-#: ../libpeas/peas-engine.c:1128
+#: libpeas/peas-engine.c:1126
 #, c-format
-msgid "Dependency '%s' failed to load"
+msgid "Dependency “%s” failed to load"
 msgstr "Wczytanie zależności „%s” się nie powiodło"
 
-#: ../libpeas/peas-engine.c:1142
+#: libpeas/peas-engine.c:1140
 #, c-format
-msgid "Plugin loader '%s' was not found"
+msgid "Plugin loader “%s” was not found"
 msgstr "Nie odnaleziono programu wczytującego wtyczkę „%s”"
 
-#: ../libpeas/peas-engine.c:1154
+#: libpeas/peas-engine.c:1152
 #, c-format
 msgid "Failed to load"
 msgstr "Wczytanie się nie powiodło"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:95
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:95
 msgid "Additional plugins must be disabled"
 msgstr "Dodatkowe wtyczki muszą zostać wyłączone"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:102
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:102
 #, c-format
-msgid "The following plugins depend on '%s' and will also be disabled:"
-msgstr "Następujące wtyczki zależą od „%s” i także zostaną wyłączone:"
+msgid "The following plugins depend on “%s” and will also be disabled:"
+msgstr "Te wtyczki zależą od „%s” i także zostaną wyłączone:"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:144
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:144
 msgid "Plugins"
 msgstr "Wtyczki"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:161
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:161
 msgid "An additional plugin must be disabled"
 msgstr "Dodatkowa wtyczka musi zostać wyłączona"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:168
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:168
 #, c-format
 msgid ""
-"The '%s' plugin depends on the '%s' plugin.\n"
-"If you disable '%s', '%s' will also be disabled."
+"The “%s” plugin depends on the “%s” plugin.\n"
+"If you disable “%s”, “%s” will also be disabled."
 msgstr ""
 "Wtyczka „%s” zależy od wtyczki „%s”.\n"
 "Jeśli „%s” zostanie wyłączona, to „%s” także zostanie wyłączona."
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:182
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:182
 msgid "_Cancel"
 msgstr "_Anuluj"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:184
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:184
 msgid "Disable Plugins"
 msgstr "Wyłącz wtyczki"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:207
+#: libpeas-gtk/peas-gtk-plugin-manager.c:207
 msgid "There was an error displaying the help."
 msgstr "Wystąpił błąd podczas wyświetlania pomocy."
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:253
+#: libpeas-gtk/peas-gtk-plugin-manager.c:253
 msgid "_Close"
 msgstr "Za_mknij"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:265
+#: libpeas-gtk/peas-gtk-plugin-manager.c:265
 msgid "_Help"
 msgstr "Pomo_c"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:323
+#: libpeas-gtk/peas-gtk-plugin-manager.c:323
 msgid "Pr_eferences"
 msgstr "Pr_eferencje"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:328
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:379
+#: libpeas-gtk/peas-gtk-plugin-manager.c:328
+#: libpeas-gtk/peas-gtk-plugin-manager.c:379
 msgid "_About"
 msgstr "_O wtyczce"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:387
+#: libpeas-gtk/peas-gtk-plugin-manager.c:387
 msgid "_Preferences"
 msgstr "_Preferencje"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:351
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:351
 msgid "_Enabled"
 msgstr "Włą_czona"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:362
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:362
 msgid "E_nable All"
 msgstr "Włącz w_szystkie"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:366
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:366
 msgid "_Disable All"
 msgstr "Wyłącz ws_zystkie"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:526
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:526
 msgid "Enabled"
 msgstr "Włączona"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:547
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:547
 msgid "Plugin"
 msgstr "Wtyczka"
 
 #. Avoid having markup in a translated string
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:634
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:634
 #, c-format
-msgid "The plugin '%s' could not be loaded"
+msgid "The plugin “%s” could not be loaded"
 msgstr "Nie można wczytać wtyczki „%s”"
 
 #. Keep separate because some translations do special things
 #. * for the ':' and might accidentally not keep the space after it
 #.
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:640
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:640
 #, c-format
 msgid "An error occurred: %s"
 msgstr "Wystąpił błąd: %s"
 
 #. Translators: The directory in which the demo program was compiled at
-#: ../peas-demo/peas-demo.c:41
+#: peas-demo/peas-demo.c:41
 msgid "Run from build directory"
 msgstr "Uruchamia z katalogu budowania"
 
-#: ../peas-demo/peas-demo.c:92
+#: peas-demo/peas-demo.c:92
 msgid "_Quit"
 msgstr "Za_kończ"
 
-#: ../peas-demo/peas-demo.c:108
-msgid "- libpeas demo application"
+#: peas-demo/peas-demo.c:108
+msgid "— libpeas demo application"
 msgstr "— program demonstracyjny biblioteki libpeas"
 
-#: ../tests/libpeas-gtk/plugin-manager.c:77
+#: tests/libpeas-gtk/plugin-manager.c:77
 msgid "About"
 msgstr "O wtyczce"
 
-#: ../tests/libpeas-gtk/plugin-manager.c:82
+#: tests/libpeas-gtk/plugin-manager.c:82
 msgid "Preferences"
 msgstr "Preferencje"
