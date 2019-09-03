@@ -1,15 +1,16 @@
 # Japanese translation for libpeas.
-# Copyright (C) 2011, 2012 libpeas's COPYRIGHT HOLDER
+# Copyright (C) 2011, 2012, 2014, 2019 libpeas's COPYRIGHT HOLDER
 # This file is distributed under the same license as the libpeas package.
-# Jiro Matsuzawa <jmatsuzawa@src.gnome.org>, 2011, 2012.
+# Jiro Matsuzawa <jmatsuzawa@src.gnome.org>, 2011, 2012, 2014.
+# sicklylife <translation@sicklylife.jp>, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: libpeas master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues\n"
 "POT-Creation-Date: 2019-08-06 00:27+0000\n"
-"PO-Revision-Date: 2014-09-12 18:43+0900\n"
-"Last-Translator: Jiro Matsuzawa <jmatsuzawa@src.gnome.org>\n"
+"PO-Revision-Date: 2019-09-03 19:39+0900\n"
+"Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -18,22 +19,19 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: libpeas/peas-engine.c:1118
-#, fuzzy, c-format
-#| msgid "Dependency '%s' was not found"
+#, c-format
 msgid "Dependency “%s” was not found"
-msgstr "依存するプラグイン '%s' がみつかりません"
+msgstr "依存するプラグイン“%s”が見つかりません"
 
 #: libpeas/peas-engine.c:1128
-#, fuzzy, c-format
-#| msgid "Dependency '%s' failed to load"
+#, c-format
 msgid "Dependency “%s” failed to load"
-msgstr "依存するプラグイン '%s' のロードに失敗しました"
+msgstr "依存するプラグイン“%s”のロードに失敗しました"
 
 #: libpeas/peas-engine.c:1142
-#, fuzzy, c-format
-#| msgid "Plugin loader '%s' was not found"
+#, c-format
 msgid "Plugin loader “%s” was not found"
-msgstr "プラグインローダー '%s' がみつかりません"
+msgstr "プラグインローダー“%s”が見つかりません"
 
 #: libpeas/peas-engine.c:1154
 #, c-format
@@ -45,10 +43,9 @@ msgid "Additional plugins must be disabled"
 msgstr "追加プラグインを無効にする必要があります"
 
 #: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:102
-#, fuzzy, c-format
-#| msgid "The following plugins depend on '%s' and will also be disabled:"
+#, c-format
 msgid "The following plugins depend on “%s” and will also be disabled:"
-msgstr "次のプラグインは '%s' に依存しており、すべて無効になります:"
+msgstr "次のプラグインは“%s”に依存しており、すべて無効になります:"
 
 #: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:144
 msgid "Plugins"
@@ -59,16 +56,13 @@ msgid "An additional plugin must be disabled"
 msgstr "追加プラグインを無効にする必要があります"
 
 #: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:168
-#, fuzzy, c-format
-#| msgid ""
-#| "The '%s' plugin depends on the '%s' plugin.\n"
-#| "If you disable '%s', '%s' will also be disabled."
+#, c-format
 msgid ""
 "The “%s” plugin depends on the “%s” plugin.\n"
 "If you disable “%s”, “%s” will also be disabled."
 msgstr ""
-"プラグイン '%s' は '%s' に依存しています。\n"
-"'%s' を無効にする場合、 '%s' も無効になります。"
+"プラグイン“%s”は“%s”に依存しています。\n"
+"“%s”を無効にする場合、“%s”も無効になります。"
 
 #: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:182
 msgid "_Cancel"
@@ -125,14 +119,9 @@ msgstr "プラグイン"
 
 #. Avoid having markup in a translated string
 #: libpeas-gtk/peas-gtk-plugin-manager-view.c:634
-#, fuzzy, c-format
-#| msgid ""
-#| "<b>The plugin '%s' could not be loaded</b>\n"
-#| "An error occurred: %s"
+#, c-format
 msgid "The plugin “%s” could not be loaded"
-msgstr ""
-"<b>プラグイン '%s' をロードできません</b>\n"
-"エラー発生: %s"
+msgstr "プラグイン“%s”をロードできません"
 
 #. Keep separate because some translations do special things
 #. * for the ':' and might accidentally not keep the space after it
@@ -140,7 +129,7 @@ msgstr ""
 #: libpeas-gtk/peas-gtk-plugin-manager-view.c:640
 #, c-format
 msgid "An error occurred: %s"
-msgstr ""
+msgstr "エラー発生: %s"
 
 #. Translators: The directory in which the demo program was compiled at
 #: peas-demo/peas-demo.c:41
@@ -152,22 +141,16 @@ msgid "_Quit"
 msgstr "終了(_Q)"
 
 #: peas-demo/peas-demo.c:108
-#, fuzzy
-#| msgid "- libpeas demo application"
 msgid "— libpeas demo application"
-msgstr "- libpeas のデモ用アプリケーション"
+msgstr "— libpeas のデモ用アプリケーション"
 
 #: tests/libpeas-gtk/plugin-manager.c:77
-#, fuzzy
-#| msgid "_About"
 msgid "About"
-msgstr "情報(_A)"
+msgstr "情報"
 
 #: tests/libpeas-gtk/plugin-manager.c:82
-#, fuzzy
-#| msgid "_Preferences"
 msgid "Preferences"
-msgstr "設定(_P)"
+msgstr "設定"
 
 #~ msgid "Plugin Manager"
 #~ msgstr "プラグインマネージャー"
