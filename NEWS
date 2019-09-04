@@ -1,3 +1,31 @@
+Overview of Changes in libpeas 1.23.92
+======================================
+
+This is a RC release for the upcoming GNOME 3.34 release.
+
+* Fix soname usage to match 1.22.x
+* Fix typo in deprecation ignores
+* Fix gtk_menu_popup() deprecations
+* Fix meson build warning
+* Translation updates:
+  - Basque
+  - Catalan
+  - Croatian
+  - Czech
+  - Finnish
+  - French
+  - Friulan
+  - Galician
+  - Hungarian
+  - Japanese
+  - Korean
+  - Lithuanian
+  - Polish
+  - Romanian
+  - Serbian
+  - Spanish
+  - Swedish
+
 Overview of Changes in libpeas 1.23.90.1
 ========================================
 
