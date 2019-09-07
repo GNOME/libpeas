@@ -24,7 +24,7 @@ libpeas_gtk_testing_c_args = [
 ]
 
 libpeas_gtk_testing_link_args = [
-  '-export-dynamic',
+  '-Wl,--export-dynamic',
 ]
 
 libpeas_gtk_testing_lib = library(
