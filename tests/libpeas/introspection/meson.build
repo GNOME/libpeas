@@ -30,7 +30,7 @@ libintrospection_c_args = [
 ]
 
 libintrospection_link_args = [
-  '-export-dynamic',
+  '-Wl,--export-dynamic',
 ]
 
 libintrospection_lib = library(

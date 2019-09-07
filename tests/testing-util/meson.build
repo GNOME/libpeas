@@ -22,7 +22,7 @@ libtesting_util_c_args = [
 ]
 
 libtesting_util_link_args = [
-  '-export-dynamic',
+  '-Wl,--export-dynamic',
 ]
 
 libtesting_util_lib = library(
