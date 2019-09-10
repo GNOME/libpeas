@@ -46,6 +46,14 @@ libpeas_sources = files(
   'peas-utils.c',
 )
 
+if build_machine.system() == 'darwin'
+  libpeas_sources += [
+    'peas-utils-osx.m',
+    'peas-utils-osx.h',
+  ]
+endif
+
+
 libpeas_deps = [
   glib_dep,
   gobject_dep,
@@ -63,6 +71,13 @@ libpeas_c_args = [
 
 libpeas_link_args = [
 ]
+
+if build_machine.system() == 'darwin'
+  libpeas_link_args += [
+    '-Wl,-framework', '-Wl,Foundation',
+    '-Wl,-framework', '-Wl,AppKit',
+  ]
+endif
 
 libpeas_marshal = gnome.genmarshal(
   'peas-marshal',
@@ -89,9 +104,11 @@ libpeas_sha = library(
   package_string.strip('lib'),
   libpeas_sources,
   version: lib_version,
+  darwin_versions: lib_version_osx,
   include_directories: [rootdir, libpeas_srcdir],
   dependencies: libpeas_deps,
   c_args: libpeas_c_args + hidden_visibility_args,
+  objc_args: libpeas_c_args,
   link_args: libpeas_link_args,
   install: true,
   install_dir: libdir,

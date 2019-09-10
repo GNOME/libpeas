@@ -30,7 +30,7 @@
 #include <girepository.h>
 
 #ifdef OS_OSX
-#import <Cocoa/Cocoa.h>
+#include "peas-utils-osx.h"
 #endif
 
 #include <libpeas/peas-engine.h>
@@ -190,7 +190,7 @@ help_button_cb (GtkWidget      *button,
   help_uri = peas_plugin_info_get_help_uri (info);
 
 #ifdef OS_OSX
-  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithUTF8String:help_uri]]];
+  peas_open_url_osx (help_uri);
 #else
 
   gtk_show_uri_on_window (get_toplevel (button), help_uri, GDK_CURRENT_TIME, &error);

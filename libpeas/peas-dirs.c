@@ -26,92 +26,7 @@
 #include "peas-dirs.h"
 
 #ifdef OS_OSX
-
-#import <Cocoa/Cocoa.h>
-
-static gchar *
-dirs_os_x_get_bundle_resource_dir (void)
-{
-  NSAutoreleasePool *pool;
-  gchar *str = NULL;
-  NSString *path;
-
-  pool = [[NSAutoreleasePool alloc] init];
-
-  if ([[NSBundle mainBundle] bundleIdentifier] == nil)
-    {
-      [pool release];
-      return NULL;
-    }
-
-  path = [[NSBundle mainBundle] resourcePath];
-
-  if (!path)
-    {
-      [pool release];
-      return NULL;
-    }
-
-  str = g_strdup ([path UTF8String]);
-  [pool release];
-  return str;
-}
-
-static gchar *
-dirs_os_x_get_resource_dir (const gchar *subdir,
-                            const gchar *default_dir)
-{
-  gchar *res_dir;
-  gchar *ret;
-
-  res_dir = dirs_os_x_get_bundle_resource_dir ();
-
-  if (res_dir == NULL)
-    {
-      ret = g_build_filename (default_dir, "libpeas-1.0", NULL);
-    }
-  else
-    {
-      ret = g_build_filename (res_dir, subdir, "libpeas-1.0", NULL);
-      g_free (res_dir);
-    }
-
-  return ret;
-}
-
-static gchar *
-dirs_os_x_get_data_dir (void)
-{
-  return dirs_os_x_get_resource_dir ("share", DATADIR);
-}
-
-static gchar *
-dirs_os_x_get_lib_dir (void)
-{
-  return dirs_os_x_get_resource_dir ("lib", LIBDIR);
-}
-
-static gchar *
-dirs_os_x_get_locale_dir (void)
-{
-  gchar *res_dir;
-  gchar *ret;
-
-  res_dir = dirs_os_x_get_bundle_resource_dir ();
-
-  if (res_dir == NULL)
-    {
-      ret = g_build_filename (DATADIR, "locale", NULL);
-    }
-  else
-    {
-      ret = g_build_filename (res_dir, "share", "locale", NULL);
-      g_free (res_dir);
-    }
-
-  return ret;
-}
-
+#include "peas-utils-osx.h"
 #endif
 
 gchar *
@@ -127,7 +42,7 @@ peas_dirs_get_data_dir (void)
   data_dir = g_build_filename (win32_dir, "share", "libpeas-1.0", NULL);
   g_free (win32_dir);
 #elif defined (OS_OSX)
-  data_dir = dirs_os_x_get_data_dir ();
+  data_dir = peas_dirs_os_x_get_data_dir ();
 #else
   data_dir = g_build_filename (DATADIR, "libpeas-1.0", NULL);
 #endif
@@ -148,7 +63,7 @@ peas_dirs_get_lib_dir (void)
   lib_dir = g_build_filename (win32_dir, "lib", "libpeas-1.0", NULL);
   g_free (win32_dir);
 #elif defined (OS_OSX)
-  lib_dir = dirs_os_x_get_lib_dir ();
+  lib_dir = peas_dirs_os_x_get_lib_dir ();
 #else
   lib_dir = g_build_filename (LIBDIR, "libpeas-1.0", NULL);
 #endif
@@ -189,7 +104,7 @@ peas_dirs_get_locale_dir (void)
 
   g_free (win32_dir);
 #elif defined (OS_OSX)
-  locale_dir = dirs_os_x_get_locale_dir ();
+  locale_dir = peas_dirs_os_x_get_locale_dir ();
 #else
   locale_dir = g_build_filename (DATADIR, "locale", NULL);
 #endif
