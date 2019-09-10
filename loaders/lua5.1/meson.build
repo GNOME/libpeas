@@ -27,7 +27,7 @@ lua51_loader_c_args = [
   '-DLGI_MICRO_VERSION=@0@'.format(lua51_lgi_version_micro),
 ]
 
-lua51_loader_sha = shared_library(
+lua51_loader_sha = shared_module(
   lua51_loader_name,
   lua51_loader_c + lua51_loader_res,
   include_directories: rootdir,
@@ -37,5 +37,6 @@ lua51_loader_sha = shared_library(
   install_dir: join_paths(
     pkglibdir,
     'loaders',
-  )
+  ),
+  name_suffix: module_suffix
 )
