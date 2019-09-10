@@ -39,6 +39,9 @@ lib_version = '@0@.@1@.@2@'.format(
   lib_version_revision
 )
 
+osx_current = lib_version_current + 1
+lib_version_osx = [osx_current, '@0@.@1@'.format(osx_current, interface_age)]
+
 package_name = meson.project_name()
 package_string = '@0@-@1@'.format(package_name, api_version)
 package_long_string = '@0@-@1@'.format(package_name, version)
@@ -120,7 +123,8 @@ luajit_prg = find_program('luajit', required: false)
 xmllint_prg = find_program('xmllint', required: false)
 
 if build_machine.system() == 'darwin'
-  config_h.set_quoted('OS_OSX', 1)
+  config_h.set('OS_OSX', 1)
+  add_languages('objc')
 endif
 
 # Detect and set symbol visibility
