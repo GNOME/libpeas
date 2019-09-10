@@ -29,5 +29,5 @@ foreach test: libpeas_gtk_tests_sources
     dependencies: libpeas_gtk_tests_deps
   )
 
-  test('test-@0@'.format(test_name), test_exe)
+  test('test-@0@'.format(test_name), test_exe, env: test_env)
 endforeach

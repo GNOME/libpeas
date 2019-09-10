@@ -53,5 +53,5 @@ foreach test: libpeas_tests_sources
     c_args: libpeas_tests_c_args,
   )
 
-  test('test-@0@'.format(test_name), test_exe)
+  test('test-@0@'.format(test_name), test_exe, env: test_env)
 endforeach
