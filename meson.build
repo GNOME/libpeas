@@ -133,9 +133,11 @@ add_project_arguments([
   '-DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_@0@_@1@'.format(glib_major_version, glib_minor_version),
 ], language: 'c')
 
+module_suffix = []
 if build_machine.system() == 'darwin'
   config_h.set('OS_OSX', 1)
   add_languages('objc')
+  module_suffix = 'so'
 endif
 
 # Detect and set symbol visibility
