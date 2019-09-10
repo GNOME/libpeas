@@ -31,7 +31,7 @@ python2_loader_c_args = [
   '-DPYGOBJECT_MICRO_VERSION=@0@'.format(pygobject_version_micro),
 ]
 
-python2_loader_sha = shared_library(
+python2_loader_sha = shared_module(
   python2_loader_name,
   python2_loader_c + python2_loader_res,
   include_directories: rootdir,
@@ -41,5 +41,6 @@ python2_loader_sha = shared_library(
   install_dir: join_paths(
     pkglibdir,
     'loaders',
-  )
+  ),
+  name_suffix: module_suffix
 )

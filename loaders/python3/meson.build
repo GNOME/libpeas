@@ -31,7 +31,7 @@ python3_loader_c_args = [
   '-DPYGOBJECT_MICRO_VERSION=@0@'.format(pygobject_version_micro),
 ]
 
-python3_loader_sha = shared_library(
+python3_loader_sha = shared_module(
   python3_loader_name,
   python3_loader_c + python3_loader_res,
   include_directories: rootdir,
@@ -41,5 +41,6 @@ python3_loader_sha = shared_library(
   install_dir: join_paths(
     pkglibdir,
     'loaders',
-  )
+  ),
+  name_suffix: module_suffix
 )
