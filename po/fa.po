@@ -2,178 +2,171 @@
 # Copyright (C) 2011 Iranian Free Software Users Group (IFSUG.org)translation team.
 # This file is distributed under the same license as the libpeas package.
 # Arash Mousavi <mousavi.arash@gmail.com>, 2011, 2012, 2015.
+# Danial Behzadi <dani.behzi@Ubuntu.com>, 2016, 2017, 2018, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: libpeas master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=libpeas&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-16 11:01+0000\n"
-"PO-Revision-Date: 2015-09-17 01:07+0430\n"
-"Last-Translator: Arash Mousavi <mousavi.arash@gmail.com>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues\n"
+"POT-Creation-Date: 2019-09-25 10:34+0000\n"
+"PO-Revision-Date: 2019-09-29 13:59+0000\n"
+"Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 2.2.1\n"
 
-#: ../data/glade/libpeas-gtk.xml.in.h:1
-msgid "Plugin Manager"
-msgstr "مدیریت افزونه"
-
-#. Translators: What PeasGtkPluginManagerView to use
-#: ../data/glade/libpeas-gtk.xml.in.h:3
-msgid "View"
-msgstr "نما"
-
-#: ../data/glade/libpeas-gtk.xml.in.h:4
-msgid "Plugin Manager View"
-msgstr "نما مدیریت افزونه"
-
-#. Translators: Whether builtin plugins should appear in the view (property name)
-#: ../data/glade/libpeas-gtk.xml.in.h:6
-msgid "Show Builtin"
-msgstr "نمایش توکارها"
-
-#: ../data/glade/libpeas-gtk.xml.in.h:7
-msgid "Peas Gtk"
-msgstr "Peas Gtk"
-
-#: ../libpeas/peas-engine.c:976
+#: libpeas/peas-engine.c:1116
 #, c-format
-msgid "Dependency '%s' was not found"
+msgid "Dependency “%s” was not found"
 msgstr "وابستگی «%s» پیدا نشد"
 
-#: ../libpeas/peas-engine.c:986
+#: libpeas/peas-engine.c:1126
 #, c-format
-msgid "Dependency '%s' failed to load"
-msgstr "بارگیری وابستگی «%s» شکست خورد"
+msgid "Dependency “%s” failed to load"
+msgstr "بار کردن وابستگی «%s» شکست خورد"
 
-#: ../libpeas/peas-engine.c:1000
+#: libpeas/peas-engine.c:1140
 #, c-format
-msgid "Plugin loader '%s' was not found"
-msgstr "بارگیر افزونه‌ی «%s» پیدا نشد"
+msgid "Plugin loader “%s” was not found"
+msgstr "بارکنندهٔ افزایهٔ «%s» پیدا نشد"
 
-#: ../libpeas/peas-engine.c:1012
+#: libpeas/peas-engine.c:1152
 #, c-format
 msgid "Failed to load"
-msgstr "بارگیری شکست خورد"
+msgstr "شکست در بار کردن"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:95
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:95
 msgid "Additional plugins must be disabled"
-msgstr "افزونه‌های اضافی باید غیرفعال شوند"
+msgstr "افزایه‌های اضافی باید از کار بیفتند."
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:102
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:102
 #, c-format
-msgid "The following plugins depend on '%s' and will also be disabled:"
-msgstr "افزونه‌های مقابل نیز وابسته به «%s» هستن و غیرفعال خواهند شد:"
+msgid "The following plugins depend on “%s” and will also be disabled:"
+msgstr "افزایه‌های مقابل وابسته به «%s» بوده و آن‌ها نیز از کار خواهند افتاد:"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:144
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:144
 msgid "Plugins"
-msgstr "افزونه‌ها"
+msgstr "افزایه‌ها"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:161
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:161
 msgid "An additional plugin must be disabled"
-msgstr "یک افزونه‌ی اضافی باید غیرفعال شود"
+msgstr "یک افزایهٔ اضافی باید از کار بیفتد"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:168
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:168
 #, c-format
 msgid ""
-"The '%s' plugin depends on the '%s' plugin.\n"
-"If you disable '%s', '%s' will also be disabled."
+"The “%s” plugin depends on the “%s” plugin.\n"
+"If you disable “%s”, “%s” will also be disabled."
 msgstr ""
-"افزونه‌ی «%s» وابسته به افزونه‌ی «%s» است.\n"
-"اگر شما «%s» را غیرفعال کنید، «%s» نیز غیرفعال می‌شود."
+"افزایهٔ «%s» وابسته به افزایهٔ «%s» است.\n"
+"اگر «%s» را از کار بیندازید، «%s» نیز از کار می‌افتد."
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:182
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:182
 msgid "_Cancel"
 msgstr "_لغو"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:184
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:184
 msgid "Disable Plugins"
-msgstr "غیرفعال‌سازی افزونه‌ها"
+msgstr "از کار انداختن افزایه‌ها"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:207
+#: libpeas-gtk/peas-gtk-plugin-manager.c:207
 msgid "There was an error displaying the help."
-msgstr "یک خطا هنگام نمایش راهنما وجود داشت."
+msgstr "در نمایش راهنما خطابی وجود داشت."
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:253
+#: libpeas-gtk/peas-gtk-plugin-manager.c:253
 msgid "_Close"
-msgstr "_خروج"
+msgstr "_بستن"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:265
+#: libpeas-gtk/peas-gtk-plugin-manager.c:265
 msgid "_Help"
 msgstr "_راهنما"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:323
+#: libpeas-gtk/peas-gtk-plugin-manager.c:323
 msgid "Pr_eferences"
 msgstr "_ترجیحات"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:328
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:379
+#: libpeas-gtk/peas-gtk-plugin-manager.c:328
+#: libpeas-gtk/peas-gtk-plugin-manager.c:379
 msgid "_About"
 msgstr "_درباره"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:387
+#: libpeas-gtk/peas-gtk-plugin-manager.c:387
 msgid "_Preferences"
 msgstr "_ترجیحات"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:351
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:351
 msgid "_Enabled"
-msgstr "_فعال‌شد"
+msgstr "_به کار افتاده"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:362
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:362
 msgid "E_nable All"
-msgstr "فعال‌سازی _همه"
+msgstr "به کار انداختن _همه"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:366
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:366
 msgid "_Disable All"
-msgstr "_غیرفعال‌سازی همه"
+msgstr "_از کار انداختن همه"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:526
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:575
 msgid "Enabled"
-msgstr "فعال شد"
+msgstr "به کار افتاده"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:547
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:596
 msgid "Plugin"
-msgstr "افزونه"
+msgstr "افزایه"
 
 #. Avoid having markup in a translated string
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:634
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:683
 #, c-format
-msgid "The plugin '%s' could not be loaded"
-msgstr "امکان بارگیری افزونه «%s» نبود"
+msgid "The plugin “%s” could not be loaded"
+msgstr "امکان بار کردن افزایه «%s» نبود"
 
 #. Keep separate because some translations do special things
 #. * for the ':' and might accidentally not keep the space after it
 #.
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:640
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:689
 #, c-format
 msgid "An error occurred: %s"
 msgstr "خطایی رخ داد: %s"
 
 #. Translators: The directory in which the demo program was compiled at
-#: ../peas-demo/peas-demo.c:41
+#: peas-demo/peas-demo.c:41
 msgid "Run from build directory"
-msgstr "اجرا از شاخه build"
+msgstr "اجرا از شاخهٔ ساخت"
 
-#: ../peas-demo/peas-demo.c:92
+#: peas-demo/peas-demo.c:92
 msgid "_Quit"
 msgstr "_خروج"
 
-#: ../peas-demo/peas-demo.c:108
-msgid "- libpeas demo application"
-msgstr "- برنامه نمایشی libpeas"
+#: peas-demo/peas-demo.c:108
+msgid "— libpeas demo application"
+msgstr "— برنامه نمایشی libpeas"
 
-#: ../tests/libpeas-gtk/plugin-manager.c:77
+#: tests/libpeas-gtk/plugin-manager.c:77
 msgid "About"
 msgstr "درباره"
 
-#: ../tests/libpeas-gtk/plugin-manager.c:82
+#: tests/libpeas-gtk/plugin-manager.c:82
 msgid "Preferences"
 msgstr "ترجیحات"
+
+#~ msgid "Plugin Manager"
+#~ msgstr "مدیریت افزونه"
+
+#~ msgid "View"
+#~ msgstr "نما"
+
+#~ msgid "Plugin Manager View"
+#~ msgstr "نما مدیریت افزونه"
+
+#~ msgid "Show Builtin"
+#~ msgstr "نمایش توکارها"
+
+#~ msgid "Peas Gtk"
+#~ msgstr "Peas Gtk"
 
 #~ msgid "C_onfigure"
 #~ msgstr "_پیکربندی"
