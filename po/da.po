@@ -1,15 +1,16 @@
 # Danish translation for libpeas.
-# Copyright (C) 2011 libpeas's COPYRIGHT HOLDER.
+# Copyright (C) 2011, 2019 libpeas's COPYRIGHT HOLDER.
 # This file is distributed under the same license as the libpeas package.
+#
 # Joe Hansen (joedalton2@yahoo.dk), 2010, 2011.
+# Ask Hjorth Larsen <asklarsen@gmail.com>, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: libpeas master\n"
-"Report-Msgid-Bugs-To: "
-"https://bugzilla.gnome.org/enter_bug.cgi?product=libpeas&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-03-25 04:28+0000\n"
-"PO-Revision-Date: 2015-09-19 18:27+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues\n"
+"POT-Creation-Date: 2019-08-06 00:27+0000\n"
+"PO-Revision-Date: 2019-09-09 01:46+0200\n"
 "Last-Translator: Joe Hansen <joedalton2@yahoo.dk>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -18,174 +19,165 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../data/glade/libpeas-gtk.xml.in.h:1
-msgid "Plugin Manager"
-msgstr "Håndtering af udvidelsesmoduler"
-
-#. Translators: What PeasGtkPluginManagerView to use
-#: ../data/glade/libpeas-gtk.xml.in.h:3
-msgid "View"
-msgstr "Vis"
-
-#: ../data/glade/libpeas-gtk.xml.in.h:4
-msgid "Plugin Manager View"
-msgstr "Visning af udvidelsesmodulhåndtering"
-
-# skulle engelsk have været Built-in?
-# In computing, a shell builtin is a command or a function, 
-# called from a shell, that is executed directly in the 
-# shell itself, instead of an external executable program 
-# which the shell would load and execute.
-#. Translators: Whether builtin plugins should appear in the view (property name)
-#: ../data/glade/libpeas-gtk.xml.in.h:6
-msgid "Show Builtin"
-msgstr "Vis builtin"
-
-#: ../data/glade/libpeas-gtk.xml.in.h:7
-msgid "Peas Gtk"
-msgstr "Peas Gtk"
-
-#: ../libpeas/peas-engine.c:1118
+#: libpeas/peas-engine.c:1118
 #, c-format
-msgid "Dependency '%s' was not found"
-msgstr "Afhængighed “%s” blev ikke fundet"
+msgid "Dependency “%s” was not found"
+msgstr "Afhængigheden “%s” blev ikke fundet"
 
-#: ../libpeas/peas-engine.c:1128
+#: libpeas/peas-engine.c:1128
 #, c-format
-msgid "Dependency '%s' failed to load"
-msgstr "Afhængighed “%s” kunne ikke indlæses"
+msgid "Dependency “%s” failed to load"
+msgstr "Afhængigheden “%s” kunne ikke indlæses"
 
-#: ../libpeas/peas-engine.c:1142
+#: libpeas/peas-engine.c:1142
 #, c-format
-msgid "Plugin loader '%s' was not found"
-msgstr "Indlæser “%s” for udvidelsesmoduler blev ikke fundet"
+msgid "Plugin loader “%s” was not found"
+msgstr "Indlæseren “%s” for udvidelsesmoduler blev ikke fundet"
 
-#: ../libpeas/peas-engine.c:1154
+#: libpeas/peas-engine.c:1154
 #, c-format
 msgid "Failed to load"
 msgstr "Kunne ikke indlæse"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:95
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:95
 msgid "Additional plugins must be disabled"
 msgstr "Yderligere udvidelsesmoduler skal deaktiveres"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:102
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:102
 #, c-format
-msgid "The following plugins depend on '%s' and will also be disabled:"
+msgid "The following plugins depend on “%s” and will also be disabled:"
 msgstr ""
 "De følgende udvidelsesmoduler afhænger af “%s” og vil også blive deaktiveret:"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:144
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:144
 msgid "Plugins"
 msgstr "Udvidelsesmoduler"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:161
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:161
 msgid "An additional plugin must be disabled"
 msgstr "Et yderligere udvidelsesmodul skal deaktiveres"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:168
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:168
 #, c-format
 msgid ""
-"The '%s' plugin depends on the '%s' plugin.\n"
-"If you disable '%s', '%s' will also be disabled."
+"The “%s” plugin depends on the “%s” plugin.\n"
+"If you disable “%s”, “%s” will also be disabled."
 msgstr ""
 "Udvidelsesmodulet “%s” afhænger af\n"
 "udvidelsesmodulet “%s”.\n"
 "Hvis du deaktiverer “%s”, vil “%s” også blive\n"
 "deaktiveret."
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:182
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:182
 msgid "_Cancel"
 msgstr "_Annullér"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:184
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:184
 msgid "Disable Plugins"
 msgstr "Deaktiver udvidelsesmoduler"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:207
+#: libpeas-gtk/peas-gtk-plugin-manager.c:207
 msgid "There was an error displaying the help."
 msgstr "En fejl opstod under visning af hjælpen."
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:253
+#: libpeas-gtk/peas-gtk-plugin-manager.c:253
 msgid "_Close"
 msgstr "_Luk"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:265
+#: libpeas-gtk/peas-gtk-plugin-manager.c:265
 msgid "_Help"
 msgstr "_Hjælp"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:323
+#: libpeas-gtk/peas-gtk-plugin-manager.c:323
 msgid "Pr_eferences"
 msgstr "Ind_stillinger"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:328
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:379
+#: libpeas-gtk/peas-gtk-plugin-manager.c:328
+#: libpeas-gtk/peas-gtk-plugin-manager.c:379
 msgid "_About"
 msgstr "_Om"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:387
+#: libpeas-gtk/peas-gtk-plugin-manager.c:387
 msgid "_Preferences"
 msgstr "_Indstillinger"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:351
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:351
 msgid "_Enabled"
 msgstr "_Aktiveret"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:362
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:362
 msgid "E_nable All"
 msgstr "A_ktiver alle"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:366
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:366
 msgid "_Disable All"
 msgstr "_Deaktiver alle"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:526
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:526
 msgid "Enabled"
 msgstr "Aktiveret"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:547
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:547
 msgid "Plugin"
 msgstr "Udvidelsesmodul"
 
 #. Avoid having markup in a translated string
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:634
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:634
 #, c-format
-msgid "The plugin '%s' could not be loaded"
+msgid "The plugin “%s” could not be loaded"
 msgstr "Udvidelsesmodulet “%s” kunne ikke indlæses"
 
 #. Keep separate because some translations do special things
 #. * for the ':' and might accidentally not keep the space after it
 #.
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:640
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:640
 #, c-format
 msgid "An error occurred: %s"
 msgstr "Der opstod en fejl: %s"
 
 #. Translators: The directory in which the demo program was compiled at
-#: ../peas-demo/peas-demo.c:41
+#: peas-demo/peas-demo.c:41
 msgid "Run from build directory"
 msgstr "Kør fra kompileringsmappe"
 
-#: ../peas-demo/peas-demo.c:92
+#: peas-demo/peas-demo.c:92
 msgid "_Quit"
 msgstr "_Afslut"
 
-#: ../peas-demo/peas-demo.c:108
-msgid "- libpeas demo application"
-msgstr "- libpeas' demoprogram"
+#: peas-demo/peas-demo.c:108
+msgid "— libpeas demo application"
+msgstr "— demoprogram til libpeas"
 
-#: ../tests/libpeas-gtk/plugin-manager.c:77
+#: tests/libpeas-gtk/plugin-manager.c:77
 msgid "About"
 msgstr "Om"
 
-#: ../tests/libpeas-gtk/plugin-manager.c:82
+#: tests/libpeas-gtk/plugin-manager.c:82
 msgid "Preferences"
 msgstr "Indstillinger"
+
+#~ msgid "Plugin Manager"
+#~ msgstr "Håndtering af udvidelsesmoduler"
+
+#~ msgid "View"
+#~ msgstr "Vis"
+
+#~ msgid "Plugin Manager View"
+#~ msgstr "Visning af udvidelsesmodulhåndtering"
+
+# skulle engelsk have været Built-in?
+# In computing, a shell builtin is a command or a function, 
+# called from a shell, that is executed directly in the 
+# shell itself, instead of an external executable program 
+# which the shell would load and execute.
+#~ msgid "Show Builtin"
+#~ msgstr "Vis builtin"
+
+#~ msgid "Peas Gtk"
+#~ msgstr "Peas Gtk"
 
 #~ msgid "C_onfigure"
 #~ msgstr "_Konfigurer"
 
 #~ msgid "_Plugins:"
 #~ msgstr "_Udvidelsesmoduler:"
-
-
