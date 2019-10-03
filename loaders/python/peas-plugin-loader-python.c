@@ -130,7 +130,7 @@ peas_plugin_loader_python_create_extension (PeasPluginLoader *loader,
   g_object_set_qdata (object, quark_extension_type,
                       GSIZE_TO_POINTER (exten_type));
 
-  pyobject = pygobject_new (object);
+  pyobject = pygobject_new (g_object_ref (object));
   pyplinfo = pyg_boxed_new (PEAS_TYPE_PLUGIN_INFO, info, TRUE, TRUE);
 
   /* Set the plugin info as an attribute of the instance */
