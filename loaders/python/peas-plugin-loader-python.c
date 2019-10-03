@@ -123,6 +123,10 @@ peas_plugin_loader_python_create_extension (PeasPluginLoader *loader,
   if (object == NULL)
     goto out;
 
+  /* Sink floating references if necessary */
+  if (g_object_is_floating (object))
+    g_object_ref_sink (object);
+
   /* We have to remember which interface we are instantiating
    * for the deprecated peas_extension_get_extension_type().
    */
