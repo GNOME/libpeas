@@ -1,4 +1,4 @@
-python2_loader_name = 'python2loader'
+python2_loader_name = 'pythonloader'
 
 pygobject_version = pygobject_dep.version()
 pygobject_version_arr = pygobject_version.split('.')
