@@ -1301,7 +1301,7 @@ peas_engine_provides_extension (PeasEngine     *engine,
 
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 /**
- * peas_engine_create_extensionv: (rename-to peas_engine_create_extension)
+ * peas_engine_create_extensionv: (skip)
  * @engine: A #PeasEngine.
  * @info: A loaded #PeasPluginInfo.
  * @extension_type: The implemented extension #GType.

@@ -614,7 +614,7 @@ peas_extension_set_foreach (PeasExtensionSet            *set,
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 
 /**
- * peas_extension_set_newv: (rename-to peas_extension_set_new)
+ * peas_extension_set_newv: (skip)
  * @engine: (allow-none): A #PeasEngine, or %NULL.
  * @exten_type: the extension #GType.
  * @n_parameters: the length of the @parameters array.
