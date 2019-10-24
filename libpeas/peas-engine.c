@@ -1354,6 +1354,87 @@ peas_engine_create_extensionv (PeasEngine     *engine,
 G_GNUC_END_IGNORE_DEPRECATIONS
 
 /**
+ * peas_engine_create_extension_with_properties: (rename-to peas_engine_create_extension)
+ * @engine: A #PeasEngine.
+ * @info: A loaded #PeasPluginInfo.
+ * @extension_type: The implemented extension #GType.
+ * @n_properties: the length of the @prop_names and @prop_values array.
+ * @prop_names: (array length=n_properties): an array of property names.
+ * @prop_values: (array length=n_properties): an array of property values.
+ *
+ * If the plugin identified by @info implements the @extension_type,
+ * then this function will return a new instance of this implementation,
+ * wrapped in a new #PeasExtension instance. Otherwise, it will return %NULL.
+ *
+ * Since libpeas 1.22, @extension_type can be an Abstract #GType
+ * and not just an Interface #GType.
+ *
+ * See peas_engine_create_extension() for more information.
+ *
+ * Returns: (transfer full): a new instance of #PeasExtension wrapping
+ * the @extension_type instance, or %NULL.
+ *
+ * Since: 1.24
+ */
+PeasExtension *
+peas_engine_create_extension_with_properties (PeasEngine     *engine,
+                                              PeasPluginInfo *info,
+                                              GType           extension_type,
+                                              guint           n_properties,
+                                              const gchar   **prop_names,
+                                              const GValue   *prop_values)
+{
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+
+  PeasPluginLoader *loader;
+  PeasExtension *extension;
+  GParameter *parameters = NULL;
+
+  g_return_val_if_fail (PEAS_IS_ENGINE (engine), NULL);
+  g_return_val_if_fail (info != NULL, NULL);
+  g_return_val_if_fail (G_TYPE_IS_INTERFACE (extension_type) ||
+                        G_TYPE_IS_ABSTRACT (extension_type), NULL);
+  g_return_val_if_fail (peas_plugin_info_is_loaded (info), NULL);
+  g_return_val_if_fail (n_properties == 0 || prop_names != NULL, NULL);
+  g_return_val_if_fail (n_properties == 0 || prop_values != NULL, NULL);
+
+  if (n_properties > 0)
+    {
+      parameters = g_new (GParameter, n_properties);
+      if (!peas_utils_properties_array_to_parameter_list (extension_type,
+                                                          n_properties,
+                                                          prop_names,
+                                                          prop_values,
+                                                          parameters))
+        {
+          /* Already warned */
+          g_free (parameters);
+          return NULL;
+        }
+    }
+
+  loader = get_plugin_loader (engine, info->loader_id);
+  extension = peas_plugin_loader_create_extension (loader, info, extension_type,
+                                                   n_properties, parameters);
+
+  while (n_properties-- > 0)
+    g_value_unset (&parameters[n_properties].value);
+  g_free (parameters);
+
+  if (!G_TYPE_CHECK_INSTANCE_TYPE (extension, extension_type))
+    {
+      g_warning ("Plugin '%s' does not provide a '%s' extension",
+                 peas_plugin_info_get_module_name (info),
+                 g_type_name (extension_type));
+      return NULL;
+    }
+
+  return extension;
+
+G_GNUC_END_IGNORE_DEPRECATIONS
+}
+
+/**
  * peas_engine_create_extension_valist: (skip)
  * @engine: A #PeasEngine.
  * @info: A loaded #PeasPluginInfo.
