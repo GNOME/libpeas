@@ -27,28 +27,21 @@
 #define PEAS_UTILS_C_LOADER_ID  0
 #define PEAS_UTILS_N_LOADERS    4
 
-gboolean  peas_utils_properties_array_to_parameter_list
-                                              (GType          exten_type,
-                                               guint          n_properties,
-                                               const gchar  **prop_names,
-                                               const GValue  *prop_values,
-                                               GParameter    *params);
-
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-gboolean  peas_utils_valist_to_parameter_list (GType         exten_type,
-                                               const gchar  *first_property,
-                                               va_list       var_args,
-                                               GParameter  **params,
-                                               guint        *n_params);
+gboolean     peas_utils_properties_array_to_parameter_list (GType          exten_type,
+                                                            guint          n_properties,
+                                                            const gchar  **prop_names,
+                                                            const GValue  *prop_values,
+                                                            GParameter    *params);
+gboolean     peas_utils_valist_to_parameter_list           (GType          exten_type,
+                                                            const gchar   *first_property,
+                                                            va_list        var_args,
+                                                            GParameter   **params,
+                                                            guint         *n_params);
 G_GNUC_END_IGNORE_DEPRECATIONS
-
-gint     peas_utils_get_loader_id             (const gchar  *loader) G_GNUC_CONST;
-const gchar *
-         peas_utils_get_loader_from_id        (gint          loader_id) G_GNUC_CONST;
-const gchar *
-         peas_utils_get_loader_module_from_id (gint          loader_id) G_GNUC_CONST;
-const gint *
-         peas_utils_get_conflicting_loaders_from_id
-                                              (gint          loader_id) G_GNUC_CONST;
+gint         peas_utils_get_loader_id                      (const gchar   *loader) G_GNUC_CONST;
+const gchar *peas_utils_get_loader_from_id                 (gint           loader_id) G_GNUC_CONST;
+const gchar *peas_utils_get_loader_module_from_id          (gint           loader_id) G_GNUC_CONST;
+const gint  *peas_utils_get_conflicting_loaders_from_id    (gint           loader_id) G_GNUC_CONST;
 
 #endif /* __PEAS_UTILS_H__ */
