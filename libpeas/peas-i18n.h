@@ -30,7 +30,7 @@
 #include <config.h>
 #endif
 
-#include <glib.h>
+#include "peas-version-macros.h"
 
 G_BEGIN_DECLS
 
@@ -64,6 +64,7 @@ G_BEGIN_DECLS
 #    define N_(String) (String)
 #endif
 
+PEAS_AVAILABLE_IN_ALL
 const gchar *peas_gettext (const char *msgid) G_GNUC_FORMAT(1);
 
 /* not really I18N-related, but also a string marker macro */
