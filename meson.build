@@ -83,7 +83,9 @@ config_h.set_quoted('GETTEXT_PACKAGE', package_string)
 # Dependencies
 cc = meson.get_compiler('c')
 
-glib_req = '>= 2.38.0'
+glib_req_version = '2.38.0'
+
+glib_req = '>= @0@'.format(glib_req_version)
 introspection_req = '>= 1.39.0'
 gtk_req = '>= 3.0.0'
 gtk_doc_req = '>= 1.11'
@@ -118,6 +120,15 @@ luajit_dep = dependency('luajit', version: luajit_req, required: false)
 
 luajit_prg = find_program('luajit', required: false)
 xmllint_prg = find_program('xmllint', required: false)
+
+glib_version_arr = glib_req_version.split('.')
+glib_major_version = glib_version_arr[0]
+glib_minor_version = glib_version_arr[1]
+
+add_project_arguments([
+  '-DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_@0@_@1@'.format(glib_major_version, glib_minor_version),
+  '-DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_@0@_@1@'.format(glib_major_version, glib_minor_version),
+], language: 'c')
 
 if build_machine.system() == 'darwin'
   config_h.set_quoted('OS_OSX', 1)

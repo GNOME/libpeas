@@ -110,7 +110,6 @@ peas_plugin_loader_c_provides_extension  (PeasPluginLoader *loader,
   return peas_object_module_provides_object (info->loader_data, exten_type);
 }
 
-G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 static PeasExtension *
 peas_plugin_loader_c_create_extension (PeasPluginLoader *loader,
                                        PeasPluginInfo   *info,
@@ -159,7 +158,6 @@ peas_plugin_loader_c_create_extension (PeasPluginLoader *loader,
 
   return instance;
 }
-G_GNUC_END_IGNORE_DEPRECATIONS
 
 static void
 peas_plugin_loader_c_init (PeasPluginLoaderC *cloader)

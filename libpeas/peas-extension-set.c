@@ -91,9 +91,7 @@ struct _PeasExtensionSetPrivate {
   GType exten_type;
   guint n_parameters;
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   GParameter *parameters;
-  G_GNUC_END_IGNORE_DEPRECATIONS
 
   GQueue extensions;
 };
@@ -106,9 +104,7 @@ typedef struct {
 typedef struct {
   guint n_parameters;
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   GParameter *parameters;
-  G_GNUC_END_IGNORE_DEPRECATIONS
 } PeasParameterArray;
 
 /* Signals */
@@ -146,9 +142,7 @@ set_construct_properties (PeasExtensionSet   *set,
 
   priv->n_parameters = array->n_parameters;
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   priv->parameters = g_new0 (GParameter, array->n_parameters);
-  G_GNUC_END_IGNORE_DEPRECATIONS
 
   for (i = 0; i < array->n_parameters; i++)
     {
@@ -611,8 +605,6 @@ peas_extension_set_foreach (PeasExtensionSet            *set,
     }
 }
 
-G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-
 /**
  * peas_extension_set_newv: (skip)
  * @engine: (allow-none): A #PeasEngine, or %NULL.
@@ -765,8 +757,6 @@ peas_extension_set_new_valist (PeasEngine  *engine,
 
   return set;
 }
-
-G_GNUC_END_IGNORE_DEPRECATIONS
 
 /**
  * peas_extension_set_new: (skip)
