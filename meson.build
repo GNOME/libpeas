@@ -39,6 +39,9 @@ lib_version = '@0@.@1@.@2@'.format(
   lib_version_revision
 )
 
+osx_current = lib_version_current + 1
+lib_version_osx = [osx_current, '@0@.@1@'.format(osx_current, interface_age)]
+
 package_name = meson.project_name()
 package_string = '@0@-@1@'.format(package_name, api_version)
 package_long_string = '@0@-@1@'.format(package_name, version)
@@ -130,8 +133,11 @@ add_project_arguments([
   '-DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_@0@_@1@'.format(glib_major_version, glib_minor_version),
 ], language: 'c')
 
+module_suffix = []
 if build_machine.system() == 'darwin'
-  config_h.set_quoted('OS_OSX', 1)
+  config_h.set('OS_OSX', 1)
+  add_languages('objc')
+  module_suffix = 'so'
 endif
 
 # Detect and set symbol visibility
