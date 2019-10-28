@@ -147,6 +147,7 @@ PeasExtensionSet  *peas_extension_set_newv        (PeasEngine       *engine,
                                                    GType             exten_type,
                                                    guint             n_parameters,
                                                    GParameter       *parameters);
+G_GNUC_END_IGNORE_DEPRECATIONS
 
 PEAS_AVAILABLE_IN_1_24
 PeasExtensionSet  *peas_extension_set_new_with_properties (PeasEngine    *engine,
@@ -154,7 +155,6 @@ PeasExtensionSet  *peas_extension_set_new_with_properties (PeasEngine    *engine
                                                            guint          n_properties,
                                                            const gchar  **prop_names,
                                                            const GValue  *prop_values);
-G_GNUC_END_IGNORE_DEPRECATIONS
 PEAS_AVAILABLE_IN_ALL
 PeasExtensionSet  *peas_extension_set_new_valist  (PeasEngine       *engine,
                                                    GType             exten_type,
