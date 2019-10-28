@@ -1,3 +1,17 @@
+Overview of Changes in libpeas 1.24.1
+=====================================
+
+* Fix missing access to peas_gettext() in public ABI
+* Fix loading of python2 plugin loader
+* Fix use of -export-dynamic with Clang
+* Various macOS build fixes
+* Fixes for libpeas-gtk pkg-config generation
+* Add support for GInitiallyUnowned with PeasExtension
+* Translation updates:
+  - Danish
+  - Dutch
+  - Persian
+
 Overview of Changes in libpeas 1.24.0
 =====================================
 
