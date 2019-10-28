@@ -122,9 +122,11 @@ luajit_dep = dependency('luajit', version: luajit_req, required: false)
 luajit_prg = find_program('luajit', required: false)
 xmllint_prg = find_program('xmllint', required: false)
 
+module_suffix = []
 if build_machine.system() == 'darwin'
   config_h.set('OS_OSX', 1)
   add_languages('objc')
+  module_suffix = 'so'
 endif
 
 # Detect and set symbol visibility
