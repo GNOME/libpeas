@@ -26,7 +26,7 @@ libpeas_testing_c_args = [
 ]
 
 libpeas_testing_link_args = [
-  '-export-dynamic',
+  '-Wl,--export-dynamic',
 ]
 
 libpeas_testing_lib = library(
