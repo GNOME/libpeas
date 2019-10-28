@@ -26,6 +26,7 @@ foreach test: libpeas_gtk_tests_sources
   test_exe = executable(
     test_name,
     test_sources,
+    c_args: ['-UG_DISABLE_ASSERT', '-UG_DISABLE_CAST_CHECKS'],
     dependencies: libpeas_gtk_tests_deps
   )
 
