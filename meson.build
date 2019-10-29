@@ -117,12 +117,30 @@ endif
 
 python2_dep = dependency('python2', version: python2_req, required: false)
 pygobject_dep = dependency('pygobject-3.0', version: pygobject_req, required: false)
-lua51_dep = dependency('lua5.1', version: lua_req, required: false)
-lua51_lgi_dep = dependency('lua5.1-lgi', version: lua_lgi_req, required: false)
+lua51_dep = dependency('lua51', version: lua_req, required: false)
 luajit_dep = dependency('luajit', version: luajit_req, required: false)
-
+lua_lgi_found = false
+lua_lgi_ver = 'not found'
+lua51_prg = find_program('lua5.1', required: false)
 luajit_prg = find_program('luajit', required: false)
 xmllint_prg = find_program('xmllint', required: false)
+
+if (luajit_dep.found() and luajit_prg.found()) or (lua51_dep.found() and lua51_prg.found())
+    if luajit_prg.found()
+        lua_prg = luajit_prg
+    else
+        lua_prf = lua51_prg
+    endif
+    lua_lgi_check = run_command(lua_prg, ['-e', 'print(require("lgi")._VERSION)'])
+    if lua_lgi_check.returncode() == 0
+        lua_lgi_ver = lua_lgi_check.stdout().strip()
+        if lua_lgi_ver.version_compare(lua_lgi_req)
+            lua51_lgi_dep = declare_dependency(version: lua_lgi_ver)
+            lua_lgi_found = true
+        endif
+    endif
+    message('lua-lgi version: ' + lua_lgi_ver)
+endif
 
 glib_version_arr = glib_req_version.split('.')
 glib_major_version = glib_version_arr[0]
@@ -199,7 +217,7 @@ if generate_gir and not introspection_dep.found()
 endif
 
 build_lua51_loader = get_option('lua51')
-lua51_found = lua51_dep.found() and lua51_lgi_dep.found()
+lua51_found = (luajit_dep.found() or lua51_dep.found()) and lua_lgi_found
 if build_lua51_loader and not lua51_found
   build_lua51_loader = false
 endif
