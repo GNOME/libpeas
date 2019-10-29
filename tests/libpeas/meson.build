@@ -9,7 +9,7 @@ libpeas_tests_sources = [
 libpeas_tests_c_args = ['-UG_DISABLE_ASSERT', '-UG_DISABLE_CAST_CHECKS']
 
 if build_lua51_loader == true
-  libpeas_tests_sources += [['extension-lua', [lua51_dep]]]
+  libpeas_tests_sources += [['extension-lua', [lua51_dep, luajit_dep]]]
 endif
 
 if build_python3_loader == true

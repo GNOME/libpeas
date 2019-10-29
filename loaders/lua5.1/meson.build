@@ -18,6 +18,7 @@ lua51_loader_deps = [
   libpeas_dep,
   lua51_dep,
   lua51_lgi_dep,
+  luajit_dep,
 ]
 
 lua51_loader_c_args = [
