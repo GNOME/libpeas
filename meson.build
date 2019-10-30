@@ -129,7 +129,7 @@ if (luajit_dep.found() and luajit_prg.found()) or (lua51_dep.found() and lua51_p
     if luajit_prg.found()
         lua_prg = luajit_prg
     else
-        lua_prf = lua51_prg
+        lua_prg = lua51_prg
     endif
     lua_lgi_check = run_command(lua_prg, ['-e', 'print(require("lgi")._VERSION)'])
     if lua_lgi_check.returncode() == 0
