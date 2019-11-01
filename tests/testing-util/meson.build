@@ -23,17 +23,12 @@ libtesting_util_c_args = [
   '-UG_DISABLE_CAST_CHECKS',
 ]
 
-libtesting_util_link_args = [
-  '-Wl,--export-dynamic',
-]
-
 libtesting_util_lib = library(
   libtesting_util_string,
   libtesting_util_c,
   include_directories: rootdir,
   dependencies: libtesting_util_deps,
   c_args: libtesting_util_c_args,
-  link_args: libtesting_util_link_args,
   install: false,
 )
 

@@ -23,17 +23,12 @@ libpeas_gtk_testing_c_args = [
   '-DSRCDIR="@0@"'.format(srcdir),
 ]
 
-libpeas_gtk_testing_link_args = [
-  '-Wl,--export-dynamic',
-]
-
 libpeas_gtk_testing_lib = library(
   libpeas_gtk_testing_string,
   libpeas_gtk_testing_c,
   include_directories: rootdir,
   dependencies: libpeas_gtk_testing_deps,
   c_args: libpeas_gtk_testing_c_args,
-  link_args: libpeas_gtk_testing_link_args,
   install: false,
 )
 

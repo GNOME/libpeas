@@ -29,17 +29,12 @@ libintrospection_c_args = [
   '-DHAVE_CONFIG_H',
 ]
 
-libintrospection_link_args = [
-  '-Wl,--export-dynamic',
-]
-
 libintrospection_lib = library(
   libintrospection_string,
   libintrospection_c,
   include_directories: rootdir,
   dependencies: libintrospection_deps,
   c_args: libintrospection_c_args,
-  link_args: libintrospection_link_args,
   install: false,
 )
 
