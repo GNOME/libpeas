@@ -24,6 +24,8 @@
 
 #include <glib-object.h>
 
+#include "../../testing-util/peas-test-common.h"
+
 G_BEGIN_DECLS
 
 /*
@@ -58,13 +60,21 @@ struct _IntrospectionCallableInterface {
 /*
  * Public methods
  */
+PEAS_TEST_EXPORT
 GType        introspection_callable_get_type         (void) G_GNUC_CONST;
 
+PEAS_TEST_EXPORT
 gchar       *introspection_callable_call_with_return (IntrospectionCallable *callable);
 
+
+PEAS_TEST_EXPORT
 void         introspection_callable_call_no_args     (IntrospectionCallable *callable);
+
+PEAS_TEST_EXPORT
 void         introspection_callable_call_single_arg  (IntrospectionCallable *callable,
                                                       gboolean              *called);
+
+PEAS_TEST_EXPORT
 void         introspection_callable_call_multi_args  (IntrospectionCallable *callable,
                                                       gint                   in,
                                                       gint                  *out,

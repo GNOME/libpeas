@@ -24,6 +24,8 @@
 
 #include <glib-object.h>
 
+#include "../../testing-util/peas-test-common.h"
+
 G_BEGIN_DECLS
 
 /*
@@ -45,6 +47,7 @@ struct _IntrospectionUnimplementedInterface {
 /*
  * Public methods
  */
+PEAS_TEST_EXPORT
 GType introspection_unimplemented_get_type (void)  G_GNUC_CONST;
 
 G_END_DECLS

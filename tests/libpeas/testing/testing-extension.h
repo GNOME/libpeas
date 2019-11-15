@@ -28,11 +28,18 @@
 
 G_BEGIN_DECLS
 
+PEAS_TEST_EXPORT
 void testing_extension_basic      (const gchar   *loader);
+
+PEAS_TEST_EXPORT
 void testing_extension_callable   (const gchar   *loader);
+
+PEAS_TEST_EXPORT
 void testing_extension_add        (const gchar   *path,
                                    GTestDataFunc  func);
 
+
+PEAS_TEST_EXPORT
 int testing_extension_run_tests   (void);
 
 #define testing_extension_all(loader) \

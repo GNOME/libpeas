@@ -24,18 +24,35 @@
 
 #include <libpeas/peas-engine.h>
 
+#include "peas-test-common.h"
+
 G_BEGIN_DECLS
 
+PEAS_TEST_EXPORT
 void        testing_util_envars          (void);
+
+PEAS_TEST_EXPORT
 void        testing_util_init            (void);
 
+
+PEAS_TEST_EXPORT
 PeasEngine *testing_util_engine_new_full (gboolean    nonglobal_loaders);
+
+PEAS_TEST_EXPORT
 void        testing_util_engine_free     (PeasEngine *engine);
 
+
+PEAS_TEST_EXPORT
 int         testing_util_run_tests       (void);
 
+
+PEAS_TEST_EXPORT
 void        testing_util_push_log_hook   (const gchar *pattern);
+
+PEAS_TEST_EXPORT
 void        testing_util_pop_log_hook    (void);
+
+PEAS_TEST_EXPORT
 void        testing_util_pop_log_hooks   (void);
 
 

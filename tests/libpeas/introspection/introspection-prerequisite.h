@@ -24,6 +24,8 @@
 
 #include <libpeas/peas.h>
 
+#include "../../testing-util/peas-test-common.h"
+
 G_BEGIN_DECLS
 
 /*
@@ -49,6 +51,7 @@ struct _IntrospectionPrerequisiteClass {
 /*
  * Public methods
  */
+PEAS_TEST_EXPORT
 GType        introspection_prerequisite_get_type         (void) G_GNUC_CONST;
 
 G_END_DECLS

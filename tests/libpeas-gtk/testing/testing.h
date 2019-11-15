@@ -28,17 +28,22 @@
 
 G_BEGIN_DECLS
 
+PEAS_TEST_EXPORT
 void            testing_init                     (gint                       *argc,
                                                   gchar                    ***argv);
 
+PEAS_TEST_EXPORT
 PeasEngine     *testing_engine_new               (void);
 
+PEAS_TEST_EXPORT
 PeasPluginInfo *testing_get_plugin_info_for_iter (PeasGtkPluginManagerView   *view,
                                                   GtkTreeIter                *iter);
+PEAS_TEST_EXPORT
 gboolean        testing_get_iter_for_plugin_info (PeasGtkPluginManagerView   *view,
                                                   PeasPluginInfo             *info,
                                                   GtkTreeIter                *iter);
 
+PEAS_TEST_EXPORT
 void            testing_show_widget              (gpointer                    widget);
 
 /* libtesting-util functions which do not need to be overridden */

@@ -27,9 +27,11 @@
 
 G_BEGIN_DECLS
 
+PEAS_TEST_EXPORT
 void        testing_init             (gint    *argc,
                                       gchar ***argv);
 
+PEAS_TEST_EXPORT
 PeasEngine *testing_engine_new_full  (gboolean nonglobal_loaders);
 
 #define testing_engine_new() (testing_engine_new_full (FALSE))

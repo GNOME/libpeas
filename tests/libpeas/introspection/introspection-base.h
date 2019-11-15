@@ -24,6 +24,8 @@
 
 #include <libpeas/peas.h>
 
+#include "../../testing-util/peas-test-common.h"
+
 G_BEGIN_DECLS
 
 /*
@@ -49,9 +51,14 @@ struct _IntrospectionBaseInterface {
 /*
  * Public methods
  */
+PEAS_TEST_EXPORT
 GType      introspection_base_get_type     (void) G_GNUC_CONST;
 
+
+PEAS_TEST_EXPORT
 const PeasPluginInfo *introspection_base_get_plugin_info (IntrospectionBase *base);
+
+PEAS_TEST_EXPORT
 GSettings            *introspection_base_get_settings    (IntrospectionBase *base);
 
 G_END_DECLS

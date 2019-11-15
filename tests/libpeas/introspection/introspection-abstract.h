@@ -24,6 +24,8 @@
 
 #include <libpeas/peas.h>
 
+#include "../../testing-util/peas-test-common.h"
+
 G_BEGIN_DECLS
 
 /*
@@ -49,9 +51,14 @@ struct _IntrospectionAbstractClass {
 /*
  * Public methods
  */
+PEAS_TEST_EXPORT
 GType  introspection_abstract_get_type  (void) G_GNUC_CONST;
 
+
+PEAS_TEST_EXPORT
 gint   introspection_abstract_get_value (IntrospectionAbstract *abstract);
+
+PEAS_TEST_EXPORT
 void   introspection_abstract_set_value (IntrospectionAbstract *abstract,
                                          gint                   value);
 

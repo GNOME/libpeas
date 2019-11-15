@@ -24,6 +24,8 @@
 
 #include <libpeas/peas.h>
 
+#include "../../../testing-util/peas-test-common.h"
+
 G_BEGIN_DECLS
 
 #define TESTING_TYPE_EMBEDDED_PLUGIN         (testing_embedded_plugin_get_type ())
@@ -44,6 +46,7 @@ struct _TestingEmbeddedPluginClass {
   PeasExtensionBaseClass parent_class;
 };
 
+PEAS_TEST_EXPORT
 GType                testing_embedded_plugin_get_type       (void) G_GNUC_CONST;
 G_MODULE_EXPORT void testing_embedded_plugin_register_types (PeasObjectModule *module);
 
