@@ -10,7 +10,7 @@ custom_target(
   '@0@-data'.format(generic_name),
   input: generic_plugins_data,
   output: generic_plugins_data,
-  command: ['cp', '@INPUT@', '@OUTDIR@'],
+  command: [copyfile_script, '@INPUT@', '@OUTDIR@'],
   build_by_default: true,
 )
 

@@ -10,6 +10,6 @@ custom_target(
   '@0@-data'.format(extension_lua_name),
   input: extension_lua_plugin_data,
   output: extension_lua_plugin_data,
-  command: ['cp', '@INPUT@', '@OUTDIR@'],
+  command: [copyfile_script, '@INPUT@', '@OUTDIR@'],
   build_by_default: true,
 )

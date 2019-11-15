@@ -9,6 +9,6 @@ custom_target(
   '@0@-data'.format(valid_custom_icon_name),
   input: valid_custom_icon_plugin_data,
   output: valid_custom_icon_plugin_data,
-  command: ['cp', '@INPUT@', '@OUTDIR@'],
+  command: [copyfile_script, '@INPUT@', '@OUTDIR@'],
   build_by_default: true,
 )

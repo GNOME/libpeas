@@ -26,7 +26,7 @@ custom_target(
   'lib@0@-data'.format(libsecondtime_name),
   input: libsecondtime_plugin_data,
   output: libsecondtime_plugin_data,
-  command: ['cp', '@INPUT@', '@OUTDIR@'],
+  command: [copyfile_script, '@INPUT@', '@OUTDIR@'],
   build_by_default: true,
   install_dir: join_paths(peas_demo_plugins_dir, 'secondtime'),
   install: true,

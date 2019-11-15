@@ -258,6 +258,9 @@ if build_python3_loader and not python3_found
   build_python3_loader = false
 endif
 
+# Replace 'cp' calls
+copyfile_script = find_program('copyfile.py')
+
 subdir('libpeas')
 if build_gtk_widgetry == true
   subdir('libpeas-gtk')

@@ -30,6 +30,6 @@ custom_target(
   'lib@0@-data'.format(libhas_dep_name),
   input: libhas_dep_plugin_data,
   output: libhas_dep_plugin_data,
-  command: ['cp', '@INPUT@', '@OUTDIR@'],
+  command: [copyfile_script, '@INPUT@', '@OUTDIR@'],
   build_by_default: true,
 )

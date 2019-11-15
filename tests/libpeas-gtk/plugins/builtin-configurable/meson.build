@@ -32,6 +32,6 @@ custom_target(
   'lib@0@-data'.format(libbuiltin_configurable_name),
   input: libbuiltin_configurable_plugin_data,
   output: libbuiltin_configurable_plugin_data,
-  command: ['cp', '@INPUT@', '@OUTDIR@'],
+  command: [copyfile_script, '@INPUT@', '@OUTDIR@'],
   build_by_default: true,
 )

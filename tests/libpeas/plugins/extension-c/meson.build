@@ -35,7 +35,7 @@ custom_target(
   'lib@0@-data'.format(libextension_c_name),
   input: libextension_c_plugin_data,
   output: libextension_c_plugin_data,
-  command: ['cp', '@INPUT@', '@OUTDIR@'],
+  command: [copyfile_script, '@INPUT@', '@OUTDIR@'],
   build_by_default: true,
 )
 
@@ -59,6 +59,6 @@ custom_target(
   'lib@0@-data'.format(libextension_c_missing_name),
   input: libextension_c_missing_plugin_data,
   output: libextension_c_missing_plugin_data,
-  command: ['cp', '@INPUT@', '@OUTDIR@'],
+  command: [copyfile_script, '@INPUT@', '@OUTDIR@'],
   build_by_default: true,
 )

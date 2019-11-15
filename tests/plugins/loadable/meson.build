@@ -29,6 +29,6 @@ custom_target(
   'lib@0@-data'.format(libloadable_name),
   input: libloadable_plugin_data,
   output: libloadable_plugin_data,
-  command: ['cp', '@INPUT@', '@OUTDIR@'],
+  command: [copyfile_script, '@INPUT@', '@OUTDIR@'],
   build_by_default: true,
 )

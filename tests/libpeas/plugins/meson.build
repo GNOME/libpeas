@@ -17,7 +17,7 @@ custom_target(
   'libpeas-test-data',
   input: libpeas_plugins_data,
   output: libpeas_plugins_data,
-  command: ['cp', '@INPUT@', '@OUTDIR@'],
+  command: [copyfile_script, '@INPUT@', '@OUTDIR@'],
   build_by_default: true,
 )
 

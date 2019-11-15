@@ -47,6 +47,6 @@ custom_target(
   '@0@-data'.format(libembedded_name),
   input: libembedded_plugin_data,
   output: libembedded_plugin_data,
-  command: ['cp', '@INPUT@', '@OUTDIR@'],
+  command: [copyfile_script, '@INPUT@', '@OUTDIR@'],
   build_by_default: true,
 )
