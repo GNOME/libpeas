@@ -11,6 +11,7 @@ project(
 gnome = import('gnome')
 i18n = import('i18n')
 pkg = import('pkgconfig')
+pymod = import('python')
 
 # Versioning
 version = meson.project_version()
@@ -115,7 +116,24 @@ if not python3_dep.found()
   python3_dep = dependency('python3', version: python3_req, required: false)
 endif
 
+if host_machine.system() == 'windows' and not python3_dep.found()
+  python3 = pymod.find_installation(get_option('python3_path'),
+                                    required: false)
+  if python3.found()
+    python3_dep = python3.dependency(version: python3_req, required: false)
+  endif
+endif
+
+
 python2_dep = dependency('python2', version: python2_req, required: false)
+if host_machine.system() == 'windows' and not python2_dep.found()
+  python2 = pymod.find_installation(get_option('python2_path') != '' ? get_option('python2_path') : 'python2',
+                                    required: false)
+  if python2.found()
+    python2_dep = python2.dependency(version: python2_req, required: false)
+  endif
+endif
+
 pygobject_dep = dependency('pygobject-3.0', version: pygobject_req, required: false)
 lua51_dep = dependency('lua51', version: lua_req, required: false)
 if not lua51_dep.found()

@@ -9,6 +9,13 @@ option('python3',
        type: 'boolean', value: true,
        description: 'Enable Python 3 support (requires pygobject)')
 
+option('python2_path',
+       type: 'string', value: '',
+       description: 'Path to Python 2.x interpreter (Windows only)')
+option('python3_path',
+       type: 'string', value: '',
+       description: 'Path to Python 3.x interpreter (Windows only)')
+
 option('introspection',
        type: 'boolean', value: true,
        description: 'Generate introspection data (requires gobject-introspection)')
