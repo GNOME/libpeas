@@ -2,7 +2,7 @@ project(
   'libpeas', 'c',
   version: '1.28.0',
   license: 'LGPLv2.1+',
-  meson_version: '>= 0.49.0',
+  meson_version: '>= 0.50.0',
   default_options: [
     'buildtype=debugoptimized',
   ]
@@ -149,7 +149,51 @@ endif
 luajit_prg = find_program('luajit', required: false)
 xmllint_prg = find_program('xmllint', required: false)
 
+if cc.get_id() == 'msvc'
+  if luajit_prg.found()
+    # luajit has lua51.lib as its import library
+    lua_names = ['lua51']
+  else
+    lua_names = ['lua53', 'lua52', 'lua51']
+  endif
+
+  lua_headers = ['lua.h', 'lualib.h', 'lauxlib.h']
+  # On Windows, the lua program may be named as lua.exe
+  foreach lua: lua_names + ['lua']
+    if not lua51_prg.found() and not luajit_prg.found()
+      lua51_prg = find_program(lua, required: false)
+    endif
+    if lua51_prg.found()
+      if lua != 'lua'
+        lua51_dep = cc.find_library(lua, has_headers: lua_headers, required: false)
+      endif
+    endif
+  endforeach
+
+  if not lua51_dep.found() and not luajit_dep.found()
+    foreach lualib: lua_names
+      if luajit_prg.found()
+        if not luajit_dep.found()
+          luajit_dep = cc.find_library(lualib, has_headers: lua_headers, required: false)
+        endif
+      endif
+
+      if lua51_prg.found()
+        if not lua51_dep.found()
+          lua51_dep = cc.find_library(lualib, has_headers: lua_headers, required: false)
+        endif
+      endif
+    endforeach
+  endif
+endif
+
+lua_found = false
+
 if (luajit_dep.found() and luajit_prg.found()) or (lua51_dep.found() and lua51_prg.found())
+  lua_found = true
+endif
+
+if lua_found
     if luajit_prg.found()
         lua_prg = luajit_prg
     else
