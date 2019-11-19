@@ -65,6 +65,7 @@ struct _PeasGtkPluginManagerStoreClass {
 };
 
 GType                       peas_gtk_plugin_manager_store_get_type              (void) G_GNUC_CONST;
+PEAS_AVAILABLE_IN_ALL
 PeasGtkPluginManagerStore  *peas_gtk_plugin_manager_store_new                   (PeasEngine                *engine);
 
 void                        peas_gtk_plugin_manager_store_reload                (PeasGtkPluginManagerStore *store);
@@ -72,6 +73,7 @@ void                        peas_gtk_plugin_manager_store_reload                
 void                        peas_gtk_plugin_manager_store_set_enabled           (PeasGtkPluginManagerStore *store,
                                                                                  GtkTreeIter               *iter,
                                                                                  gboolean                   enabled);
+PEAS_AVAILABLE_IN_ALL
 gboolean                    peas_gtk_plugin_manager_store_get_enabled           (PeasGtkPluginManagerStore *store,
                                                                                  GtkTreeIter               *iter);
 void                        peas_gtk_plugin_manager_store_set_all_enabled       (PeasGtkPluginManagerStore *store,
@@ -82,9 +84,11 @@ void                        peas_gtk_plugin_manager_store_toggle_enabled        
 gboolean                    peas_gtk_plugin_manager_store_can_enable            (PeasGtkPluginManagerStore *store,
                                                                                  GtkTreeIter               *iter);
 
+PEAS_AVAILABLE_IN_ALL
 PeasPluginInfo             *peas_gtk_plugin_manager_store_get_plugin            (PeasGtkPluginManagerStore *store,
                                                                                  GtkTreeIter               *iter);
 
+PEAS_AVAILABLE_IN_ALL
 gboolean                    peas_gtk_plugin_manager_store_get_iter_from_plugin  (PeasGtkPluginManagerStore *store,
                                                                                  GtkTreeIter               *iter,
                                                                                  const PeasPluginInfo      *info);

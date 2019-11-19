@@ -111,7 +111,6 @@ libpeas_sha = library(
   objc_args: libpeas_c_args,
   link_args: libpeas_link_args,
   install: true,
-  install_dir: libdir,
 )
 
 libpeas_dep_sources = [

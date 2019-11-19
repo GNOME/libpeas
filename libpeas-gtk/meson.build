@@ -42,16 +42,6 @@ install_headers(
   )
 )
 
-# Static library used for testing symbol access
-libpeas_gtk_test = static_library(
-  package_gtk_string.strip('lib'),
-  libpeas_gtk_c,
-  include_directories: rootdir,
-  dependencies: libpeas_gtk_deps,
-  c_args: libpeas_gtk_c_args,
-  link_args: libpeas_gtk_link_args,
-)
-
 libpeas_gtk_sha = library(
   package_gtk_string.strip('lib'),
   libpeas_gtk_c,
@@ -62,7 +52,6 @@ libpeas_gtk_sha = library(
   c_args: libpeas_gtk_c_args,
   link_args: libpeas_gtk_link_args,
   install: true,
-  install_dir: libdir,
 )
 
 libpeas_gtk_dep_sources = []
@@ -100,13 +89,6 @@ endif
 
 libpeas_gtk_dep = declare_dependency(
   link_with: libpeas_gtk_sha,
-  dependencies: libpeas_gtk_deps,
-  include_directories: rootdir,
-  sources: libpeas_gtk_dep_sources,
-)
-
-libpeas_gtk_test_dep = declare_dependency(
-  link_with: libpeas_gtk_test,
   dependencies: libpeas_gtk_deps,
   include_directories: rootdir,
   sources: libpeas_gtk_dep_sources,
