@@ -108,8 +108,23 @@ peas_object_module_load (GTypeModule *gmodule)
     {
       gchar *path;
       GModuleFlags flags = 0;
+      gchar *fallback_path = NULL;
 
-      path = g_module_build_path (priv->path, priv->module_name);
+#ifdef G_OS_WIN32
+      if (!g_str_has_suffix (priv->module_name, "." G_MODULE_SUFFIX))
+        {
+          /* On Windows, g_module_build_path() will add a "lib" prefix,
+           * to the module_name unless a ".dll" suffix is appended to the
+           * module_name. So, we also try to look for a DLL whose filename
+           * is the module name in the case that lib<module_name>.dll is
+           * not found, as it is commonly the case on Meson builds and
+           * also likely in other cases.
+           */
+          gchar *mod_file = g_strconcat (priv->module_name, "." G_MODULE_SUFFIX, NULL);
+          fallback_path = g_module_build_path (priv->path, mod_file);
+          g_free (mod_file);
+        }
+#endif
 
       /* g_module_build_path() will add G_MODULE_SUFFIX to the path,
        * however g_module_open() will only try to load the libtool archive
@@ -117,6 +132,8 @@ peas_object_module_load (GTypeModule *gmodule)
        * which allows uninstalled builds to load plugins as well, as there
        * is only the .la file in the build directory.
        */
+      path = g_module_build_path (priv->path, priv->module_name);
+
       if (G_MODULE_SUFFIX[0] != '\0' && g_str_has_suffix (path, "." G_MODULE_SUFFIX))
         path[strlen (path) - strlen (G_MODULE_SUFFIX) - 1] = '\0';
 
@@ -125,6 +142,16 @@ peas_object_module_load (GTypeModule *gmodule)
 
       /* Bind symbols immediately to avoid errors long after loading */
       priv->library = g_module_open (path, flags);
+
+      /* Windows case if lib<module_name>.dll cannot be found */
+      if (fallback_path != NULL)
+        {
+          if (priv->library == NULL)
+            priv->library = g_module_open (fallback_path, flags);
+
+          g_free (fallback_path);
+        }
+
       g_free (path);
     }
 
