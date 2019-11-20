@@ -27,6 +27,11 @@
 #include <libpeas/peas-i18n-priv.h>
 #include <libpeas-gtk/peas-gtk.h>
 
+#ifdef G_OS_WIN32
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#endif
+
 #include "testing/testing.h"
 
 typedef struct _TestFixture TestFixture;
@@ -380,6 +385,10 @@ main (int    argc,
       char **argv)
 {
   testing_init (&argc, &argv);
+
+#ifdef G_OS_WIN32
+  SetThreadLocale (MAKELCID (MAKELANGID (LANG_ENGLISH, SUBLANG_ENGLISH_US), SORT_DEFAULT));
+#endif
 
 #define TEST(path, ftest) \
   g_test_add ("/gtk/plugin-manager/" path, TestFixture, \
