@@ -1,5 +1,11 @@
 libembedded_name = 'embedded'
 
+if cc.get_id() == 'msvc' and glib_dep.version() < '2.64.4'
+  libembedded_link_args = ['-export:embedded_register_resource']
+else
+  libembedded_link_args = []
+endif
+
 libembedded_public_h = [
   'embedded-plugin.h',
 ]
@@ -34,6 +40,7 @@ libembedded_lib = shared_library(
   libembedded_c + libembedded_res,
   include_directories: rootdir,
   dependencies: libembedded_deps,
+  link_args: libembedded_link_args,
   install: false,
 )
 
