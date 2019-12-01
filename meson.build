@@ -118,10 +118,16 @@ endif
 python2_dep = dependency('python2', version: python2_req, required: false)
 pygobject_dep = dependency('pygobject-3.0', version: pygobject_req, required: false)
 lua51_dep = dependency('lua51', version: lua_req, required: false)
+if not lua51_dep.found()
+  lua51_dep = dependency('lua-5.1', version: lua_req, required: false)
+endif
 luajit_dep = dependency('luajit', version: luajit_req, required: false)
 lua_lgi_found = false
 lua_lgi_ver = 'not found'
 lua51_prg = find_program('lua5.1', required: false)
+if not lua51_prg.found()
+  lua51_prg = find_program('lua51', required: false)
+endif
 luajit_prg = find_program('luajit', required: false)
 xmllint_prg = find_program('xmllint', required: false)
 
