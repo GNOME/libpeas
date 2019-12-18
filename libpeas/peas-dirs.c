@@ -29,6 +29,27 @@
 #include "peas-utils-osx.h"
 #endif
 
+#ifdef G_OS_WIN32
+// inspired by gobject-introspection...
+
+#include <libloaderapi.h>
+
+static HMODULE libpeas_dll = NULL;
+
+#ifdef DLL_EXPORT
+
+BOOL WINAPI DllMain (HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved);
+
+BOOL WINAPI DllMain (HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
+{
+  if (fdwReason == DLL_PROCESS_ATTACH)
+    libpeas_dll = hinstDLL;
+  return TRUE;
+}
+
+#endif
+#endif
+
 gchar *
 peas_dirs_get_data_dir (void)
 {
@@ -37,7 +58,7 @@ peas_dirs_get_data_dir (void)
 #ifdef G_OS_WIN32
   gchar *win32_dir;
 
-  win32_dir = g_win32_get_package_installation_directory_of_module (NULL);
+  win32_dir = g_win32_get_package_installation_directory_of_module (libpeas_dll);
 
   data_dir = g_build_filename (win32_dir, "share", "libpeas-1.0", NULL);
   g_free (win32_dir);
@@ -58,7 +79,7 @@ peas_dirs_get_lib_dir (void)
 #ifdef G_OS_WIN32
   gchar *win32_dir;
 
-  win32_dir = g_win32_get_package_installation_directory_of_module (NULL);
+  win32_dir = g_win32_get_package_installation_directory_of_module (libpeas_dll);
 
   lib_dir = g_build_filename (win32_dir, "lib", "libpeas-1.0", NULL);
   g_free (win32_dir);
@@ -98,7 +119,7 @@ peas_dirs_get_locale_dir (void)
 #ifdef G_OS_WIN32
   gchar *win32_dir;
 
-  win32_dir = g_win32_get_package_installation_directory_of_module (NULL);
+  win32_dir = g_win32_get_package_installation_directory_of_module (libpeas_dll);
 
   locale_dir = g_build_filename (win32_dir, "share", "locale", NULL);
 
