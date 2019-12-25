@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libpeas\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues\n"
-"POT-Creation-Date: 2019-08-06 00:27+0000\n"
-"PO-Revision-Date: 2019-08-26 00:06+0200\n"
+"POT-Creation-Date: 2019-09-29 14:01+0000\n"
+"PO-Revision-Date: 2019-12-25 02:32+0100\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: Galician <gnome-l10n-gl@gnome.org>\n"
 "Language: gl\n"
@@ -19,24 +19,24 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2.4\n"
 
-#: libpeas/peas-engine.c:1118
+#: libpeas/peas-engine.c:1116
 #, c-format
 msgid "Dependency “%s” was not found"
 msgstr "Non foi posíbel atopar a dependencia «%s»"
 
-#: libpeas/peas-engine.c:1128
+#: libpeas/peas-engine.c:1126
 #, c-format
 msgid "Dependency “%s” failed to load"
 msgstr "Produciuse un erro ao cargar a dependencia «%s»"
 
-#: libpeas/peas-engine.c:1142
+#: libpeas/peas-engine.c:1140
 #, c-format
 msgid "Plugin loader “%s” was not found"
 msgstr "Non foi posíbel atopar o cargador do engadido «%s»"
 
-#: libpeas/peas-engine.c:1154
+#: libpeas/peas-engine.c:1152
 #, c-format
 msgid "Failed to load"
 msgstr "Produciuse un erro ao cargar"
@@ -112,16 +112,16 @@ msgstr "Ac_tivar todos"
 msgid "_Disable All"
 msgstr "_Desactivar todos"
 
-#: libpeas-gtk/peas-gtk-plugin-manager-view.c:526
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:575
 msgid "Enabled"
 msgstr "Activado"
 
-#: libpeas-gtk/peas-gtk-plugin-manager-view.c:547
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:596
 msgid "Plugin"
 msgstr "Engadido"
 
 #. Avoid having markup in a translated string
-#: libpeas-gtk/peas-gtk-plugin-manager-view.c:634
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:683
 #, c-format
 msgid "The plugin “%s” could not be loaded"
 msgstr "Non foi posíbel cargar o engadido «%s»"
@@ -129,7 +129,7 @@ msgstr "Non foi posíbel cargar o engadido «%s»"
 #. Keep separate because some translations do special things
 #. * for the ':' and might accidentally not keep the space after it
 #.
-#: libpeas-gtk/peas-gtk-plugin-manager-view.c:640
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:689
 #, c-format
 msgid "An error occurred: %s"
 msgstr "Produciuse un erro:%s"
@@ -145,7 +145,7 @@ msgstr "_Saír"
 
 #: peas-demo/peas-demo.c:108
 msgid "— libpeas demo application"
-msgstr "- aplicativo de demostración de libpeas"
+msgstr "- aplicación de demostración de libpeas"
 
 #: tests/libpeas-gtk/plugin-manager.c:77
 msgid "About"
