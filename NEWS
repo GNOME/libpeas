@@ -1,3 +1,25 @@
+Overview of Changes in libpeas 1.25.3
+=====================================
+
+* Fix access to peas_gettext()
+* Fix duplicate rename-to annotations
+* Tighten symbol availability for GLib symbols
+* Fix various tests to work with G_DISABLE_ASSERT
+* Fix building with luajit
+* Add peas_extension_set_new_with_properties() to aid in using libpeas
+  from language bindings
+* Fix naming of Python2 loader
+* Remove use of undocumented -export-dynamic
+* Fis use of PeasExtension with GInitiallyUnowned
+* Build fixes for macOS
+* Fixes to pkg-config files
+* Translation updates:
+  - Chinese (Taiwan)
+  - Danish
+  - Dutch
+  - Galicians
+  - Persian
+
 Overview of Changes in libpeas 1.24.0
 =====================================
 
