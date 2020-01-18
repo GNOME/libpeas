@@ -206,7 +206,7 @@ if build_gtk_widgetry and not gtk_dep.found()
   build_gtk_widgetry = false
 endif
 
-build_demos = get_option('widgetry')
+build_demos = get_option('demos')
 if build_demos and not build_gtk_widgetry
   build_demos = false
 endif

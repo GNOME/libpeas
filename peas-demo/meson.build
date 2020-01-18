@@ -1,5 +1,3 @@
-if get_option('demos')
-
 peas_demo_name = 'peas-demo'
 peas_demo_string = '@0@-@1@'.format(peas_demo_name, api_version)
 peas_demo_plugins_dir = join_paths(get_option('libdir'), 'peas-demo', 'plugins')
@@ -25,5 +23,3 @@ executable(
 )
 
 subdir('plugins')
-
-endif
