@@ -106,6 +106,15 @@ main (int    argc,
   gchar *plugin_dir;
   PeasEngine *engine;
 
+  setlocale (LC_ALL, "");
+  /* Normally, we'd need to call bindtextdomain() here. But that would require
+   * access to the dynamic peas_dirs_get_locale_dir() which is not available
+   * via the ABI. However, libpeas has a static constructor for it so we do
+   * not need to call it anyway.
+   */
+  bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+  textdomain (GETTEXT_PACKAGE);
+
   option_context = g_option_context_new (_("— libpeas demo application"));
   g_option_context_add_main_entries (option_context, demo_args, GETTEXT_PACKAGE);
   g_option_context_add_group (option_context, gtk_get_option_group (TRUE));
