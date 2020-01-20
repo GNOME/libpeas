@@ -25,7 +25,7 @@
 
 #include "peas-extension-set.h"
 
-#include "peas-i18n.h"
+#include "peas-i18n-priv.h"
 #include "peas-introspection.h"
 #include "peas-plugin-info.h"
 #include "peas-marshal.h"

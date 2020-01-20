@@ -23,9 +23,8 @@
 #include "config.h"
 
 #include <string.h>
-#include <glib.h>
 
-#include "peas-i18n.h"
+#include "peas-i18n-priv.h"
 #include "peas-plugin-info-priv.h"
 #include "peas-utils.h"
 

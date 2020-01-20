@@ -23,7 +23,7 @@
 #include <config.h>
 #endif
 
-#include <libpeas/peas-i18n.h>
+#include <libpeas/peas-i18n-priv.h>
 #include <libpeas/peas-plugin-info.h>
 
 #include "peas-gtk-disable-plugins-dialog.h"

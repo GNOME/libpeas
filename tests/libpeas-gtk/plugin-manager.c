@@ -19,14 +19,12 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA.
  */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include "config.h"
 
-#include <glib.h>
 #include <gtk/gtk.h>
+
 #include <libpeas/peas.h>
-#include <libpeas/peas-i18n.h>
+#include <libpeas/peas-i18n-priv.h>
 #include <libpeas-gtk/peas-gtk.h>
 
 #include "testing/testing.h"

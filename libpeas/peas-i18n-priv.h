@@ -17,33 +17,16 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA.
  */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#ifndef __PEAS_I18N_PRIV_H__
+#define __PEAS_I18N_PRIV_H__
 
-#include <glib/gi18n.h>
-#include <string.h>
+#include <glib.h>
 
-#include "peas-dirs.h"
+G_BEGIN_DECLS
 
-#include "gconstructor.h"
+#define _(s)  g_dgettext(GETTEXT_PACKAGE, s)
+#define I_(s) g_intern_string(s)
 
-#if defined (G_HAS_CONSTRUCTORS)
-# ifdef G_DEFINE_CONSTRUCTOR_NEEDS_PRAGMA
-#  pragma G_DEFINE_CONSTRUCTOR_PRAGMA_ARGS(peas_init_ctor)
-# endif
-G_DEFINE_CONSTRUCTOR(peas_init_ctor)
-#else
-# error Your platform/compiler is missing constructor support
-#endif
+G_END_DECLS
 
-static void
-peas_init_ctor (void)
-{
-  gchar *locale_dir = peas_dirs_get_locale_dir ();
-
-  bindtextdomain (GETTEXT_PACKAGE, locale_dir);
-  bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-
-  g_free (locale_dir);
-}
+#endif /* __PEAS_I18N_PRIV_H__ */

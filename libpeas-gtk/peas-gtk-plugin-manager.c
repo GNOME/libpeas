@@ -35,7 +35,7 @@
 
 #include <libpeas/peas-engine.h>
 #include <libpeas/peas-plugin-info.h>
-#include <libpeas/peas-i18n.h>
+#include <libpeas/peas-i18n-priv.h>
 
 #include "peas-gtk-plugin-manager.h"
 #include "peas-gtk-plugin-manager-view.h"

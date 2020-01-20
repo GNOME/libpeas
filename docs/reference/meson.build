@@ -5,10 +5,10 @@ gtk_prefix = gtk_dep.get_pkgconfig_variable('prefix')
 gtk_docpath = join_paths(gtk_prefix, 'share', 'gtk-doc', 'html')
 
 libpeas_reference_ignored_h = [
+  'gconstructor.h',
   'peas-debug.h',
   'peas-dirs.h',
   'peas-engine-priv.h',
-  'peas-i18n.h',
   'peas-introspection.h',
   'peas-marshal.h',
   'peas-plugin-info-priv.h',

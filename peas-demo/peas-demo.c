@@ -23,10 +23,11 @@
 #include <config.h>
 #endif
 
-#include <gtk/gtk.h>
 #include <girepository.h>
+#include <glib/gi18n.h>
+#include <gtk/gtk.h>
+
 #include <libpeas/peas.h>
-#include <libpeas/peas-i18n.h>
 #include <libpeas-gtk/peas-gtk.h>
 
 #include "peas-demo-window.h"

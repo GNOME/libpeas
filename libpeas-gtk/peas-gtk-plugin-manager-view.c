@@ -29,7 +29,7 @@
 #include <string.h>
 
 #include <libpeas/peas-engine.h>
-#include <libpeas/peas-i18n.h>
+#include <libpeas/peas-i18n-priv.h>
 
 #include "peas-gtk-plugin-manager-view.h"
 #include "peas-gtk-disable-plugins-dialog.h"
