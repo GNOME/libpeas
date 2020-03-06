@@ -1,3 +1,13 @@
+Overview of Changes in libpeas 1.26.0
+=====================================
+
+* Simplified i18n usage
+* Build system fixes
+* Translation updates:
+  - British English
+  - Malay
+  - Slovak
+
 Overview of Changes in libpeas 1.25.3
 =====================================
 
