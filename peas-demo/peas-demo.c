@@ -26,6 +26,7 @@
 #include <girepository.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
+#include <locale.h>
 
 #include <libpeas/peas.h>
 #include <libpeas-gtk/peas-gtk.h>
