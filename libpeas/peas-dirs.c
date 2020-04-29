@@ -32,7 +32,8 @@
 #ifdef G_OS_WIN32
 // inspired by gobject-introspection...
 
-#include <libloaderapi.h>
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
 
 static HMODULE libpeas_dll = NULL;
 
