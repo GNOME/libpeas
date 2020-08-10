@@ -254,7 +254,9 @@ subdir('loaders')
 if build_demos == true
   subdir('peas-demo')
 endif
-subdir('tests')
+if generate_gir == true
+  subdir('tests')
+endif
 
 summary = [
   '',
