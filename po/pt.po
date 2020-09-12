@@ -4,179 +4,181 @@
 # António Lima <amrlima@gmail.com>, 2010, 2011, 2012, 2013.
 # Pedro Albuquerque <palbuquerque73@openmailbox.com>, 2015.
 # Sérgio Cardeira <cardeira.sergio@gmail.com>, 2016.
+# Juliano de Souza Camargo <julianosc@protonmail.com>, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: libpeas master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=libpeas&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-02-21 01:26+0000\n"
-"PO-Revision-Date: 2016-02-21 03:13-0100\n"
-"Last-Translator: Sérgio Cardeira <cardeira.sergio@gmail.com>\n"
-"Language-Team: Português <gnome_pt@yahoogroups.com>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues\n"
+"POT-Creation-Date: 2020-06-26 03:39+0000\n"
+"PO-Revision-Date: 2020-09-11 21:12-0300\n"
+"Last-Translator: Juliano de Souza Camargo <julianosc@protonmail.com>\n"
+"Language-Team: Portuguese <>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Gtranslator 3.36.0\n"
 "X-Project-Style: gnome\n"
 
-#: ../data/glade/libpeas-gtk.xml.in.h:1
-msgid "Plugin Manager"
-msgstr "Gestor de extensões"
-
-#. Translators: What PeasGtkPluginManagerView to use
-#: ../data/glade/libpeas-gtk.xml.in.h:3
-msgid "View"
-msgstr "Ver"
-
-#: ../data/glade/libpeas-gtk.xml.in.h:4
-msgid "Plugin Manager View"
-msgstr "Vista Gestor de extensões"
-
-#. Translators: Whether builtin plugins should appear in the view (property name)
-#: ../data/glade/libpeas-gtk.xml.in.h:6
-msgid "Show Builtin"
-msgstr "Mostrar embutidos"
-
-#: ../data/glade/libpeas-gtk.xml.in.h:7
-msgid "Peas Gtk"
-msgstr "Peas Gtk"
-
-#: ../libpeas/peas-engine.c:1115
+#: libpeas/peas-engine.c:1116
 #, c-format
-msgid "Dependency '%s' was not found"
-msgstr "Não foi encontrada a dependência \"%s\""
+#| msgid "Dependency '%s' was not found"
+msgid "Dependency “%s” was not found"
+msgstr "Não foi encontrada a dependência “%s”"
 
-#: ../libpeas/peas-engine.c:1125
+#: libpeas/peas-engine.c:1126
 #, c-format
-msgid "Dependency '%s' failed to load"
-msgstr "Falha ao carregar a dependência \"%s\""
+#| msgid "Dependency '%s' failed to load"
+msgid "Dependency “%s” failed to load"
+msgstr "Falha ao carregar a dependência “%s”"
 
-#: ../libpeas/peas-engine.c:1139
+#: libpeas/peas-engine.c:1140
 #, c-format
-msgid "Plugin loader '%s' was not found"
-msgstr "O carregador de extensões \"%s\" não foi encontrado"
+#| msgid "Plugin loader '%s' was not found"
+msgid "Plugin loader “%s” was not found"
+msgstr "O carregador de extensões “%s” não foi encontrado"
 
-#: ../libpeas/peas-engine.c:1151
+#: libpeas/peas-engine.c:1152
 #, c-format
 msgid "Failed to load"
 msgstr "Falha ao carregar"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:95
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:95
 msgid "Additional plugins must be disabled"
 msgstr "É necessário desativar extensões adicionais"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:102
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:102
 #, c-format
-msgid "The following plugins depend on '%s' and will also be disabled:"
-msgstr "As seguintes extensões dependem de \"%s\" e também serão desativadas:"
+#| msgid "The following plugins depend on '%s' and will also be disabled:"
+msgid "The following plugins depend on “%s” and will also be disabled:"
+msgstr "As seguintes extensões dependem de “%s” e também serão desativadas:"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:144
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:144
 msgid "Plugins"
 msgstr "Extensões"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:161
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:161
 msgid "An additional plugin must be disabled"
 msgstr "É necessário desativar mais uma extensão"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:168
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:168
 #, c-format
+#| msgid ""
+#| "The '%s' plugin depends on the '%s' plugin.\n"
+#| "If you disable '%s', '%s' will also be disabled."
 msgid ""
-"The '%s' plugin depends on the '%s' plugin.\n"
-"If you disable '%s', '%s' will also be disabled."
+"The “%s” plugin depends on the “%s” plugin.\n"
+"If you disable “%s”, “%s” will also be disabled."
 msgstr ""
-"A extensão \"%s\" depende da extensão \"%s\".\n"
-"Se desativar \"%s\", \"%s\" também será desativada."
+"A extensão “%s” depende da extensão “%s”.\n"
+"Se desativar “%s”, “%s” também será desativada."
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:182
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:182
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:184
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:184
 msgid "Disable Plugins"
 msgstr "Desativar extensões"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:207
+#: libpeas-gtk/peas-gtk-plugin-manager.c:207
 msgid "There was an error displaying the help."
 msgstr "Ocorreu um erro ao mostrar a ajuda."
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:253
+#: libpeas-gtk/peas-gtk-plugin-manager.c:253
 msgid "_Close"
 msgstr "_Fechar"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:265
+#: libpeas-gtk/peas-gtk-plugin-manager.c:265
 msgid "_Help"
 msgstr "A_juda"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:323
+#: libpeas-gtk/peas-gtk-plugin-manager.c:323
 msgid "Pr_eferences"
 msgstr "_Preferências"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:328
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:379
+#: libpeas-gtk/peas-gtk-plugin-manager.c:328
+#: libpeas-gtk/peas-gtk-plugin-manager.c:379
 msgid "_About"
 msgstr "_Sobre"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:387
+#: libpeas-gtk/peas-gtk-plugin-manager.c:387
 msgid "_Preferences"
 msgstr "_Preferências"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:351
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:351
 msgid "_Enabled"
 msgstr "_Ativo"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:362
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:362
 msgid "E_nable All"
 msgstr "Ativar _todos"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:366
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:366
 msgid "_Disable All"
 msgstr "_Desativar todos"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:526
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:575
 msgid "Enabled"
 msgstr "Ativo"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:547
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:596
 msgid "Plugin"
 msgstr "Extensão"
 
 #. Avoid having markup in a translated string
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:634
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:683
 #, c-format
-msgid "The plugin '%s' could not be loaded"
-msgstr "Não foi possível carregar a extensão \"%s\""
+#| msgid "The plugin '%s' could not be loaded"
+msgid "The plugin “%s” could not be loaded"
+msgstr "Não foi possível carregar a extensão “%s”"
 
 #. Keep separate because some translations do special things
 #. * for the ':' and might accidentally not keep the space after it
 #.
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:640
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:689
 #, c-format
 msgid "An error occurred: %s"
 msgstr "Ocorreu um erro: %s"
 
 #. Translators: The directory in which the demo program was compiled at
-#: ../peas-demo/peas-demo.c:41
+#: peas-demo/peas-demo.c:43
 msgid "Run from build directory"
 msgstr "Executar a partir de pasta de compilação"
 
-#: ../peas-demo/peas-demo.c:92
+#: peas-demo/peas-demo.c:94
 msgid "_Quit"
 msgstr "_Sair"
 
-#: ../peas-demo/peas-demo.c:108
-msgid "- libpeas demo application"
-msgstr "- aplicação de demonstração de libpeas"
+#: peas-demo/peas-demo.c:119
+#| msgid "- libpeas demo application"
+msgid "— libpeas demo application"
+msgstr "— aplicação de demonstração de libpeas"
 
-#: ../tests/libpeas-gtk/plugin-manager.c:77
+#: tests/libpeas-gtk/plugin-manager.c:75
 msgid "About"
 msgstr "Sobre"
 
-#: ../tests/libpeas-gtk/plugin-manager.c:82
+#: tests/libpeas-gtk/plugin-manager.c:80
 msgid "Preferences"
 msgstr "Preferências"
+
+#~ msgid "Plugin Manager"
+#~ msgstr "Gestor de extensões"
+
+#~ msgid "View"
+#~ msgstr "Ver"
+
+#~ msgid "Plugin Manager View"
+#~ msgstr "Vista Gestor de extensões"
+
+#~ msgid "Show Builtin"
+#~ msgstr "Mostrar embutidos"
+
+#~ msgid "Peas Gtk"
+#~ msgstr "Peas Gtk"
 
 #~ msgid "C_onfigure"
 #~ msgstr "C_onfigurar"
