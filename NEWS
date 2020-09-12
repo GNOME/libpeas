@@ -1,3 +1,13 @@
+Overview of Changes in libpeas 1.28.0
+=====================================
+
+* Do not build tests when introspection is disabled/missing
+* add missing locale.h include
+* Translation updates:
+  - Chinese (China)
+  - Portuguese
+  - Ukrainian
+
 Overview of Changes in libpeas 1.26.0
 =====================================
 
