@@ -10,10 +10,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libpeas\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues\n"
-"POT-Creation-Date: 2019-09-29 14:01+0000\n"
+"POT-Creation-Date: 2020-06-26 03:39+0000\n"
 "PO-Revision-Date: 2019-12-25 02:32+0100\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
-"Language-Team: Galician <gnome-l10n-gl@gnome.org>\n"
+"Language-Team: Proxecto Trasno <proxecto@trasno.gal>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -135,23 +135,23 @@ msgid "An error occurred: %s"
 msgstr "Produciuse un erro:%s"
 
 #. Translators: The directory in which the demo program was compiled at
-#: peas-demo/peas-demo.c:41
+#: peas-demo/peas-demo.c:43
 msgid "Run from build directory"
 msgstr "Executar desde o cartafol de construción"
 
-#: peas-demo/peas-demo.c:92
+#: peas-demo/peas-demo.c:94
 msgid "_Quit"
 msgstr "_Saír"
 
-#: peas-demo/peas-demo.c:108
+#: peas-demo/peas-demo.c:119
 msgid "— libpeas demo application"
 msgstr "- aplicación de demostración de libpeas"
 
-#: tests/libpeas-gtk/plugin-manager.c:77
+#: tests/libpeas-gtk/plugin-manager.c:75
 msgid "About"
 msgstr "Sobre"
 
-#: tests/libpeas-gtk/plugin-manager.c:82
+#: tests/libpeas-gtk/plugin-manager.c:80
 msgid "Preferences"
 msgstr "Preferencias"
 
