@@ -37,7 +37,7 @@
         </dc:creator>
         <dc:date>2005-02-01</dc:date>
         <cc:license
-           rdf:resource="http://creativecommons.org/licenses/GPL/2.0/" />
+           rdf:resource="https://spdx.org/licenses/LGPL-2.1.html" />
         <dc:identifier>http://jimmac.musichall.cz/</dc:identifier>
         <dc:subject>
           <rdf:Bag>
@@ -47,21 +47,6 @@
           </rdf:Bag>
         </dc:subject>
       </cc:Work>
-      <cc:License
-         rdf:about="http://creativecommons.org/licenses/GPL/2.0/">
-        <cc:permits
-           rdf:resource="http://web.resource.org/cc/Reproduction" />
-        <cc:permits
-           rdf:resource="http://web.resource.org/cc/Distribution" />
-        <cc:requires
-           rdf:resource="http://web.resource.org/cc/Notice" />
-        <cc:permits
-           rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
-        <cc:requires
-           rdf:resource="http://web.resource.org/cc/ShareAlike" />
-        <cc:requires
-           rdf:resource="http://web.resource.org/cc/SourceCode" />
-      </cc:License>
     </rdf:RDF>
   </metadata>
   <sodipodi:namedview
