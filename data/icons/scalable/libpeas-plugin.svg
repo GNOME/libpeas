@@ -37,7 +37,7 @@
         </dc:creator>
         <dc:date></dc:date>
         <cc:license
-           rdf:resource="https://spdx.org/licenses/LGPL-2.1.html" />
+           rdf:resource="https://spdx.org/licenses/LGPL-2.1-or-later.html" />
         <dc:identifier></dc:identifier>
         <dc:subject>
           <rdf:Bag>
