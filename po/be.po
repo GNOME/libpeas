@@ -1,173 +1,170 @@
-# Ihar Hrachyshka <ihar.hrachyshka@gmail.com>, 2011.
-# Yuras Shumovich <shumovichy@gmail.com>, 2017.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: libpeas.master\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=libpeas&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-03-25 05:02+0000\n"
-"PO-Revision-Date: 2017-04-16 12:57+0300\n"
+"Project-Id-Version: ab10e6d45488175674299c2d7fc854f6\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues\n"
+"POT-Creation-Date: 2020-06-26 03:39+0000\n"
+"PO-Revision-Date: 2021-08-27 09:50\n"
 "Last-Translator: Yuras Shumovich <shumovichy@gmail.com>\n"
-"Language-Team: Belarusian <i18n-bel-gnome@googlegroups.com>\n"
+"Language-Team: Belarusian\n"
 "Language: be\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.11\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || n%10>=5 && n%10<=9 || n%100>=11 && n%100<=14 ? 2 : 3);\n"
+"X-Crowdin-Project: ab10e6d45488175674299c2d7fc854f6\n"
+"X-Crowdin-Project-ID: 104\n"
+"X-Crowdin-Language: be\n"
+"X-Crowdin-File: /Localizations/Gnome/Development/libpeas.master.be.po\n"
+"X-Crowdin-File-ID: 3078\n"
 
-#: ../data/glade/libpeas-gtk.xml.in.h:1
-msgid "Plugin Manager"
-msgstr "Кіраўнік плугінаў"
+#: libpeas/peas-engine.c:1116
+#| msgid "Dependency '%s' was not found"
+msgid "Dependency “%s” was not found"
+msgstr "Залежнасць «%s» не знойдзеная"
 
-#. Translators: What PeasGtkPluginManagerView to use
-#: ../data/glade/libpeas-gtk.xml.in.h:3
-msgid "View"
-msgstr "Прагляд"
+#: libpeas/peas-engine.c:1126
+#| msgid "Dependency '%s' failed to load"
+msgid "Dependency “%s” failed to load"
+msgstr "Не атрымалася загрузіць залежнасць «%s»"
 
-#: ../data/glade/libpeas-gtk.xml.in.h:4
-msgid "Plugin Manager View"
-msgstr "Прагляд кіраўніка плугінаў"
+#: libpeas/peas-engine.c:1140
+#| msgid "Plugin loader '%s' was not found"
+msgid "Plugin loader “%s” was not found"
+msgstr "Модуль загрузкі ўбудовы «%s» не знойдзены"
 
-#. Translators: Whether builtin plugins should appear in the view (property name)
-#: ../data/glade/libpeas-gtk.xml.in.h:6
-msgid "Show Builtin"
-msgstr "Паказваць убудаваныя плугіны"
-
-#: ../data/glade/libpeas-gtk.xml.in.h:7
-msgid "Peas Gtk"
-msgstr "Peas Gtk"
-
-#: ../libpeas/peas-engine.c:1115
-#, c-format
-msgid "Dependency '%s' was not found"
-msgstr "Залежнасць \"%s\" не знойдзена"
-
-#: ../libpeas/peas-engine.c:1125
-#, c-format
-msgid "Dependency '%s' failed to load"
-msgstr "Не ўдалося загрузіць залежнасць \"%s\""
-
-#: ../libpeas/peas-engine.c:1139
-#, c-format
-msgid "Plugin loader '%s' was not found"
-msgstr "Модуль загрузкі плугіна \"%s\" не знойдзены"
-
-#: ../libpeas/peas-engine.c:1151
+#: libpeas/peas-engine.c:1152
 #, c-format
 msgid "Failed to load"
-msgstr "Не ўдалося загрузіць"
+msgstr "Не атрымалася загрузіць"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:95
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:95
 msgid "Additional plugins must be disabled"
-msgstr "Патрэбна выключэнне дадатковых плугінаў"
+msgstr "Неабходна адключыць дадатковыя ўбудовы"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:102
-#, c-format
-msgid "The following plugins depend on '%s' and will also be disabled:"
-msgstr "Наступныя плугіны залежаць ад \"%s\" і будуць выключаны:"
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:102
+#| msgid "The following plugins depend on '%s' and will also be disabled:"
+msgid "The following plugins depend on “%s” and will also be disabled:"
+msgstr "Наступныя ўбудовы залежаць ад «%s» і таксама будуць адключаныя:"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:144
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:144
 msgid "Plugins"
-msgstr "Плугіны"
+msgstr "Убудовы"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:161
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:161
 msgid "An additional plugin must be disabled"
-msgstr "Патрэбна выключэнне дадатковага плугіна"
+msgstr "Неабходна адключыць дадатковую ўбудову"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:168
-#, c-format
-msgid ""
-"The '%s' plugin depends on the '%s' plugin.\n"
-"If you disable '%s', '%s' will also be disabled."
-msgstr ""
-"Плугін \"%s\" залежыць ад плугіна \"%s\".\n"
-"Выключэнне \"%s\" прывядзе да выключэння \"%s\"."
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:168
+#| msgid ""
+#| "The '%s' plugin depends on the '%s' plugin.\n"
+#| "If you disable '%s', '%s' will also be disabled."
+msgid "The “%s” plugin depends on the “%s” plugin.\n"
+"If you disable “%s”, “%s” will also be disabled."
+msgstr "Убудова «%s» залежыць ад убудовы «%s».\n"
+"Калі вы адключыце «%s», таксама адключыцца «%s»."
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:182
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:182
 msgid "_Cancel"
 msgstr "_Скасаваць"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:184
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:184
 msgid "Disable Plugins"
-msgstr "Выключыць плугіны"
+msgstr "Адключыць убудовы"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:207
+#: libpeas-gtk/peas-gtk-plugin-manager.c:207
 msgid "There was an error displaying the help."
-msgstr "Узнікла памылка паказу даведкі."
+msgstr "Не атрымалася паказаць даведку."
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:253
+#: libpeas-gtk/peas-gtk-plugin-manager.c:253
 msgid "_Close"
 msgstr "_Закрыць"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:265
+#: libpeas-gtk/peas-gtk-plugin-manager.c:265
 msgid "_Help"
-msgstr "_Дапамога"
+msgstr "_Даведка"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:323
+#: libpeas-gtk/peas-gtk-plugin-manager.c:323
 msgid "Pr_eferences"
-msgstr "_Настройкі"
+msgstr "_Налады"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:328
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:379
+#: libpeas-gtk/peas-gtk-plugin-manager.c:328
+#: libpeas-gtk/peas-gtk-plugin-manager.c:379
 msgid "_About"
-msgstr "_Аб плугіне"
+msgstr "_Пра праграму"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:387
+#: libpeas-gtk/peas-gtk-plugin-manager.c:387
 msgid "_Preferences"
-msgstr "_Настройкі"
+msgstr "_Налады"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:351
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:351
 msgid "_Enabled"
-msgstr "_Уключаны"
+msgstr "_Уключана"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:362
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:362
 msgid "E_nable All"
-msgstr "У_ключыць усё"
+msgstr "У_ключыць усе"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:366
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:366
 msgid "_Disable All"
-msgstr "_Выключыць усё"
+msgstr "_Адключыць усе"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:526
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:575
 msgid "Enabled"
-msgstr "Уключаны"
+msgstr "Уключана"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:547
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:596
 msgid "Plugin"
-msgstr "Плугін"
+msgstr "Убудова"
 
 #. Avoid having markup in a translated string
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:634
-#, c-format
-msgid "The plugin '%s' could not be loaded"
-msgstr "Не ўдалося загрузіць плугін \"%s\""
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:683
+#| msgid "The plugin '%s' could not be loaded"
+msgid "The plugin “%s” could not be loaded"
+msgstr "Не атрымалася загрузіць убудову «%s»"
 
 #. Keep separate because some translations do special things
 #. * for the ':' and might accidentally not keep the space after it
 #.
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:640
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:689
 #, c-format
 msgid "An error occurred: %s"
 msgstr "Узнікла памылка: %s"
 
 #. Translators: The directory in which the demo program was compiled at
-#: ../peas-demo/peas-demo.c:41
+#: peas-demo/peas-demo.c:43
 msgid "Run from build directory"
-msgstr "Запусціць з каталога пабудовы"
+msgstr "Запусціць з каталога зборкі"
 
-#: ../peas-demo/peas-demo.c:92
+#: peas-demo/peas-demo.c:94
 msgid "_Quit"
 msgstr "_Выйсці"
 
-#: ../peas-demo/peas-demo.c:108
-msgid "- libpeas demo application"
+#: peas-demo/peas-demo.c:119
+#| msgid "- libpeas demo application"
+msgid "— libpeas demo application"
 msgstr "- праграма, якая дэманструе магчымасці libpeas"
 
-#: ../tests/libpeas-gtk/plugin-manager.c:77
+#: tests/libpeas-gtk/plugin-manager.c:75
 msgid "About"
-msgstr "Аб праграме"
+msgstr "Пра праграму"
 
-#: ../tests/libpeas-gtk/plugin-manager.c:82
+#: tests/libpeas-gtk/plugin-manager.c:80
 msgid "Preferences"
-msgstr "Настройкі"
+msgstr "Налады"
+
+#~ msgid "Plugin Manager"
+#~ msgstr "Кіраўнік плугінаў"
+
+#~ msgid "View"
+#~ msgstr "Прагляд"
+
+#~ msgid "Plugin Manager View"
+#~ msgstr "Прагляд кіраўніка плугінаў"
+
+#~ msgid "Show Builtin"
+#~ msgstr "Паказваць убудаваныя плугіны"
+
+#~ msgid "Peas Gtk"
+#~ msgstr "Peas Gtk"
+
