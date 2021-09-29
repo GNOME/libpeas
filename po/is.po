@@ -1,177 +1,176 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Sveinn í Felli <sv1@fellsnet.is>, 2015, 2017.
+# Sveinn í Felli <sv1@fellsnet.is>, 2015, 2017, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=libpeas&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-03-25 04:28+0000\n"
-"PO-Revision-Date: 2017-12-07 07:19+0000\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues\n"
+"POT-Creation-Date: 2020-06-26 03:39+0000\n"
+"PO-Revision-Date: 2021-09-29 09:41+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
-"Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
+"Language-Team: Icelandic\n"
 "Language: is\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Lokalize 19.12.3\n"
 
-#: ../data/glade/libpeas-gtk.xml.in.h:1
-msgid "Plugin Manager"
-msgstr "Umsjón viðbóta"
-
-#. Translators: What PeasGtkPluginManagerView to use
-#: ../data/glade/libpeas-gtk.xml.in.h:3
-msgid "View"
-msgstr "Skoða"
-
-#: ../data/glade/libpeas-gtk.xml.in.h:4
-msgid "Plugin Manager View"
-msgstr "Sýn á umsjón viðbóta"
-
-#. Translators: Whether builtin plugins should appear in the view (property name)
-#: ../data/glade/libpeas-gtk.xml.in.h:6
-msgid "Show Builtin"
-msgstr "Sýna innbyggðar"
-
-#: ../data/glade/libpeas-gtk.xml.in.h:7
-msgid "Peas Gtk"
-msgstr "Peas Gtk"
-
-#: ../libpeas/peas-engine.c:1118
+#: libpeas/peas-engine.c:1116
 #, c-format
-msgid "Dependency '%s' was not found"
-msgstr "Kerfisháða '%s' fannst ekki"
+#| msgid "Dependency '%s' was not found"
+msgid "Dependency “%s” was not found"
+msgstr "Kerfisákvæðið '%s' fannst ekki"
 
-#: ../libpeas/peas-engine.c:1128
+#: libpeas/peas-engine.c:1126
 #, c-format
-msgid "Dependency '%s' failed to load"
-msgstr "Kerfisháða '%s' hlóðst ekki inn"
+#| msgid "Dependency '%s' failed to load"
+msgid "Dependency “%s” failed to load"
+msgstr "Kerfisákvæðið '%s' hlóðst ekki inn"
 
-#: ../libpeas/peas-engine.c:1142
+#: libpeas/peas-engine.c:1140
 #, c-format
-msgid "Plugin loader '%s' was not found"
+#| msgid "Plugin loader '%s' was not found"
+msgid "Plugin loader “%s” was not found"
 msgstr "Viðbótahleðslan '%s' fannst ekki"
 
-#: ../libpeas/peas-engine.c:1154
+#: libpeas/peas-engine.c:1152
 #, c-format
 msgid "Failed to load"
 msgstr "Mistókst að hlaða inn"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:95
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:95
 msgid "Additional plugins must be disabled"
 msgstr "Gera þarf aðrar viðbætur óvirkar"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:102
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:102
 #, c-format
-msgid "The following plugins depend on '%s' and will also be disabled:"
+#| msgid "The following plugins depend on '%s' and will also be disabled:"
+msgid "The following plugins depend on “%s” and will also be disabled:"
 msgstr "Eftirfarandi viðbætur eru háðar '%s' og verða einnig gerðar óvirkar:"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:144
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:144
 msgid "Plugins"
 msgstr "Viðbætur"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:161
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:161
 msgid "An additional plugin must be disabled"
 msgstr "Gera þarf aðra viðbót óvirka"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:168
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:168
 #, c-format
+#| msgid ""
+#| "The '%s' plugin depends on the '%s' plugin.\n"
+#| "If you disable '%s', '%s' will also be disabled."
 msgid ""
-"The '%s' plugin depends on the '%s' plugin.\n"
-"If you disable '%s', '%s' will also be disabled."
+"The “%s” plugin depends on the “%s” plugin.\n"
+"If you disable “%s”, “%s” will also be disabled."
 msgstr ""
 "'%s' viðbótin er háð '%s' viðbótinni.\n"
 "Ef þú gerir '%s' óvirka, verður '%s' einnig gerð óvirk."
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:182
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:182
 msgid "_Cancel"
 msgstr "Hæ_tta við"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:184
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:184
 msgid "Disable Plugins"
 msgstr "Gera viðbætur óvirkar"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:207
+#: libpeas-gtk/peas-gtk-plugin-manager.c:207
 msgid "There was an error displaying the help."
 msgstr "Villa kom upp þegar sýna átti hjálpina."
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:253
+#: libpeas-gtk/peas-gtk-plugin-manager.c:253
 msgid "_Close"
 msgstr "_Loka"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:265
+#: libpeas-gtk/peas-gtk-plugin-manager.c:265
 msgid "_Help"
 msgstr "_Hjálp"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:323
+#: libpeas-gtk/peas-gtk-plugin-manager.c:323
 msgid "Pr_eferences"
 msgstr "Kjörstillin_gar"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:328
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:379
+#: libpeas-gtk/peas-gtk-plugin-manager.c:328
+#: libpeas-gtk/peas-gtk-plugin-manager.c:379
 msgid "_About"
 msgstr "_Um hugbúnaðinn"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:387
+#: libpeas-gtk/peas-gtk-plugin-manager.c:387
 msgid "_Preferences"
 msgstr "_Kjörstillingar"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:351
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:351
 msgid "_Enabled"
 msgstr "_Virkt"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:362
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:362
 msgid "E_nable All"
 msgstr "V_irkja allt"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:366
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:366
 msgid "_Disable All"
 msgstr "Gera _allt óvirkt"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:526
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:575
 msgid "Enabled"
 msgstr "Virkt"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:547
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:596
 msgid "Plugin"
 msgstr "Viðbót"
 
 #. Avoid having markup in a translated string
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:634
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:683
 #, c-format
-msgid "The plugin '%s' could not be loaded"
+#| msgid "The plugin '%s' could not be loaded"
+msgid "The plugin “%s” could not be loaded"
 msgstr "Ekki var hægt að hlaða inn '%s' viðbótinni"
 
 #. Keep separate because some translations do special things
 #. * for the ':' and might accidentally not keep the space after it
 #.
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:640
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:689
 #, c-format
-#| msgid "An error occurred: "
 msgid "An error occurred: %s"
 msgstr "Villa kom upp: %s"
 
 #. Translators: The directory in which the demo program was compiled at
-#: ../peas-demo/peas-demo.c:41
+#: peas-demo/peas-demo.c:43
 msgid "Run from build directory"
 msgstr "Keyra úr byggingarmöppu"
 
-#: ../peas-demo/peas-demo.c:92
+#: peas-demo/peas-demo.c:94
 msgid "_Quit"
 msgstr "_Hætta"
 
-#: ../peas-demo/peas-demo.c:108
-msgid "- libpeas demo application"
-msgstr "- libpeas sýniforrit"
+#: peas-demo/peas-demo.c:119
+#| msgid "- libpeas demo application"
+msgid "— libpeas demo application"
+msgstr "— libpeas sýniforrit"
 
-#: ../tests/libpeas-gtk/plugin-manager.c:77
+#: tests/libpeas-gtk/plugin-manager.c:75
 msgid "About"
 msgstr "Um hugbúnaðinn"
 
-#: ../tests/libpeas-gtk/plugin-manager.c:82
+#: tests/libpeas-gtk/plugin-manager.c:80
 msgid "Preferences"
 msgstr "Kjörstillingar"
 
+#~ msgid "Plugin Manager"
+#~ msgstr "Umsjón viðbóta"
+
+#~ msgid "View"
+#~ msgstr "Skoða"
+
+#~ msgid "Plugin Manager View"
+#~ msgstr "Sýn á umsjón viðbóta"
+
+#~ msgid "Show Builtin"
+#~ msgstr "Sýna innbyggðar"
+
+#~ msgid "Peas Gtk"
+#~ msgstr "Peas Gtk"
