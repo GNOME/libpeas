@@ -45,6 +45,7 @@ libembedded_lib = shared_library(
 )
 
 libembedded_dep = declare_dependency(
+  sources: libembedded_res[1],
   link_with: libembedded_lib,
   include_directories: include_directories('.'),
   dependencies: libembedded_deps,
