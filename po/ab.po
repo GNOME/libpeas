@@ -1,0 +1,150 @@
+# Abkhazian translation for libpeas.
+# Copyright (C) 2022 libpeas's COPYRIGHT HOLDER
+# This file is distributed under the same license as the libpeas package.
+# Нанба Наала <naala-nanba@rambler.ru>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: libpeas master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues\n"
+"POT-Creation-Date: 2022-01-18 22:43+0000\n"
+"PO-Revision-Date: 2022-01-18 22:43+0000\n"
+"Last-Translator: Нанба Наала <naala-nanba@rambler.ru>\n"
+"Language-Team: Abkhazian <ab@li.org>\n"
+"Language: ab\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: libpeas/peas-engine.c:1116
+#, c-format
+msgid "Dependency “%s” was not found"
+msgstr "«%s» ахьыԥшызаара ԥшааӡам"
+
+#: libpeas/peas-engine.c:1126
+#, c-format
+msgid "Dependency “%s” failed to load"
+msgstr "«%s» ахьыԥшызаара аҭагалара залымшахеит"
+
+#: libpeas/peas-engine.c:1140
+#, c-format
+msgid "Plugin loader “%s” was not found"
+msgstr "Амодуль аҭагалага “%s” ԥшааӡам"
+
+#: libpeas/peas-engine.c:1152
+#, c-format
+msgid "Failed to load"
+msgstr "Аҭагалара залымшахеит"
+
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:95
+msgid "Additional plugins must be disabled"
+msgstr "Изыцҵоу амодульқәа аҿыхзароуп"
+
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:102
+#, c-format
+msgid "The following plugins depend on “%s” and will also be disabled:"
+msgstr "Анеҩстәи амодульқәа «%s» ирхьыԥшуп уи амашала даргьы аҿыххоит:"
+
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:144
+msgid "Plugins"
+msgstr "Амодульқәа"
+
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:161
+msgid "An additional plugin must be disabled"
+msgstr "Изыцҵоу амодуль аҿыхзароуп"
+
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:168
+#, c-format
+msgid ""
+"The “%s” plugin depends on the “%s” plugin.\n"
+"If you disable “%s”, “%s” will also be disabled."
+msgstr "Амодуль «%s» ахьԥшоит амодуль «%s».\n"
+"«%s» аҿыхзар, «%s» гьы аҿыххоит"
+
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:182
+msgid "_Cancel"
+msgstr "_Аԥыхра"
+
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:184
+msgid "Disable Plugins"
+msgstr "Амодульқәа рҿыхра"
+
+#: libpeas-gtk/peas-gtk-plugin-manager.c:207
+msgid "There was an error displaying the help."
+msgstr "Араҟа иҟаҵан агха аилыркаа аазырԥшуа."
+
+#: libpeas-gtk/peas-gtk-plugin-manager.c:253
+msgid "_Close"
+msgstr "_Аркра"
+
+#: libpeas-gtk/peas-gtk-plugin-manager.c:265
+msgid "_Help"
+msgstr "_Аилыркаа"
+
+#: libpeas-gtk/peas-gtk-plugin-manager.c:323
+msgid "Pr_eferences"
+msgstr "Ахышәарақәа"
+
+#: libpeas-gtk/peas-gtk-plugin-manager.c:328
+#: libpeas-gtk/peas-gtk-plugin-manager.c:379
+msgid "_About"
+msgstr "_Аԥшьы иазкны"
+
+#: libpeas-gtk/peas-gtk-plugin-manager.c:387
+msgid "_Preferences"
+msgstr "Ахышәарақәа"
+
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:351
+msgid "_Enabled"
+msgstr "_Иаҿакуп"
+
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:362
+msgid "E_nable All"
+msgstr "Зегьы рҿакра"
+
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:366
+msgid "_Disable All"
+msgstr "_Зегьы рҿыхра"
+
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:575
+msgid "Enabled"
+msgstr "_Иаҿакуп"
+
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:596
+msgid "Plugin"
+msgstr "Амодуль"
+
+#. Avoid having markup in a translated string
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:683
+#, c-format
+msgid "The plugin “%s” could not be loaded"
+msgstr "Амодуль «%s» зҭагалахаӡом"
+
+#. Keep separate because some translations do special things
+#. * for the ':' and might accidentally not keep the space after it
+#.
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:689
+#, c-format
+msgid "An error occurred: %s"
+msgstr "Иҟалеит агха: %s"
+
+#. Translators: The directory in which the demo program was compiled at
+#: peas-demo/peas-demo.c:43
+msgid "Run from build directory"
+msgstr "Аибыҭара аизакхьӡынҵа аҟынтә аус арура"
+
+#: peas-demo/peas-demo.c:94
+msgid "_Quit"
+msgstr "_Ахырқәшара"
+
+#: peas-demo/peas-demo.c:119
+msgid "— libpeas demo application"
+msgstr "- адемонстрациа аԥшьы libpeas"
+
+#: tests/libpeas-gtk/plugin-manager.c:80
+msgid "About"
+msgstr "Аԥшьы иазкны"
+
+#: tests/libpeas-gtk/plugin-manager.c:85
+msgid "Preferences"
+msgstr "Ахышәарақәа"
