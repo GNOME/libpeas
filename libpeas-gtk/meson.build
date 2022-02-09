@@ -49,7 +49,7 @@ libpeas_gtk_sha = library(
   darwin_versions: lib_version_osx,
   include_directories: rootdir,
   dependencies: libpeas_gtk_deps,
-  c_args: libpeas_gtk_c_args,
+  c_args: project_c_args + libpeas_gtk_c_args,
   link_args: libpeas_gtk_link_args,
   install: true,
 )

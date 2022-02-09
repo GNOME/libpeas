@@ -17,7 +17,7 @@ peas_demo_c_args = [
 executable(
   peas_demo_name,
   peas_demo_c,
-  c_args: peas_demo_c_args,
+  c_args: project_c_args + peas_demo_c_args,
   dependencies: [libpeas_gtk_dep],
   install: true,
 )

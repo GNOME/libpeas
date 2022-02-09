@@ -107,8 +107,8 @@ libpeas_sha = library(
   darwin_versions: lib_version_osx,
   include_directories: [rootdir, libpeas_srcdir],
   dependencies: libpeas_deps,
-  c_args: libpeas_c_args + hidden_visibility_args,
-  objc_args: libpeas_c_args,
+  c_args: project_c_args + libpeas_c_args + hidden_visibility_args,
+  objc_args: project_c_args + libpeas_c_args,
   link_args: libpeas_link_args,
   install: true,
 )

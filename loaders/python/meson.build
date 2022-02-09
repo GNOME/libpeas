@@ -36,7 +36,7 @@ python2_loader_sha = shared_module(
   python2_loader_c + python2_loader_res,
   include_directories: rootdir,
   dependencies: python2_loader_deps,
-  c_args: python2_loader_c_args,
+  c_args: project_c_args + python2_loader_c_args,
   install: true,
   install_dir: join_paths(
     pkglibdir,

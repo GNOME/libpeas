@@ -17,7 +17,7 @@ libsecondtime_lib = shared_library(
   libsecondtime_c,
   include_directories: rootdir,
   dependencies: [gtk_dep, libpeas_dep],
-  c_args: libsecondtime_c_args,
+  c_args: project_c_args + libsecondtime_c_args,
   install_dir: join_paths(peas_demo_plugins_dir, 'secondtime'),
   install: true,
 )
