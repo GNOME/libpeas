@@ -155,8 +155,10 @@ main (int    argc,
     peas_engine_add_search_path (engine, PEAS_BUILDDIR "/peas-demo/plugins", NULL);
   else
     {
+#ifdef G_OS_WIN32
       char *prefix;
       char *demo_pluginlibdir, *demo_plugindatadir;
+#endif
 
       peas_engine_add_search_path (engine,
                                    PEAS_LIBDIR "/peas-demo/plugins/",
