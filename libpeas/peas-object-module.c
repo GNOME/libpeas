@@ -31,16 +31,17 @@
 #include "peas-plugin-loader.h"
 
 /**
- * SECTION:peas-object-module
- * @short_description: Type module which allows extension registration.
+ * PeasObjectModule:
  *
- * #PeasObjectModule is a subclass of #GTypeModule which allows registration
- * of extensions.  It will be used by C extensions implementors to register
- * extension implementations from within the peas_register_types module
+ * Type module which allows extension registration.
+ *
+ * #PeasObjectModule is a subclass of [class@GObject.TypeModule] which allows
+ * registration of extensions. It will be used by C extensions implementors to
+ * register extension implementations from within the peas_register_types module
  * function.
  *
- * Since libpeas 1.22, @extension_type can be an Abstract #GType
- * and not just an Interface #GType.
+ * Since libpeas 1.22, @extension_type can be an Abstract [alias@GObject.Type]
+ * and not just an Interface [alias@GObject.Type].
  **/
 
 typedef void (*PeasObjectModuleRegisterFunc) (PeasObjectModule *module);
@@ -361,8 +362,7 @@ peas_object_module_class_init (PeasObjectModuleClass *klass)
   /**
    * PeasObjectModule:local-linkage
    *
-   * This property indicates whether the module is loaded with
-   * local linkage, i.e. #G_MODULE_BIND_LOCAL.
+   * Whether the module is loaded with local linkage, i.e. #G_MODULE_BIND_LOCAL.
    *
    * Since 1.14
    */
@@ -386,7 +386,7 @@ peas_object_module_class_init (PeasObjectModuleClass *klass)
  *
  * Creates a new #PeasObjectModule.
  *
- * Return value: a new #PeasObjectModule.
+ * Returns: a new #PeasObjectModule.
  */
 PeasObjectModule *
 peas_object_module_new (const gchar *module_name,
@@ -412,7 +412,7 @@ peas_object_module_new (const gchar *module_name,
  *
  * Creates a new #PeasObjectModule.
  *
- * Return value: a new #PeasObjectModule.
+ * Returns: a new #PeasObjectModule.
  *
  * Since 1.14
  */
@@ -439,7 +439,7 @@ peas_object_module_new_full (const gchar *module_name,
  *
  * Creates a new #PeasObjectModule for an embedded plugin.
  *
- * Return value: a new #PeasObjectModule.
+ * Returns: a new #PeasObjectModule.
  *
  * Since: 1.18
  */
@@ -466,14 +466,15 @@ peas_object_module_new_embedded (const gchar *module_name,
  * @parameters: (array length=n_parameters): The parameters.
  *
  * Creates an object for the @exten_type passing @n_parameters
- * and @parameters to the #PeasFactoryFunc. If @module does
- * not provide a #PeasFactoryFunc for @exten_type then
- * %NULL is returned.
+ * and @parameters to the [callback@FactoryFunc].
  *
- * Since libpeas 1.22, @exten_type can be an Abstract #GType
- * and not just an Interface #GType.
+ * If @module does not provide a #PeasFactoryFunc for @exten_type then %NULL is
+ * returned.
  *
- * Return value: (transfer full): The created object, or %NULL.
+ * Since libpeas 1.22, @exten_type can be an Abstract [alias@GObject.Type]
+ * and not just an Interface [alias@GObject.Type].
+ *
+ * Returns: (transfer full): The created object
  */
 GObject *
 peas_object_module_create_object (PeasObjectModule *module,
@@ -506,10 +507,10 @@ peas_object_module_create_object (PeasObjectModule *module,
  *
  * Determines if the module provides an extension for @exten_type.
  *
- * Since libpeas 1.22, @exten_type can be an Abstract #GType
- * and not just an Interface #GType.
+ * Since libpeas 1.22, @exten_type can be an Abstract [alias@GObject.Type]
+ * and not just an Interface [alias@GObject.Type].
  *
- * Return value: if the module provides an extension for @exten_type.
+ * Returns: if the module provides an extension for @exten_type.
  */
 gboolean
 peas_object_module_provides_object (PeasObjectModule *module,
@@ -539,7 +540,7 @@ peas_object_module_provides_object (PeasObjectModule *module,
  *
  * Gets the path.
  *
- * Return value: the path.
+ * Returns: the path.
  */
 const gchar *
 peas_object_module_get_path (PeasObjectModule *module)
@@ -557,7 +558,7 @@ peas_object_module_get_path (PeasObjectModule *module)
  *
  * Gets the module name.
  *
- * Return value: the module name.
+ * Returns: the module name.
  */
 const gchar *
 peas_object_module_get_module_name (PeasObjectModule *module)
@@ -575,7 +576,7 @@ peas_object_module_get_module_name (PeasObjectModule *module)
  *
  * Gets the symbol name used to register extension implementations.
  *
- * Return value: the symbol name.
+ * Returns: the symbol name.
  *
  * Since: 1.18
  */
@@ -595,7 +596,7 @@ peas_object_module_get_symbol (PeasObjectModule *module)
  *
  * Gets the library.
  *
- * Return value: the library.
+ * Returns: the library.
  */
 GModule *
 peas_object_module_get_library (PeasObjectModule *module)
@@ -622,11 +623,11 @@ peas_object_module_get_library (PeasObjectModule *module)
  *
  * This method is primarily meant to be used by native bindings (like gtkmm),
  * creating native types which cannot be instantiated correctly using
- * g_object_new().  For other uses, you will usually prefer relying on
+ * [ctor@GObject.Object.new].  For other uses, you will usually prefer relying on
  * peas_object_module_register_extension_type().
  *
- * Since libpeas 1.22, @exten_type can be an Abstract #GType
- * and not just an Interface #GType.
+ * Since libpeas 1.22, @exten_type can be an Abstract [alias@GObject.Type]
+ * and not just an Interface [alias@GObject.Type].
  */
 void
 peas_object_module_register_extension_factory (PeasObjectModule *module,
@@ -687,8 +688,8 @@ create_gobject_from_type (guint       n_parameters,
  *
  * Register @impl_type as an extension which implements @extension_type.
  *
- * Since libpeas 1.22, @exten_type can be an Abstract #GType
- * and not just an Interface #GType.
+ * Since libpeas 1.22, @exten_type can be an Abstract [alias@GObject.Type]
+ * and not just an Interface [alias@GObject.Type].
  */
 void
 peas_object_module_register_extension_type (PeasObjectModule *module,

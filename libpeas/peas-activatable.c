@@ -24,9 +24,9 @@
 #include "peas-activatable.h"
 
 /**
- * SECTION:peas-activatable
- * @short_description: Interface for activatable plugins.
- * @see_also: #PeasExtensionSet
+ * PeasActivatable:
+ *
+ * Interface for activatable plugins.
  *
  * #PeasActivatable is an interface which should be implemented by plugins
  * that should be activated on an object of a certain type (depending on the
@@ -34,7 +34,7 @@
  * #PeasActivatable plugin instances could be bound to individual toplevel
  * windows.
  *
- * It is typical to use #PeasActivatable along with #PeasExtensionSet in order
+ * It is typical to use #PeasActivatable along with [class@ExtensionSet] in order
  * to activate and deactivate extensions automatically when plugins are loaded
  * or unloaded.
  *
@@ -51,9 +51,11 @@ peas_activatable_default_init (PeasActivatableInterface *iface)
   /**
    * PeasActivatable:object:
    *
-   * The object property contains the targetted object for this
-   * #PeasActivatable instance, for example a toplevel window in a typical
-   * windowed application. It is set at construction time and won't change.
+   * The object property contains the targetted object for this #PeasActivatable
+   * instance.
+   *
+   * For example a toplevel window in a typical windowed application. It is set
+   * at construction time and won't change.
    */
   g_object_interface_install_property (iface,
                                        g_param_spec_object ("object",

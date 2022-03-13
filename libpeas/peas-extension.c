@@ -25,25 +25,24 @@
 #include "peas-introspection.h"
 
 /**
- * SECTION:peas-extension
- * @short_description: Proxy for extensions.
- * @see_also: #PeasExtensionSet
+ * PeasExtension:
  *
- * #PeasExtension is a proxy class used to access actual extensions
- * implemented using various languages.  As such, the application writer will
- * use #PeasExtension instances to call methods on extension provided by
- * loaded plugins.
+ * #PeasExtension is a proxy class used to access actual extensions implemented
+ * using various languages.
+ *
+ * As such, the application writer will use #PeasExtension instances to call
+ * methods on extension provided by loaded plugins.
  *
  * To properly use the proxy instances, you will need GObject-introspection
- * data for the #GType you want to use as an extension point.
- * For instance, if you wish to use #PeasActivatable, you will need to
+ * data for the [alias@GObject.Type] you want to use as an extension point.
+ * For instance, if you wish to use [iface@Activatable], you will need to
  * put the following code excerpt in the engine initialization code, in order
  * to load the required "Peas" typelib:
  *
- * |[
+ * ```c
  * g_irepository_require (g_irepository_get_default (),
  *                        "Peas", "1.0", 0, NULL);
- * ]|
+ * ```
  *
  * You should proceed the same way for any namespace which provides types
  * you want to use as extension points. GObject-introspection data is required
@@ -56,7 +55,7 @@
  * Another reason is that it makes reference counting issues easier to deal
  * with.
  *
- * See peas_extension_call() for more information.
+ * See [method@extension_call] for more information.
  **/
 GType
 peas_extension_get_type (void)
@@ -115,9 +114,9 @@ get_method_info (PeasExtension *exten,
  * peas_extension_get_extension_type:
  * @exten: A #PeasExtension.
  *
- * Get the #GType of the extension proxied by @exten.
+ * Get the [alias@GObject.Type] of the extension proxied by @exten.
  *
- * Return value: The #GType proxied by @exten.
+ * Returns: The #GType proxied by @exten.
  *
  * Deprecated: 1.2.
  */
@@ -150,7 +149,7 @@ peas_extension_get_extension_type (PeasExtension *exten)
  * This function will not do anything if the introspection data for the proxied
  * object's class has not been loaded previously through g_irepository_require().
  *
- * Return value: %TRUE on successful call.
+ * Returns: %TRUE on successful call.
  *
  * Deprecated: 1.2: Use the object directly instead.
  */
@@ -182,7 +181,7 @@ peas_extension_call (PeasExtension *exten,
  *
  * See peas_extension_call() for more information.
  *
- * Return value: %TRUE on successful call.
+ * Returns: %TRUE on successful call.
  *
  * Deprecated: 1.2: Use the object directly instead.
  */
@@ -237,7 +236,7 @@ peas_extension_call_valist (PeasExtension *exten,
  *
  * See peas_extension_call() for more information.
  *
- * Return value: %TRUE on successful call.
+ * Returns: %TRUE on successful call.
  *
  * Deprecated: 1.2: Use the object directly instead.
  */

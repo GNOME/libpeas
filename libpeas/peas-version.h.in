@@ -21,13 +21,6 @@
 #define __PEAS_VERSION_H__
 
 /**
- * SECTION:peas-version
- * @short_description: Peas version checking
- *
- * Peas provides macros to check the version of the library at compile-time
- */
-
-/**
  * PEAS_MAJOR_VERSION:
  *
  * Peas major version component (e.g. 1 if %PEAS_VERSION is 1.2.3)
@@ -49,7 +42,7 @@
 #define PEAS_MICRO_VERSION              (@PEAS_MICRO_VERSION@)
 
 /**
- * PEAS_VERSION
+ * PEAS_VERSION:
  *
  * Peas version.
  */

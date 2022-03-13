@@ -42,17 +42,20 @@
 #include "peas-gtk-configurable.h"
 
 /**
- * SECTION:peas-gtk-plugin-manager
- * @short_description: Management GUI for plugins.
+ * PeasGtkPluginManager:
+ *
+ * Management GUI for plugins.
  *
  * The #PeasGtkPluginManager is a widget that can be used to manage plugins,
  * i.e. load or unload them, and see some pieces of information.
  *
- * <inlinegraphic fileref="peas-gtk-plugin-manager.png" format="PNG" />
+ * <picture>
+ *   <source srcset="peas-gtk-plugin-manager.png">
+ * </picture>
  *
  * The only thing you need to do as an application writer if you wish to use
  * the manager to configure your plugins is to instantiate it using
- * peas_gtk_plugin_manager_new() and pack it into another widget or a window
+ * [ctor@PluginManager.new] and pack it into another widget or a window
  * (as in the screenshot above).
  *
  **/
@@ -547,7 +550,7 @@ peas_gtk_plugin_manager_class_init (PeasGtkPluginManagerClass *klass)
   /**
    * PeasGtkPluginManager:engine:
    *
-   * The #PeasEngine this manager is attached to.
+   * The [class@Peas.Engine] this manager is attached to.
    */
   properties[PROP_ENGINE] =
     g_param_spec_object ("engine",
@@ -561,7 +564,7 @@ peas_gtk_plugin_manager_class_init (PeasGtkPluginManagerClass *klass)
   /**
    * PeasGtkPluginManager:view:
    *
-   * The #PeasGtkPluginManagerView shown in the #PeasGtkPluginManager.
+   * The [class@PluginManagerView] shown in the #PeasGtkPluginManager.
    */
   properties[PROP_VIEW] =
     g_param_spec_object ("view",
@@ -579,7 +582,7 @@ peas_gtk_plugin_manager_class_init (PeasGtkPluginManagerClass *klass)
  * peas_gtk_plugin_manager_new:
  * @engine: (allow-none): A #PeasEngine, or %NULL.
  *
- * Creates a new plugin manager for the given #PeasEngine.
+ * Creates a new plugin manager for the given [class@Peas.Engine].
  *
  * If @engine is %NULL, then the default engine will be used.
  *
@@ -599,7 +602,7 @@ peas_gtk_plugin_manager_new (PeasEngine *engine)
  * peas_gtk_plugin_manager_get_view:
  * @pm: A #PeasGtkPluginManager.
  *
- * Returns the #PeasGtkPluginManagerView of @pm.
+ * Returns the [class@PluginManagerView] of @pm.
  *
  * Returns: (transfer none): the #GtkTreeView of @pm.
  */

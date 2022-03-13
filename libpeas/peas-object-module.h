@@ -51,11 +51,11 @@ G_GNUC_BEGIN_IGNORE_DEPRECATIONS
  * @user_data: Optional data to be passed to the function, or %NULL.
  *
  * A #PeasFactoryFunc is a factory function which will instanciate a new
- * extension of a given type. g_object_newv() is such a function.
+ * extension of a given type. [ctor@GObject.Object.newv] is such a function.
  *
- * It is used with peas_object_module_register_extension_factory().
+ * It is used with [method@ObjectModule.register_extension_factory].
  *
- * Return value: (transfer full): The created object.
+ * Returns: (transfer full): The created object.
  */
 typedef GObject *(*PeasFactoryFunc)   (guint          n_parameters,
                                        GParameter    *parameters,

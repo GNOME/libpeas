@@ -26,18 +26,19 @@
 #include "peas-gtk-configurable.h"
 
 /**
- * SECTION:peas-gtk-configurable
- * @short_description: Interface for providing a plugin configuration UI.
+ * PeasGtkConfigurable:
+ *
+ * Interface for providing a plugin configuration UI.
  *
  * The #PeasGtkConfigurable interface will allow a plugin to provide a
  * graphical interface for the user to configure the plugin through the
- * #PeasGtkPluginManager: the #PeasGtkPluginManager will make its
+ * [class@PluginManager]: the #PeasGtkPluginManager will make its
  * “Configure Plugin” button active when the selected plugin implements
  * the #PeasGtkConfigurable interface.
  *
  * To allow plugin configuration from the #PeasGtkPluginManager, the
  * plugin writer will just need to implement the
- * PeasGtkConfigurableInterface.create_configure_widget() method.
+ * [method@Configurable.create_configure_widget] method.
  **/
 
 G_DEFINE_INTERFACE(PeasGtkConfigurable, peas_gtk_configurable, G_TYPE_OBJECT)
@@ -51,15 +52,17 @@ peas_gtk_configurable_default_init (PeasGtkConfigurableInterface *iface)
  * peas_gtk_configurable_create_configure_widget:
  * @configurable: A #PeasGtkConfigurable
  *
- * Creates the configure widget for the plugin. The returned widget
- * should allow configuring all the relevant aspects of the plugin, and should
- * allow instant-apply, as promoted by the Gnome Human Interface Guidelines.
+ * Creates the configure widget for the plugin.
  *
- * #PeasGtkPluginManager will embed the returned widget into a dialog box,
+ * The returned widget should allow configuring all the relevant aspects of the
+ * plugin, and should allow instant-apply, as promoted by the Gnome Human
+ * Interface Guidelines.
+ *
+ * [class@PluginManager] will embed the returned widget into a dialog box,
  * but you shouldn't take this behaviour for granted as other implementations
  * of a plugin manager UI might do otherwise.
  *
- * This method should always return a valid #GtkWidget instance, never %NULL.
+ * This method should always return a valid [class@Gtk.Widget] instance, never %NULL.
  *
  * Returns: (transfer full): A #GtkWidget used for configuration.
  */

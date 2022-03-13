@@ -32,9 +32,9 @@
 #include "peas-utils.h"
 
 /**
- * SECTION:peas-extension-set
- * @short_description: Proxy for a set of extensions of the same type.
- * @see_also: #PeasExtension
+ * PeasExtensionSet:
+ *
+ * Proxy for a set of extensions of the same type.
  *
  * A #PeasExtensionSet is an object which proxies method calls to a set
  * of actual extensions.  The application writer will use these objects
@@ -47,9 +47,10 @@
  * wish to call specific methods on loading or unloading time.
  *
  * Here is the code for a typical setup of #PeasExtensionSet with
- * #PeasActivatable as the watched extension point, and #GtkWindow
+ * [iface@Activatable] as the watched extension point, and [class@Gtk.Window]
  * instances as the target objects:
- * |[
+ *
+ * ```c
  * static void
  * on_extension_added (PeasExtensionSet *set,
  *                     PeasPluginInfo   *info,
@@ -83,7 +84,7 @@
  *                     G_CALLBACK (on_extension_removed), NULL);
  *   return set;
  * }
- * ]|
+ * ```
  **/
 
 struct _PeasExtensionSetPrivate {
@@ -360,9 +361,10 @@ peas_extension_set_class_init (PeasExtensionSetClass *klass)
    * @info: A #PeasPluginInfo.
    * @exten: A #PeasExtension.
    *
-   * The extension-added signal is emitted when a new extension has been
-   * added to the #PeasExtensionSet. It happens when a new plugin implementing
-   * the extension set's extension type is loaded.
+   * Emitted when a new extension has been added to the #PeasExtensionSet.
+   *
+   * It happens when a new plugin implementing the extension set's extension
+   * type is loaded.
    *
    * You should connect to this signal in order to set up the extensions when
    * they are loaded. Note that this signal is not fired for extensions coming
@@ -387,14 +389,15 @@ peas_extension_set_class_init (PeasExtensionSetClass *klass)
    * @info: A #PeasPluginInfo.
    * @exten: A #PeasExtension.
    *
-   * The extension-removed signal is emitted when a new extension is about to be
-   * removed from the #PeasExtensionSet. It happens when a plugin implementing
-   * the extension set's extension type is unloaded, or when the
-   * #PeasExtensionSet itself is destroyed.
+   * Emitted when a new extension is about to be removed from the
+   * #PeasExtensionSet.
+   *
+   * It happens when a plugin implementing the extension set's extension type is
+   * unloaded, or when the #PeasExtensionSet itself is destroyed.
    *
    * You should connect to this signal in order to clean up the extensions
    * when their plugin is unload. Note that this signal is not fired for the
-   * #PeasExtension instances still available when the #PeasExtensionSet
+   * [alias@Extension] instances still available when the #PeasExtensionSet
    * instance is destroyed. You should clean those up by yourself.
    */
   signals[EXTENSION_REMOVED] =
@@ -443,10 +446,11 @@ peas_extension_set_class_init (PeasExtensionSetClass *klass)
  * @set: A #PeasExtensionSet
  * @info: a #PeasPluginInfo
  *
- * Returns the #PeasExtension object corresponding to @info, or %NULL
- * if the plugin doesn't provide such an extension.
+ * Returns the [alias@Extension] object corresponding to @info.
  *
- * Returns: (transfer none): a reference to a #PeasExtension or %NULL
+ * If the plugin doesn't provide such an extension, it returns %NULL.
+ *
+ * Returns: (transfer none): a reference to a #PeasExtension
  */
 PeasExtension *
 peas_extension_set_get_extension (PeasExtensionSet *set,
@@ -475,13 +479,13 @@ peas_extension_set_get_extension (PeasExtensionSet *set,
  * @method_name: the name of the method that should be called.
  * @...: arguments for the method.
  *
- * Call a method on all the #PeasExtension instances contained in @set.
+ * Call a method on all the [alias@Extension] instances contained in @set.
  *
- * See peas_extension_call() for more information.
+ * See [method@Extension.call] for more information.
  *
- * Deprecated: 1.2: Use peas_extension_set_foreach() instead.
+ * Deprecated: 1.2: Use [method@ExtensionSet.foreach] instead.
  *
- * Return value: %TRUE on successful call.
+ * Returns: %TRUE on successful call.
  */
 gboolean
 peas_extension_set_call (PeasExtensionSet *set,
@@ -507,13 +511,13 @@ peas_extension_set_call (PeasExtensionSet *set,
  * @method_name: the name of the method that should be called.
  * @va_args: the arguments for the method.
  *
- * Call a method on all the #PeasExtension instances contained in @set.
+ * Call a method on all the [alias@Extension] instances contained in @set.
  *
- * See peas_extension_call_valist() for more information.
+ * See [method@Extension.call_valist] for more information.
  *
- * Deprecated: 1.2: Use peas_extension_set_foreach() instead.
+ * Deprecated: 1.2: Use [class@ExtensionSet.foreach] instead.
  *
- * Return value: %TRUE on successful call.
+ * Returns: %TRUE on successful call.
  */
 gboolean
 peas_extension_set_call_valist (PeasExtensionSet *set,
@@ -554,13 +558,13 @@ peas_extension_set_call_valist (PeasExtensionSet *set,
  * @method_name: the name of the method that should be called.
  * @args: the arguments for the method.
  *
- * Call a method on all the #PeasExtension instances contained in @set.
+ * Call a method on all the [alias@Extension] instances contained in @set.
  *
- * See peas_extension_callv() for more information.
+ * See [method@Extension.callv] for more information.
  *
- * Return value: %TRUE on successful call.
+ * Returns: %TRUE on successful call.
  *
- * Deprecated: 1.2: Use peas_extension_set_foreach() instead.
+ * Deprecated: 1.2: Use [method@ExtensionSet.foreach] instead.
  */
 gboolean
 peas_extension_set_callv (PeasExtensionSet *set,
@@ -582,7 +586,7 @@ peas_extension_set_callv (PeasExtensionSet *set,
  * @func: (scope call): A function call for each extension.
  * @data: Optional data to be passed to the function or %NULL.
  *
- * Calls @func for each #PeasExtension.
+ * Calls @func for each [alias@Extension].
  *
  * Since: 1.2
  */
@@ -616,10 +620,10 @@ peas_extension_set_foreach (PeasExtensionSet            *set,
  *
  * If @engine is %NULL, then the default engine will be used.
  *
- * Since libpeas 1.22, @exten_type can be an Abstract #GType
- * and not just an Interface #GType.
+ * Since libpeas 1.22, @exten_type can be an Abstract [alias@GObject.Type]
+ * and not just an Interface [alias@GObject.Type].
  *
- * See peas_extension_set_new() for more information.
+ * See [ctor@ExtensionSet.new] for more information.
  *
  * Returns: (transfer full): a new instance of #PeasExtensionSet.
  */
@@ -654,10 +658,10 @@ peas_extension_set_newv (PeasEngine *engine,
  *
  * If @engine is %NULL, then the default engine will be used.
  *
- * Since libpeas 1.22, @exten_type can be an Abstract #GType
- * and not just an Interface #GType.
+ * Since libpeas 1.22, @exten_type can be an Abstract [alias@GObject.Type]
+ * and not just an Interface [alias@GObject.Type].
  *
- * See peas_extension_set_new() for more information.
+ * See [ctor@ExtensionSet.new] for more information.
  *
  * Returns: (transfer full): a new instance of #PeasExtensionSet.
  *
@@ -720,10 +724,10 @@ peas_extension_set_new_with_properties (PeasEngine    *engine,
  *
  * If @engine is %NULL, then the default engine will be used.
  *
- * Since libpeas 1.22, @exten_type can be an Abstract #GType
- * and not just an Interface #GType.
+ * Since libpeas 1.22, @exten_type can be an Abstract [alias@GObject.Type]
+ * and not just an Interface [alias@GObject.Type].
  *
- * See peas_extension_set_new() for more information.
+ * See [ctor@ExtensionSet.new] for more information.
  *
  * Returns: a new instance of #PeasExtensionSet.
  */
@@ -770,17 +774,17 @@ peas_extension_set_new_valist (PeasEngine  *engine,
  *
  * At any moment, the #PeasExtensionSet will contain an extension instance for
  * each loaded plugin which implements the @exten_type extension type. It does
- * so by connecting to the relevant signals from #PeasEngine.
+ * so by connecting to the relevant signals from [class@Engine].
  *
  * The property values passed to peas_extension_set_new() will be used for the
  * construction of new extension instances.
  *
  * If @engine is %NULL, then the default engine will be used.
  *
- * Since libpeas 1.22, @exten_type can be an Abstract #GType
- * and not just an Interface #GType.
+ * Since libpeas 1.22, @exten_type can be an Abstract [alias@GObject.Type]
+ * and not just an Interface [alias@GObject.Type].
  *
- * See peas_engine_create_extension() for more information.
+ * See [method@Engine.create_extension] for more information.
  *
  * Returns: a new instance of #PeasExtensionSet.
  */

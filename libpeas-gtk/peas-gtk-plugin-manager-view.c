@@ -37,15 +37,16 @@
 #include "peas-gtk-configurable.h"
 
 /**
- * SECTION:peas-gtk-plugin-manager-view
- * @short_description: Management tree view for plugins.
+ * PeasGtkPluginManagerView:
+ *
+ * Management tree view for plugins.
  *
  * The #PeasGtkPluginManagerView is a tree view that can be used to manage
  * plugins, i.e. load or unload them, and see some pieces of information.
  *
  * The only thing you need to do as an application writer if you wish
  * to use the view to display your plugins is to instantiate it using
- * peas_gtk_plugin_manager_view_new() and pack it into another
+ * [ctor@PluginManagerView.new] and pack it into another
  * widget or a window.
  *
  * Note: Changing the model of the view is not supported.
@@ -833,7 +834,7 @@ peas_gtk_plugin_manager_view_class_init (PeasGtkPluginManagerViewClass *klass)
   /**
    * PeasGtkPLuginManagerView:engine:
    *
-   * The #PeasEngine this view is attached to.
+   * The [class@Peas.Engine] this view is attached to.
    */
   properties[PROP_ENGINE] =
     g_param_spec_object ("engine",
@@ -865,8 +866,9 @@ peas_gtk_plugin_manager_view_class_init (PeasGtkPluginManagerViewClass *klass)
    * @view: A #PeasGtkPluginManagerView.
    * @menu: A #GtkMenu.
    *
-   * The ::populate-popup signal is emitted before showing the context
-   * menu of the view. If you need to add items to the context menu,
+   * Emitted before showing the context menu of the view.
+   *
+   * If you need to add items to the context menu,
    * connect to this signal and add your menuitems to the @menu.
    */
   signals[POPULATE_POPUP] =
@@ -887,7 +889,7 @@ peas_gtk_plugin_manager_view_class_init (PeasGtkPluginManagerViewClass *klass)
  * peas_gtk_plugin_manager_view_new:
  * @engine: (allow-none): A #PeasEngine, or %NULL.
  *
- * Creates a new plugin manager view for the given #PeasEngine.
+ * Creates a new plugin manager view for the given [class@Peas.Engine].
  *
  * If @engine is %NULL, then the default engine will be used.
  *

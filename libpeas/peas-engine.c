@@ -38,26 +38,19 @@
 #include "peas-utils.h"
 
 /**
- * SECTION:peas-engine
- * @short_description: Engine at the heart of the Peas plugin system.
- * @see_also: #PeasPluginInfo
+ * PeasEngine:
  *
  * The #PeasEngine is the object which manages the plugins.
  *
  * Its role is twofold:
- * <itemizedlist>
- *   <listitem>
- *     <para>it will fetch all the information about the available plugins
- *     from all the registered plugin directories;</para>
- *   </listitem>
- *   <listitem>
- *     <para>it will provide you an API to load, control and unload your
- *     plugins and their extensions from within your application.</para>
- *   </listitem>
- * </itemizedlist>
  *
- * Since libpeas 1.22, @extension_type can be an Abstract #GType
- * and not just an Interface #GType.
+ * - it will fetch all the information about the available plugins
+ *   from all the registered plugin directories;
+ * - it will provide you an API to load, control and unload your
+ *   plugins and their extensions from within your application.
+ *
+ * Since libpeas 1.22, @extension_type can be an Abstract [alias@GObject.Type]
+ * and not just an Interface [alias@GObject.Type].
  **/
 
 /* Signals */
@@ -413,8 +406,7 @@ peas_engine_insert_search_path (PeasEngine  *engine,
  * @module_dir: the plugin module directory.
  * @data_dir: (allow-none): the plugin data directory.
  *
- * This function appends a search path to the list of paths where to
- * look for plugins.
+ * Appends a search path to the list of paths where to look for plugins.
  *
  * A so-called "search path" actually consists of both a
  * module directory (where the shared libraries or language modules
@@ -425,7 +417,7 @@ peas_engine_insert_search_path (PeasEngine  *engine,
  * when it comes to installation location: the same plugin can be
  * installed either in the system path or in the user's home directory,
  * without taking other special care than using
- * peas_plugin_info_get_data_dir() when looking for its data files.
+ * [method@PluginInfo.get_data_dir] when looking for its data files.
  *
  * If @data_dir is %NULL, then it is set to the same value as
  * @module_dir.
@@ -444,10 +436,9 @@ peas_engine_add_search_path (PeasEngine  *engine,
  * @module_dir: the plugin module directory.
  * @data_dir: (allow-none): the plugin data directory.
  *
- * This function prepends a search path to the list of paths where to
- * look for plugins.
+ * Prepends a search path to the list of paths where to look for plugins.
  *
- * See Also: peas_engine_add_search_path()
+ * See Also: [method@Engine.add_search_path]
  *
  * Since: 1.6
  */
@@ -509,8 +500,10 @@ peas_engine_init (PeasEngine *engine)
  * peas_engine_garbage_collect:
  * @engine: A #PeasEngine.
  *
- * This function triggers garbage collection on all the loaders currently
- * owned by the #PeasEngine.  This can be used to force the loaders to destroy
+ * Triggers garbage collection on all the loaders currently owned by the
+ * #PeasEngine.
+ *
+ * This can be used to force the loaders to destroy
  * managed objects that still hold references to objects that are about to
  * disappear.
  */
@@ -664,7 +657,7 @@ peas_engine_class_init (PeasEngineClass *klass)
    *
    * The list of found plugins.
    *
-   * This will be modified when peas_engine_rescan_plugins() is called.
+   * This will be modified when [method@Engine.rescan_plugins] is called.
    *
    * Note: the list belongs to the engine and should not be modified or freed.
    */
@@ -680,18 +673,19 @@ peas_engine_class_init (PeasEngineClass *klass)
    *
    * The list of loaded plugins.
    *
-   * This will be modified when peas_engine_load_plugin() or
-   * peas_engine_unload_plugin() is called.
+   * This will be modified when [method@Engine.load_plugin] or
+   * [method@Engine.unload_plugin] is called.
    *
-   * This can be used with GSettings to save the loaded plugins by binding
-   * to this property after instantiating the engine by doing:
-   * |[
+   * This can be used with [class@Gio.Settings] to save the loaded plugins by
+   * binding to this property after instantiating the engine by doing:
+   *
+   * ```c
    *   g_settings_bind (gsettings_object,
    *                    LOADED_PLUGINS_KEY,
    *                    engine,
    *                    "loaded-plugins",
    *                    G_SETTINGS_BIND_DEFAULT);
-   * ]|
+   * ```
    *
    * Note: notify will not be called when the engine is being destroyed.
    */
@@ -708,7 +702,7 @@ peas_engine_class_init (PeasEngineClass *klass)
    *
    * If non-global plugin loaders should be used.
    *
-   * See peas_engine_new_with_nonglobal_loaders() for more information.
+   * See [ctor@Engine.new_with_nonglobal_loaders] for more information.
    *
    * Since: 1.14
    */
@@ -730,9 +724,9 @@ peas_engine_class_init (PeasEngineClass *klass)
    *
    * The plugin is being loaded in the default handler. Hence, if you want to
    * perform some action before the plugin is loaded, you should use
-   * g_signal_connect(), but if you want to perform some action *after* the
+   * [func@GObject.signal_connect], but if you want to perform some action *after* the
    * plugin is loaded (the most common case), you should use
-   * g_signal_connect_after().
+   * [func@GObject.signal_connect_after].
    */
   signals[LOAD_PLUGIN] =
     g_signal_new (I_("load-plugin"),
@@ -753,11 +747,11 @@ peas_engine_class_init (PeasEngineClass *klass)
    *
    * The unload-plugin signal is emitted when a plugin is being unloaded.
    *
-   * The plugin is being unloaded in the default handler. Hence, if you want
-   * to perform some action before the plugin is unloaded (the most common
-   * case), you should use g_signal_connect(), but if you want to perform some
-   * action after the plugin is unloaded (the most common case), you should
-   * use g_signal_connect_after().
+   * The plugin is being unloaded in the default handler. Hence, if you want to
+   * perform some action before the plugin is unloaded (the most common case),
+   * you should use [func@GObject.signal_connect], but if you want to perform
+   * some action after the plugin is unloaded (the most common case), you should
+   * use [func@GObject.signal_connect_after].
    */
   signals[UNLOAD_PLUGIN] =
     g_signal_new (I_("unload-plugin"),
@@ -945,19 +939,21 @@ get_plugin_loader (PeasEngine *engine,
  * @loader_name: The name of the loader to enable.
  *
  * Enable a loader, enables a loader for plugins.
+ *
  * The C plugin loader is always enabled. The other plugin
  * loaders are: lua5.1, python and python3.
  *
  * For instance, the following code will enable Python 2 plugins
  * to be loaded:
- * |[
- * peas_engine_enable_loader (engine, "python");
- * ]|
  *
- * Note: plugin loaders used to be shared across #PeasEngines so enabling
- *       a loader on one #PeasEngine would enable it on all #PeasEngines.
- *       This behavior has been kept to avoid breaking applications,
- *       however a warning has been added to help applications transition.
+ * ```c
+ * peas_engine_enable_loader (engine, "python");
+ * ```
+ *
+ * Note: plugin loaders used to be shared across `PeasEngine`s so enabling
+ *   a loader on one #PeasEngine would enable it on all #PeasEngines.
+ *   This behavior has been kept to avoid breaking applications,
+ *   however a warning has been added to help applications transition.
  **/
 void
 peas_engine_enable_loader (PeasEngine  *engine,
@@ -1034,11 +1030,11 @@ peas_engine_enable_loader (PeasEngine  *engine,
  * peas_engine_get_plugin_list:
  * @engine: A #PeasEngine.
  *
- * Returns the list of #PeasPluginInfo known to the engine.
+ * Returns the list of [struct@PluginInfo] known to the engine.
  *
  * Returns: (transfer none) (element-type Peas.PluginInfo): a #GList of
- * #PeasPluginInfo. Note that the list belongs to the engine and should
- * not be freed.
+ *   #PeasPluginInfo. Note that the list belongs to the engine and should
+ *   not be freed.
  **/
 const GList *
 peas_engine_get_plugin_list (PeasEngine *engine)
@@ -1055,11 +1051,11 @@ peas_engine_get_plugin_list (PeasEngine *engine)
  * @engine: A #PeasEngine.
  * @plugin_name: A plugin name.
  *
- * Gets the #PeasPluginInfo corresponding with @plugin_name,
+ * Gets the [struct@PluginInfo] corresponding with @plugin_name,
  * or %NULL if @plugin_name was not found.
  *
  * Returns: (transfer none): the #PeasPluginInfo corresponding with
- * a given plugin module name.
+ *   a given plugin module name.
  */
 PeasPluginInfo *
 peas_engine_get_plugin_info (PeasEngine  *engine,
@@ -1172,7 +1168,8 @@ error:
  * @info: A #PeasPluginInfo.
  *
  * Loads the plugin corresponding to @info if it's not currently loaded.
- * Emits the "load-plugin" signal; loading the plugin
+ *
+ * Emits the [signal@Engine::load-plugin] signal; loading the plugin
  * actually occurs in the default signal handler.
  *
  * Returns: whether the plugin has been successfully loaded.
@@ -1246,7 +1243,8 @@ peas_engine_unload_plugin_real (PeasEngine     *engine,
  * @info: A #PeasPluginInfo.
  *
  * Unloads the plugin corresponding to @info.
- * Emits the "unload-plugin" signal; unloading the plugin
+ *
+ * Emits the [signal@Engine::unload-plugin] signal; unloading the plugin
  * actually occurs in the default signal handler.
  *
  * Returns: whether the plugin has been successfully unloaded.
@@ -1273,10 +1271,11 @@ peas_engine_unload_plugin (PeasEngine     *engine,
  * @extension_type: The extension #GType.
  *
  * Returns if @info provides an extension for @extension_type.
+ *
  * If the @info is not loaded than %FALSE will always be returned.
  *
- * Since libpeas 1.22, @extension_type can be an Abstract #GType
- * and not just an Interface #GType.
+ * Since libpeas 1.22, @extension_type can be an Abstract [alias@GObject.Type]
+ * and not just an Interface [alias@GObject.Type].
  *
  * Returns: if @info provides an extension for @extension_type.
  */
@@ -1310,12 +1309,14 @@ peas_engine_provides_extension (PeasEngine     *engine,
  *
  * If the plugin identified by @info implements the @extension_type,
  * then this function will return a new instance of this implementation,
- * wrapped in a new #PeasExtension instance. Otherwise, it will return %NULL.
+ * wrapped in a new [alias@Extension] instance.
  *
- * Since libpeas 1.22, @extension_type can be an Abstract #GType
- * and not just an Interface #GType.
+ * Otherwise, it will return %NULL.
  *
- * See peas_engine_create_extension() for more information.
+ * Since libpeas 1.22, @extension_type can be an Abstract [alias@GObject.Type]
+ * and not just an Interface [alias@GObject.Type].
+ *
+ * See [method@Engine.create_extension] for more information.
  *
  * Returns: (transfer full): a new instance of #PeasExtension wrapping
  * the @extension_type instance, or %NULL.
@@ -1362,15 +1363,15 @@ peas_engine_create_extensionv (PeasEngine     *engine,
  *
  * If the plugin identified by @info implements the @extension_type,
  * then this function will return a new instance of this implementation,
- * wrapped in a new #PeasExtension instance. Otherwise, it will return %NULL.
+ * wrapped in a new [alias@Extension] instance. Otherwise, it will return %NULL.
  *
- * Since libpeas 1.22, @extension_type can be an Abstract #GType
- * and not just an Interface #GType.
+ * Since libpeas 1.22, @extension_type can be an Abstract [alias@GObject.Type]
+ * and not just an Interface [alias@GObject.Type].
  *
- * See peas_engine_create_extension() for more information.
+ * See [method@Engine.create_extension] for more information.
  *
  * Returns: (transfer full): a new instance of #PeasExtension wrapping
- * the @extension_type instance, or %NULL.
+ *   the @extension_type instance, or %NULL.
  *
  * Since: 1.24
  */
@@ -1439,15 +1440,15 @@ peas_engine_create_extension_with_properties (PeasEngine     *engine,
  *
  * If the plugin identified by @info implements the @extension_type,
  * then this function will return a new instance of this implementation,
- * wrapped in a new #PeasExtension instance. Otherwise, it will return %NULL.
+ * wrapped in a new [alias@Extension] instance. Otherwise, it will return %NULL.
  *
- * Since libpeas 1.22, @extension_type can be an Abstract #GType
- * and not just an Interface #GType.
+ * Since libpeas 1.22, @extension_type can be an Abstract [alias@GObject.Type]
+ * and not just an Interface [alias@GObject.Type].
  *
- * See peas_engine_create_extension() for more information.
+ * See [method@Engine.create_extension] for more information.
  *
  * Returns: a new instance of #PeasExtension wrapping
- * the @extension_type instance, or %NULL.
+ *   the @extension_type instance, or %NULL.
  */
 PeasExtension *
 peas_engine_create_extension_valist (PeasEngine     *engine,
@@ -1496,22 +1497,22 @@ peas_engine_create_extension_valist (PeasEngine     *engine,
  *
  * If the plugin identified by @info implements the @extension_type,
  * then this function will return a new instance of this implementation,
- * wrapped in a new #PeasExtension instance. Otherwise, it will return %NULL.
+ * wrapped in a new [alias@Extension] instance. Otherwise, it will return %NULL.
  *
  * When creating the new instance of the @extension_type subtype, the
  * provided construct properties will be passed to the extension construction
- * handler (exactly like if you had called g_object_new() yourself).
+ * handler (exactly like if you had called [ctor@GObject.Object.new] yourself).
  *
  * The new extension instance produced by this function will always be
  * returned wrapped in a #PeasExtension proxy, following the current libpeas
  * principle of never giving you the actual object (also because it might as
  * well *not* be an actual object).
  *
- * Since libpeas 1.22, @extension_type can be an Abstract #GType
- * and not just an Interface #GType.
+ * Since libpeas 1.22, @extension_type can be an Abstract [alias@GObject.Type]
+ * and not just an Interface [alias@GObject.Type].
  *
  * Returns: a new instance of #PeasExtension wrapping
- * the @extension_type instance, or %NULL.
+ *   the @extension_type instance, or %NULL.
  */
 PeasExtension *
 peas_engine_create_extension (PeasEngine     *engine,
@@ -1541,14 +1542,16 @@ peas_engine_create_extension (PeasEngine     *engine,
  * peas_engine_get_loaded_plugins:
  * @engine: A #PeasEngine.
  *
- * Returns the list of the names of all the loaded plugins, or an array
- * containing a single %NULL element if there is no plugin currently loaded.
+ * Returns the list of the names of all the loaded plugins.
+ *
+ * If there is no plugin currently loaded, it will return an array containing a
+ * single %NULL element.
  *
  * Please note that the returned array is a newly allocated one: you will need
- * to free it using g_strfreev().
+ * to free it using [func@GLib.strfreev].
  *
  * Returns: (transfer full) (array zero-terminated=1): A newly-allocated
- * %NULL-terminated array of strings.
+ *   %NULL-terminated array of strings.
  */
 gchar **
 peas_engine_get_loaded_plugins (PeasEngine *engine)
@@ -1600,9 +1603,11 @@ string_in_strv (const gchar  *needle,
  * @plugin_names: (allow-none) (array zero-terminated=1): A %NULL-terminated
  *  array of plugin names, or %NULL.
  *
- * Sets the list of loaded plugins for @engine. When this function is called,
- * the #PeasEngine will load all the plugins whose names are in @plugin_names,
- * and ensures all other active plugins are unloaded.
+ * Sets the list of loaded plugins for @engine.
+ *
+ * When this function is called, the #PeasEngine will load all the plugins whose
+ * names are in @plugin_names, and ensures all other active plugins are
+ * unloaded.
  *
  * If @plugin_names is %NULL, all plugins will be unloaded.
  */
@@ -1641,6 +1646,7 @@ peas_engine_set_loaded_plugins (PeasEngine   *engine,
  * peas_engine_new:
  *
  * Return a new instance of #PeasEngine.
+ *
  * If no default #PeasEngine has been instantiated yet,
  * the first call of this function will set the default
  * engine as the new instance of #PeasEngine.
@@ -1657,12 +1663,13 @@ peas_engine_new (void)
  * peas_engine_new_with_nonglobal_loaders:
  *
  * Return a new instance of #PeasEngine which will use non-global
- * plugin loaders instead of the default global ones. This allows
- * multiple threads to each have a #PeasEngine and be used without
+ * plugin loaders instead of the default global ones.
+ *
+ * This allows multiple threads to each have a #PeasEngine and be used without
  * internal locking.
  *
  * Note: due to CPython's GIL the python and python3
- *       plugin loaders are always global.
+ *   plugin loaders are always global.
  *
  * Returns: a new instance of #PeasEngine that uses non-global loaders.
  *
@@ -1680,11 +1687,12 @@ peas_engine_new_with_nonglobal_loaders (void)
  * peas_engine_get_default:
  *
  * Return the existing instance of #PeasEngine or a subclass of it.
+ *
  * If no #PeasEngine subclass has been instantiated yet, the first call
  * of this function will return a new instance of #PeasEngine.
  *
  * Note: this function should never be used when multiple threads are
- *       using libpeas API as it is not thread-safe.
+ *   using libpeas API as it is not thread-safe.
  *
  * Returns: (transfer none): the existing instance of #PeasEngine.
  */

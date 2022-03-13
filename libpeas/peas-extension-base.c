@@ -26,13 +26,13 @@
 #include "peas-plugin-info-priv.h"
 
 /**
- * SECTION:peas-extension-base
- * @short_description: Base class for C extensions.
- * @see_also: #PeasPluginInfo
+ * PeasExtensionBase:
+ *
+ * Base class for C extensions.
  *
  * #PeasExtensionBase can optionally be used as a base class for the extensions
  * of your plugin. By inheriting from it, you will make your extension able to
- * access the related #PeasPluginInfo, and especially the location where all
+ * access the related [struct@PluginInfo], and especially the location where all
  * the data of your plugin lives.
  *
  * Non-C extensions will usually not inherit from this class: Python
@@ -119,7 +119,7 @@ peas_extension_base_class_init (PeasExtensionBaseClass *klass)
   /**
    * PeasExtensionBase:plugin-info:
    *
-   * The #PeasPluginInfo related to the current plugin.
+   * The [struct@PluginInfo] related to the current plugin.
    */
   properties[PROP_PLUGIN_INFO] =
     g_param_spec_boxed ("plugin-info",
@@ -137,7 +137,7 @@ peas_extension_base_class_init (PeasExtensionBaseClass *klass)
    * should look for its data files.
    *
    * Note: This is the same path as that returned by
-   * peas_plugin_info_get_data_dir().
+   * [method@PluginInfo.get_data_dir].
    */
   properties[PROP_DATA_DIR] =
     g_param_spec_string ("data-dir",
@@ -157,8 +157,8 @@ peas_extension_base_class_init (PeasExtensionBaseClass *klass)
  *
  * Get information relative to @extbase.
  *
- * Return value: (transfer none): the #PeasPluginInfo relative
- * to the #PeasExtensionBase.
+ * Returns: (transfer none): the [struct@PluginInfo] relative
+ *   to the #PeasExtensionBase.
  */
 PeasPluginInfo *
 peas_extension_base_get_plugin_info (PeasExtensionBase *extbase)
@@ -177,8 +177,8 @@ peas_extension_base_get_plugin_info (PeasExtensionBase *extbase)
  * Get the path of the directory where the plugin should look for
  * its data files.
  *
- * Return value: A newly allocated string with the path of the
- * directory where the plugin should look for its data files
+ * Returns: A newly allocated string with the path of the
+ *   directory where the plugin should look for its data files
  */
 gchar *
 peas_extension_base_get_data_dir (PeasExtensionBase *extbase)

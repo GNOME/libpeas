@@ -99,7 +99,7 @@ struct _PeasExtensionSetClass {
  * @exten: A #PeasExtension.
  * @data: Optional data passed to the function.
  *
- * This function is passed to peas_extension_set_foreach() and
+ * This function is passed to [method@ExtensionSet.foreach] and
  * will be called for each extension in @set.
  *
  * Since: 1.2
