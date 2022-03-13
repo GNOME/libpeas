@@ -450,7 +450,7 @@ peas_extension_set_class_init (PeasExtensionSetClass *klass)
  *
  * If the plugin doesn't provide such an extension, it returns %NULL.
  *
- * Returns: (transfer none): a reference to a #PeasExtension
+ * Returns: (transfer none) (nullable): a reference to a #PeasExtension
  */
 PeasExtension *
 peas_extension_set_get_extension (PeasExtensionSet *set,

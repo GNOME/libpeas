@@ -474,7 +474,7 @@ peas_object_module_new_embedded (const gchar *module_name,
  * Since libpeas 1.22, @exten_type can be an Abstract [alias@GObject.Type]
  * and not just an Interface [alias@GObject.Type].
  *
- * Returns: (transfer full): The created object
+ * Returns: (transfer full) (nullable): The created object
  */
 GObject *
 peas_object_module_create_object (PeasObjectModule *module,

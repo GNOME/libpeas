@@ -500,7 +500,7 @@ peas_plugin_info_get_data_dir (const PeasPluginInfo *info)
  * gschemas.compiled is not in the module directory an attempt
  * will be made to create it.
  *
- * Returns: (transfer full): a new #GSettings, or %NULL.
+ * Returns: (transfer full) (nullable): a new #GSettings.
  *
  * Since: 1.4
  */
@@ -792,7 +792,7 @@ peas_plugin_info_get_help_uri (const PeasPluginInfo *info)
  * Note: that you can omit the X- prefix when retrieving the value,
  * but not when specifying the value in the file.
  *
- * Returns: the external data, or %NULL if the external data could not be found.
+ * Returns: (nullable): the external data, or %NULL if the external data could not be found.
  *
  * Since: 1.6
  */
