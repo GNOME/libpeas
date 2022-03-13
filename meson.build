@@ -66,7 +66,6 @@ pkglibdir = join_paths(libdir, package_string)
 pkgdatadir = join_paths(datadir, package_string)
 
 girdir = join_paths(datadir, 'gir-1.0')
-gtkdocdir = join_paths(datadir, 'gtk-doc')
 iconsdir = join_paths(datadir, 'icons')
 pkgconfigdir = join_paths(libdir, 'pkgconfig')
 typelibdir = join_paths(libdir, 'girepository-1.0')
@@ -107,7 +106,10 @@ gio_dep = dependency('gio-2.0', version: glib_req)
 introspection_dep = dependency('gobject-introspection-1.0', version: introspection_req)
 gtk_dep = dependency('gtk+-3.0', version: gtk_req, required: false)
 
-gtk_doc_dep = dependency('gtk-doc', version: gtk_doc_req, required: false)
+gi_docgen_dep = dependency('gi-docgen', version: '>= 2021.7',
+                           fallback: ['gi-docgen', 'dummy_dep'],
+                           native: true,
+                           required: get_option('gtk_doc'))
 gladeui_dep = dependency('gladeui-2.0', required: false)
 
 # From python 3.8 we neeed python3-embed
@@ -249,10 +251,7 @@ configure_file(
 )
 
 # Options
-build_gtk_doc = get_option('gtk_doc')
-if build_gtk_doc and not gtk_doc_dep.found()
-  build_gtk_doc = false
-endif
+build_gtk_doc = gi_docgen_dep.found()
 
 install_glade_catalog = get_option('glade_catalog')
 if install_glade_catalog and not gladeui_dep.found()
@@ -310,7 +309,10 @@ if build_gtk_widgetry == true
   subdir('libpeas-gtk')
 endif
 
-subdir('docs')
+if build_gtk_doc == true
+  subdir('docs')
+endif
+
 subdir('data')
 subdir('po')
 

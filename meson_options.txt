@@ -36,4 +36,4 @@ option('demos',
 
 option('gtk_doc',
        type: 'boolean', value: false,
-       description: 'Build reference manual (requires gtk-doc)')
+       description: 'Build reference manual (requires gi-docgen)')

@@ -9,6 +9,14 @@ It takes its roots in the old gedit plugins engine, and provides an extensive se
 of features mirroring the desiderata of most of the applications providing an
 extension framework.
 
+Documentation
+-------------------------
+
+Documentation can be found at:
+
+- Peas-1.0: https://gnome.pages.gitlab.gnome.org/libpeas/libpeas-1.0/.
+- GtkPeas-1.0: https://gnome.pages.gitlab.gnome.org/libpeas/libpeas-gtk-1.0/.
+
 Multiple extension points
 -------------------------
 

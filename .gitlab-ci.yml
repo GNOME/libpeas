@@ -3,7 +3,7 @@ stages:
   - 'deploy'
 
 .build:
-  image: 'registry.fedoraproject.org/fedora:30'
+  image: 'registry.fedoraproject.org/fedora:35'
   stage: 'build'
   variables:
     CCACHE_BASEDIR: "${CI_PROJECT_DIR}"
@@ -12,7 +12,6 @@ stages:
       gcc
       ccache
       gettext
-      gtk-doc
       meson
       ninja-build
       redhat-rpm-config
@@ -22,11 +21,14 @@ stages:
       python2-devel
       python3-devel
       xorg-x11-server-Xvfb
+      git
+      pip
   before_script:
     - "dnf install -y $DEPS"
     - 'mkdir -p _ccache'
     - 'ccache --zero-stats'
     - 'ccache --show-stats'
+    - 'pip install markdown markupsafe pygments jinja2 toml typogrify'
   after_script:
     - 'ccache --show-stats'
   cache:
@@ -37,31 +39,40 @@ stages:
 build peas:
   extends: '.build'
   script:
-    - 'meson -Dwidgetry=false -Dintrospection=true -Dvapi=true -Ddemos=false _build .'
+    - 'meson -Dwidgetry=false -Dintrospection=true -Dvapi=true -Ddemos=false -Dgtk_doc=false _build .'
     - 'ninja -C _build test'
 
 build peas-gtk:
   extends: '.build'
   script:
-    - 'meson -Dwidgetry=true -Dglade_catalog=true -Dintrospection=true -Dvapi=true -Dgtk_doc=true _build .'
+    - 'meson -Dwidgetry=true -Dglade_catalog=true -Dintrospection=true -Dvapi=true -Dgtk_doc=false _build .'
     - 'xvfb-run -a -s "-screen 0 1024x768x24"  ninja -C _build test'
-    - 'ninja -C _build libpeas-doc'
+
+reference:
+  extends: '.build'
+  variables:
+    MESON_ARGS: >-
+      -Dgtk_doc=true
+      -Ddemos=false
+      -Dglade_catalog=false
+      -Dwidgetry=true
+  script:
+    - mkdir -p _reference/libpeas-1.0
+    - mkdir -p _reference/libpeas-gtk-1.0
+    - meson ${MESON_ARGS} _build
+    - ninja -C _build
+    - mv _build/docs/reference/libpeas-1.0/* _reference/libpeas-1.0
+    - mv _build/docs/reference/libpeas-gtk-1.0/* _reference/libpeas-gtk-1.0
   artifacts:
-    name: 'libpeas-doc'
     paths:
-      - '_build/docs/reference/html'
+      - _reference
 
 pages:
-  image: 'registry.fedoraproject.org/fedora:30'
-  stage: 'deploy'
-  dependencies:
-    - 'build peas'
-    - 'build peas-gtk'
+  stage: deploy
+  needs: ['reference']
   script:
-    - 'mkdir -p public/'
-    - 'mv _build/docs/reference/html/ public/libpeas/'
+    - mv _reference public
   artifacts:
+    when: on_success
     paths:
-      - 'public'
-  only:
-    - 'master'
+      - public
