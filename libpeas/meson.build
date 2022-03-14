@@ -88,10 +88,6 @@ libpeas_marshal = gnome.genmarshal(
 
 libpeas_marshals_h = libpeas_marshal.get(1)
 
-libpeas_sources += [
-  libpeas_marshal,
-]
-
 install_headers(
   libpeas_public_h,
   install_dir: join_paths(
@@ -102,7 +98,7 @@ install_headers(
 
 libpeas_sha = library(
   package_string.strip('lib'),
-  libpeas_sources,
+  libpeas_sources + libpeas_marshal,
   version: lib_version,
   darwin_versions: lib_version_osx,
   include_directories: [rootdir, libpeas_srcdir],
