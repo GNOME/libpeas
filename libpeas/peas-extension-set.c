@@ -474,14 +474,12 @@ peas_extension_set_get_extension (PeasExtensionSet *set,
 }
 
 /**
- * peas_extension_set_call:
+ * peas_extension_set_call: (skip)
  * @set: A #PeasExtensionSet.
  * @method_name: the name of the method that should be called.
  * @...: arguments for the method.
  *
  * Call a method on all the [alias@Extension] instances contained in @set.
- *
- * See [method@Extension.call] for more information.
  *
  * Deprecated: 1.2: Use [method@ExtensionSet.foreach] instead.
  *
@@ -506,14 +504,12 @@ peas_extension_set_call (PeasExtensionSet *set,
 }
 
 /**
- * peas_extension_set_call_valist:
+ * peas_extension_set_call_valist: (skip)
  * @set: A #PeasExtensionSet.
  * @method_name: the name of the method that should be called.
  * @va_args: the arguments for the method.
  *
  * Call a method on all the [alias@Extension] instances contained in @set.
- *
- * See [method@Extension.call_valist] for more information.
  *
  * Deprecated: 1.2: Use [class@ExtensionSet.foreach] instead.
  *
@@ -553,14 +549,12 @@ peas_extension_set_call_valist (PeasExtensionSet *set,
 }
 
 /**
- * peas_extension_set_callv:
+ * peas_extension_set_callv: (skip)
  * @set: A #PeasExtensionSet.
  * @method_name: the name of the method that should be called.
  * @args: the arguments for the method.
  *
  * Call a method on all the [alias@Extension] instances contained in @set.
- *
- * See [method@Extension.callv] for more information.
  *
  * Returns: %TRUE on successful call.
  *

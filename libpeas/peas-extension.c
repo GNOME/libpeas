@@ -54,9 +54,7 @@
  * possible for libpeas to provide a functional GObject instance at all.
  * Another reason is that it makes reference counting issues easier to deal
  * with.
- *
- * See [method@extension_call] for more information.
- **/
+ */
 GType
 peas_extension_get_type (void)
 {
@@ -128,7 +126,7 @@ peas_extension_get_extension_type (PeasExtension *exten)
 }
 
 /**
- * peas_extension_call:
+ * peas_extension_call: (skip)
  * @exten: A #PeasExtension.
  * @method_name: the name of the method that should be called.
  * @...: arguments for the method.
@@ -172,7 +170,7 @@ peas_extension_call (PeasExtension *exten,
 }
 
 /**
- * peas_extension_call_valist:
+ * peas_extension_call_valist: (skip)
  * @exten: A #PeasExtension.
  * @method_name: the name of the method that should be called.
  * @args: the arguments for the method.
@@ -226,7 +224,7 @@ peas_extension_call_valist (PeasExtension *exten,
 }
 
 /**
- * peas_extension_callv:
+ * peas_extension_callv: (skip)
  * @exten: A #PeasExtension.
  * @method_name: the name of the method that should be called.
  * @args: the arguments for the method.
