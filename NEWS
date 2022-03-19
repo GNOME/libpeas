@@ -1,3 +1,20 @@
+Overview of Changes in libpeas 1.32.0
+=====================================
+
+* Icon licenses have been corrected
+* Parallel build system operation fixes
+* Various build warnings squashed
+* Various GIR data that should not have been exported was removed
+* Use gi-docgen for documentation
+* Translation updates:
+  - Russian
+  - Abkhazian
+  - Nepali
+  - Occitan
+  - Icelandic
+  - Hebrew
+  - Belarusian
+
 Overview of Changes in libpeas 1.30.0
 =====================================
 
