@@ -1,16 +1,17 @@
 # Bulgarian translation for libpeas po-file.
 # Copyright (C) 2011 Krasimir Chonov <mk2616@abv.bg>.
 # Copyright (C) 2011 Free Software Foundation, Inc.
+# Copyright (C) 2022 Alexander Shopov.
 # This file is distributed under the same license as the libpeas package.
 # Krasimir Chonov <mk2616@abv.bg>, 2011.
-# Alexander Shopov <ash@kambanaria.org>, 2011.
+# Alexander Shopov <ash@kambanaria.org>, 2011, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: libpeas master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-22 19:30+0200\n"
-"PO-Revision-Date: 2012-02-22 19:30+0200\n"
-"Last-Translator: Krasimir Chonov <mk2616@abv.bg>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues\n"
+"POT-Creation-Date: 2022-03-22 02:39+0000\n"
+"PO-Revision-Date: 2022-03-22 18:31+0100\n"
+"Last-Translator: Alexander Shopov <ash@kambanaria.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
@@ -18,122 +19,136 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: ../data/glade/libpeas-gtk.xml.in.h:1
-msgid "Peas Gtk"
-msgstr "Peas Gtk"
-
-#: ../data/glade/libpeas-gtk.xml.in.h:2
-msgid "Plugin Manager"
-msgstr "Управление на приставките"
-
-#: ../data/glade/libpeas-gtk.xml.in.h:3
-msgid "Plugin Manager View"
-msgstr "Изглед на приставките"
-
-#. Translators: Whether builtin plugins should appear in the view (property name)
-#: ../data/glade/libpeas-gtk.xml.in.h:5
-msgid "Show Builtin"
-msgstr "Вградени приставки"
-
-#: ../data/glade/libpeas-gtk.xml.in.h:6
-msgid "View"
-msgstr "Изглед"
-
-#: ../libpeas/peas-engine.c:789
+#: libpeas/peas-engine.c:1112
 #, c-format
-msgid "Dependency '%s' was not found"
-msgstr "Не може да се намери необходимата приставка „%s“"
+msgid "Dependency “%s” was not found"
+msgstr "Зависимостта „%s“ липсва"
 
-#: ../libpeas/peas-engine.c:799
+#: libpeas/peas-engine.c:1122
 #, c-format
-msgid "Dependency '%s' failed to load"
-msgstr "Неуспешно зареждане на необходимата приставка „%s“"
+msgid "Dependency “%s” failed to load"
+msgstr "Зависимостта „%s“ не се зареди"
 
-#: ../libpeas/peas-engine.c:814
+#: libpeas/peas-engine.c:1136
 #, c-format
-msgid "Plugin loader '%s' was not found"
-msgstr "Модулът за зареждане на приставки не бе открит „%s“"
+msgid "Plugin loader “%s” was not found"
+msgstr "Модулът за зареждане на приставки „%s“ не бе открит"
 
-#: ../libpeas/peas-engine.c:826
+#: libpeas/peas-engine.c:1148
 #, c-format
 msgid "Failed to load"
 msgstr "Неуспешно зареждане"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:91
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:95
 msgid "Additional plugins must be disabled"
 msgstr "Трябва да се изключат още приставки"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:98
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:102
 #, c-format
-msgid "The following plugins depend on '%s' and will also be disabled:"
+msgid "The following plugins depend on “%s” and will also be disabled:"
 msgstr "Следните приставки зависят от „%s“ и също ще бъдат изключени:"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:140
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:144
 msgid "Plugins"
 msgstr "Приставки"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:156
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:161
 msgid "An additional plugin must be disabled"
 msgstr "Още една приставка трябва да се изключи"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:163
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:168
 #, c-format
 msgid ""
-"The '%s' plugin depends on the '%s' plugin.\n"
-"If you disable '%s', '%s' will also be disabled."
+"The “%s” plugin depends on the “%s” plugin.\n"
+"If you disable “%s”, “%s” will also be disabled."
 msgstr ""
 "Приставката „%s“ зависи от „%s“.\n"
 "Ако изключите „%s“, „%s“ също ще бъде изключена."
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:183
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:182
+msgid "_Cancel"
+msgstr "_Отказ"
+
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:184
 msgid "Disable Plugins"
 msgstr "Изключване на приставки"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:182
+#: libpeas-gtk/peas-gtk-plugin-manager.c:210
 msgid "There was an error displaying the help."
 msgstr "Възникна грешка при показване на помощната документация."
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:387
+#: libpeas-gtk/peas-gtk-plugin-manager.c:256
+msgid "_Close"
+msgstr "_Затваряне"
+
+#: libpeas-gtk/peas-gtk-plugin-manager.c:268
+msgid "_Help"
+msgstr "Помо_щ"
+
+#: libpeas-gtk/peas-gtk-plugin-manager.c:326
+msgid "Pr_eferences"
+msgstr "_Настройки"
+
+#: libpeas-gtk/peas-gtk-plugin-manager.c:331
+#: libpeas-gtk/peas-gtk-plugin-manager.c:382
 msgid "_About"
 msgstr "_Относно"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:395
+#: libpeas-gtk/peas-gtk-plugin-manager.c:390
 msgid "_Preferences"
 msgstr "_Настройки"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:334
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:352
 msgid "_Enabled"
 msgstr "_Включена"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:345
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:363
 msgid "E_nable All"
 msgstr "В_ключване на всички"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:349
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:367
 msgid "_Disable All"
 msgstr "_Изключване на всички"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:508
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:576
 msgid "Enabled"
 msgstr "Включена"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:529
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:597
 msgid "Plugin"
 msgstr "Приставка"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:619
+#. Avoid having markup in a translated string
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:684
 #, c-format
-msgid ""
-"<b>The plugin '%s' could not be loaded</b>\n"
-"An error occurred: %s"
-msgstr ""
-"<b>Приставката не може да се зареди: „%s“</b>\n"
-"Възникна грешка: %s"
+msgid "The plugin “%s” could not be loaded"
+msgstr "Приставката „%s“ не може да се зареди"
 
-#: ../peas-demo/peas-demo.c:40
+#. Keep separate because some translations do special things
+#. * for the ':' and might accidentally not keep the space after it
+#.
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:690
+#, c-format
+msgid "An error occurred: %s"
+msgstr "Възникна грешка: %s"
+
+#. Translators: The directory in which the demo program was compiled at
+#: peas-demo/peas-demo.c:43
 msgid "Run from build directory"
 msgstr "Изпълнение от папката за компилиране"
 
-#: ../peas-demo/peas-demo.c:100
-msgid "- libpeas demo application"
+#: peas-demo/peas-demo.c:94
+msgid "_Quit"
+msgstr "_Спиране на програмата"
+
+#: peas-demo/peas-demo.c:119
+msgid "— libpeas demo application"
 msgstr "— демонстрационно приложение на libpeas"
+
+#: tests/libpeas-gtk/plugin-manager.c:80
+msgid "About"
+msgstr "Относно"
+
+#: tests/libpeas-gtk/plugin-manager.c:85
+msgid "Preferences"
+msgstr "Настройки"
