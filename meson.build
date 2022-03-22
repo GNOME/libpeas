@@ -251,7 +251,7 @@ configure_file(
 )
 
 # Options
-build_gtk_doc = gi_docgen_dep.found()
+build_gtk_doc = get_option('gtk_doc') and gi_docgen_dep.found()
 
 install_glade_catalog = get_option('glade_catalog')
 if install_glade_catalog and not gladeui_dep.found()
