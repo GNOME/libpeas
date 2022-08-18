@@ -167,6 +167,14 @@ plugin_info_add_sorted (GQueue         *plugin_list,
            peas_plugin_info_get_module_name (info),
            peas_plugin_info_get_module_name (furthest_dep->data));
 
+  /* GLib only accepts NULL for g_queue_insert_after() at
+   * version 2.44 and above so make sure NULL is handled
+   * before reaching here.
+   */
+#if !GLIB_CHECK_VERSION(2,44,0)
+  g_assert (furthest_dep != NULL);
+#endif
+
   g_queue_insert_after (plugin_list, furthest_dep, info);
 }
 
