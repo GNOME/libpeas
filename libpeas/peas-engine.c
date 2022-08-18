@@ -144,12 +144,22 @@ plugin_info_add_sorted (GQueue         *plugin_list,
         }
     }
 
-  /* GLib changed only accepts NULL for
-   * g_queue_insert_after() at version 2.44
-   */
   if (furthest_dep == NULL)
     {
-      g_queue_push_head (plugin_list, info);
+      /* If we have dependencies and we didn't find any matches yet,
+       * then push the item to the tail to improve the chances that
+       * the dependencies will resolve in the proper order. Otherwise
+       * a plugin that has dependency (which also has a dependency)
+       * can resolve in the wrong order.
+       *
+       * Another option here is to do proper dependency solving but
+       * the way things are designed to do resolving at each info
+       * load means that we'd do the depsolve more than necessary.
+       */
+      if (dependencies[0] != NULL)
+        g_queue_push_tail (plugin_list, info);
+      else
+        g_queue_push_head (plugin_list, info);
       return;
     }
 
