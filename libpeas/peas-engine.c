@@ -23,6 +23,7 @@
 
 #include "config.h"
 
+#include <stdlib.h>
 #include <string.h>
 
 #include "peas-i18n-priv.h"
@@ -241,6 +242,16 @@ load_file_dir_real (PeasEngine  *engine,
   return found;
 }
 
+static int
+strptrcmp (gconstpointer a,
+           gconstpointer b)
+{
+  const char * const *stra = a;
+  const char * const *strb = b;
+
+  return strcmp (*stra, *strb);
+}
+
 static gboolean
 load_resource_dir_real (PeasEngine  *engine,
                         const gchar *module_dir,
@@ -266,6 +277,9 @@ load_resource_dir_real (PeasEngine  *engine,
       g_error_free (error);
       return FALSE;
     }
+
+  /* Always sort resource children for improved reproducibility */
+  qsort (children, g_strv_length (children), sizeof (char *), strptrcmp);
 
   for (i = 0; children[i] != NULL; ++i)
     {
