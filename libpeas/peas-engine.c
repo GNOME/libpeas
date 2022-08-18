@@ -150,17 +150,42 @@ plugin_info_add_sorted (GQueue         *plugin_list,
        * then push the item to the tail to improve the chances that
        * the dependencies will resolve in the proper order. Otherwise
        * a plugin that has dependency (which also has a dependency)
-       * can resolve in the wrong order.
+       * can resolve in the wrong order. To slightly improve on this
+       * we can also look for any plugins that depend on this and
+       * insert it before that iter.
        *
        * Another option here is to do proper dependency solving but
        * the way things are designed to do resolving at each info
        * load means that we'd do the depsolve more than necessary.
        */
-      if (dependencies[0] != NULL)
-        g_queue_push_tail (plugin_list, info);
+      if (dependencies[0] == NULL)
+        {
+          g_queue_push_head (plugin_list, info);
+          return;
+        }
       else
-        g_queue_push_head (plugin_list, info);
-      return;
+        {
+          const char *module_name = peas_plugin_info_get_module_name (info);
+          GList *iter;
+
+          for (iter = plugin_list->head; iter; iter = iter->next)
+            {
+              const PeasPluginInfo *other = iter->data;
+              const char **other_dependencies = peas_plugin_info_get_dependencies (other);
+
+              for (i = 0; other_dependencies[i] != NULL; i++)
+                {
+                  if (strcmp (other_dependencies[i], module_name) == 0)
+                    {
+                      g_queue_insert_before (plugin_list, iter, info);
+                      return;
+                    }
+                }
+            }
+
+          g_queue_push_tail (plugin_list, info);
+          return;
+        }
     }
 
   g_debug ("Adding '%s' after '%s' due to dependencies",
