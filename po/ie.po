@@ -1,0 +1,152 @@
+# Interlingue translation for libpeas.
+# Copyright (C) 2022 libpeas's COPYRIGHT HOLDER
+# This file is distributed under the same license as the libpeas package.
+# Olga Smirnova <mistresssilvara@hotmail.com>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: libpeas master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues\n"
+"POT-Creation-Date: 2022-09-18 14:30+0000\n"
+"PO-Revision-Date: 2022-12-10 03:52+0700\n"
+"Last-Translator: \n"
+"Language-Team: Interlingue <ie@li.org>\n"
+"Language: ie\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.1.1\n"
+
+#: libpeas/peas-engine.c:1169
+#, c-format
+msgid "Dependency “%s” was not found"
+msgstr "Dependentie «%s» ne esset trovat"
+
+#: libpeas/peas-engine.c:1179
+#, c-format
+msgid "Dependency “%s” failed to load"
+msgstr "Dependentie «%s» ne esset cargat"
+
+#: libpeas/peas-engine.c:1193
+#, c-format
+msgid "Plugin loader “%s” was not found"
+msgstr "Li cargator de plugines «%s» ne esset trovat"
+
+#: libpeas/peas-engine.c:1205
+#, c-format
+msgid "Failed to load"
+msgstr "Ne successat cargar"
+
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:95
+msgid "Additional plugins must be disabled"
+msgstr "Additional plugines deve esser desactivat"
+
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:102
+#, c-format
+msgid "The following plugins depend on “%s” and will also be disabled:"
+msgstr "Li sequent plugines depende de «%s» e va esser anc desactivat:"
+
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:144
+msgid "Plugins"
+msgstr "Plugines"
+
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:161
+msgid "An additional plugin must be disabled"
+msgstr "Un additional plugin deve esser desactivat"
+
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:168
+#, c-format
+msgid ""
+"The “%s” plugin depends on the “%s” plugin.\n"
+"If you disable “%s”, “%s” will also be disabled."
+msgstr ""
+"Li plugines «%s» depende del plugin «%s».\n"
+"Si on desactiva «%s», «%s» va anc esser desactivat."
+
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:182
+msgid "_Cancel"
+msgstr "_Annular"
+
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:184
+msgid "Disable Plugins"
+msgstr "Desactivar plugines"
+
+#: libpeas-gtk/peas-gtk-plugin-manager.c:210
+msgid "There was an error displaying the help."
+msgstr "Un error ha evenit durante que monstrar li auxilie."
+
+#: libpeas-gtk/peas-gtk-plugin-manager.c:256
+msgid "_Close"
+msgstr "_Cluder"
+
+#: libpeas-gtk/peas-gtk-plugin-manager.c:268
+msgid "_Help"
+msgstr "Au_xilie"
+
+#: libpeas-gtk/peas-gtk-plugin-manager.c:326
+msgid "Pr_eferences"
+msgstr "Pr_eferenties"
+
+#: libpeas-gtk/peas-gtk-plugin-manager.c:331
+#: libpeas-gtk/peas-gtk-plugin-manager.c:382
+msgid "_About"
+msgstr "_Pri"
+
+#: libpeas-gtk/peas-gtk-plugin-manager.c:390
+msgid "_Preferences"
+msgstr "_Preferenties"
+
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:352
+msgid "_Enabled"
+msgstr "_Activ"
+
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:363
+msgid "E_nable All"
+msgstr "A_ctivar omni"
+
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:367
+msgid "_Disable All"
+msgstr "Desac_tivar omni"
+
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:576
+msgid "Enabled"
+msgstr "Activ"
+
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:597
+msgid "Plugin"
+msgstr "Plugin"
+
+#. Avoid having markup in a translated string
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:684
+#, c-format
+msgid "The plugin “%s” could not be loaded"
+msgstr "Ne successat cargar li plugin «%s»"
+
+#. Keep separate because some translations do special things
+#. * for the ':' and might accidentally not keep the space after it
+#.
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:690
+#, c-format
+msgid "An error occurred: %s"
+msgstr "Un errore evenit: %s"
+
+#. Translators: The directory in which the demo program was compiled at
+#: peas-demo/peas-demo.c:43
+msgid "Run from build directory"
+msgstr "Lansat ex li fólder de construction"
+
+#: peas-demo/peas-demo.c:94
+msgid "_Quit"
+msgstr "S_urtir"
+
+#: peas-demo/peas-demo.c:119
+msgid "— libpeas demo application"
+msgstr "— un application de demonstration de libpeas"
+
+#: tests/libpeas-gtk/plugin-manager.c:80
+msgid "About"
+msgstr "Pri"
+
+#: tests/libpeas-gtk/plugin-manager.c:85
+msgid "Preferences"
+msgstr "Preferenties"
