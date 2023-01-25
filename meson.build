@@ -86,7 +86,7 @@ config_h.set_quoted('GETTEXT_PACKAGE', package_string)
 # Dependencies
 cc = meson.get_compiler('c')
 
-glib_req_version = '2.38.0'
+glib_req_version = '2.44.0'
 
 glib_req = '>= @0@'.format(glib_req_version)
 introspection_req = '>= 1.39.0'
