@@ -127,9 +127,11 @@ enum {
 static guint signals[LAST_SIGNAL];
 static GParamSpec *properties[N_PROPERTIES] = { NULL };
 
-G_DEFINE_TYPE_WITH_PRIVATE (PeasExtensionSet,
-                            peas_extension_set,
-                            G_TYPE_OBJECT)
+static void list_model_iface_init (GListModelInterface *iface);
+
+G_DEFINE_TYPE_WITH_CODE (PeasExtensionSet, peas_extension_set, G_TYPE_OBJECT,
+                         G_ADD_PRIVATE (PeasExtensionSet)
+                         G_IMPLEMENT_INTERFACE (G_TYPE_LIST_MODEL, list_model_iface_init))
 
 #define GET_PRIV(o) \
   (peas_extension_set_get_instance_private (o))
@@ -207,6 +209,7 @@ add_extension (PeasExtensionSet *set,
   PeasExtensionSetPrivate *priv = GET_PRIV (set);
   PeasExtension *exten;
   ExtensionItem *item;
+  guint position;
 
   /* Let's just ignore unloaded plugins... */
   if (!peas_plugin_info_is_loaded (info))
@@ -225,7 +228,11 @@ add_extension (PeasExtensionSet *set,
   item->info = info;
   item->exten = exten;
 
+  position = priv->extensions.length;
+
   g_queue_push_tail (&priv->extensions, item);
+
+  g_list_model_items_changed (G_LIST_MODEL (set), position, 0, 1);
   g_signal_emit (set, signals[EXTENSION_ADDED], 0, info, exten);
 }
 
@@ -246,8 +253,9 @@ remove_extension (PeasExtensionSet *set,
 {
   PeasExtensionSetPrivate *priv = GET_PRIV (set);
   GList *l;
+  guint position = 0;
 
-  for (l = priv->extensions.head; l != NULL; l = l->next)
+  for (l = priv->extensions.head; l != NULL; l = l->next, position++)
     {
       ExtensionItem *item = l->data;
 
@@ -256,6 +264,7 @@ remove_extension (PeasExtensionSet *set,
 
       remove_extension_item (set, item);
       g_queue_delete_link (&priv->extensions, l);
+      g_list_model_items_changed (G_LIST_MODEL (set), position, 1, 0);
       return;
     }
 }
@@ -801,3 +810,40 @@ peas_extension_set_new (PeasEngine  *engine,
 
   return set;
 }
+
+static guint
+peas_extension_set_get_n_items (GListModel *model)
+{
+  PeasExtensionSet *set = PEAS_EXTENSION_SET (model);
+  PeasExtensionSetPrivate *priv = GET_PRIV (set);
+
+  return priv->extensions.length;
+}
+
+static gpointer
+peas_extension_set_get_item (GListModel *model,
+                             guint       position)
+{
+  PeasExtensionSet *set = PEAS_EXTENSION_SET (model);
+  PeasExtensionSetPrivate *priv = GET_PRIV (set);
+
+  if (position >= priv->extensions.length)
+    return NULL;
+
+  return g_object_ref (g_queue_peek_nth (&priv->extensions, position));
+}
+
+static GType
+peas_extension_set_get_item_type (GListModel *model)
+{
+  return G_TYPE_OBJECT;
+}
+
+static void
+list_model_iface_init (GListModelInterface *iface)
+{
+  iface->get_item_type = peas_extension_set_get_item_type;
+  iface->get_item = peas_extension_set_get_item;
+  iface->get_n_items = peas_extension_set_get_n_items;
+}
+
