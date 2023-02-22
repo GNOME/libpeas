@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libpeas master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues\n"
-"POT-Creation-Date: 2022-08-18 21:12+0000\n"
-"PO-Revision-Date: 2019-09-05 20:29+0300\n"
+"POT-Creation-Date: 2023-01-25 21:05+0000\n"
+"PO-Revision-Date: 2023-02-20 21:57+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
 "Language: tr\n"
@@ -21,28 +21,28 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 3.1.1\n"
 "X-POOTLE-MTIME: 1433229099.000000\n"
 
-#: libpeas/peas-engine.c:1144
+#: libpeas/peas-engine.c:1169
 #, c-format
 msgid "Dependency “%s” was not found"
 msgstr "“%s” bağımlılığı bulunamadı"
 
-#: libpeas/peas-engine.c:1154
+#: libpeas/peas-engine.c:1179
 #, c-format
 msgid "Dependency “%s” failed to load"
 msgstr "“%s” bağımlılığı yüklenemedi"
 
-#: libpeas/peas-engine.c:1168
+#: libpeas/peas-engine.c:1193
 #, c-format
 msgid "Plugin loader “%s” was not found"
 msgstr "Eklenti yükleyicisi “%s” bulunamadı"
 
-#: libpeas/peas-engine.c:1180
+#: libpeas/peas-engine.c:1205
 #, c-format
 msgid "Failed to load"
-msgstr "Yükleme başarısız"
+msgstr "Yüklenemedi"
 
 #: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:95
 msgid "Additional plugins must be disabled"
