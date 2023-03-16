@@ -20,7 +20,6 @@ libpeas_testing_deps = [
 ]
 
 libpeas_testing_c_args = [
-  '-DHAVE_CONFIG_H',
   '-DBUILDDIR="@0@"'.format(builddir),
   '-DSRCDIR="@0@"'.format(srcdir),
 ]

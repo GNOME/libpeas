@@ -26,7 +26,6 @@ libintrospection_deps = [
 ]
 
 libintrospection_c_args = [
-  '-DHAVE_CONFIG_H',
 ]
 
 libintrospection_lib = library(

@@ -21,9 +21,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include "config.h"
 
 #include <lua.h>
 #include <lauxlib.h>
@@ -179,7 +177,7 @@ main (int   argc,
 
 #undef EXTENSION_TEST
 #undef EXTENSION_TEST_FUNC
-  
+
 #define EXTENSION_TEST(loader, path, func) \
   testing_extension_add (EXTENSION_TEST_NAME (loader, path), \
                          (gpointer) test_extension_lua_##func)

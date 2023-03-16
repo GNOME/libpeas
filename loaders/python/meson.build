@@ -24,7 +24,6 @@ python3_loader_deps = [
 ]
 
 python3_loader_c_args = [
-  '-DHAVE_CONFIG_H',
   '-DPEAS_LOCALEDIR="@0@"'.format(localedir),
   '-DPYGOBJECT_MAJOR_VERSION=@0@'.format(pygobject_version_major),
   '-DPYGOBJECT_MINOR_VERSION=@0@'.format(pygobject_version_minor),

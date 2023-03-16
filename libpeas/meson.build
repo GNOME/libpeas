@@ -58,7 +58,6 @@ libpeas_deps = [
 ]
 
 libpeas_c_args = [
-  '-DHAVE_CONFIG_H',
   '-DG_LOG_DOMAIN="libpeas"',
   '-DDATADIR="@0@"'.format(datadir),
   '-DLIBDIR="@0@"'.format(libdir),

@@ -21,9 +21,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include "config.h"
 
 #include "peas-plugin-loader-lua.h"
 #include "libpeas/peas-plugin-info-priv.h"

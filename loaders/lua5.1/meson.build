@@ -22,7 +22,6 @@ lua51_loader_deps = [
 ]
 
 lua51_loader_c_args = [
-  '-DHAVE_CONFIG_H',
   '-DLGI_MAJOR_VERSION=@0@'.format(lua51_lgi_version_major),
   '-DLGI_MINOR_VERSION=@0@'.format(lua51_lgi_version_minor),
   '-DLGI_MICRO_VERSION=@0@'.format(lua51_lgi_version_micro),
