@@ -204,7 +204,9 @@ glib_minor_version = glib_version_arr[1]
 project_c_args = [
   '-DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_@0@_@1@'.format(glib_major_version, glib_minor_version),
   '-DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_@0@_@1@'.format(glib_major_version, glib_minor_version),
+  '-DLIBPEAS_COMPILATION',
 ]
+add_project_arguments(project_c_args, language: 'c')
 
 global_c_args = []
 test_c_args = [

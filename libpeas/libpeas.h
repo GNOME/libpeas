@@ -21,12 +21,14 @@
 
 #pragma once
 
-#include "peas-autocleanups.h"
-#include "peas-engine.h"
-#include "peas-extension.h"
-#include "peas-extension-base.h"
-#include "peas-extension-set.h"
-#include "peas-object-module.h"
-#include "peas-plugin-info.h"
-#include "peas-version.h"
-#include "peas-version-macros.h"
+#define LIBPEAS_INSIDE
+# include "peas-autocleanups.h"
+# include "peas-engine.h"
+# include "peas-extension.h"
+# include "peas-extension-base.h"
+# include "peas-extension-set.h"
+# include "peas-object-module.h"
+# include "peas-plugin-info.h"
+# include "peas-version.h"
+# include "peas-version-macros.h"
+#undef LIBPEAS_INSIDE

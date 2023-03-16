@@ -35,7 +35,7 @@ python3_loader_sha = shared_module(
   python3_loader_c + python3_loader_res,
   include_directories: rootdir,
   dependencies: python3_loader_deps,
-  c_args: project_c_args + python3_loader_c_args,
+  c_args: python3_loader_c_args,
   install: true,
   install_dir: join_paths(
     pkglibdir,

@@ -21,6 +21,10 @@
 
 #pragma once
 
+#if !defined (LIBPEAS_INSIDE) && !defined (LIBPEAS_COMPILATION)
+# error "Only <libpeas.h> can be included directly."
+#endif
+
 #include <glib.h>
 
 #include "peas-version.h"
