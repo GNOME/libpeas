@@ -78,6 +78,7 @@ config_h.set_quoted('PACKAGE_URL', 'https://wiki.gnome.org/Projects/Libpeas')
 config_h.set_quoted('PACKAGE_URL', 'https://wiki.gnome.org/Projects/Libpeas')
 config_h.set_quoted('PACKAGE_VERSION', version)
 config_h.set_quoted('VERSION', version)
+config_h.set_quoted('VERSION_MAJOR_S', '@0@'.format(version_major))
 
 config_h.set_quoted('GETTEXT_PACKAGE', package_string)
 
