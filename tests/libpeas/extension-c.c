@@ -31,6 +31,7 @@
 #include "plugins/embedded/embedded-plugin.h"
 #include "plugins/embedded/embedded-resources.h"
 
+#include "peas-activatable.h"
 
 static void
 test_extension_c_embedded (PeasEngine *engine)

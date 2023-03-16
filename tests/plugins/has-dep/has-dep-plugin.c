@@ -29,6 +29,8 @@
 
 #include <libpeas/peas.h>
 
+#include "peas-activatable.h"
+
 #include "has-dep-plugin.h"
 
 typedef struct {

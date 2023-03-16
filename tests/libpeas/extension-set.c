@@ -29,6 +29,8 @@
 #include <glib-object.h>
 #include <libpeas/peas.h>
 
+#include "peas-activatable.h"
+
 #include "testing/testing.h"
 
 typedef struct _TestFixture TestFixture;
@@ -282,7 +284,7 @@ test_extension_set_extension_added (PeasEngine *engine)
    * be synced with the number of added extensions
    */
   extension_set = testing_extension_set_new (engine, &active);
-  
+
   g_object_unref (extension_set);
 
   /* Verify that freeing the extension

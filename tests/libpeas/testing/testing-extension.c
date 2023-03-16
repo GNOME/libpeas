@@ -39,6 +39,8 @@
 #include "introspection-has-prerequisite.h"
 #include "introspection-unimplemented.h"
 
+#include "peas-activatable.h"
+
 typedef struct _TestFixture TestFixture;
 
 struct _TestFixture {

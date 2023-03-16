@@ -29,6 +29,8 @@
 
 #include "embedded-plugin.h"
 
+#include "peas-activatable.h"
+
 typedef struct {
   GObject *object;
 } TestingEmbeddedPluginPrivate;
