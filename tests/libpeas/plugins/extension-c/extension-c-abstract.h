@@ -21,8 +21,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifndef __EXTENSION_C_ABSTRACT_H__
-#define __EXTENSION_C_ABSTRACT_H__
+#pragma once
 
 #include "introspection-abstract.h"
 
@@ -50,5 +49,3 @@ GType testing_extension_c_abstract_get_type (void) G_GNUC_CONST;
 void  testing_extension_c_abstract_register (GTypeModule *module);
 
 G_END_DECLS
-
-#endif /* __EXTENSION_C_ABSTRACT_H__ */

@@ -21,8 +21,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifndef __PEAS_LUA_INTERNAL_H__
-#define __PEAS_LUA_INTERNAL_H__
+#pragma once
 
 #include <glib.h>
 #include <lua.h>
@@ -38,5 +37,3 @@ gboolean  peas_lua_internal_call     (lua_State   *L,
                                       gint         return_type);
 
 G_END_DECLS
-
-#endif /* __PEAS_LUA_INTERNAL_H__ */

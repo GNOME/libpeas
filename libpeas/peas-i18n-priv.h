@@ -19,8 +19,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifndef __PEAS_I18N_PRIV_H__
-#define __PEAS_I18N_PRIV_H__
+#pragma once
 
 #include <glib.h>
 
@@ -30,5 +29,3 @@ G_BEGIN_DECLS
 #define I_(s) g_intern_string(s)
 
 G_END_DECLS
-
-#endif /* __PEAS_I18N_PRIV_H__ */

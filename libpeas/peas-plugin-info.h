@@ -22,8 +22,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifndef __PEAS_PLUGIN_INFO_H__
-#define __PEAS_PLUGIN_INFO_H__
+#pragma once
 
 #include <gio/gio.h>
 
@@ -124,5 +123,3 @@ const gchar  *peas_plugin_info_get_external_data (const PeasPluginInfo *info,
                                                   const gchar          *key);
 
 G_END_DECLS
-
-#endif /* __PEAS_PLUGIN_INFO_H__ */

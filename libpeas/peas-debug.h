@@ -22,8 +22,7 @@
  */
 
 
-#ifndef __PEAS_DEBUG_H__
-#define __PEAS_DEBUG_H__
+#pragma once
 
 #include <glib.h>
 
@@ -32,5 +31,3 @@ G_BEGIN_DECLS
 void  peas_debug_init (void);
 
 G_END_DECLS
-
-#endif /* __PEAS_DEBUG_H__ */

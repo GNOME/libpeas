@@ -21,8 +21,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifndef __PEAS_UTILS_H__
-#define __PEAS_UTILS_H__
+#pragma once
 
 #include <glib-object.h>
 
@@ -45,5 +44,3 @@ gint         peas_utils_get_loader_id                      (const gchar   *loade
 const gchar *peas_utils_get_loader_from_id                 (gint           loader_id) G_GNUC_CONST;
 const gchar *peas_utils_get_loader_module_from_id          (gint           loader_id) G_GNUC_CONST;
 const gint  *peas_utils_get_conflicting_loaders_from_id    (gint           loader_id) G_GNUC_CONST;
-
-#endif /* __PEAS_UTILS_H__ */

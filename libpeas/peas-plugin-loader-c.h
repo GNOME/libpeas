@@ -21,8 +21,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifndef __PEAS_PLUGIN_LOADER_C_H__
-#define __PEAS_PLUGIN_LOADER_C_H__
+#pragma once
 
 #include "peas-plugin-loader.h"
 
@@ -50,5 +49,3 @@ GType             peas_plugin_loader_c_get_type    (void) G_GNUC_CONST;
 PeasPluginLoader *peas_plugin_loader_c_new         (void);
 
 G_END_DECLS
-
-#endif /* __PEAS_PLUGIN_LOADER_C_H__ */

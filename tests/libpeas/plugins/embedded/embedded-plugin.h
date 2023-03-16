@@ -21,8 +21,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifndef __TESTING_EMBEDDED_PLUGIN_H__
-#define __TESTING_EMBEDDED_PLUGIN_H__
+#pragma once
 
 #include <libpeas.h>
 
@@ -53,5 +52,3 @@ GType                testing_embedded_plugin_get_type       (void) G_GNUC_CONST;
 G_MODULE_EXPORT void testing_embedded_plugin_register_types (PeasObjectModule *module);
 
 G_END_DECLS
-
-#endif /* __TESTING_EMBEDDED_PLUGIN_H__ */

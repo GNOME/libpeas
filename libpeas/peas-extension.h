@@ -21,8 +21,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifndef __PEAS_EXTENSION_H__
-#define __PEAS_EXTENSION_H__
+#pragma once
 
 #include <glib-object.h>
 #include <girepository.h>
@@ -76,5 +75,3 @@ gboolean     peas_extension_callv           (PeasExtension *exten,
 #endif
 
 G_END_DECLS
-
-#endif /* __PEAS_EXTENSION_H__ */

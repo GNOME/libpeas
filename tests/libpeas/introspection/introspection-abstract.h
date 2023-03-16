@@ -21,8 +21,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifndef __INTROSPECTION_ABSTRACT_H__
-#define __INTROSPECTION_ABSTRACT_H__
+#pragma once
 
 #include <libpeas.h>
 
@@ -65,5 +64,3 @@ void   introspection_abstract_set_value (IntrospectionAbstract *abstract,
                                          gint                   value);
 
 G_END_DECLS
-
-#endif /* __INTROSPECTION_ABSTRACT_H__ */

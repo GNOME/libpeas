@@ -21,8 +21,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifndef __PEAS_LUA_UTILS_H__
-#define __PEAS_LUA_UTILS_H__
+#pragma once
 
 #include <glib.h>
 #include <lua.h>
@@ -48,5 +47,3 @@ gboolean peas_lua_utils_load_resource (lua_State   *L,
                                        guint        n_results);
 
 G_END_DECLS
-
-#endif /* __PEAS_LUA_UTILS_H__ */

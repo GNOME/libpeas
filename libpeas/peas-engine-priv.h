@@ -21,8 +21,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifndef __PEAS_ENGINE_PRIV_H__
-#define __PEAS_ENGINE_PRIV_H__
+#pragma once
 
 #include "peas-version-macros.h"
 
@@ -32,5 +31,3 @@ PEAS_AVAILABLE_IN_ALL
 void _peas_engine_shutdown (void);
 
 G_END_DECLS
-
-#endif /* __PEAS_ENGINE_PRIV_H__ */

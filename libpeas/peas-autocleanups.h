@@ -21,8 +21,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifndef __PEAS_AUTOCLEANUPS_H__
-#define __PEAS_AUTOCLEANUPS_H__
+#pragma once
 
 #include "peas-engine.h"
 #include "peas-extension.h"
@@ -45,5 +44,3 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (PeasObjectModule, g_object_unref)
 #endif /* __GI_SCANNER__ */
 
 G_END_DECLS
-
-#endif /* __PEAS_AUTOCLEANUPS_H__ */

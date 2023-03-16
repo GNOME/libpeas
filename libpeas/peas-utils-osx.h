@@ -22,8 +22,7 @@
  *
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
-#ifndef __PEAS_UTILS_OSX_H__
-#define __PEAS_UTILS_OSX_H__
+#pragma once
 
 #include <glib.h>
 
@@ -38,6 +37,3 @@ gchar *peas_dirs_os_x_get_locale_dir          (void);
 void   peas_open_url_osx                      (const gchar *uri);
 
 G_END_DECLS
-
-#endif /* __PEAS_UTILS_OSX_H__ */
-

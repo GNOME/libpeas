@@ -21,8 +21,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifndef __PEAS_PLUGIN_LOADER_H__
-#define __PEAS_PLUGIN_LOADER_H__
+#pragma once
 
 #include <glib-object.h>
 #include <gmodule.h>
@@ -100,5 +99,3 @@ PEAS_AVAILABLE_IN_ALL
 void          peas_plugin_loader_garbage_collect      (PeasPluginLoader *loader);
 
 G_END_DECLS
-
-#endif /* __PEAS_PLUGIN_LOADER_H__ */

@@ -21,8 +21,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifndef __INTROSPECTION_UNIMPLEMENTED_H__
-#define __INTROSPECTION_UNIMPLEMENTED_H__
+#pragma once
 
 #include <glib-object.h>
 
@@ -53,5 +52,3 @@ PEAS_TEST_EXPORT
 GType introspection_unimplemented_get_type (void)  G_GNUC_CONST;
 
 G_END_DECLS
-
-#endif /* __INTROSPECTION_UNIMPLEMENTED_H__ */

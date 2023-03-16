@@ -19,8 +19,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifndef __PEAS_VERSION_MACROS_H__
-#define __PEAS_VERSION_MACROS_H__
+#pragma once
 
 #include <glib.h>
 
@@ -141,5 +140,3 @@
 #else
 # define PEAS_AVAILABLE_IN_1_24                 _PEAS_EXTERN
 #endif
-
-#endif /* __PEAS_VERSION_MACROS_H__ */

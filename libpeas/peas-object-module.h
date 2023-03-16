@@ -24,8 +24,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifndef __PEAS_OBJECT_MODULE_H__
-#define __PEAS_OBJECT_MODULE_H__
+#pragma once
 
 #include <glib-object.h>
 #include <gmodule.h>
@@ -139,5 +138,3 @@ void                peas_object_module_register_extension_type
                                                                GType             impl_type);
 
 G_END_DECLS
-
-#endif /* __PEAS_OBJECT_MODULE_H__ */

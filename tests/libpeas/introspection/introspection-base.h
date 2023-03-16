@@ -21,8 +21,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifndef __INTROSPECTION_BASE_H__
-#define __INTROSPECTION_BASE_H__
+#pragma once
 
 #include <libpeas.h>
 
@@ -64,5 +63,3 @@ PEAS_TEST_EXPORT
 GSettings            *introspection_base_get_settings    (IntrospectionBase *base);
 
 G_END_DECLS
-
-#endif /* __INTROSPECTION_BASE_H__ */

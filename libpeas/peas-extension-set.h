@@ -21,8 +21,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifndef __PEAS_EXTENSION_SET_H__
-#define __PEAS_EXTENSION_SET_H__
+#pragma once
 
 #include <glib-object.h>
 
@@ -141,5 +140,3 @@ PeasExtensionSet  *peas_extension_set_new         (PeasEngine       *engine,
                                                    ...);
 
 G_END_DECLS
-
-#endif /* __PEAS_EXTENSION_SET_H__ */

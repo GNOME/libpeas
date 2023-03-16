@@ -21,8 +21,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifndef __INTROSPECTION_CALLABLE_H__
-#define __INTROSPECTION_CALLABLE_H__
+#pragma once
 
 #include <glib-object.h>
 
@@ -83,5 +82,3 @@ void         introspection_callable_call_multi_args  (IntrospectionCallable *cal
                                                       gint                  *inout);
 
 G_END_DECLS
-
-#endif /* __INTROSPECTION_CALLABLE_H__ */

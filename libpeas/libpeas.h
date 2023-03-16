@@ -19,8 +19,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifndef __LIBPEAS_H__
-#define __LIBPEAS_H__
+#pragma once
 
 #include "peas-autocleanups.h"
 #include "peas-engine.h"
@@ -31,5 +30,3 @@
 #include "peas-plugin-info.h"
 #include "peas-version.h"
 #include "peas-version-macros.h"
-
-#endif /* __LIBPEAS_H__ */

@@ -21,8 +21,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifndef __PEAS_PYTHON_INTERNAL_H__
-#define __PEAS_PYTHON_INTERNAL_H__
+#pragma once
 
 #include <glib.h>
 
@@ -43,5 +42,3 @@ PyObject *peas_python_internal_call     (const gchar  *name,
                                          ...);
 
 G_END_DECLS
-
-#endif /* __PEAS_PYTHON_INTERNAL_H__ */

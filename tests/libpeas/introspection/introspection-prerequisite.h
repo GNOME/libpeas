@@ -21,8 +21,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifndef __INTROSPECTION_PREREQUISITE_H__
-#define __INTROSPECTION_PREREQUISITE_H__
+#pragma once
 
 #include <libpeas.h>
 
@@ -57,5 +56,3 @@ PEAS_TEST_EXPORT
 GType        introspection_prerequisite_get_type         (void) G_GNUC_CONST;
 
 G_END_DECLS
-
-#endif /* __INTROSPECTION_PREREQUISITE_H__ */

@@ -22,8 +22,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifndef __PEAS_PLUGIN_INFO_PRIV_H__
-#define __PEAS_PLUGIN_INFO_PRIV_H__
+#pragma once
 
 #include "peas-plugin-info.h"
 
@@ -73,6 +72,3 @@ PeasPluginInfo *_peas_plugin_info_new   (const gchar    *filename,
                                          const gchar    *data_dir);
 PeasPluginInfo *_peas_plugin_info_ref   (PeasPluginInfo *info);
 void            _peas_plugin_info_unref (PeasPluginInfo *info);
-
-
-#endif /* __PEAS_PLUGIN_INFO_PRIV_H__ */

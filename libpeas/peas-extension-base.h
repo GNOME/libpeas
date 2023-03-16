@@ -21,8 +21,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifndef __PEAS_EXTENSION_BASE_H__
-#define __PEAS_EXTENSION_BASE_H__
+#pragma once
 
 #include <glib-object.h>
 
@@ -81,5 +80,3 @@ PEAS_AVAILABLE_IN_ALL
 gchar           *peas_extension_base_get_data_dir     (PeasExtensionBase *extbase);
 
 G_END_DECLS
-
-#endif /* __PEAS_EXTENSION_BASE_H__ */

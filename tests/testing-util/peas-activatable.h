@@ -21,8 +21,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifndef __PEAS_ACTIVATABLE_H__
-#define __PEAS_ACTIVATABLE_H__
+#pragma once
 
 #include <glib-object.h>
 
@@ -73,5 +72,3 @@ void              peas_activatable_deactivate     (PeasActivatable *activatable)
 void              peas_activatable_update_state   (PeasActivatable *activatable);
 
 G_END_DECLS
-
-#endif /* __PEAS_ACTIVATABLE_H__ */

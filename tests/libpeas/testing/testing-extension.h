@@ -21,8 +21,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifndef __TESTING_EXTENSION_H__
-#define __TESTING_EXTENSION_H__
+#pragma once
 
 #include <libpeas/peas-engine.h>
 
@@ -61,5 +60,3 @@ int testing_extension_run_tests   (void);
                    (GTestFunc) test_extension_##loader##_##func)
 
 G_END_DECLS
-
-#endif /* __TESTING__EXTENSION_H__ */

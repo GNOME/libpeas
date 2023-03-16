@@ -21,8 +21,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifndef __PEAS_INTROSPECTION_H__
-#define __PEAS_INTROSPECTION_H__
+#pragma once
 
 #include <glib-object.h>
 #include <girepository.h>
@@ -47,5 +46,3 @@ gboolean         peas_gi_method_call              (GObject        *instance,
                                                    GIArgument     *return_value);
 
 G_END_DECLS
-
-#endif

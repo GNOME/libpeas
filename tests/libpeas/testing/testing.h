@@ -21,8 +21,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifndef __TESTING_H__
-#define __TESTING_H__
+#pragma once
 
 #include <libpeas/peas-engine.h>
 #include <testing-util.h>
@@ -43,5 +42,3 @@ PeasEngine *testing_engine_new_full  (gboolean nonglobal_loaders);
 #define testing_run_tests   testing_util_run_tests
 
 G_END_DECLS
-
-#endif /* __TESTING_H__ */

@@ -21,8 +21,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#ifndef __TESTING_UTIL_H__
-#define __TESTING_UTIL_H__
+#pragma once
 
 #include <libpeas/peas-engine.h>
 
@@ -61,5 +60,3 @@ void        testing_util_pop_log_hooks   (void);
 #define testing_util_engine_new() (testing_util_engine_new_full (FALSE))
 
 G_END_DECLS
-
-#endif /* __TESTING_UTIL_H__ */
