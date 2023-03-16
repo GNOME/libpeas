@@ -714,13 +714,13 @@ testing_extension_basic (const gchar *loader_)
 }
 
 void
-testing_extension_callable (const gchar *loader)
+testing_extension_callable (const gchar *loader_)
 {
-  _EXTENSION_TEST (loader, "call-no-args", call_no_args);
-  _EXTENSION_TEST (loader, "call-with-return", call_with_return);
-  _EXTENSION_TEST (loader, "call-single-arg", call_single_arg);
-  _EXTENSION_TEST (loader, "call-multi-args", call_multi_args);
-  _EXTENSION_TEST (loader, "call-abstract", call_abstract);
+  _EXTENSION_TEST (loader_, "call-no-args", call_no_args);
+  _EXTENSION_TEST (loader_, "call-with-return", call_with_return);
+  _EXTENSION_TEST (loader_, "call-single-arg", call_single_arg);
+  _EXTENSION_TEST (loader_, "call-multi-args", call_multi_args);
+  _EXTENSION_TEST (loader_, "call-abstract", call_abstract);
 }
 
 void
