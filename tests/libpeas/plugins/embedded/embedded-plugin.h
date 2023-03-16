@@ -22,7 +22,7 @@
 #ifndef __TESTING_EMBEDDED_PLUGIN_H__
 #define __TESTING_EMBEDDED_PLUGIN_H__
 
-#include <libpeas/peas.h>
+#include <libpeas.h>
 
 #include "../../../testing-util/peas-test-common.h"
 

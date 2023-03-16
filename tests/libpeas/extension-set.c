@@ -27,7 +27,7 @@
 
 #include <glib.h>
 #include <glib-object.h>
-#include <libpeas/peas.h>
+#include <libpeas.h>
 
 #include "peas-activatable.h"
 

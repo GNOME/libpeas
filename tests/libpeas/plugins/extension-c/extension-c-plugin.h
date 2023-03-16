@@ -22,7 +22,7 @@
 #ifndef __EXTENSION_C_PLUGIN_H__
 #define __EXTENSION_C_PLUGIN_H__
 
-#include <libpeas/peas.h>
+#include <libpeas.h>
 
 G_BEGIN_DECLS
 

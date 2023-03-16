@@ -28,7 +28,7 @@
 #include <string.h>
 
 #include <glib.h>
-#include <libpeas/peas.h>
+#include <libpeas.h>
 
 #include "testing.h"
 #include "testing-extension.h"

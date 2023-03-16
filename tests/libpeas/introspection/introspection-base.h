@@ -22,7 +22,7 @@
 #ifndef __INTROSPECTION_BASE_H__
 #define __INTROSPECTION_BASE_H__
 
-#include <libpeas/peas.h>
+#include <libpeas.h>
 
 #include "../../testing-util/peas-test-common.h"
 

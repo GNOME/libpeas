@@ -27,7 +27,7 @@
 #include <glib-object.h>
 #include <gmodule.h>
 
-#include <libpeas/peas.h>
+#include <libpeas.h>
 
 #include "introspection-abstract.h"
 #include "introspection-base.h"

@@ -23,8 +23,8 @@
 #include <config.h>
 #endif
 
-#include "libpeas/peas.h"
-#include "libpeas/peas-plugin-info-priv.h"
+#include "libpeas.h"
+#include "peas-plugin-info-priv.h"
 
 #include "testing/testing-extension.h"
 #include "introspection/introspection-base.h"

@@ -22,7 +22,7 @@
 #ifndef __TESTING_HAS_DEP_PLUGIN_H__
 #define __TESTING_HAS_DEP_PLUGIN_H__
 
-#include <libpeas/peas.h>
+#include <libpeas.h>
 
 G_BEGIN_DECLS
 

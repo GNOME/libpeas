@@ -25,9 +25,9 @@
 
 #include <stdlib.h>
 #include <glib.h>
-#include <libpeas/peas.h>
+#include <libpeas.h>
 
-#include "libpeas/peas-engine-priv.h"
+#include "peas-engine-priv.h"
 
 #include "testing/testing.h"
 

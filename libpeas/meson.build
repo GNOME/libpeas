@@ -22,7 +22,7 @@ libpeas_public_h = files(
   'peas-object-module.h',
   'peas-plugin-info.h',
   'peas-version-macros.h',
-  'peas.h',
+  'libpeas.h',
 )
 
 libpeas_sources = files(

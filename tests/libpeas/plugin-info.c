@@ -26,7 +26,7 @@
 #include <stdlib.h>
 
 #include <glib.h>
-#include <libpeas/peas.h>
+#include <libpeas.h>
 
 #include "testing/testing.h"
 

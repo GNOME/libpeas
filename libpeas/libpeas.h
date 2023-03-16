@@ -1,5 +1,5 @@
 /*
- * peas.h
+ * libpeas.h
  * This file is part of libpeas
  *
  * libpeas is free software; you can redistribute it and/or
@@ -17,8 +17,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA.
  */
 
-#ifndef __PEAS_H__
-#define __PEAS_H__
+#ifndef __LIBPEAS_H__
+#define __LIBPEAS_H__
 
 #include "peas-autocleanups.h"
 #include "peas-engine.h"
@@ -30,4 +30,4 @@
 #include "peas-version.h"
 #include "peas-version-macros.h"
 
-#endif
+#endif /* __LIBPEAS_H__ */

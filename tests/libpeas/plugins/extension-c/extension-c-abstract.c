@@ -25,7 +25,7 @@
 
 #include <glib-object.h>
 
-#include <libpeas/peas.h>
+#include <libpeas.h>
 
 #include "extension-c-abstract.h"
 
