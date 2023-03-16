@@ -19,6 +19,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA.
  *
  * Author: Tom Schoonjans <Tom.Schoonjans@gmail.com>
+ *
+ * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 #ifndef __PEAS_UTILS_OSX_H__
 #define __PEAS_UTILS_OSX_H__
