@@ -29,7 +29,6 @@
 
 #include "peas-engine-priv.h"
 #include "peas-i18n-priv.h"
-#include "peas-introspection.h"
 #include "peas-plugin-info.h"
 #include "peas-marshal.h"
 #include "peas-utils.h"

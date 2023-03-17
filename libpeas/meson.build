@@ -33,7 +33,6 @@ libpeas_sources = files(
   'peas-extension-base.c',
   'peas-extension-set.c',
   'peas-i18n.c',
-  'peas-introspection.c',
   'peas-object-module.c',
   'peas-plugin-info.c',
   'peas-plugin-loader.c',
@@ -54,7 +53,6 @@ libpeas_deps = [
   gobject_dep,
   gmodule_dep,
   gio_dep,
-  introspection_dep,
 ]
 
 libpeas_c_args = [
@@ -145,7 +143,6 @@ libpeas_pc_reqs = [
   'gobject-2.0 @0@'.format(glib_req),
   'gmodule-2.0 @0@'.format(glib_req),
   'gio-2.0 @0@'.format(glib_req),
-  'gobject-introspection-1.0 @0@'.format(introspection_req),
 ]
 
 libpeas_pc = pkg.generate(
