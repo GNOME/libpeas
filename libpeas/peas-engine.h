@@ -141,7 +141,7 @@ PeasExtension    *peas_engine_create_extensionv   (PeasEngine      *engine,
                                                    GParameter      *parameters);
 G_GNUC_END_IGNORE_DEPRECATIONS
 
-PEAS_AVAILABLE_IN_1_24
+PEAS_AVAILABLE_IN_ALL
 PeasExtension    *peas_engine_create_extension_with_properties
                                                   (PeasEngine     *engine,
                                                    PeasPluginInfo *info,

@@ -126,7 +126,7 @@ PeasExtensionSet  *peas_extension_set_newv        (PeasEngine       *engine,
                                                    GParameter       *parameters);
 G_GNUC_END_IGNORE_DEPRECATIONS
 
-PEAS_AVAILABLE_IN_1_24
+PEAS_AVAILABLE_IN_ALL
 PeasExtensionSet  *peas_extension_set_new_with_properties (PeasEngine    *engine,
                                                            GType          exten_type,
                                                            guint          n_properties,

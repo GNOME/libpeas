@@ -43,8 +43,7 @@
 # define PEAS_UNAVAILABLE(maj,min) G_UNAVAILABLE(maj,min) _PEAS_EXTERN
 #endif
 
-#define PEAS_VERSION_1_22 (G_ENCODE_VERSION (1, 22))
-#define PEAS_VERSION_1_24 (G_ENCODE_VERSION (1, 24))
+#define PEAS_VERSION_2_0 (G_ENCODE_VERSION (2, 0))
 
 #if (PEAS_MINOR_VERSION == 99)
 # define PEAS_VERSION_CUR_STABLE (G_ENCODE_VERSION (PEAS_MAJOR_VERSION + 1, 0))
@@ -69,15 +68,13 @@
  * the peas.h header.
  *
  * The definition should be one of the predefined PEAS version
- * macros: %PEAS_VERSION_1_22, ...
+ * macros: %PEAS_VERSION_2_0, ...
  *
  * This macro defines the lower bound for the Peas API to use.
  *
  * If a function has been deprecated in a newer version of Peas,
  * it is possible to use this symbol to avoid the compiler warnings
  * without disabling warning for every deprecated function.
- *
- * Since: 1.24
  */
 #ifndef PEAS_VERSION_MIN_REQUIRED
 # define PEAS_VERSION_MIN_REQUIRED (PEAS_VERSION_CUR_STABLE)
@@ -97,8 +94,6 @@
  * If a function has been introduced in a newer version of Peas,
  * it is possible to use this symbol to get compiler warnings when
  * trying to use that function.
- *
- * Since: 1.24
  */
 #ifndef PEAS_VERSION_MAX_ALLOWED
 # if PEAS_VERSION_MIN_REQUIRED > PEAS_VERSION_PREV_STABLE
@@ -111,36 +106,22 @@
 #if PEAS_VERSION_MAX_ALLOWED < PEAS_VERSION_MIN_REQUIRED
 #error "PEAS_VERSION_MAX_ALLOWED must be >= PEAS_VERSION_MIN_REQUIRED"
 #endif
-#if PEAS_VERSION_MIN_REQUIRED < PEAS_VERSION_1_22
-#error "PEAS_VERSION_MIN_REQUIRED must be >= PEAS_VERSION_1_22"
+#if PEAS_VERSION_MIN_REQUIRED < PEAS_VERSION_2_0
+#error "PEAS_VERSION_MIN_REQUIRED must be >= PEAS_VERSION_2_0"
 #endif
 
-#define PEAS_AVAILABLE_IN_ALL                   _PEAS_EXTERN
+#define PEAS_AVAILABLE_IN_ALL                  _PEAS_EXTERN
 
-#if PEAS_VERSION_MIN_REQUIRED >= PEAS_VERSION_1_22
-# define PEAS_DEPRECATED_IN_1_22                PEAS_DEPRECATED
-# define PEAS_DEPRECATED_IN_1_22_FOR(f)         PEAS_DEPRECATED_FOR(f)
+#if PEAS_VERSION_MIN_REQUIRED >= PEAS_VERSION_2_0
+# define PEAS_DEPRECATED_IN_2_0                PEAS_DEPRECATED
+# define PEAS_DEPRECATED_IN_2_0_FOR(f)         PEAS_DEPRECATED_FOR(f)
 #else
-# define PEAS_DEPRECATED_IN_1_22                _PEAS_EXTERN
-# define PEAS_DEPRECATED_IN_1_22_FOR(f)         _PEAS_EXTERN
+# define PEAS_DEPRECATED_IN_2_0                _PEAS_EXTERN
+# define PEAS_DEPRECATED_IN_2_0_FOR(f)         _PEAS_EXTERN
 #endif
 
-#if PEAS_VERSION_MAX_ALLOWED < PEAS_VERSION_1_22
-# define PEAS_AVAILABLE_IN_1_22                 PEAS_UNAVAILABLE(1, 22)
+#if PEAS_VERSION_MAX_ALLOWED < PEAS_VERSION_2_0
+# define PEAS_AVAILABLE_IN_2_0                 PEAS_UNAVAILABLE(2, 0)
 #else
-# define PEAS_AVAILABLE_IN_1_22                 _PEAS_EXTERN
-#endif
-
-#if PEAS_VERSION_MIN_REQUIRED >= PEAS_VERSION_1_24
-# define PEAS_DEPRECATED_IN_1_24                PEAS_DEPRECATED
-# define PEAS_DEPRECATED_IN_1_24_FOR(f)         PEAS_DEPRECATED_FOR(f)
-#else
-# define PEAS_DEPRECATED_IN_1_24                _PEAS_EXTERN
-# define PEAS_DEPRECATED_IN_1_24_FOR(f)         _PEAS_EXTERN
-#endif
-
-#if PEAS_VERSION_MAX_ALLOWED < PEAS_VERSION_1_24
-# define PEAS_AVAILABLE_IN_1_24                 PEAS_UNAVAILABLE(1, 24)
-#else
-# define PEAS_AVAILABLE_IN_1_24                 _PEAS_EXTERN
+# define PEAS_AVAILABLE_IN_2_0                 _PEAS_EXTERN
 #endif
