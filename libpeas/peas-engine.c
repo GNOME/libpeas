@@ -227,7 +227,7 @@ load_plugin_info (PeasEngine  *engine,
   module_name = peas_plugin_info_get_module_name (info);
   if (peas_engine_get_plugin_info (engine, module_name) != NULL)
     {
-      _peas_plugin_info_unref (info);
+      g_object_unref (info);
       return FALSE;
     }
 
@@ -667,7 +667,7 @@ peas_engine_finalize (GObject *object)
     {
       PeasPluginInfo *info = (PeasPluginInfo *) item->data;
 
-      _peas_plugin_info_unref (info);
+      g_object_unref (info);
     }
 
   /* free the search path list */
@@ -779,13 +779,13 @@ peas_engine_class_init (PeasEngineClass *klass)
                                 G_SIGNAL_RUN_LAST,
                                 G_CALLBACK (peas_engine_load_plugin_real),
                                 NULL, NULL,
-                                peas_cclosure_marshal_VOID__BOXED,
+                                peas_cclosure_marshal_VOID__OBJECT,
                                 G_TYPE_NONE,
                                 1,
                                 PEAS_TYPE_PLUGIN_INFO | G_SIGNAL_TYPE_STATIC_SCOPE);
   g_signal_set_va_marshaller (signals[LOAD_PLUGIN],
                               G_TYPE_FROM_CLASS (klass),
-                              peas_cclosure_marshal_VOID__BOXEDv);
+                              peas_cclosure_marshal_VOID__OBJECTv);
 
   /**
    * PeasEngine::unload-plugin:
@@ -806,13 +806,13 @@ peas_engine_class_init (PeasEngineClass *klass)
                                 G_SIGNAL_RUN_LAST,
                                 G_CALLBACK (peas_engine_unload_plugin_real),
                                 NULL, NULL,
-                                peas_cclosure_marshal_VOID__BOXED,
+                                peas_cclosure_marshal_VOID__OBJECT,
                                 G_TYPE_NONE,
                                 1,
                                 PEAS_TYPE_PLUGIN_INFO | G_SIGNAL_TYPE_STATIC_SCOPE);
   g_signal_set_va_marshaller (signals[UNLOAD_PLUGIN],
                               G_TYPE_FROM_CLASS (klass),
-                              peas_cclosure_marshal_VOID__BOXEDv);
+                              peas_cclosure_marshal_VOID__OBJECTv);
 
   g_object_class_install_properties (object_class, N_PROPERTIES, properties);
 

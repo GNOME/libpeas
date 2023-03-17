@@ -60,6 +60,17 @@ static GParamSpec *properties[N_PROPERTIES] = { NULL };
 G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (PeasExtensionBase, peas_extension_base, G_TYPE_OBJECT)
 
 static void
+peas_extension_base_finalize (GObject *object)
+{
+  PeasExtensionBase *extbase = PEAS_EXTENSION_BASE (object);
+  PeasExtensionBasePrivate *priv = peas_extension_base_get_instance_private (extbase);
+
+  g_clear_object (&priv->info);
+
+  G_OBJECT_CLASS (peas_extension_base_parent_class)->finalize (object);
+}
+
+static void
 peas_extension_base_get_property (GObject    *object,
                                   guint       prop_id,
                                   GValue     *value,
@@ -70,7 +81,7 @@ peas_extension_base_get_property (GObject    *object,
   switch (prop_id)
     {
     case PROP_PLUGIN_INFO:
-      g_value_set_boxed (value, peas_extension_base_get_plugin_info (extbase));
+      g_value_set_object (value, peas_extension_base_get_plugin_info (extbase));
       break;
 
     case PROP_DATA_DIR:
@@ -95,7 +106,7 @@ peas_extension_base_set_property (GObject      *object,
   switch (prop_id)
     {
     case PROP_PLUGIN_INFO:
-      priv->info = g_value_get_boxed (value);
+      priv->info = g_value_dup_object (value);
       break;
 
     default:
@@ -114,6 +125,7 @@ peas_extension_base_class_init (PeasExtensionBaseClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
+  object_class->finalize = peas_extension_base_finalize;
   object_class->get_property = peas_extension_base_get_property;
   object_class->set_property = peas_extension_base_set_property;
 
@@ -123,13 +135,13 @@ peas_extension_base_class_init (PeasExtensionBaseClass *klass)
    * The [struct@PluginInfo] related to the current plugin.
    */
   properties[PROP_PLUGIN_INFO] =
-    g_param_spec_boxed ("plugin-info",
-                        "Plugin Information",
-                        "Information related to the current plugin",
-                        PEAS_TYPE_PLUGIN_INFO,
-                        G_PARAM_READWRITE |
-                        G_PARAM_CONSTRUCT_ONLY |
-                        G_PARAM_STATIC_STRINGS);
+    g_param_spec_object ("plugin-info",
+                         "Plugin Information",
+                         "Information related to the current plugin",
+                         PEAS_TYPE_PLUGIN_INFO,
+                         G_PARAM_READWRITE |
+                         G_PARAM_CONSTRUCT_ONLY |
+                         G_PARAM_STATIC_STRINGS);
 
   /**
    * PeasExtensionBase:data-dir:

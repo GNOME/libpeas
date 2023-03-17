@@ -357,14 +357,14 @@ peas_extension_set_class_init (PeasExtensionSetClass *klass)
                   G_SIGNAL_RUN_LAST,
                   0,
                   NULL, NULL,
-                  peas_cclosure_marshal_VOID__BOXED_OBJECT,
+                  peas_cclosure_marshal_VOID__OBJECT_OBJECT,
                   G_TYPE_NONE,
                   2,
                   PEAS_TYPE_PLUGIN_INFO | G_SIGNAL_TYPE_STATIC_SCOPE,
                   PEAS_TYPE_EXTENSION);
   g_signal_set_va_marshaller (signals[EXTENSION_ADDED],
                               G_TYPE_FROM_CLASS (klass),
-                              peas_cclosure_marshal_VOID__BOXED_OBJECTv);
+                              peas_cclosure_marshal_VOID__OBJECT_OBJECTv);
 
   /**
    * PeasExtensionSet::extension-removed:
@@ -389,14 +389,14 @@ peas_extension_set_class_init (PeasExtensionSetClass *klass)
                   G_SIGNAL_RUN_LAST,
                   0,
                   NULL, NULL,
-                  peas_cclosure_marshal_VOID__BOXED_OBJECT,
+                  peas_cclosure_marshal_VOID__OBJECT_OBJECT,
                   G_TYPE_NONE,
                   2,
                   PEAS_TYPE_PLUGIN_INFO | G_SIGNAL_TYPE_STATIC_SCOPE,
                   PEAS_TYPE_EXTENSION);
   g_signal_set_va_marshaller (signals[EXTENSION_REMOVED],
                               G_TYPE_FROM_CLASS (klass),
-                              peas_cclosure_marshal_VOID__BOXED_OBJECTv);
+                              peas_cclosure_marshal_VOID__OBJECT_OBJECTv);
 
   properties[PROP_ENGINE] =
     g_param_spec_object ("engine",

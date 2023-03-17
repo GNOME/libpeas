@@ -34,8 +34,7 @@
 
 G_BEGIN_DECLS
 
-#define PEAS_TYPE_PLUGIN_INFO   (peas_plugin_info_get_type ())
-#define PEAS_PLUGIN_INFO(obj)   ((PeasPluginInfo *) (obj))
+#define PEAS_TYPE_PLUGIN_INFO (peas_plugin_info_get_type())
 
 /**
  * PEAS_PLUGIN_INFO_ERROR:
@@ -67,16 +66,9 @@ typedef enum {
   PEAS_PLUGIN_INFO_ERROR_DEP_LOADING_FAILED
 } PeasPluginInfoError;
 
-/**
- * PeasPluginInfo:
- *
- * The #PeasPluginInfo structure contains only private data and should only
- * be accessed using the provided API.
- */
-typedef struct _PeasPluginInfo PeasPluginInfo;
-
 PEAS_AVAILABLE_IN_ALL
-GType         peas_plugin_info_get_type         (void) G_GNUC_CONST;
+G_DECLARE_FINAL_TYPE (PeasPluginInfo, peas_plugin_info, PEAS, PLUGIN_INFO, GObject)
+
 PEAS_AVAILABLE_IN_ALL
 GQuark        peas_plugin_info_error_quark      (void);
 

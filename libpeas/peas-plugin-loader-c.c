@@ -136,7 +136,7 @@ peas_plugin_loader_c_create_extension (PeasPluginLoader *loader,
   exten_parameters[n_parameters].name = intern_plugin_info;
   memset (&exten_parameters[n_parameters].value, 0, sizeof (GValue));
   g_value_init (&exten_parameters[n_parameters].value, PEAS_TYPE_PLUGIN_INFO);
-  g_value_set_boxed (&exten_parameters[n_parameters].value, info);
+  g_value_set_object (&exten_parameters[n_parameters].value, info);
 
   instance = peas_object_module_create_object (info->loader_data,
                                                exten_type,

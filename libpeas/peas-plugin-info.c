@@ -64,48 +64,45 @@
 
 G_DEFINE_QUARK (peas-plugin-info-error, peas_plugin_info_error)
 
-G_DEFINE_BOXED_TYPE (PeasPluginInfo, peas_plugin_info,
-                     _peas_plugin_info_ref,
-                     _peas_plugin_info_unref)
+G_DEFINE_FINAL_TYPE (PeasPluginInfo, peas_plugin_info, G_TYPE_OBJECT)
 
-PeasPluginInfo *
-_peas_plugin_info_ref (PeasPluginInfo *info)
+static void
+peas_plugin_info_finalize (GObject *object)
 {
-  g_atomic_int_inc (&info->refcount);
-  return info;
+  PeasPluginInfo *info = PEAS_PLUGIN_INFO (object);
+
+  g_clear_pointer (&info->filename, g_free);
+  g_clear_pointer (&info->module_dir, g_free);
+  g_clear_pointer (&info->data_dir, g_free);
+  g_clear_pointer (&info->embedded, g_free);
+  g_clear_pointer (&info->module_name, g_free);
+  g_clear_pointer (&info->dependencies, g_strfreev);
+  g_clear_pointer (&info->name, g_free);
+  g_clear_pointer (&info->desc, g_free);
+  g_clear_pointer (&info->icon_name, g_free);
+  g_clear_pointer (&info->website, g_free);
+  g_clear_pointer (&info->copyright, g_free);
+  g_clear_pointer (&info->version, g_free);
+  g_clear_pointer (&info->help_uri, g_free);
+  g_clear_pointer (&info->authors, g_strfreev);
+  g_clear_pointer (&info->schema_source, g_settings_schema_source_unref);
+  g_clear_pointer (&info->external_data, g_hash_table_unref);
+  g_clear_pointer (&info->error, g_error_free);
+
+  G_OBJECT_CLASS (peas_plugin_info_parent_class)->finalize (object);
 }
 
-void
-_peas_plugin_info_unref (PeasPluginInfo *info)
+static void
+peas_plugin_info_class_init (PeasPluginInfoClass *klass)
 {
-  if (!g_atomic_int_dec_and_test (&info->refcount))
-    return;
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-  g_free (info->filename);
-  g_free (info->module_dir);
-  g_free (info->data_dir);
-  g_free (info->embedded);
-  g_free (info->module_name);
-  g_strfreev (info->dependencies);
-  g_free (info->name);
-  g_free (info->desc);
-  g_free (info->icon_name);
-  g_free (info->website);
-  g_free (info->copyright);
-  g_free (info->version);
-  g_free (info->help_uri);
-  g_strfreev (info->authors);
+  object_class->finalize = peas_plugin_info_finalize;
+}
 
-  if (info->schema_source != NULL)
-    g_settings_schema_source_unref (info->schema_source);
-
-  if (info->external_data != NULL)
-    g_hash_table_unref (info->external_data);
-
-  if (info->error != NULL)
-    g_error_free (info->error);
-
-  g_free (info);
+static void
+peas_plugin_info_init (PeasPluginInfo *info)
+{
 }
 
 /*
@@ -136,11 +133,10 @@ _peas_plugin_info_new (const gchar *filename,
 
   is_resource = g_str_has_prefix (filename, "resource://");
 
-  info = g_new0 (PeasPluginInfo, 1);
-  info->refcount = 1;
+  info = g_object_new (PEAS_TYPE_PLUGIN_INFO, NULL);
 
   plugin_file = g_key_file_new ();
-  
+
   if (is_resource)
     {
       bytes = g_resources_lookup_data (filename + strlen ("resource://"),
@@ -323,11 +319,8 @@ _peas_plugin_info_new (const gchar *filename,
 
 error:
 
-  g_free (info->embedded);
+  g_object_unref (info);
   g_free (loader);
-  g_free (info->module_name);
-  g_free (info->name);
-  g_free (info);
   g_clear_pointer (&bytes, g_bytes_unref);
   g_key_file_free (plugin_file);
 

@@ -27,8 +27,9 @@
 #include "peas-plugin-info.h"
 
 struct _PeasPluginInfo {
+  GObject parent_instance;
+
   /*< private >*/
-  gint refcount;
 
   /* Used and managed by PeasPluginLoader */
   gpointer loader_data;
@@ -67,8 +68,6 @@ struct _PeasPluginInfo {
   guint hidden : 1;
 };
 
-PeasPluginInfo *_peas_plugin_info_new   (const gchar    *filename,
-                                         const gchar    *module_dir,
-                                         const gchar    *data_dir);
-PeasPluginInfo *_peas_plugin_info_ref   (PeasPluginInfo *info);
-void            _peas_plugin_info_unref (PeasPluginInfo *info);
+PeasPluginInfo *_peas_plugin_info_new (const gchar *filename,
+                                       const gchar *module_dir,
+                                       const gchar *data_dir);
