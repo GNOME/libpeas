@@ -34,57 +34,10 @@
 
 G_BEGIN_DECLS
 
-/*
- * Type checking and casting macros
- */
-#define PEAS_TYPE_EXTENSION_SET            (peas_extension_set_get_type())
-#define PEAS_EXTENSION_SET(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), PEAS_TYPE_EXTENSION_SET, PeasExtensionSet))
-#define PEAS_EXTENSION_SET_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass), PEAS_TYPE_EXTENSION_SET, PeasExtensionSetClass))
-#define PEAS_IS_EXTENSION_SET(obj)         (G_TYPE_CHECK_INSTANCE_TYPE((obj), PEAS_TYPE_EXTENSION_SET))
-#define PEAS_IS_EXTENSION_SET_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), PEAS_TYPE_EXTENSION_SET))
-#define PEAS_EXTENSION_SET_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj), PEAS_TYPE_EXTENSION_SET, PeasExtensionSetClass))
+#define PEAS_TYPE_EXTENSION_SET (peas_extension_set_get_type())
 
-typedef struct _PeasExtensionSet         PeasExtensionSet;
-typedef struct _PeasExtensionSetClass    PeasExtensionSetClass;
-typedef struct _PeasExtensionSetPrivate  PeasExtensionSetPrivate;
-
-/**
- * PeasExtensionSet:
- *
- * The #PeasExtensionSet structure contains only private data and should only
- * be accessed using the provided API.
- */
-struct _PeasExtensionSet {
-  GObject parent;
-
-  PeasExtensionSetPrivate *priv;
-};
-
-/**
- * PeasExtensionSetClass:
- * @parent_class: The parent class.
- * @extension_added: Signal class handler for the
- *                   #PeasExtensionSet::extension-added signal.
- * @extension_removed: Signal class handler for the
- *                   #PeasExtensionSet::extension-removed signal.
- *
- * The class structure for #PeasExtensionSet.
- */
-struct _PeasExtensionSetClass {
-  GObjectClass parent_class;
-
-  /*< public >*/
-  /* Signals */
-  void       (*extension_added)           (PeasExtensionSet *set,
-                                           PeasPluginInfo   *info,
-                                           PeasExtension    *exten);
-  void       (*extension_removed)         (PeasExtensionSet *set,
-                                           PeasPluginInfo   *info,
-                                           PeasExtension    *exten);
-
-  /*< private >*/
-  gpointer padding[8];
-};
+PEAS_AVAILABLE_IN_ALL
+G_DECLARE_FINAL_TYPE (PeasExtensionSet, peas_extension_set, PEAS, EXTENSION_SET, GObject)
 
 /**
  * PeasExtensionSetForeachFunc:
@@ -103,36 +56,28 @@ typedef void (*PeasExtensionSetForeachFunc) (PeasExtensionSet *set,
                                              PeasExtension    *exten,
                                              gpointer          data);
 
-/*
- * Public methods
- */
 PEAS_AVAILABLE_IN_ALL
-GType              peas_extension_set_get_type    (void)  G_GNUC_CONST;
-
+void              peas_extension_set_foreach             (PeasExtensionSet             *set,
+                                                          PeasExtensionSetForeachFunc   func,
+                                                          gpointer                      data);
 PEAS_AVAILABLE_IN_ALL
-void               peas_extension_set_foreach     (PeasExtensionSet *set,
-                                                   PeasExtensionSetForeachFunc func,
-                                                   gpointer          data);
-
+PeasExtension    *peas_extension_set_get_extension       (PeasExtensionSet             *set,
+                                                          PeasPluginInfo               *info);
 PEAS_AVAILABLE_IN_ALL
-PeasExtension     *peas_extension_set_get_extension (PeasExtensionSet *set,
-                                                     PeasPluginInfo   *info);
-
+PeasExtensionSet *peas_extension_set_new_with_properties (PeasEngine                   *engine,
+                                                          GType                         exten_type,
+                                                          guint                         n_properties,
+                                                          const gchar                 **prop_names,
+                                                          const GValue                 *prop_values);
 PEAS_AVAILABLE_IN_ALL
-PeasExtensionSet  *peas_extension_set_new_with_properties (PeasEngine    *engine,
-                                                           GType          exten_type,
-                                                           guint          n_properties,
-                                                           const gchar  **prop_names,
-                                                           const GValue  *prop_values);
+PeasExtensionSet *peas_extension_set_new_valist          (PeasEngine                   *engine,
+                                                          GType                         exten_type,
+                                                          const gchar                  *first_property,
+                                                          va_list                       var_args);
 PEAS_AVAILABLE_IN_ALL
-PeasExtensionSet  *peas_extension_set_new_valist  (PeasEngine       *engine,
-                                                   GType             exten_type,
-                                                   const gchar      *first_property,
-                                                   va_list           var_args);
-PEAS_AVAILABLE_IN_ALL
-PeasExtensionSet  *peas_extension_set_new         (PeasEngine       *engine,
-                                                   GType             exten_type,
-                                                   const gchar      *first_property,
-                                                   ...);
+PeasExtensionSet *peas_extension_set_new                 (PeasEngine                   *engine,
+                                                          GType                         exten_type,
+                                                          const gchar                  *first_property,
+                                                          ...);
 
 G_END_DECLS

@@ -91,7 +91,10 @@
 
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 
-struct _PeasExtensionSetPrivate {
+struct _PeasExtensionSet
+{
+  GObject parent_instance;
+
   PeasEngine *engine;
   GType exten_type;
   guint n_parameters;
@@ -135,31 +138,24 @@ static GParamSpec *properties[N_PROPERTIES] = { NULL };
 
 static void list_model_iface_init (GListModelInterface *iface);
 
-G_DEFINE_TYPE_WITH_CODE (PeasExtensionSet, peas_extension_set, G_TYPE_OBJECT,
-                         G_ADD_PRIVATE (PeasExtensionSet)
-                         G_IMPLEMENT_INTERFACE (G_TYPE_LIST_MODEL, list_model_iface_init))
-
-#define GET_PRIV(o) \
-  (peas_extension_set_get_instance_private (o))
+G_DEFINE_FINAL_TYPE_WITH_CODE (PeasExtensionSet, peas_extension_set, G_TYPE_OBJECT,
+                               G_IMPLEMENT_INTERFACE (G_TYPE_LIST_MODEL, list_model_iface_init))
 
 static void
 set_construct_properties (PeasExtensionSet   *set,
                           PeasParameterArray *array)
 {
-  PeasExtensionSetPrivate *priv = GET_PRIV (set);
-  guint i;
+  set->n_parameters = array->n_parameters;
 
-  priv->n_parameters = array->n_parameters;
+  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+  set->parameters = g_new0 (GParameter, array->n_parameters);
+  G_GNUC_END_IGNORE_DEPRECATIONS
 
-G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-  priv->parameters = g_new0 (GParameter, array->n_parameters);
-G_GNUC_END_IGNORE_DEPRECATIONS
-
-  for (i = 0; i < array->n_parameters; i++)
+  for (guint i = 0; i < array->n_parameters; i++)
     {
-      priv->parameters[i].name = g_intern_string (array->parameters[i].name);
-      g_value_init (&priv->parameters[i].value, G_VALUE_TYPE (&array->parameters[i].value));
-      g_value_copy (&array->parameters[i].value, &priv->parameters[i].value);
+      set->parameters[i].name = g_intern_string (array->parameters[i].name);
+      g_value_init (&set->parameters[i].value, G_VALUE_TYPE (&array->parameters[i].value));
+      g_value_copy (&array->parameters[i].value, &set->parameters[i].value);
     }
 }
 
@@ -170,15 +166,14 @@ peas_extension_set_set_property (GObject      *object,
                                  GParamSpec   *pspec)
 {
   PeasExtensionSet *set = PEAS_EXTENSION_SET (object);
-  PeasExtensionSetPrivate *priv = GET_PRIV (set);
 
   switch (prop_id)
     {
     case PROP_ENGINE:
-      priv->engine = g_value_get_object (value);
+      set->engine = g_value_get_object (value);
       break;
     case PROP_EXTENSION_TYPE:
-      priv->exten_type = g_value_get_gtype (value);
+      set->exten_type = g_value_get_gtype (value);
       break;
     case PROP_CONSTRUCT_PROPERTIES:
       set_construct_properties (set, g_value_get_pointer (value));
@@ -195,15 +190,14 @@ peas_extension_set_get_property (GObject    *object,
                                  GParamSpec *pspec)
 {
   PeasExtensionSet *set = PEAS_EXTENSION_SET (object);
-  PeasExtensionSetPrivate *priv = GET_PRIV (set);
 
   switch (prop_id)
     {
     case PROP_ENGINE:
-      g_value_set_object (value, priv->engine);
+      g_value_set_object (value, set->engine);
       break;
     case PROP_EXTENSION_TYPE:
-      g_value_set_gtype (value, priv->exten_type);
+      g_value_set_gtype (value, set->exten_type);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -214,7 +208,6 @@ static void
 add_extension (PeasExtensionSet *set,
                PeasPluginInfo   *info)
 {
-  PeasExtensionSetPrivate *priv = GET_PRIV (set);
   PeasExtension *exten;
   ExtensionItem *item;
   guint position;
@@ -223,22 +216,22 @@ add_extension (PeasExtensionSet *set,
   if (!peas_plugin_info_is_loaded (info))
     return;
 
-  if (!peas_engine_provides_extension (priv->engine, info,
-                                       priv->exten_type))
+  if (!peas_engine_provides_extension (set->engine, info,
+                                       set->exten_type))
     return;
 
-  exten = _peas_engine_create_extensionv (priv->engine, info,
-                                         priv->exten_type,
-                                         priv->n_parameters,
-                                         priv->parameters);
+  exten = _peas_engine_create_extensionv (set->engine, info,
+                                         set->exten_type,
+                                         set->n_parameters,
+                                         set->parameters);
 
   item = g_slice_new (ExtensionItem);
   item->info = info;
   item->exten = exten;
 
-  position = priv->extensions.length;
+  position = set->extensions.length;
 
-  g_queue_push_tail (&priv->extensions, item);
+  g_queue_push_tail (&set->extensions, item);
 
   g_list_model_items_changed (G_LIST_MODEL (set), position, 0, 1);
   g_signal_emit (set, signals[EXTENSION_ADDED], 0, info, exten);
@@ -259,11 +252,9 @@ static void
 remove_extension (PeasExtensionSet *set,
                   PeasPluginInfo   *info)
 {
-  PeasExtensionSetPrivate *priv = GET_PRIV (set);
-  GList *l;
   guint position = 0;
 
-  for (l = priv->extensions.head; l != NULL; l = l->next, position++)
+  for (GList *l = set->extensions.head; l != NULL; l = l->next, position++)
     {
       ExtensionItem *item = l->data;
 
@@ -271,7 +262,7 @@ remove_extension (PeasExtensionSet *set,
         continue;
 
       remove_extension_item (set, item);
-      g_queue_delete_link (&priv->extensions, l);
+      g_queue_delete_link (&set->extensions, l);
       g_list_model_items_changed (G_LIST_MODEL (set), position, 1, 0);
       return;
     }
@@ -280,31 +271,26 @@ remove_extension (PeasExtensionSet *set,
 static void
 peas_extension_set_init (PeasExtensionSet *set)
 {
-  PeasExtensionSetPrivate *priv = GET_PRIV (set);
-
-  g_queue_init (&priv->extensions);
+  g_queue_init (&set->extensions);
 }
 
 static void
 peas_extension_set_constructed (GObject *object)
 {
   PeasExtensionSet *set = PEAS_EXTENSION_SET (object);
-  PeasExtensionSetPrivate *priv = GET_PRIV (set);
-  GList *plugins, *l;
 
-  if (priv->engine == NULL)
-    priv->engine = peas_engine_get_default ();
+  if (set->engine == NULL)
+    set->engine = peas_engine_get_default ();
 
-  g_object_ref (priv->engine);
+  g_object_ref (set->engine);
 
-  plugins = (GList *) peas_engine_get_plugin_list (priv->engine);
-  for (l = plugins; l; l = l->next)
-    add_extension (set, (PeasPluginInfo *) l->data);
+  for (const GList *l = peas_engine_get_plugin_list (set->engine); l; l = l->next)
+    add_extension (set, l->data);
 
-  g_signal_connect_object (priv->engine, "load-plugin",
+  g_signal_connect_object (set->engine, "load-plugin",
                            G_CALLBACK (add_extension), set,
                            G_CONNECT_AFTER | G_CONNECT_SWAPPED);
-  g_signal_connect_object (priv->engine, "unload-plugin",
+  g_signal_connect_object (set->engine, "unload-plugin",
                            G_CALLBACK (remove_extension), set,
                            G_CONNECT_SWAPPED);
 
@@ -315,27 +301,25 @@ static void
 peas_extension_set_dispose (GObject *object)
 {
   PeasExtensionSet *set = PEAS_EXTENSION_SET (object);
-  PeasExtensionSetPrivate *priv = GET_PRIV (set);
-  GList *l;
 
-  if (priv->extensions.length > 0)
+  if (set->extensions.length > 0)
     {
-      for (l = priv->extensions.tail; l != NULL; l = l->prev)
-        remove_extension_item (set, (ExtensionItem *) l->data);
+      for (const GList *l = set->extensions.tail; l != NULL; l = l->prev)
+        remove_extension_item (set, l->data);
 
-      g_queue_clear (&priv->extensions);
+      g_queue_clear (&set->extensions);
     }
 
-  if (priv->parameters != NULL)
+  if (set->parameters != NULL)
     {
-      while (priv->n_parameters-- > 0)
-        g_value_unset (&priv->parameters[priv->n_parameters].value);
+      while (set->n_parameters-- > 0)
+        g_value_unset (&set->parameters[set->n_parameters].value);
 
-      g_free (priv->parameters);
-      priv->parameters = NULL;
+      g_free (set->parameters);
+      set->parameters = NULL;
     }
 
-  g_clear_object (&priv->engine);
+  g_clear_object (&set->engine);
 
   G_OBJECT_CLASS (peas_extension_set_parent_class)->dispose (object);
 }
@@ -371,7 +355,7 @@ peas_extension_set_class_init (PeasExtensionSetClass *klass)
     g_signal_new (I_("extension-added"),
                   the_type,
                   G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (PeasExtensionSetClass, extension_added),
+                  0,
                   NULL, NULL,
                   peas_cclosure_marshal_VOID__BOXED_OBJECT,
                   G_TYPE_NONE,
@@ -403,7 +387,7 @@ peas_extension_set_class_init (PeasExtensionSetClass *klass)
     g_signal_new (I_("extension-removed"),
                   the_type,
                   G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (PeasExtensionSetClass, extension_removed),
+                  0,
                   NULL, NULL,
                   peas_cclosure_marshal_VOID__BOXED_OBJECT,
                   G_TYPE_NONE,
@@ -458,13 +442,10 @@ PeasExtension *
 peas_extension_set_get_extension (PeasExtensionSet *set,
                                   PeasPluginInfo   *info)
 {
-  PeasExtensionSetPrivate *priv = GET_PRIV (set);
-  GList *l;
-
   g_return_val_if_fail (PEAS_IS_EXTENSION_SET (set), NULL);
   g_return_val_if_fail (info != NULL, NULL);
 
-  for (l = priv->extensions.head; l != NULL; l = l->next)
+  for (const GList *l = set->extensions.head; l != NULL; l = l->next)
     {
       ExtensionItem *item = l->data;
 
@@ -482,21 +463,16 @@ peas_extension_set_get_extension (PeasExtensionSet *set,
  * @data: Optional data to be passed to the function or %NULL.
  *
  * Calls @func for each [alias@Extension].
- *
- * Since: 1.2
  */
 void
 peas_extension_set_foreach (PeasExtensionSet            *set,
                             PeasExtensionSetForeachFunc  func,
                             gpointer                     data)
 {
-  PeasExtensionSetPrivate *priv = GET_PRIV (set);
-  GList *l;
-
   g_return_if_fail (PEAS_IS_EXTENSION_SET (set));
   g_return_if_fail (func != NULL);
 
-  for (l = priv->extensions.head; l != NULL; l = l->next)
+  for (const GList *l = set->extensions.head; l != NULL; l = l->next)
     {
       ExtensionItem *item = (ExtensionItem *) l->data;
 
@@ -536,14 +512,9 @@ peas_extension_set_newv (PeasEngine *engine,
  *
  * If @engine is %NULL, then the default engine will be used.
  *
- * Since libpeas 1.22, @exten_type can be an Abstract [alias@GObject.Type]
- * and not just an Interface [alias@GObject.Type].
- *
  * See [ctor@ExtensionSet.new] for more information.
  *
  * Returns: (transfer full): a new instance of #PeasExtensionSet.
- *
- * Since 1.24.0
  */
 PeasExtensionSet *
 peas_extension_set_new_with_properties (PeasEngine    *engine,
@@ -602,9 +573,6 @@ peas_extension_set_new_with_properties (PeasEngine    *engine,
  *
  * If @engine is %NULL, then the default engine will be used.
  *
- * Since libpeas 1.22, @exten_type can be an Abstract [alias@GObject.Type]
- * and not just an Interface [alias@GObject.Type].
- *
  * See [ctor@ExtensionSet.new] for more information.
  *
  * Returns: a new instance of #PeasExtensionSet.
@@ -659,9 +627,6 @@ peas_extension_set_new_valist (PeasEngine  *engine,
  *
  * If @engine is %NULL, then the default engine will be used.
  *
- * Since libpeas 1.22, @exten_type can be an Abstract [alias@GObject.Type]
- * and not just an Interface [alias@GObject.Type].
- *
  * See [method@Engine.create_extension] for more information.
  *
  * Returns: a new instance of #PeasExtensionSet.
@@ -691,9 +656,8 @@ static guint
 peas_extension_set_get_n_items (GListModel *model)
 {
   PeasExtensionSet *set = PEAS_EXTENSION_SET (model);
-  PeasExtensionSetPrivate *priv = GET_PRIV (set);
 
-  return priv->extensions.length;
+  return set->extensions.length;
 }
 
 static gpointer
@@ -701,12 +665,11 @@ peas_extension_set_get_item (GListModel *model,
                              guint       position)
 {
   PeasExtensionSet *set = PEAS_EXTENSION_SET (model);
-  PeasExtensionSetPrivate *priv = GET_PRIV (set);
 
-  if (position >= priv->extensions.length)
+  if (position >= set->extensions.length)
     return NULL;
 
-  return g_object_ref (g_queue_peek_nth (&priv->extensions, position));
+  return g_object_ref (g_queue_peek_nth (&set->extensions, position));
 }
 
 static GType
