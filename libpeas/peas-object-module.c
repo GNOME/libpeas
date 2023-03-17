@@ -460,6 +460,7 @@ peas_object_module_new_embedded (const gchar *module_name,
                                            NULL));
 }
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 /**
  * peas_object_module_create_object: (skip)
  * @module: A #PeasObjectModule.
@@ -501,6 +502,7 @@ peas_object_module_create_object (PeasObjectModule *module,
 
   return NULL;
 }
+G_GNUC_END_IGNORE_DEPRECATIONS
 
 /**
  * peas_object_module_provides_object: (skip)
@@ -652,6 +654,7 @@ peas_object_module_register_extension_factory (PeasObjectModule *module,
   g_debug ("Registered extension for type '%s'", g_type_name (exten_type));
 }
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 static GObject *
 create_gobject_from_type (guint       n_parameters,
                           GParameter *parameters,
@@ -681,6 +684,7 @@ create_gobject_from_type (guint       n_parameters,
 
   return G_OBJECT (g_object_newv (impl_type, n_parameters, parameters));
 }
+G_GNUC_END_IGNORE_DEPRECATIONS
 
 /**
  * peas_object_module_register_extension_type:
