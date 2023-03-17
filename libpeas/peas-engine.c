@@ -127,7 +127,7 @@ plugin_info_add_sorted (GQueue         *plugin_list,
 {
   guint i;
   GList *furthest_dep = NULL;
-  const gchar **dependencies;
+  const gchar * const *dependencies;
 
   dependencies = peas_plugin_info_get_dependencies (info);
 
@@ -173,7 +173,7 @@ plugin_info_add_sorted (GQueue         *plugin_list,
           for (iter = plugin_list->head; iter; iter = iter->next)
             {
               const PeasPluginInfo *other = iter->data;
-              const char **other_dependencies = peas_plugin_info_get_dependencies (other);
+              const char * const *other_dependencies = peas_plugin_info_get_dependencies (other);
 
               for (i = 0; other_dependencies[i] != NULL; i++)
                 {
@@ -1127,7 +1127,7 @@ static void
 peas_engine_load_plugin_real (PeasEngine     *engine,
                               PeasPluginInfo *info)
 {
-  const gchar **dependencies;
+  const gchar * const *dependencies;
   PeasPluginInfo *dep_info;
   guint i;
   PeasPluginLoader *loader;

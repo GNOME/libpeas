@@ -116,14 +116,14 @@ peas_plugin_info_init (PeasPluginInfo *info)
  * Returns: a newly created #PeasPluginInfo.
  */
 PeasPluginInfo *
-_peas_plugin_info_new (const gchar *filename,
-                       const gchar *module_dir,
-                       const gchar *data_dir)
+_peas_plugin_info_new (const char *filename,
+                       const char *module_dir,
+                       const char *data_dir)
 {
   gsize i;
   gboolean is_resource;
-  gchar *loader = NULL;
-  gchar **strv, **keys;
+  char *loader = NULL;
+  char **strv, **keys;
   PeasPluginInfo *info;
   GKeyFile *plugin_file;
   GBytes *bytes = NULL;
@@ -145,7 +145,7 @@ _peas_plugin_info_new (const gchar *filename,
     }
   else
     {
-      gchar *content;
+      char *content;
       gsize length;
 
       if (g_file_get_contents (filename, &content, &length, &error))
@@ -233,7 +233,7 @@ _peas_plugin_info_new (const gchar *filename,
                                                    "Plugin",
                                                    "Depends", NULL, NULL);
   if (info->dependencies == NULL)
-    info->dependencies = g_new0 (gchar *, 1);
+    info->dependencies = g_new0 (char *, 1);
 
   /* Get Description */
   info->desc = g_key_file_get_locale_string (plugin_file, "Plugin",
@@ -247,7 +247,7 @@ _peas_plugin_info_new (const gchar *filename,
   info->authors = g_key_file_get_string_list (plugin_file, "Plugin",
                                               "Authors", NULL, NULL);
   if (info->authors == NULL)
-    info->authors = g_new0 (gchar *, 1);
+    info->authors = g_new0 (char *, 1);
 
   /* Get Copyright */
   strv = g_key_file_get_string_list (plugin_file, "Plugin",
@@ -437,7 +437,7 @@ peas_plugin_info_is_hidden (const PeasPluginInfo *info)
  *
  * Returns: the module name.
  */
-const gchar *
+const char *
 peas_plugin_info_get_module_name (const PeasPluginInfo *info)
 {
   g_return_val_if_fail (info != NULL, NULL);
@@ -457,7 +457,7 @@ peas_plugin_info_get_module_name (const PeasPluginInfo *info)
  *
  * Returns: the module directory.
  */
-const gchar *
+const char *
 peas_plugin_info_get_module_dir (const PeasPluginInfo *info)
 {
   g_return_val_if_fail (info != NULL, NULL);
@@ -478,7 +478,7 @@ peas_plugin_info_get_module_dir (const PeasPluginInfo *info)
  *
  * Returns: the plugin's data dir.
  */
-const gchar *
+const char *
 peas_plugin_info_get_data_dir (const PeasPluginInfo *info)
 {
   g_return_val_if_fail (info != NULL, NULL);
@@ -501,7 +501,7 @@ peas_plugin_info_get_data_dir (const PeasPluginInfo *info)
  */
 GSettings *
 peas_plugin_info_get_settings (const PeasPluginInfo *info,
-                               const gchar          *schema_id)
+                               const char           *schema_id)
 {
   GSettingsSchema *schema;
   GSettings *settings;
@@ -520,14 +520,14 @@ peas_plugin_info_get_settings (const PeasPluginInfo *info,
 
       if (!g_file_query_exists (gschema_compiled, NULL))
         {
-          const gchar *argv[] = {
+          const char *argv[] = {
             "glib-compile-schemas",
             "--targetdir", info->module_dir,
             info->module_dir,
             NULL
           };
 
-          g_spawn_sync (NULL, (gchar **) argv, NULL, G_SPAWN_SEARCH_PATH,
+          g_spawn_sync (NULL, (char **) argv, NULL, G_SPAWN_SEARCH_PATH,
                         NULL, NULL, NULL, NULL, NULL, NULL);
         }
 
@@ -576,12 +576,12 @@ peas_plugin_info_get_settings (const PeasPluginInfo *info,
  *
  * Returns: (transfer none): the plugin's dependencies.
  */
-const gchar **
+const char * const *
 peas_plugin_info_get_dependencies (const PeasPluginInfo *info)
 {
   g_return_val_if_fail (info != NULL, NULL);
 
-  return (const gchar **) info->dependencies;
+  return (const char * const *) info->dependencies;
 }
 
 /**
@@ -595,7 +595,7 @@ peas_plugin_info_get_dependencies (const PeasPluginInfo *info)
  */
 gboolean
 peas_plugin_info_has_dependency (const PeasPluginInfo *info,
-                                 const gchar          *module_name)
+                                 const char           *module_name)
 {
   guint i;
 
@@ -624,7 +624,7 @@ peas_plugin_info_has_dependency (const PeasPluginInfo *info,
  *
  * Returns: the plugin's name.
  */
-const gchar *
+const char *
 peas_plugin_info_get_name (const PeasPluginInfo *info)
 {
   g_return_val_if_fail (info != NULL, NULL);
@@ -645,7 +645,7 @@ peas_plugin_info_get_name (const PeasPluginInfo *info)
  *
  * Returns: the plugin's description.
  */
-const gchar *
+const char *
 peas_plugin_info_get_description (const PeasPluginInfo *info)
 {
   g_return_val_if_fail (info != NULL, NULL);
@@ -666,7 +666,7 @@ peas_plugin_info_get_description (const PeasPluginInfo *info)
  *
  * Returns: the plugin's icon name.
  */
-const gchar *
+const char *
 peas_plugin_info_get_icon_name (const PeasPluginInfo *info)
 {
   g_return_val_if_fail (info != NULL, NULL);
@@ -687,12 +687,12 @@ peas_plugin_info_get_icon_name (const PeasPluginInfo *info)
  *
  * Returns: (transfer none) (array zero-terminated=1): the plugin's author list.
  */
-const gchar **
+const char * const *
 peas_plugin_info_get_authors (const PeasPluginInfo *info)
 {
-  g_return_val_if_fail (info != NULL, (const gchar **) NULL);
+  g_return_val_if_fail (info != NULL, (const char **) NULL);
 
-  return (const gchar **) info->authors;
+  return (const char * const *) info->authors;
 }
 
 /**
@@ -705,7 +705,7 @@ peas_plugin_info_get_authors (const PeasPluginInfo *info)
  *
  * Returns: the plugin's associated website.
  */
-const gchar *
+const char *
 peas_plugin_info_get_website (const PeasPluginInfo *info)
 {
   g_return_val_if_fail (info != NULL, NULL);
@@ -723,7 +723,7 @@ peas_plugin_info_get_website (const PeasPluginInfo *info)
  *
  * Returns: the plugin's copyright information.
  */
-const gchar *
+const char *
 peas_plugin_info_get_copyright (const PeasPluginInfo *info)
 {
   g_return_val_if_fail (info != NULL, NULL);
@@ -741,7 +741,7 @@ peas_plugin_info_get_copyright (const PeasPluginInfo *info)
  *
  * Returns: the plugin's version.
  */
-const gchar *
+const char *
 peas_plugin_info_get_version (const PeasPluginInfo *info)
 {
   g_return_val_if_fail (info != NULL, NULL);
@@ -765,7 +765,7 @@ peas_plugin_info_get_version (const PeasPluginInfo *info)
  *
  * Returns: the plugin's help URI.
  */
-const gchar *
+const char *
 peas_plugin_info_get_help_uri (const PeasPluginInfo *info)
 {
   g_return_val_if_fail (info != NULL, NULL);
@@ -791,9 +791,9 @@ peas_plugin_info_get_help_uri (const PeasPluginInfo *info)
  *
  * Since: 1.6
  */
-const gchar *
+const char *
 peas_plugin_info_get_external_data (const PeasPluginInfo *info,
-                                    const gchar          *key)
+                                    const char           *key)
 {
   g_return_val_if_fail (info != NULL, NULL);
   g_return_val_if_fail (key != NULL, NULL);

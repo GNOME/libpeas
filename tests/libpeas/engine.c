@@ -249,7 +249,7 @@ static void
 test_engine_plugin_list (PeasEngine *engine)
 {
   GList *plugin_list;
-  const gchar **dependencies;
+  const gchar * const *dependencies;
   gint builtin_index, loadable_index, two_deps_index;
   PeasPluginInfo *builtin_info, *loadable_info, *two_deps_info;
 

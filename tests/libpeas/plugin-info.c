@@ -62,7 +62,7 @@ test_plugin_info_verify_full_info (PeasEngine *engine)
 {
   PeasPluginInfo *info;
   GError *error = NULL;
-  const gchar **authors;
+  const gchar * const *authors;
 
   info = peas_engine_get_plugin_info (engine, "full-info");
 
@@ -100,7 +100,7 @@ test_plugin_info_verify_min_info (PeasEngine *engine)
 {
   PeasPluginInfo *info;
   GError *error = NULL;
-  const gchar **authors;
+  const gchar * const *authors;
 
   info = peas_engine_get_plugin_info (engine, "min-info");
 
