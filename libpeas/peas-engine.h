@@ -27,7 +27,7 @@
 # error "Only <libpeas.h> can be included directly."
 #endif
 
-#include <glib.h>
+#include <glib-object.h>
 
 #include "peas-plugin-info.h"
 #include "peas-extension.h"
@@ -35,53 +35,11 @@
 
 G_BEGIN_DECLS
 
-#define PEAS_TYPE_ENGINE              (peas_engine_get_type ())
-#define PEAS_ENGINE(obj)              (G_TYPE_CHECK_INSTANCE_CAST((obj), PEAS_TYPE_ENGINE, PeasEngine))
-#define PEAS_ENGINE_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST((klass), PEAS_TYPE_ENGINE, PeasEngineClass))
-#define PEAS_IS_ENGINE(obj)           (G_TYPE_CHECK_INSTANCE_TYPE((obj), PEAS_TYPE_ENGINE))
-#define PEAS_IS_ENGINE_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), PEAS_TYPE_ENGINE))
-#define PEAS_ENGINE_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS((obj), PEAS_TYPE_ENGINE, PeasEngineClass))
-
-typedef struct _PeasEngine         PeasEngine;
-typedef struct _PeasEngineClass    PeasEngineClass;
-typedef struct _PeasEnginePrivate  PeasEnginePrivate;
-
-/**
- * PeasEngine:
- *
- * The #PeasEngine structure contains only private data and should only be
- * accessed using the provided API.
- */
-struct _PeasEngine {
-  GObject parent;
-
-  /*< private > */
-  PeasEnginePrivate *priv;
-};
-
-/**
- * PeasEngineClass:
- * @parent_class: The parent class.
- * @load_plugin: Signal class handler for the #PeasEngine::load-plugin signal.
- * @unload_plugin: Signal class handler for the #PeasEngine::unload-plugin signal.
- *
- * Class structure for #PeasEngine.
- */
-struct _PeasEngineClass {
-  GObjectClass parent_class;
-
-  void     (*load_plugin)                 (PeasEngine     *engine,
-                                           PeasPluginInfo *info);
-
-  void     (*unload_plugin)               (PeasEngine     *engine,
-                                           PeasPluginInfo *info);
-
-  /*< private >*/
-  gpointer padding[8];
-};
+#define PEAS_TYPE_ENGINE (peas_engine_get_type ())
 
 PEAS_AVAILABLE_IN_ALL
-GType             peas_engine_get_type            (void) G_GNUC_CONST;
+G_DECLARE_FINAL_TYPE (PeasEngine, peas_engine, PEAS, ENGINE, GObject)
+
 PEAS_AVAILABLE_IN_ALL
 PeasEngine       *peas_engine_new                 (void);
 PEAS_AVAILABLE_IN_ALL
