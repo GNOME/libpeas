@@ -34,30 +34,10 @@
 
 G_BEGIN_DECLS
 
-/*
- * Type checking and casting macros
- */
-#define PEAS_TYPE_EXTENSION_BASE            (peas_extension_base_get_type())
-#define PEAS_EXTENSION_BASE(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), PEAS_TYPE_EXTENSION_BASE, PeasExtensionBase))
-#define PEAS_EXTENSION_BASE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass), PEAS_TYPE_EXTENSION_BASE, PeasExtensionBaseClass))
-#define PEAS_IS_EXTENSION_BASE(obj)         (G_TYPE_CHECK_INSTANCE_TYPE((obj), PEAS_TYPE_EXTENSION_BASE))
-#define PEAS_IS_EXTENSION_BASE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), PEAS_TYPE_EXTENSION_BASE))
-#define PEAS_EXTENSION_BASE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj), PEAS_TYPE_EXTENSION_BASE, PeasExtensionBaseClass))
+#define PEAS_TYPE_EXTENSION_BASE (peas_extension_base_get_type())
 
-/**
- * PeasExtensionBase:
- *
- * Base class for C extensions.
- */
-typedef struct _PeasExtensionBase        PeasExtensionBase;
-typedef struct _PeasExtensionBaseClass   PeasExtensionBaseClass;
-typedef struct _PeasExtensionBasePrivate PeasExtensionBasePrivate;
-
-struct _PeasExtensionBase {
-  GObject parent;
-
-  PeasExtensionBasePrivate *priv;
-};
+PEAS_AVAILABLE_IN_ALL
+G_DECLARE_DERIVABLE_TYPE (PeasExtensionBase, peas_extension_base, PEAS, EXTENSION_BASE, GObject)
 
 /**
  * PeasExtensionBaseClass:
@@ -65,22 +45,17 @@ struct _PeasExtensionBase {
  *
  * The class structure of #PeasExtensionBase.
  */
-struct _PeasExtensionBaseClass {
+struct _PeasExtensionBaseClass
+{
   GObjectClass parent_class;
 
   /*< private >*/
-  gpointer padding[8];
+  gpointer _reserved[8];
 };
 
-/*
- * Public methods
- */
 PEAS_AVAILABLE_IN_ALL
-GType            peas_extension_base_get_type         (void)  G_GNUC_CONST;
-
+PeasPluginInfo *peas_extension_base_get_plugin_info (PeasExtensionBase *extbase);
 PEAS_AVAILABLE_IN_ALL
-PeasPluginInfo  *peas_extension_base_get_plugin_info  (PeasExtensionBase *extbase);
-PEAS_AVAILABLE_IN_ALL
-gchar           *peas_extension_base_get_data_dir     (PeasExtensionBase *extbase);
+char           *peas_extension_base_get_data_dir    (PeasExtensionBase *extbase);
 
 G_END_DECLS
