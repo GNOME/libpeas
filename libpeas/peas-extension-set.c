@@ -89,6 +89,8 @@
  * ```
  **/
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+
 struct _PeasExtensionSetPrivate {
   PeasEngine *engine;
   GType exten_type;
@@ -109,6 +111,8 @@ typedef struct {
 
   GParameter *parameters;
 } PeasParameterArray;
+
+G_GNUC_END_IGNORE_DEPRECATIONS
 
 /* Signals */
 enum {
@@ -147,7 +151,9 @@ set_construct_properties (PeasExtensionSet   *set,
 
   priv->n_parameters = array->n_parameters;
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   priv->parameters = g_new0 (GParameter, array->n_parameters);
+G_GNUC_END_IGNORE_DEPRECATIONS
 
   for (i = 0; i < array->n_parameters; i++)
     {
@@ -492,6 +498,7 @@ peas_extension_set_foreach (PeasExtensionSet            *set,
     }
 }
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 static PeasExtensionSet *
 peas_extension_set_newv (PeasEngine *engine,
                          GType       exten_type,
@@ -672,6 +679,7 @@ peas_extension_set_new (PeasEngine  *engine,
 
   return set;
 }
+G_GNUC_END_IGNORE_DEPRECATIONS
 
 static guint
 peas_extension_set_get_n_items (GListModel *model)
@@ -708,4 +716,3 @@ list_model_iface_init (GListModelInterface *iface)
   iface->get_item = peas_extension_set_get_item;
   iface->get_n_items = peas_extension_set_get_n_items;
 }
-
