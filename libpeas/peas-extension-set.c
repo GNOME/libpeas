@@ -492,25 +492,7 @@ peas_extension_set_foreach (PeasExtensionSet            *set,
     }
 }
 
-/**
- * peas_extension_set_newv: (skip)
- * @engine: (allow-none): A #PeasEngine, or %NULL.
- * @exten_type: the extension #GType.
- * @n_parameters: the length of the @parameters array.
- * @parameters: (array length=n_parameters): an array of #GParameter.
- *
- * Create a new #PeasExtensionSet for the @exten_type extension type.
- *
- * If @engine is %NULL, then the default engine will be used.
- *
- * Since libpeas 1.22, @exten_type can be an Abstract [alias@GObject.Type]
- * and not just an Interface [alias@GObject.Type].
- *
- * See [ctor@ExtensionSet.new] for more information.
- *
- * Returns: (transfer full): a new instance of #PeasExtensionSet.
- */
-PeasExtensionSet *
+static PeasExtensionSet *
 peas_extension_set_newv (PeasEngine *engine,
                          GType       exten_type,
                          guint       n_parameters,

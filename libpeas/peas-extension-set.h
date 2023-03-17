@@ -118,14 +118,6 @@ PEAS_AVAILABLE_IN_ALL
 PeasExtension     *peas_extension_set_get_extension (PeasExtensionSet *set,
                                                      PeasPluginInfo   *info);
 
-G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-PEAS_AVAILABLE_IN_ALL
-PeasExtensionSet  *peas_extension_set_newv        (PeasEngine       *engine,
-                                                   GType             exten_type,
-                                                   guint             n_parameters,
-                                                   GParameter       *parameters);
-G_GNUC_END_IGNORE_DEPRECATIONS
-
 PEAS_AVAILABLE_IN_ALL
 PeasExtensionSet  *peas_extension_set_new_with_properties (PeasEngine    *engine,
                                                            GType          exten_type,
