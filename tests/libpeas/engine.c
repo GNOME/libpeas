@@ -245,23 +245,38 @@ test_engine_not_loadable_plugin (PeasEngine *engine)
   g_error_free (error);
 }
 
+static int
+list_index (GListModel     *model,
+            PeasPluginInfo *info)
+{
+  guint n_items = g_list_model_get_n_items (model);
+
+  for (guint i = 0; i < n_items; i++)
+    {
+      PeasPluginInfo *item = g_list_model_get_item (model, i);
+      g_object_unref (item);
+
+      if (item == info)
+        return (int)i;
+    }
+
+  return -1;
+}
+
 static void
 test_engine_plugin_list (PeasEngine *engine)
 {
-  GList *plugin_list;
   const gchar * const *dependencies;
   gint builtin_index, loadable_index, two_deps_index;
   PeasPluginInfo *builtin_info, *loadable_info, *two_deps_info;
-
-  plugin_list = (GList *) peas_engine_get_plugin_list (engine);
 
   builtin_info = peas_engine_get_plugin_info (engine, "builtin");
   loadable_info = peas_engine_get_plugin_info (engine, "loadable");
   two_deps_info = peas_engine_get_plugin_info (engine, "two-deps");
 
-  builtin_index = g_list_index (plugin_list, builtin_info);
-  loadable_index = g_list_index (plugin_list, loadable_info);
-  two_deps_index = g_list_index (plugin_list, two_deps_info);
+  builtin_index = list_index (G_LIST_MODEL (engine), builtin_info);
+  loadable_index = list_index (G_LIST_MODEL (engine), loadable_info);
+  two_deps_index = list_index (G_LIST_MODEL (engine), two_deps_info);
 
   g_assert_cmpint (builtin_index, !=, -1);
   g_assert_cmpint (loadable_index, !=, -1);

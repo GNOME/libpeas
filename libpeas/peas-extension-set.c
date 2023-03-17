@@ -278,14 +278,21 @@ static void
 peas_extension_set_constructed (GObject *object)
 {
   PeasExtensionSet *set = PEAS_EXTENSION_SET (object);
+  guint n_items;
 
   if (set->engine == NULL)
     set->engine = peas_engine_get_default ();
 
   g_object_ref (set->engine);
 
-  for (const GList *l = peas_engine_get_plugin_list (set->engine); l; l = l->next)
-    add_extension (set, l->data);
+  n_items = g_list_model_get_n_items (G_LIST_MODEL (set->engine));
+
+  for (guint i = 0; i < n_items; i++)
+    {
+      PeasPluginInfo *info = g_list_model_get_item (G_LIST_MODEL (set->engine), i);
+      add_extension (set, info);
+      g_object_unref (info);
+    }
 
   g_signal_connect_object (set->engine, "load-plugin",
                            G_CALLBACK (add_extension), set,

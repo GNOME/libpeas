@@ -67,7 +67,6 @@ enum {
 /* Properties */
 enum {
   PROP_0,
-  PROP_PLUGIN_LIST,
   PROP_LOADED_PLUGINS,
   PROP_NONGLOBAL_LOADERS,
   N_PROPERTIES
@@ -108,7 +107,40 @@ struct _PeasEngine {
   guint use_nonglobal_loaders : 1;
 };
 
-G_DEFINE_FINAL_TYPE (PeasEngine, peas_engine, G_TYPE_OBJECT)
+static guint
+peas_engine_get_n_items (GListModel *model)
+{
+  return PEAS_ENGINE (model)->plugin_list.length;
+}
+
+static GType
+peas_engine_get_item_type (GListModel *model)
+{
+  return PEAS_TYPE_PLUGIN_INFO;
+}
+
+static gpointer
+peas_engine_get_item (GListModel *model,
+                      guint       position)
+{
+  PeasEngine *engine = PEAS_ENGINE (model);
+
+  if (position < engine->plugin_list.length)
+    return g_object_ref (g_queue_peek_nth (&engine->plugin_list, position));
+
+  return NULL;
+}
+
+static void
+list_model_iface_init (GListModelInterface *iface)
+{
+  iface->get_n_items = peas_engine_get_n_items;
+  iface->get_item_type = peas_engine_get_item_type;
+  iface->get_item = peas_engine_get_item;
+}
+
+G_DEFINE_FINAL_TYPE_WITH_CODE (PeasEngine, peas_engine, G_TYPE_OBJECT,
+                               G_IMPLEMENT_INTERFACE (G_TYPE_LIST_MODEL, list_model_iface_init))
 
 static gboolean shutdown = FALSE;
 static PeasEngine *default_engine = NULL;
@@ -122,12 +154,17 @@ static void peas_engine_unload_plugin_real (PeasEngine     *engine,
                                             PeasPluginInfo *info);
 
 static void
-plugin_info_add_sorted (GQueue         *plugin_list,
+plugin_info_add_sorted (PeasEngine     *engine,
+                        GQueue         *plugin_list,
                         PeasPluginInfo *info)
 {
   guint i;
   GList *furthest_dep = NULL;
   const char * const *dependencies;
+
+  g_assert (PEAS_IS_ENGINE (engine));
+  g_assert (plugin_list != NULL);
+  g_assert (PEAS_IS_PLUGIN_INFO (info));
 
   dependencies = peas_plugin_info_get_dependencies (info);
 
@@ -163,6 +200,7 @@ plugin_info_add_sorted (GQueue         *plugin_list,
       if (dependencies[0] == NULL)
         {
           g_queue_push_head (plugin_list, info);
+          g_list_model_items_changed (G_LIST_MODEL (engine), 0, 0, 1);
           return;
         }
       else
@@ -179,13 +217,16 @@ plugin_info_add_sorted (GQueue         *plugin_list,
                 {
                   if (strcmp (other_dependencies[i], module_name) == 0)
                     {
+                      guint position = g_queue_link_index (plugin_list, iter);
                       g_queue_insert_before (plugin_list, iter, info);
+                      g_list_model_items_changed (G_LIST_MODEL (engine), position, 0, 1);
                       return;
                     }
                 }
             }
 
           g_queue_push_tail (plugin_list, info);
+          g_list_model_items_changed (G_LIST_MODEL (engine), plugin_list->length-1, 0, 1);
           return;
         }
     }
@@ -203,6 +244,9 @@ plugin_info_add_sorted (GQueue         *plugin_list,
 #endif
 
   g_queue_insert_after (plugin_list, furthest_dep, info);
+  g_list_model_items_changed (G_LIST_MODEL (engine),
+                              g_queue_link_index (plugin_list, furthest_dep) + 1,
+                              0, 1);
 }
 
 static gboolean
@@ -231,9 +275,7 @@ load_plugin_info (PeasEngine *engine,
       return FALSE;
     }
 
-  plugin_info_add_sorted (&engine->plugin_list, info);
-  g_object_notify_by_pspec (G_OBJECT (engine),
-                            properties[PROP_PLUGIN_LIST]);
+  plugin_info_add_sorted (engine, &engine->plugin_list, info);
 
   return TRUE;
 }
@@ -610,10 +652,6 @@ peas_engine_get_property (GObject    *object,
 
   switch (prop_id)
     {
-    case PROP_PLUGIN_LIST:
-      g_value_set_pointer (value, (gpointer)peas_engine_get_plugin_list (engine));
-      break;
-
     case PROP_LOADED_PLUGINS:
       g_value_take_boxed (value, peas_engine_get_loaded_plugins (engine));
       break;
@@ -665,12 +703,7 @@ peas_engine_finalize (GObject *object)
   GList *item;
 
   /* free the infos */
-  for (item = engine->plugin_list.head; item != NULL; item = item->next)
-    {
-      PeasPluginInfo *info = (PeasPluginInfo *) item->data;
-
-      g_object_unref (info);
-    }
+  g_queue_clear_full (&engine->plugin_list, g_object_unref);
 
   /* free the search path list */
   for (item = engine->search_paths.head; item != NULL; item = item->next)
@@ -698,22 +731,6 @@ peas_engine_class_init (PeasEngineClass *klass)
   object_class->get_property = peas_engine_get_property;
   object_class->dispose = peas_engine_dispose;
   object_class->finalize = peas_engine_finalize;
-
-  /**
-   * PeasEngine:plugin-list:
-   *
-   * The list of found plugins.
-   *
-   * This will be modified when [method@Engine.rescan_plugins] is called.
-   *
-   * Note: the list belongs to the engine and should not be modified or freed.
-   */
-  properties[PROP_PLUGIN_LIST] =
-    g_param_spec_pointer ("plugin-list",
-                          "Plugin list",
-                          "The list of found plugins",
-                          G_PARAM_READABLE |
-                          G_PARAM_STATIC_STRINGS);
 
   /**
    * PeasEngine:loaded-plugins:
@@ -1073,24 +1090,6 @@ peas_engine_enable_loader (PeasEngine *engine,
   loaders[loader_id].enabled = TRUE;
 
   g_mutex_unlock (&loaders_lock);
-}
-
-/**
- * peas_engine_get_plugin_list:
- * @engine: A #PeasEngine.
- *
- * Returns the list of [struct@PluginInfo] known to the engine.
- *
- * Returns: (transfer none) (element-type Peas.PluginInfo): a #GList of
- *   #PeasPluginInfo. Note that the list belongs to the engine and should
- *   not be freed.
- **/
-const GList *
-peas_engine_get_plugin_list (PeasEngine *engine)
-{
-  g_return_val_if_fail (PEAS_IS_ENGINE (engine), NULL);
-
-  return engine->plugin_list.head;
 }
 
 /**
