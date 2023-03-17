@@ -1195,6 +1195,8 @@ peas_engine_load_plugin_real (PeasEngine     *engine,
 
   g_debug ("Loaded plugin '%s'", peas_plugin_info_get_module_name (info));
 
+  g_object_notify (G_OBJECT (info), "loaded");
+
   g_object_notify_by_pspec (G_OBJECT (engine),
                             properties[PROP_LOADED_PLUGINS]);
 
@@ -1271,6 +1273,8 @@ peas_engine_unload_plugin_real (PeasEngine     *engine,
   peas_plugin_loader_unload (loader, info);
 
   g_debug ("Unloaded plugin '%s'", peas_plugin_info_get_module_name (info));
+
+  g_object_notify (G_OBJECT (info), "loaded");
 
   /* Don't notify while in dispose so the
    * loaded plugins can easily be kept in GSettings

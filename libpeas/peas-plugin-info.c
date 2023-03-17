@@ -38,6 +38,8 @@
 #define OS_HELP_KEY "Help-GNOME"
 #endif
 
+#define I_(s) g_intern_string(s)
+
 /**
  * PeasPluginInfo:
  *
@@ -66,6 +68,25 @@ G_DEFINE_QUARK (peas-plugin-info-error, peas_plugin_info_error)
 
 G_DEFINE_FINAL_TYPE (PeasPluginInfo, peas_plugin_info, G_TYPE_OBJECT)
 
+enum {
+  PROP_0,
+  PROP_AUTHORS,
+  PROP_COPYRIGHT,
+  PROP_DEPENDENCIES,
+  PROP_DESCRIPTION,
+  PROP_HELP_URI,
+  PROP_ICON_NAME,
+  PROP_LOADED,
+  PROP_MODULE_DIR,
+  PROP_MODULE_NAME,
+  PROP_NAME,
+  PROP_VERSION,
+  PROP_WEBSITE,
+  N_PROPS
+};
+
+static GParamSpec *properties [N_PROPS];
+
 static void
 peas_plugin_info_finalize (GObject *object)
 {
@@ -93,11 +114,137 @@ peas_plugin_info_finalize (GObject *object)
 }
 
 static void
+peas_plugin_info_get_property (GObject    *object,
+                               guint       prop_id,
+                               GValue     *value,
+                               GParamSpec *pspec)
+{
+  PeasPluginInfo *info = PEAS_PLUGIN_INFO (object);
+
+  switch (prop_id)
+    {
+    case PROP_AUTHORS:
+      g_value_set_boxed (value, peas_plugin_info_get_authors (info));
+      break;
+
+    case PROP_COPYRIGHT:
+      g_value_set_string (value, peas_plugin_info_get_copyright (info));
+      break;
+
+    case PROP_DEPENDENCIES:
+      g_value_set_boxed (value, peas_plugin_info_get_dependencies (info));
+      break;
+
+    case PROP_DESCRIPTION:
+      g_value_set_string (value, peas_plugin_info_get_description (info));
+      break;
+
+    case PROP_HELP_URI:
+      g_value_set_string (value, peas_plugin_info_get_help_uri (info));
+      break;
+
+    case PROP_ICON_NAME:
+      g_value_set_string (value, peas_plugin_info_get_icon_name (info));
+      break;
+
+    case PROP_LOADED:
+      g_value_set_boolean (value, peas_plugin_info_is_loaded (info));
+      break;
+
+    case PROP_MODULE_DIR:
+      g_value_set_string (value, peas_plugin_info_get_module_dir (info));
+      break;
+
+    case PROP_MODULE_NAME:
+      g_value_set_string (value, peas_plugin_info_get_module_name (info));
+      break;
+
+    case PROP_NAME:
+      g_value_set_string (value, peas_plugin_info_get_name (info));
+      break;
+
+    case PROP_VERSION:
+      g_value_set_string (value, peas_plugin_info_get_version (info));
+      break;
+
+    case PROP_WEBSITE:
+      g_value_set_string (value, peas_plugin_info_get_website (info));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+    }
+}
+
+static void
 peas_plugin_info_class_init (PeasPluginInfoClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
   object_class->finalize = peas_plugin_info_finalize;
+  object_class->get_property = peas_plugin_info_get_property;
+
+  properties[PROP_LOADED] =
+    g_param_spec_boolean (I_("loaded"), NULL, NULL,
+                          FALSE,
+                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_MODULE_NAME] =
+    g_param_spec_string (I_("module-name"), NULL, NULL,
+                         NULL,
+                         (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_MODULE_DIR] =
+    g_param_spec_string (I_("module-dir"), NULL, NULL,
+                         NULL,
+                         (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_NAME] =
+    g_param_spec_string (I_("name"), NULL, NULL,
+                         NULL,
+                         (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_COPYRIGHT] =
+    g_param_spec_string (I_("copyright"), NULL, NULL,
+                         NULL,
+                         (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_DESCRIPTION] =
+    g_param_spec_string (I_("description"), NULL, NULL,
+                         NULL,
+                         (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_ICON_NAME] =
+    g_param_spec_string (I_("icon-name"), NULL, NULL,
+                         NULL,
+                         (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_WEBSITE] =
+    g_param_spec_string (I_("website"), NULL, NULL,
+                         NULL,
+                         (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_VERSION] =
+    g_param_spec_string (I_("version"), NULL, NULL,
+                         NULL,
+                         (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_HELP_URI] =
+    g_param_spec_string (I_("help-uri"), NULL, NULL,
+                         NULL,
+                         (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_DEPENDENCIES] =
+    g_param_spec_boxed (I_("dependencies"), NULL, NULL,
+                        G_TYPE_STRV,
+                        (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_AUTHORS] =
+    g_param_spec_boxed (I_("authors"), NULL, NULL,
+                        G_TYPE_STRV,
+                        (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
 static void

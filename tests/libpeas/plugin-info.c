@@ -93,6 +93,18 @@ test_plugin_info_verify_full_info (PeasEngine *engine)
 
   g_assert_cmpstr (peas_plugin_info_get_external_data (info, "External"), ==, "external data");
   g_assert_cmpstr (peas_plugin_info_get_external_data (info, "X-External"), ==, "external data");
+
+  {
+    static const char *strprops[] = { "name", "description", "icon-name", "website", "copyright", "version", "help-uri", NULL };
+
+    for (guint i = 0; strprops[i]; i++)
+      {
+        char *str = NULL;
+        g_object_get (info, strprops[i], &str, NULL);
+        g_assert_nonnull (str);
+        g_free (str);
+      }
+  }
 }
 
 static void
