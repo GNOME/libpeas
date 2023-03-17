@@ -155,6 +155,7 @@ valid_extension_added_cb (PeasExtensionSet *extension_set,
                           PeasExtension    *extension,
                           GObject          **obj_ptr)
 {
+  g_clear_object (obj_ptr);
   g_object_get (PEAS_ACTIVATABLE (extension), "object", obj_ptr, NULL);
 }
 
@@ -164,7 +165,8 @@ test_extension_set_create_valid_with_properties (PeasEngine *engine)
   PeasPluginInfo *info;
   PeasExtensionSet *extension_set;
   GValue prop_value = G_VALUE_INIT;
-  GObject *obj, *obj_cmp;
+  GObject *obj;
+  GObject *obj_cmp = NULL;
   const gchar *prop_names[1] = { "object" };
 
   obj = g_object_new (G_TYPE_OBJECT, NULL);
@@ -186,8 +188,11 @@ test_extension_set_create_valid_with_properties (PeasEngine *engine)
   g_assert (obj == obj_cmp);
 
   g_assert (PEAS_IS_EXTENSION_SET (extension_set));
-  g_object_unref (extension_set);
+  g_assert_finalize_object (extension_set);
   g_value_unset (&prop_value);
+
+  g_object_unref (obj_cmp);
+  g_assert_finalize_object (obj);
 }
 
 

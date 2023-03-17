@@ -113,12 +113,24 @@ testing_builtin_plugin_deactivate (PeasActivatable *activatable)
 }
 
 static void
+builtin_plugin_dispose (GObject *object)
+{
+  TestingBuiltinPlugin *plugin = TESTING_BUILTIN_PLUGIN (object);
+  TestingBuiltinPluginPrivate *priv = GET_PRIV (plugin);
+
+  g_clear_object (&priv->object);
+
+  G_OBJECT_CLASS (testing_builtin_plugin_parent_class)->dispose (object);
+}
+
+static void
 testing_builtin_plugin_class_init (TestingBuiltinPluginClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
   object_class->set_property = testing_builtin_plugin_set_property;
   object_class->get_property = testing_builtin_plugin_get_property;
+  object_class->dispose = builtin_plugin_dispose;
 
   g_object_class_override_property (object_class, PROP_OBJECT, "object");
 }
