@@ -209,6 +209,8 @@ project_c_args = [
 add_project_arguments(project_c_args, language: 'c')
 
 global_c_args = []
+global_link_args = []
+
 test_c_args = [
   '-Wcast-align',
   '-Wdeclaration-after-statement',
@@ -268,10 +270,25 @@ foreach arg: test_c_args
     global_c_args += arg
   endif
 endforeach
+test_link_args = [
+  '-Wl,-z,relro',
+  '-Wl,-z,now',
+]
 if not get_option('buildtype').startswith('debug')
   global_c_args += ['-DG_DISABLE_CAST_CHECKS', '-DG_DISABLE_ASSERT']
+  test_link_args += [
+    '-Wl,-Bsymbolic',
+    '-fno-plt',
+  ]
 endif
+foreach link_arg: test_link_args
+  if cc.has_link_argument(link_arg)
+    global_link_args += link_arg
+  endif
+endforeach
+
 add_project_arguments(global_c_args, language: 'c')
+add_project_link_arguments(global_link_args, language: 'c')
 
 module_suffix = []
 if build_machine.system() == 'darwin'
