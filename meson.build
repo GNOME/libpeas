@@ -268,6 +268,9 @@ foreach arg: test_c_args
     global_c_args += arg
   endif
 endforeach
+if not get_option('buildtype').startswith('debug')
+  global_c_args += ['-DG_DISABLE_CAST_CHECKS', '-DG_DISABLE_ASSERT']
+endif
 add_project_arguments(global_c_args, language: 'c')
 
 module_suffix = []
