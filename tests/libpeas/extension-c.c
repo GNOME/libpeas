@@ -187,11 +187,6 @@ main (int   argc,
   /* Only test the basics */
   testing_extension_basic ("c");
 
-  /* We still need to add the callable tests
-   * because of peas_extension_call()
-   */
-  testing_extension_callable ("c");
-
   EXTENSION_TEST (c, "embedded", embedded);
   EXTENSION_TEST (c, "embedded-missing-symbol", embedded_missing_symbol);
   EXTENSION_TEST (c, "instance-refcount", instance_refcount);

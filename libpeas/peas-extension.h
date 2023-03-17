@@ -28,7 +28,6 @@
 #endif
 
 #include <glib-object.h>
-#include <girepository.h>
 
 #include "peas-version-macros.h"
 
@@ -37,9 +36,9 @@ G_BEGIN_DECLS
 /*
  * Type checking and casting macros
  */
-#define PEAS_TYPE_EXTENSION            (G_TYPE_OBJECT)
-#define PEAS_EXTENSION(obj)            (G_OBJECT(obj))
-#define PEAS_IS_EXTENSION(obj)         (G_IS_OBJECT(obj))
+#define PEAS_TYPE_EXTENSION    (G_TYPE_OBJECT)
+#define PEAS_EXTENSION(obj)    (G_OBJECT(obj))
+#define PEAS_IS_EXTENSION(obj) (G_IS_OBJECT(obj))
 
 /**
  * PeasExtension:
@@ -47,35 +46,5 @@ G_BEGIN_DECLS
  * A proxy class to access the actual plugin.
  */
 typedef GObject PeasExtension;
-
-/*
- * All the public methods of PeasExtension are deprecated and should not be
- * used. Due to gi-scanner's touchiness, we also hide these legacy API from
- * GI to avoid hairy issues.
- */
-#ifndef __GI_SCANNER__
-#ifndef PEAS_DISABLE_DEPRECATED
-PEAS_AVAILABLE_IN_ALL
-GType        peas_extension_get_type        (void)  G_GNUC_CONST;
-
-PEAS_AVAILABLE_IN_ALL
-GType        peas_extension_get_extension_type
-                                            (PeasExtension *exten);
-
-PEAS_AVAILABLE_IN_ALL
-gboolean     peas_extension_call            (PeasExtension *exten,
-                                             const gchar   *method_name,
-                                             ...);
-PEAS_AVAILABLE_IN_ALL
-gboolean     peas_extension_call_valist     (PeasExtension *exten,
-                                             const gchar   *method_name,
-                                             va_list        args);
-PEAS_AVAILABLE_IN_ALL
-gboolean     peas_extension_callv           (PeasExtension *exten,
-                                             const gchar   *method_name,
-                                             GIArgument    *args,
-                                             GIArgument    *return_value);
-#endif
-#endif
 
 G_END_DECLS

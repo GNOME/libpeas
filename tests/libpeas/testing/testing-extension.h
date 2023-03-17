@@ -33,9 +33,6 @@ PEAS_TEST_EXPORT
 void testing_extension_basic      (const gchar   *loader);
 
 PEAS_TEST_EXPORT
-void testing_extension_callable   (const gchar   *loader);
-
-PEAS_TEST_EXPORT
 void testing_extension_add        (const gchar   *path,
                                    GTestDataFunc  func);
 
@@ -44,8 +41,7 @@ PEAS_TEST_EXPORT
 int testing_extension_run_tests   (void);
 
 #define testing_extension_all(loader) \
-  testing_extension_basic (loader); \
-  testing_extension_callable (loader);
+  testing_extension_basic (loader);
 
 /* These macros are here to add loader-specific tests. */
 #define EXTENSION_TEST_NAME(loader, path) \
