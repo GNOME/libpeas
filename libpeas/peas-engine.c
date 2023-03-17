@@ -28,16 +28,17 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "peas-i18n-priv.h"
-#include "peas-engine.h"
-#include "peas-engine-priv.h"
-#include "peas-plugin-info-priv.h"
-#include "peas-plugin-loader.h"
-#include "peas-plugin-loader-c.h"
-#include "peas-object-module.h"
-#include "peas-extension.h"
-#include "peas-dirs.h"
 #include "peas-debug.h"
+#include "peas-dirs.h"
+#include "peas-engine-priv.h"
+#include "peas-engine.h"
+#include "peas-extension.h"
+#include "peas-i18n-priv.h"
+#include "peas-marshal.h"
+#include "peas-object-module.h"
+#include "peas-plugin-info-priv.h"
+#include "peas-plugin-loader-c.h"
+#include "peas-plugin-loader.h"
 #include "peas-utils.h"
 
 /**
@@ -793,11 +794,13 @@ peas_engine_class_init (PeasEngineClass *klass)
                   G_SIGNAL_RUN_LAST,
                   G_STRUCT_OFFSET (PeasEngineClass, load_plugin),
                   NULL, NULL,
-                  g_cclosure_marshal_VOID__BOXED,
+                  peas_cclosure_marshal_VOID__BOXED,
                   G_TYPE_NONE,
                   1,
-                  PEAS_TYPE_PLUGIN_INFO |
-                  G_SIGNAL_TYPE_STATIC_SCOPE);
+                  PEAS_TYPE_PLUGIN_INFO | G_SIGNAL_TYPE_STATIC_SCOPE);
+  g_signal_set_va_marshaller (signals[LOAD_PLUGIN],
+                              G_TYPE_FROM_CLASS (klass),
+                              peas_cclosure_marshal_VOID__BOXEDv);
 
   /**
    * PeasEngine::unload-plugin:
@@ -818,10 +821,13 @@ peas_engine_class_init (PeasEngineClass *klass)
                   G_SIGNAL_RUN_LAST,
                   G_STRUCT_OFFSET (PeasEngineClass, unload_plugin),
                   NULL, NULL,
-                  g_cclosure_marshal_VOID__BOXED,
+                  peas_cclosure_marshal_VOID__BOXED,
                   G_TYPE_NONE,
-                  1, PEAS_TYPE_PLUGIN_INFO |
-                  G_SIGNAL_TYPE_STATIC_SCOPE);
+                  1,
+                  PEAS_TYPE_PLUGIN_INFO | G_SIGNAL_TYPE_STATIC_SCOPE);
+  g_signal_set_va_marshaller (signals[UNLOAD_PLUGIN],
+                              G_TYPE_FROM_CLASS (klass),
+                              peas_cclosure_marshal_VOID__BOXEDv);
 
   g_object_class_install_properties (object_class, N_PROPERTIES, properties);
 

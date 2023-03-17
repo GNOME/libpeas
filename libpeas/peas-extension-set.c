@@ -29,8 +29,8 @@
 
 #include "peas-engine-priv.h"
 #include "peas-i18n-priv.h"
-#include "peas-plugin-info.h"
 #include "peas-marshal.h"
+#include "peas-plugin-info.h"
 #include "peas-utils.h"
 
 /**
@@ -378,6 +378,9 @@ peas_extension_set_class_init (PeasExtensionSetClass *klass)
                   2,
                   PEAS_TYPE_PLUGIN_INFO | G_SIGNAL_TYPE_STATIC_SCOPE,
                   PEAS_TYPE_EXTENSION);
+  g_signal_set_va_marshaller (signals[EXTENSION_ADDED],
+                              G_TYPE_FROM_CLASS (klass),
+                              peas_cclosure_marshal_VOID__BOXED_OBJECTv);
 
   /**
    * PeasExtensionSet::extension-removed:
@@ -407,6 +410,9 @@ peas_extension_set_class_init (PeasExtensionSetClass *klass)
                   2,
                   PEAS_TYPE_PLUGIN_INFO | G_SIGNAL_TYPE_STATIC_SCOPE,
                   PEAS_TYPE_EXTENSION);
+  g_signal_set_va_marshaller (signals[EXTENSION_REMOVED],
+                              G_TYPE_FROM_CLASS (klass),
+                              peas_cclosure_marshal_VOID__BOXED_OBJECTv);
 
   properties[PROP_ENGINE] =
     g_param_spec_object ("engine",

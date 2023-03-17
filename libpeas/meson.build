@@ -76,6 +76,7 @@ libpeas_marshal = gnome.genmarshal(
   sources: 'peas-marshal.list',
   prefix: 'peas_cclosure_marshal',
   install_header: false,
+  valist_marshallers: true,
 )
 
 libpeas_marshals_h = libpeas_marshal.get(1)
