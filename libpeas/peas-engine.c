@@ -158,7 +158,6 @@ plugin_info_add_sorted (PeasEngine     *engine,
                         GQueue         *plugin_list,
                         PeasPluginInfo *info)
 {
-  guint i;
   GList *furthest_dep = NULL;
   const char * const *dependencies;
 
@@ -168,7 +167,7 @@ plugin_info_add_sorted (PeasEngine     *engine,
 
   dependencies = peas_plugin_info_get_dependencies (info);
 
-  for (i = 0; dependencies[i] != NULL; ++i)
+  for (guint i = 0; dependencies[i] != NULL; i++)
     {
       GList *pos = furthest_dep != NULL ? furthest_dep : plugin_list->head;
 
@@ -206,14 +205,13 @@ plugin_info_add_sorted (PeasEngine     *engine,
       else
         {
           const char *module_name = peas_plugin_info_get_module_name (info);
-          GList *iter;
 
-          for (iter = plugin_list->head; iter; iter = iter->next)
+          for (GList *iter = plugin_list->head; iter; iter = iter->next)
             {
               const PeasPluginInfo *other = iter->data;
               const char * const *other_dependencies = peas_plugin_info_get_dependencies (other);
 
-              for (i = 0; other_dependencies[i] != NULL; i++)
+              for (guint i = 0; other_dependencies[i] != NULL; i++)
                 {
                   if (strcmp (other_dependencies[i], module_name) == 0)
                     {
@@ -258,9 +256,9 @@ load_plugin_info (PeasEngine *engine,
   PeasPluginInfo *info;
   const char *module_name;
 
-  info = _peas_plugin_info_new (filename,
-                                module_dir,
-                                data_dir);
+  g_assert (PEAS_IS_ENGINE (engine));
+
+  info = _peas_plugin_info_new (filename, module_dir, data_dir);
 
   if (info == NULL)
     {
@@ -269,6 +267,7 @@ load_plugin_info (PeasEngine *engine,
     }
 
   module_name = peas_plugin_info_get_module_name (info);
+
   if (peas_engine_get_plugin_info (engine, module_name) != NULL)
     {
       g_object_unref (info);
@@ -291,6 +290,8 @@ load_file_dir_real (PeasEngine *engine,
   GError *error = NULL;
   gboolean found = FALSE;
 
+  g_assert (PEAS_IS_ENGINE (engine));
+
   g_debug ("Loading %s/*.plugin...", module_dir);
 
   d = g_dir_open (module_dir, 0, &error);
@@ -309,15 +310,11 @@ load_file_dir_real (PeasEngine *engine,
       if (g_file_test (filename, G_FILE_TEST_IS_DIR))
         {
           if (recursions > 0)
-            {
-              found |= load_file_dir_real (engine, filename,
-                                           data_dir, recursions - 1);
-            }
+            found |= load_file_dir_real (engine, filename, data_dir, recursions - 1);
         }
       else if (g_str_has_suffix (dirent, ".plugin"))
         {
-          found |= load_plugin_info (engine, filename,
-                                     module_dir, data_dir);
+          found |= load_plugin_info (engine, filename, module_dir, data_dir);
         }
 
       g_free (filename);
@@ -344,7 +341,6 @@ load_resource_dir_real (PeasEngine *engine,
                         const char *data_dir,
                         guint       recursions)
 {
-  guint i;
   const char *module_path;
   char **children;
   GError *error = NULL;
@@ -367,7 +363,7 @@ load_resource_dir_real (PeasEngine *engine,
   /* Always sort resource children for improved reproducibility */
   qsort (children, g_strv_length (children), sizeof (char *), strptrcmp);
 
-  for (i = 0; children[i] != NULL; ++i)
+  for (guint i = 0; children[i] != NULL; ++i)
     {
       gboolean is_dir;
       char *child;
@@ -383,14 +379,9 @@ load_resource_dir_real (PeasEngine *engine,
       child = g_build_path ("/", module_dir, children[i], NULL);
 
       if (is_dir)
-        {
-          found |= load_resource_dir_real (engine, child,
-                                           data_dir, recursions - 1);
-        }
+        found |= load_resource_dir_real (engine, child, data_dir, recursions - 1);
       else
-        {
-          found |= load_plugin_info (engine, child, module_dir, data_dir);
-        }
+        found |= load_plugin_info (engine, child, module_dir, data_dir);
 
       g_free (child);
     }
@@ -404,6 +395,9 @@ static gboolean
 load_dir_real (PeasEngine *engine,
                SearchPath *sp)
 {
+  g_assert (PEAS_IS_ENGINE (engine));
+  g_assert (sp != NULL);
+
   if (!g_str_has_prefix (sp->module_dir, "resource://"))
     return load_file_dir_real (engine, sp->module_dir, sp->data_dir, 1);
 
@@ -415,6 +409,8 @@ plugin_list_changed (PeasEngine *engine)
 {
   GString *msg;
   GList *pos;
+
+  g_assert (PEAS_IS_ENGINE (engine));
 
   if (g_getenv ("PEAS_DEBUG") == NULL)
     return;
@@ -605,11 +601,9 @@ peas_engine_init (PeasEngine *engine)
 void
 peas_engine_garbage_collect (PeasEngine *engine)
 {
-  gint i;
-
   g_return_if_fail (PEAS_IS_ENGINE (engine));
 
-  for (i = 0; i < G_N_ELEMENTS (loaders); ++i)
+  for (guint i = 0; i < G_N_ELEMENTS (loaders); i++)
     {
       LoaderInfo *loader_info = &engine->loaders[i];
 
@@ -670,14 +664,12 @@ static void
 peas_engine_dispose (GObject *object)
 {
   PeasEngine *engine = PEAS_ENGINE (object);
-  GList *item;
-  gint i;
 
   /* See peas_engine_unload_plugin_real() */
   engine->in_dispose = TRUE;
 
   /* First unload all the plugins */
-  for (item = engine->plugin_list.tail; item != NULL; item = item->prev)
+  for (const GList *item = engine->plugin_list.tail; item; item = item->prev)
     {
       PeasPluginInfo *info = PEAS_PLUGIN_INFO (item->data);
 
@@ -686,7 +678,7 @@ peas_engine_dispose (GObject *object)
     }
 
   /* Then destroy the plugin loaders */
-  for (i = 0; i < G_N_ELEMENTS (engine->loaders); ++i)
+  for (guint i = 0; i < G_N_ELEMENTS (engine->loaders); i++)
     {
       LoaderInfo *loader_info = &engine->loaders[i];
 
@@ -700,15 +692,14 @@ static void
 peas_engine_finalize (GObject *object)
 {
   PeasEngine *engine = PEAS_ENGINE (object);
-  GList *item;
 
   /* free the infos */
   g_queue_clear_full (&engine->plugin_list, g_object_unref);
 
   /* free the search path list */
-  for (item = engine->search_paths.head; item != NULL; item = item->next)
+  for (GList *item = engine->search_paths.head; item; item = item->next)
     {
-      SearchPath *sp = (SearchPath *) item->data;
+      SearchPath *sp = g_steal_pointer (&item->data);
 
       g_free (sp->module_dir);
       g_free (sp->data_dir);
@@ -857,7 +848,7 @@ peas_engine_class_init (PeasEngineClass *klass)
 }
 
 static PeasObjectModule *
-get_plugin_loader_module (gint loader_id)
+get_plugin_loader_module (int loader_id)
 {
   GlobalLoaderInfo *global_loader_info = &loaders[loader_id];
   const char *loader_name, *module_name;
@@ -889,7 +880,7 @@ get_plugin_loader_module (gint loader_id)
 }
 
 static PeasPluginLoader *
-create_plugin_loader (gint loader_id)
+create_plugin_loader (int loader_id)
 {
   PeasPluginLoader *loader;
 
@@ -923,10 +914,13 @@ create_plugin_loader (gint loader_id)
 
 static PeasPluginLoader *
 get_local_plugin_loader (PeasEngine *engine,
-                         gint        loader_id)
+                         int         loader_id)
 {
   GlobalLoaderInfo *global_loader_info = &loaders[loader_id];
   PeasPluginLoader *loader;
+
+  g_assert (PEAS_IS_ENGINE (engine));
+  g_assert (loader_id < PEAS_UTILS_N_LOADERS);
 
   if (global_loader_info->failed)
     return NULL;
@@ -957,10 +951,13 @@ get_local_plugin_loader (PeasEngine *engine,
 
 static PeasPluginLoader *
 get_plugin_loader (PeasEngine *engine,
-                   gint        loader_id)
+                   int         loader_id)
 {
   LoaderInfo *loader_info = &engine->loaders[loader_id];
   GlobalLoaderInfo *global_loader_info = &loaders[loader_id];
+
+  g_assert (PEAS_IS_ENGINE (engine));
+  g_assert (loader_id < PEAS_UTILS_N_LOADERS);
 
   if (loader_info->loader != NULL || loader_info->failed)
     return loader_info->loader;
@@ -1027,7 +1024,7 @@ peas_engine_enable_loader (PeasEngine *engine,
                            const char *loader_name)
 {
   LoaderInfo *loader_info;
-  gint loader_id;
+  int loader_id;
 
   g_return_if_fail (PEAS_IS_ENGINE (engine));
   g_return_if_fail (loader_name != NULL && *loader_name != '\0');
@@ -1059,15 +1056,14 @@ peas_engine_enable_loader (PeasEngine *engine,
   /* Some tests check for mixed versions this way */
   if (g_getenv ("PEAS_ALLOW_CONFLICTING_LOADERS") == NULL)
     {
-      gint i;
-      const gint *loader_ids;
+      const int *loader_ids;
 
       loader_ids = peas_utils_get_conflicting_loaders_from_id (loader_id);
 
       /* Some loaders conflict with each other
        * and cannot be used in the same process
        */
-      for (i = 0; loader_ids[i] != -1; ++i)
+      for (guint i = 0; loader_ids[i] != -1; i++)
         {
           if (!loaders[loader_ids[i]].enabled)
             continue;
@@ -1107,12 +1103,10 @@ PeasPluginInfo *
 peas_engine_get_plugin_info (PeasEngine *engine,
                              const char *plugin_name)
 {
-  GList *l;
-
   g_return_val_if_fail (PEAS_IS_ENGINE (engine), NULL);
   g_return_val_if_fail (plugin_name != NULL, NULL);
 
-  for (l = engine->plugin_list.head; l != NULL; l = l->next)
+  for (const GList *l = engine->plugin_list.head; l != NULL; l = l->next)
     {
       PeasPluginInfo *info = (PeasPluginInfo *) l->data;
       const char *module_name = peas_plugin_info_get_module_name (info);
@@ -1130,8 +1124,10 @@ peas_engine_load_plugin_real (PeasEngine     *engine,
 {
   const char * const *dependencies;
   PeasPluginInfo *dep_info;
-  guint i;
   PeasPluginLoader *loader;
+
+  g_assert (PEAS_IS_ENGINE (engine));
+  g_assert (PEAS_IS_PLUGIN_INFO (info));
 
   if (peas_plugin_info_is_loaded (info))
     return;
@@ -1144,7 +1140,7 @@ peas_engine_load_plugin_real (PeasEngine     *engine,
   info->loaded = TRUE;
 
   dependencies = peas_plugin_info_get_dependencies (info);
-  for (i = 0; dependencies[i] != NULL; i++)
+  for (guint i = 0; dependencies[i] != NULL; i++)
     {
       dep_info = peas_engine_get_plugin_info (engine, dependencies[i]);
       if (!dep_info)
@@ -1243,7 +1239,6 @@ static void
 peas_engine_unload_plugin_real (PeasEngine     *engine,
                                 PeasPluginInfo *info)
 {
-  GList *item;
   const char *module_name;
   PeasPluginLoader *loader;
 
@@ -1256,7 +1251,7 @@ peas_engine_unload_plugin_real (PeasEngine     *engine,
 
   /* First unload all the dependant plugins */
   module_name = peas_plugin_info_get_module_name (info);
-  for (item = engine->plugin_list.tail; item != NULL; item = item->prev)
+  for (const GList *item = engine->plugin_list.tail; item != NULL; item = item->prev)
     {
       PeasPluginInfo *other_info = PEAS_PLUGIN_INFO (item->data);
 
@@ -1264,7 +1259,7 @@ peas_engine_unload_plugin_real (PeasEngine     *engine,
         continue;
 
       if (peas_plugin_info_has_dependency (other_info, module_name))
-         peas_engine_unload_plugin (engine, other_info);
+        peas_engine_unload_plugin (engine, other_info);
     }
 
   /* find the loader and tell it to gc and unload the plugin */
@@ -1484,7 +1479,6 @@ peas_engine_create_extension_valist (PeasEngine     *engine,
                                      va_list         var_args)
 {
   GParameter *parameters;
-
   PeasExtension *exten;
   guint n_parameters;
 
@@ -1609,12 +1603,10 @@ static gboolean
 string_in_strv (const char  *needle,
                 const char **haystack)
 {
-  guint i;
-
   if (haystack == NULL)
     return FALSE;
 
-  for (i = 0; haystack[i] != NULL; i++)
+  for (guint i = 0; haystack[i] != NULL; i++)
     {
       if (strcmp (haystack[i], needle) == 0)
         return TRUE;
@@ -1641,13 +1633,11 @@ void
 peas_engine_set_loaded_plugins (PeasEngine  *engine,
                                 const char **plugin_names)
 {
-  GList *pl;
-
   g_return_if_fail (PEAS_IS_ENGINE (engine));
 
-  for (pl = engine->plugin_list.head; pl != NULL; pl = pl->next)
+  for (const GList *pl = engine->plugin_list.head; pl != NULL; pl = pl->next)
     {
-      PeasPluginInfo *info = (PeasPluginInfo *) pl->data;
+      PeasPluginInfo *info = pl->data;
       const char *module_name;
       gboolean is_loaded;
       gboolean to_load;
@@ -1751,8 +1741,6 @@ peas_engine_get_default (void)
 void
 _peas_engine_shutdown (void)
 {
-  gint i;
-
   if (shutdown)
     return;
 
@@ -1760,7 +1748,7 @@ _peas_engine_shutdown (void)
 
   g_mutex_lock (&loaders_lock);
 
-  for (i = 0; i < G_N_ELEMENTS (loaders); ++i)
+  for (guint i = 0; i < G_N_ELEMENTS (loaders); i++)
     {
       GlobalLoaderInfo *loader_info = &loaders[i];
 
