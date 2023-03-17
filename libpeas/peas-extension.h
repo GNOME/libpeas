@@ -47,4 +47,6 @@ G_BEGIN_DECLS
  */
 typedef GObject PeasExtension;
 
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (PeasExtension, g_object_unref)
+
 G_END_DECLS

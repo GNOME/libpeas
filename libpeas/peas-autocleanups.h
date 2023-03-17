@@ -35,7 +35,6 @@ G_BEGIN_DECLS
 #if GLIB_CHECK_VERSION (2, 44, 0)
 
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (PeasEngine, g_object_unref)
-G_DEFINE_AUTOPTR_CLEANUP_FUNC (PeasExtension, g_object_unref)
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (PeasExtensionBase, g_object_unref)
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (PeasObjectModule, g_object_unref)
 
