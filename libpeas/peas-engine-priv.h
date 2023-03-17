@@ -23,11 +23,23 @@
 
 #pragma once
 
+#include <glib-object.h>
+
+#include "peas-engine.h"
+#include "peas-plugin-info.h"
 #include "peas-version-macros.h"
 
 G_BEGIN_DECLS
 
 PEAS_AVAILABLE_IN_ALL
 void _peas_engine_shutdown (void);
+
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+PeasExtension *_peas_engine_create_extensionv (PeasEngine     *engine,
+                                               PeasPluginInfo *info,
+                                               GType           extension_type,
+                                               guint           n_parameters,
+                                               GParameter     *parameters);
+G_GNUC_END_IGNORE_DEPRECATIONS
 
 G_END_DECLS

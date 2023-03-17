@@ -1357,35 +1357,13 @@ peas_engine_provides_extension (PeasEngine     *engine,
   return peas_plugin_loader_provides_extension (loader, info, extension_type);
 }
 
-/**
- * peas_engine_create_extensionv: (skip)
- * @engine: A #PeasEngine.
- * @info: A loaded #PeasPluginInfo.
- * @extension_type: The implemented extension #GType.
- * @n_parameters: the length of the @parameters array.
- * @parameters: (allow-none) (array length=n_parameters):
- *   an array of #GParameter.
- *
- * If the plugin identified by @info implements the @extension_type,
- * then this function will return a new instance of this implementation,
- * wrapped in a new [alias@Extension] instance.
- *
- * Otherwise, it will return %NULL.
- *
- * Since libpeas 1.22, @extension_type can be an Abstract [alias@GObject.Type]
- * and not just an Interface [alias@GObject.Type].
- *
- * See [method@Engine.create_extension] for more information.
- *
- * Returns: (transfer full): a new instance of #PeasExtension wrapping
- * the @extension_type instance, or %NULL.
- */
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 PeasExtension *
-peas_engine_create_extensionv (PeasEngine     *engine,
-                               PeasPluginInfo *info,
-                               GType           extension_type,
-                               guint           n_parameters,
-                               GParameter     *parameters)
+_peas_engine_create_extensionv (PeasEngine     *engine,
+                                PeasPluginInfo *info,
+                                GType           extension_type,
+                                guint           n_parameters,
+                                GParameter     *parameters)
 {
   PeasPluginLoader *loader;
   PeasExtension *extension;
@@ -1535,8 +1513,8 @@ peas_engine_create_extension_valist (PeasEngine     *engine,
       return NULL;
     }
 
-  exten = peas_engine_create_extensionv (engine, info, extension_type,
-                                         n_parameters, parameters);
+  exten = _peas_engine_create_extensionv (engine, info, extension_type,
+                                          n_parameters, parameters);
 
   while (n_parameters-- > 0)
     g_value_unset (&parameters[n_parameters].value);
@@ -1544,6 +1522,7 @@ peas_engine_create_extension_valist (PeasEngine     *engine,
 
   return exten;
 }
+G_GNUC_END_IGNORE_DEPRECATIONS
 
 /**
  * peas_engine_create_extension: (skip)

@@ -27,6 +27,7 @@
 
 #include "peas-extension-set.h"
 
+#include "peas-engine-priv.h"
 #include "peas-i18n-priv.h"
 #include "peas-introspection.h"
 #include "peas-plugin-info.h"
@@ -227,7 +228,7 @@ add_extension (PeasExtensionSet *set,
                                        priv->exten_type))
     return;
 
-  exten = peas_engine_create_extensionv (priv->engine, info,
+  exten = _peas_engine_create_extensionv (priv->engine, info,
                                          priv->exten_type,
                                          priv->n_parameters,
                                          priv->parameters);
