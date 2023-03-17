@@ -14,7 +14,6 @@ peas_version_h = configure_file(
 )
 
 libpeas_public_h = files(
-  'peas-autocleanups.h',
   'peas-engine.h',
   'peas-extension.h',
   'peas-extension-base.h',

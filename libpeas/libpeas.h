@@ -22,7 +22,6 @@
 #pragma once
 
 #define LIBPEAS_INSIDE
-# include "peas-autocleanups.h"
 # include "peas-engine.h"
 # include "peas-extension.h"
 # include "peas-extension-base.h"

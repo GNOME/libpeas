@@ -37,16 +37,10 @@
 
 G_BEGIN_DECLS
 
-#define PEAS_TYPE_OBJECT_MODULE             (peas_object_module_get_type ())
-#define PEAS_OBJECT_MODULE(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), PEAS_TYPE_OBJECT_MODULE, PeasObjectModule))
-#define PEAS_OBJECT_MODULE_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), PEAS_TYPE_OBJECT_MODULE, PeasObjectModuleClass))
-#define PEAS_IS_OBJECT_MODULE(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), PEAS_TYPE_OBJECT_MODULE))
-#define PEAS_IS_OBJECT_MODULE_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), PEAS_TYPE_OBJECT_MODULE))
-#define PEAS_OBJECT_MODULE_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS((obj), PEAS_TYPE_OBJECT_MODULE, PeasObjectModuleClass))
+#define PEAS_TYPE_OBJECT_MODULE (peas_object_module_get_type ())
 
-typedef struct _PeasObjectModule         PeasObjectModule;
-typedef struct _PeasObjectModuleClass    PeasObjectModuleClass;
-typedef struct _PeasObjectModulePrivate  PeasObjectModulePrivate;
+PEAS_AVAILABLE_IN_ALL
+G_DECLARE_DERIVABLE_TYPE (PeasObjectModule, peas_object_module, PEAS, OBJECT_MODULE, GTypeModule)
 
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 /**
@@ -68,32 +62,19 @@ typedef GObject *(*PeasFactoryFunc)   (guint          n_parameters,
 G_GNUC_END_IGNORE_DEPRECATIONS
 
 /**
- * PeasObjectModule:
- *
- * The #PeasObjectModule structure contains only private data and should only
- * be accessed using the provided API.
- */
-struct _PeasObjectModule {
-  GTypeModule parent;
-
-  PeasObjectModulePrivate *priv;
-};
-
-/**
  * PeasObjectModuleClass:
  * @parent_class: The parent class.
  *
  * The class structure for #PeasObjectModule.
  */
-struct _PeasObjectModuleClass {
+struct _PeasObjectModuleClass
+{
   GTypeModuleClass parent_class;
 
   /*< private >*/
-  gpointer padding[8];
+  gpointer _reserved[8];
 };
 
-PEAS_AVAILABLE_IN_ALL
-GType               peas_object_module_get_type               (void) G_GNUC_CONST;
 PEAS_AVAILABLE_IN_ALL
 PeasObjectModule   *peas_object_module_new                    (const gchar      *module_name,
                                                                const gchar      *path,

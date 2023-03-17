@@ -67,7 +67,7 @@ typedef struct {
   GDestroyNotify destroy_func;
 } ExtensionImplementation;
 
-struct _PeasObjectModulePrivate {
+typedef struct _PeasObjectModulePrivate {
   GModule *library;
 
   PeasObjectModuleRegisterFunc register_func;
@@ -79,14 +79,9 @@ struct _PeasObjectModulePrivate {
 
   guint resident : 1;
   guint local_linkage : 1;
-};
+} PeasObjectModulePrivate;
 
-G_DEFINE_TYPE_WITH_PRIVATE (PeasObjectModule,
-                            peas_object_module,
-                            G_TYPE_TYPE_MODULE)
-
-#define GET_PRIV(o) \
-  (peas_object_module_get_instance_private (o))
+G_DEFINE_TYPE_WITH_PRIVATE (PeasObjectModule, peas_object_module, G_TYPE_TYPE_MODULE)
 
 #define TYPE_MISSING_PLUGIN_INFO_PROPERTY (G_TYPE_FLAG_RESERVED_ID_BIT)
 
@@ -96,7 +91,7 @@ static gboolean
 peas_object_module_load (GTypeModule *gmodule)
 {
   PeasObjectModule *module = PEAS_OBJECT_MODULE (gmodule);
-  PeasObjectModulePrivate *priv = GET_PRIV (module);
+  PeasObjectModulePrivate *priv = peas_object_module_get_instance_private (module);
 
   g_return_val_if_fail (priv->module_name != NULL, FALSE);
 
@@ -201,7 +196,7 @@ static void
 peas_object_module_unload (GTypeModule *gmodule)
 {
   PeasObjectModule *module = PEAS_OBJECT_MODULE (gmodule);
-  PeasObjectModulePrivate *priv = GET_PRIV (module);
+  PeasObjectModulePrivate *priv = peas_object_module_get_instance_private (module);
   ExtensionImplementation *impls;
   guint i;
 
@@ -224,7 +219,7 @@ peas_object_module_unload (GTypeModule *gmodule)
 static void
 peas_object_module_init (PeasObjectModule *module)
 {
-  PeasObjectModulePrivate *priv = GET_PRIV (module);
+  PeasObjectModulePrivate *priv = peas_object_module_get_instance_private (module);
 
   priv->implementations = g_array_new (FALSE, FALSE,
                                        sizeof (ExtensionImplementation));
@@ -234,7 +229,7 @@ static void
 peas_object_module_finalize (GObject *object)
 {
   PeasObjectModule *module = PEAS_OBJECT_MODULE (object);
-  PeasObjectModulePrivate *priv = GET_PRIV (module);
+  PeasObjectModulePrivate *priv = peas_object_module_get_instance_private (module);
 
   g_free (priv->path);
   g_free (priv->module_name);
@@ -251,7 +246,7 @@ peas_object_module_get_property (GObject    *object,
                                  GParamSpec *pspec)
 {
   PeasObjectModule *module = PEAS_OBJECT_MODULE (object);
-  PeasObjectModulePrivate *priv = GET_PRIV (module);
+  PeasObjectModulePrivate *priv = peas_object_module_get_instance_private (module);
 
   switch (prop_id)
     {
@@ -283,7 +278,7 @@ peas_object_module_set_property (GObject      *object,
                                  GParamSpec   *pspec)
 {
   PeasObjectModule *module = PEAS_OBJECT_MODULE (object);
-  PeasObjectModulePrivate *priv = GET_PRIV (module);
+  PeasObjectModulePrivate *priv = peas_object_module_get_instance_private (module);
 
   switch (prop_id)
     {
@@ -485,7 +480,7 @@ peas_object_module_create_object (PeasObjectModule *module,
                                   guint             n_parameters,
                                   GParameter       *parameters)
 {
-  PeasObjectModulePrivate *priv = GET_PRIV (module);
+  PeasObjectModulePrivate *priv = peas_object_module_get_instance_private (module);
   guint i;
   ExtensionImplementation *impls;
 
@@ -520,7 +515,7 @@ gboolean
 peas_object_module_provides_object (PeasObjectModule *module,
                                     GType             exten_type)
 {
-  PeasObjectModulePrivate *priv = GET_PRIV (module);
+  PeasObjectModulePrivate *priv = peas_object_module_get_instance_private (module);
   guint i;
   ExtensionImplementation *impls;
 
@@ -549,7 +544,7 @@ peas_object_module_provides_object (PeasObjectModule *module,
 const gchar *
 peas_object_module_get_path (PeasObjectModule *module)
 {
-  PeasObjectModulePrivate *priv = GET_PRIV (module);
+  PeasObjectModulePrivate *priv = peas_object_module_get_instance_private (module);
 
   g_return_val_if_fail (PEAS_IS_OBJECT_MODULE (module), NULL);
 
@@ -567,7 +562,7 @@ peas_object_module_get_path (PeasObjectModule *module)
 const gchar *
 peas_object_module_get_module_name (PeasObjectModule *module)
 {
-  PeasObjectModulePrivate *priv = GET_PRIV (module);
+  PeasObjectModulePrivate *priv = peas_object_module_get_instance_private (module);
 
   g_return_val_if_fail (PEAS_IS_OBJECT_MODULE (module), NULL);
 
@@ -587,7 +582,7 @@ peas_object_module_get_module_name (PeasObjectModule *module)
 const gchar *
 peas_object_module_get_symbol (PeasObjectModule *module)
 {
-  PeasObjectModulePrivate *priv = GET_PRIV (module);
+  PeasObjectModulePrivate *priv = peas_object_module_get_instance_private (module);
 
   g_return_val_if_fail (PEAS_IS_OBJECT_MODULE (module), NULL);
 
@@ -605,7 +600,7 @@ peas_object_module_get_symbol (PeasObjectModule *module)
 GModule *
 peas_object_module_get_library (PeasObjectModule *module)
 {
-  PeasObjectModulePrivate *priv = GET_PRIV (module);
+  PeasObjectModulePrivate *priv = peas_object_module_get_instance_private (module);
 
   g_return_val_if_fail (PEAS_IS_OBJECT_MODULE (module), NULL);
 
@@ -640,7 +635,7 @@ peas_object_module_register_extension_factory (PeasObjectModule *module,
                                                gpointer          user_data,
                                                GDestroyNotify    destroy_func)
 {
-  PeasObjectModulePrivate *priv = GET_PRIV (module);
+  PeasObjectModulePrivate *priv = peas_object_module_get_instance_private (module);
   ExtensionImplementation impl = { exten_type, factory_func, user_data, destroy_func };
 
   g_return_if_fail (PEAS_IS_OBJECT_MODULE (module));
