@@ -1,3 +1,16 @@
+Overview of Changes in libpeas 1.36.0
+=====================================
+
+* PeasExtensionSet now implements GListModel
+* libpeas now requires GLib 2.44 or newer for GListModel
+* Translation updates:
+  - Interlingue
+  - Turkish
+
+As a note to packagers, we'd like to mention that there is an intention to
+release a new libpeas-2 ABI for GNOME 45 to fix a number of longstanding
+needs which can only be resolved with an ABI break.
+
 Overview of Changes in libpeas 1.34.0
 =====================================
 
