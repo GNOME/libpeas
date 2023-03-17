@@ -35,82 +35,70 @@
 
 G_BEGIN_DECLS
 
-#define PEAS_TYPE_ENGINE (peas_engine_get_type ())
+#define PEAS_TYPE_ENGINE (peas_engine_get_type())
 
 PEAS_AVAILABLE_IN_ALL
 G_DECLARE_FINAL_TYPE (PeasEngine, peas_engine, PEAS, ENGINE, GObject)
 
 PEAS_AVAILABLE_IN_ALL
-PeasEngine       *peas_engine_new                 (void);
+PeasEngine      *peas_engine_new                              (void);
 PEAS_AVAILABLE_IN_ALL
-PeasEngine       *peas_engine_new_with_nonglobal_loaders
-                                                  (void);
+PeasEngine      *peas_engine_new_with_nonglobal_loaders       (void);
 PEAS_AVAILABLE_IN_ALL
-PeasEngine       *peas_engine_get_default         (void);
-
+PeasEngine      *peas_engine_get_default                      (void);
 PEAS_AVAILABLE_IN_ALL
-void              peas_engine_add_search_path     (PeasEngine      *engine,
-                                                   const gchar     *module_dir,
-                                                   const gchar     *data_dir);
+void             peas_engine_add_search_path                  (PeasEngine      *engine,
+                                                               const char      *module_dir,
+                                                               const char      *data_dir);
 PEAS_AVAILABLE_IN_ALL
-void              peas_engine_prepend_search_path (PeasEngine      *engine,
-                                                   const gchar     *module_dir,
-                                                   const gchar     *data_dir);
-
-/* plugin management */
+void             peas_engine_prepend_search_path              (PeasEngine      *engine,
+                                                               const char      *module_dir,
+                                                               const char      *data_dir);
 PEAS_AVAILABLE_IN_ALL
-void              peas_engine_enable_loader       (PeasEngine      *engine,
-                                                   const gchar     *loader_name);
+void             peas_engine_enable_loader                    (PeasEngine      *engine,
+                                                               const char      *loader_name);
 PEAS_AVAILABLE_IN_ALL
-void              peas_engine_rescan_plugins      (PeasEngine      *engine);
+void             peas_engine_rescan_plugins                   (PeasEngine      *engine);
 PEAS_AVAILABLE_IN_ALL
-const GList      *peas_engine_get_plugin_list     (PeasEngine      *engine);
+const GList     *peas_engine_get_plugin_list                  (PeasEngine      *engine);
 PEAS_AVAILABLE_IN_ALL
-gchar           **peas_engine_get_loaded_plugins  (PeasEngine      *engine);
+char           **peas_engine_get_loaded_plugins               (PeasEngine      *engine);
 PEAS_AVAILABLE_IN_ALL
-void              peas_engine_set_loaded_plugins  (PeasEngine      *engine,
-                                                   const gchar    **plugin_names);
+void             peas_engine_set_loaded_plugins               (PeasEngine      *engine,
+                                                               const char     **plugin_names);
 PEAS_AVAILABLE_IN_ALL
-PeasPluginInfo   *peas_engine_get_plugin_info     (PeasEngine      *engine,
-                                                   const gchar     *plugin_name);
-
-/* plugin loading and unloading */
+PeasPluginInfo  *peas_engine_get_plugin_info                  (PeasEngine      *engine,
+                                                               const char      *plugin_name);
 PEAS_AVAILABLE_IN_ALL
-gboolean          peas_engine_load_plugin         (PeasEngine      *engine,
-                                                   PeasPluginInfo  *info);
+gboolean         peas_engine_load_plugin                      (PeasEngine      *engine,
+                                                               PeasPluginInfo  *info);
 PEAS_AVAILABLE_IN_ALL
-gboolean          peas_engine_unload_plugin       (PeasEngine      *engine,
-                                                   PeasPluginInfo  *info);
+gboolean         peas_engine_unload_plugin                    (PeasEngine      *engine,
+                                                               PeasPluginInfo  *info);
 PEAS_AVAILABLE_IN_ALL
-void              peas_engine_garbage_collect     (PeasEngine      *engine);
-
+void             peas_engine_garbage_collect                  (PeasEngine      *engine);
 PEAS_AVAILABLE_IN_ALL
-gboolean          peas_engine_provides_extension  (PeasEngine      *engine,
-                                                   PeasPluginInfo  *info,
-                                                   GType            extension_type);
-
+gboolean         peas_engine_provides_extension               (PeasEngine      *engine,
+                                                               PeasPluginInfo  *info,
+                                                               GType            extension_type);
 PEAS_AVAILABLE_IN_ALL
-PeasExtension    *peas_engine_create_extension_with_properties
-                                                  (PeasEngine     *engine,
-                                                   PeasPluginInfo *info,
-                                                   GType           extension_type,
-                                                   guint           n_properties,
-                                                   const gchar   **prop_names,
-                                                   const GValue   *prop_values);
-
+PeasExtension   *peas_engine_create_extension_with_properties (PeasEngine      *engine,
+                                                               PeasPluginInfo  *info,
+                                                               GType            extension_type,
+                                                               guint            n_properties,
+                                                               const char     **prop_names,
+                                                               const GValue    *prop_values);
 PEAS_AVAILABLE_IN_ALL
-PeasExtension    *peas_engine_create_extension_valist
-                                                  (PeasEngine      *engine,
-                                                   PeasPluginInfo  *info,
-                                                   GType            extension_type,
-                                                   const gchar     *first_property,
-                                                   va_list          var_args);
+PeasExtension   *peas_engine_create_extension_valist          (PeasEngine      *engine,
+                                                               PeasPluginInfo  *info,
+                                                               GType            extension_type,
+                                                               const char      *first_property,
+                                                               va_list          var_args);
 PEAS_AVAILABLE_IN_ALL
-PeasExtension    *peas_engine_create_extension    (PeasEngine      *engine,
-                                                   PeasPluginInfo  *info,
-                                                   GType            extension_type,
-                                                   const gchar     *first_property,
-                                                   ...);
-
+PeasExtension   *peas_engine_create_extension                 (PeasEngine      *engine,
+                                                               PeasPluginInfo  *info,
+                                                               GType            extension_type,
+                                                               const char      *first_property,
+                                                               ...);
 
 G_END_DECLS

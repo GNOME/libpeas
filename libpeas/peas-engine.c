@@ -92,8 +92,8 @@ typedef struct _LoaderInfo {
 } LoaderInfo;
 
 typedef struct _SearchPath {
-  gchar *module_dir;
-  gchar *data_dir;
+  char *module_dir;
+  char *data_dir;
 } SearchPath;
 
 struct _PeasEngine {
@@ -127,7 +127,7 @@ plugin_info_add_sorted (GQueue         *plugin_list,
 {
   guint i;
   GList *furthest_dep = NULL;
-  const gchar * const *dependencies;
+  const char * const *dependencies;
 
   dependencies = peas_plugin_info_get_dependencies (info);
 
@@ -206,13 +206,13 @@ plugin_info_add_sorted (GQueue         *plugin_list,
 }
 
 static gboolean
-load_plugin_info (PeasEngine  *engine,
-                  const gchar *filename,
-                  const gchar *module_dir,
-                  const gchar *data_dir)
+load_plugin_info (PeasEngine *engine,
+                  const char *filename,
+                  const char *module_dir,
+                  const char *data_dir)
 {
   PeasPluginInfo *info;
-  const gchar *module_name;
+  const char *module_name;
 
   info = _peas_plugin_info_new (filename,
                                 module_dir,
@@ -239,13 +239,13 @@ load_plugin_info (PeasEngine  *engine,
 }
 
 static gboolean
-load_file_dir_real (PeasEngine  *engine,
-                    const gchar *module_dir,
-                    const gchar *data_dir,
-                    guint        recursions)
+load_file_dir_real (PeasEngine *engine,
+                    const char *module_dir,
+                    const char *data_dir,
+                    guint       recursions)
 {
   GDir *d;
-  const gchar *dirent;
+  const char *dirent;
   GError *error = NULL;
   gboolean found = FALSE;
 
@@ -262,7 +262,7 @@ load_file_dir_real (PeasEngine  *engine,
 
   while ((dirent = g_dir_read_name (d)))
     {
-      gchar *filename = g_build_filename (module_dir, dirent, NULL);
+      char *filename = g_build_filename (module_dir, dirent, NULL);
 
       if (g_file_test (filename, G_FILE_TEST_IS_DIR))
         {
@@ -297,14 +297,14 @@ strptrcmp (gconstpointer a,
 }
 
 static gboolean
-load_resource_dir_real (PeasEngine  *engine,
-                        const gchar *module_dir,
-                        const gchar *data_dir,
-                        guint        recursions)
+load_resource_dir_real (PeasEngine *engine,
+                        const char *module_dir,
+                        const char *data_dir,
+                        guint       recursions)
 {
   guint i;
-  const gchar *module_path;
-  gchar **children;
+  const char *module_path;
+  char **children;
   GError *error = NULL;
   gboolean found = FALSE;
 
@@ -328,7 +328,7 @@ load_resource_dir_real (PeasEngine  *engine,
   for (i = 0; children[i] != NULL; ++i)
     {
       gboolean is_dir;
-      gchar *child;
+      char *child;
 
       is_dir = g_str_has_suffix (children[i], "/");
 
@@ -428,10 +428,10 @@ peas_engine_rescan_plugins (PeasEngine *engine)
 }
 
 static void
-peas_engine_insert_search_path (PeasEngine  *engine,
-                                gboolean     prepend,
-                                const gchar *module_dir,
-                                const gchar *data_dir)
+peas_engine_insert_search_path (PeasEngine *engine,
+                                gboolean    prepend,
+                                const char *module_dir,
+                                const char *data_dir)
 {
   SearchPath *sp;
 
@@ -478,9 +478,9 @@ peas_engine_insert_search_path (PeasEngine  *engine,
  * @module_dir.
  */
 void
-peas_engine_add_search_path (PeasEngine  *engine,
-                             const gchar *module_dir,
-                             const gchar *data_dir)
+peas_engine_add_search_path (PeasEngine *engine,
+                             const char *module_dir,
+                             const char *data_dir)
 {
   peas_engine_insert_search_path (engine, FALSE, module_dir, data_dir);
 }
@@ -498,9 +498,9 @@ peas_engine_add_search_path (PeasEngine  *engine,
  * Since: 1.6
  */
 void
-peas_engine_prepend_search_path (PeasEngine  *engine,
-                                 const gchar *module_dir,
-                                 const gchar *data_dir)
+peas_engine_prepend_search_path (PeasEngine *engine,
+                                 const char *module_dir,
+                                 const char *data_dir)
 {
   peas_engine_insert_search_path (engine, TRUE, module_dir, data_dir);
 }
@@ -587,12 +587,13 @@ peas_engine_set_property (GObject      *object,
   switch (prop_id)
     {
     case PROP_LOADED_PLUGINS:
-      peas_engine_set_loaded_plugins (engine,
-                                      (const gchar **) g_value_get_boxed (value));
+      peas_engine_set_loaded_plugins (engine, g_value_get_boxed (value));
       break;
+
     case PROP_NONGLOBAL_LOADERS:
       engine->use_nonglobal_loaders = g_value_get_boolean (value);
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -610,16 +611,17 @@ peas_engine_get_property (GObject    *object,
   switch (prop_id)
     {
     case PROP_PLUGIN_LIST:
-      g_value_set_pointer (value,
-                           (gpointer) peas_engine_get_plugin_list (engine));
+      g_value_set_pointer (value, (gpointer)peas_engine_get_plugin_list (engine));
       break;
+
     case PROP_LOADED_PLUGINS:
-      g_value_take_boxed (value,
-                          (gconstpointer) peas_engine_get_loaded_plugins (engine));
+      g_value_take_boxed (value, peas_engine_get_loaded_plugins (engine));
       break;
+
     case PROP_NONGLOBAL_LOADERS:
       g_value_set_boolean (value, engine->use_nonglobal_loaders);
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -841,8 +843,8 @@ static PeasObjectModule *
 get_plugin_loader_module (gint loader_id)
 {
   GlobalLoaderInfo *global_loader_info = &loaders[loader_id];
-  const gchar *loader_name, *module_name;
-  gchar *module_dir;
+  const char *loader_name, *module_name;
+  char *module_dir;
 
   if (global_loader_info->module != NULL)
     return global_loader_info->module;
@@ -1004,8 +1006,8 @@ get_plugin_loader (PeasEngine *engine,
  *   however a warning has been added to help applications transition.
  **/
 void
-peas_engine_enable_loader (PeasEngine  *engine,
-                           const gchar *loader_name)
+peas_engine_enable_loader (PeasEngine *engine,
+                           const char *loader_name)
 {
   LoaderInfo *loader_info;
   gint loader_id;
@@ -1103,8 +1105,8 @@ peas_engine_get_plugin_list (PeasEngine *engine)
  *   a given plugin module name.
  */
 PeasPluginInfo *
-peas_engine_get_plugin_info (PeasEngine  *engine,
-                             const gchar *plugin_name)
+peas_engine_get_plugin_info (PeasEngine *engine,
+                             const char *plugin_name)
 {
   GList *l;
 
@@ -1114,7 +1116,7 @@ peas_engine_get_plugin_info (PeasEngine  *engine,
   for (l = engine->plugin_list.head; l != NULL; l = l->next)
     {
       PeasPluginInfo *info = (PeasPluginInfo *) l->data;
-      const gchar *module_name = peas_plugin_info_get_module_name (info);
+      const char *module_name = peas_plugin_info_get_module_name (info);
 
       if (strcmp (module_name, plugin_name) == 0)
         return info;
@@ -1127,7 +1129,7 @@ static void
 peas_engine_load_plugin_real (PeasEngine     *engine,
                               PeasPluginInfo *info)
 {
-  const gchar * const *dependencies;
+  const char * const *dependencies;
   PeasPluginInfo *dep_info;
   guint i;
   PeasPluginLoader *loader;
@@ -1243,7 +1245,7 @@ peas_engine_unload_plugin_real (PeasEngine     *engine,
                                 PeasPluginInfo *info)
 {
   GList *item;
-  const gchar *module_name;
+  const char *module_name;
   PeasPluginLoader *loader;
 
   if (!peas_plugin_info_is_loaded (info))
@@ -1401,12 +1403,12 @@ _peas_engine_create_extensionv (PeasEngine     *engine,
  * Since: 1.24
  */
 PeasExtension *
-peas_engine_create_extension_with_properties (PeasEngine     *engine,
-                                              PeasPluginInfo *info,
-                                              GType           extension_type,
-                                              guint           n_properties,
-                                              const gchar   **prop_names,
-                                              const GValue   *prop_values)
+peas_engine_create_extension_with_properties (PeasEngine      *engine,
+                                              PeasPluginInfo  *info,
+                                              GType            extension_type,
+                                              guint            n_properties,
+                                              const char     **prop_names,
+                                              const GValue    *prop_values)
 {
   PeasPluginLoader *loader;
   PeasExtension *extension;
@@ -1479,7 +1481,7 @@ PeasExtension *
 peas_engine_create_extension_valist (PeasEngine     *engine,
                                      PeasPluginInfo *info,
                                      GType           extension_type,
-                                     const gchar    *first_property,
+                                     const char     *first_property,
                                      va_list         var_args)
 {
   GParameter *parameters;
@@ -1544,7 +1546,7 @@ PeasExtension *
 peas_engine_create_extension (PeasEngine     *engine,
                               PeasPluginInfo *info,
                               GType           extension_type,
-                              const gchar    *first_property,
+                              const char     *first_property,
                               ...)
 {
   va_list var_args;
@@ -1579,7 +1581,7 @@ peas_engine_create_extension (PeasEngine     *engine,
  * Returns: (transfer full) (array zero-terminated=1): A newly-allocated
  *   %NULL-terminated array of strings.
  */
-gchar **
+char **
 peas_engine_get_loaded_plugins (PeasEngine *engine)
 {
   GArray *array;
@@ -1587,12 +1589,12 @@ peas_engine_get_loaded_plugins (PeasEngine *engine)
 
   g_return_val_if_fail (PEAS_IS_ENGINE (engine), NULL);
 
-  array = g_array_new (TRUE, FALSE, sizeof (gchar *));
+  array = g_array_new (TRUE, FALSE, sizeof (char *));
 
   for (pl = engine->plugin_list.head; pl != NULL; pl = pl->next)
     {
       PeasPluginInfo *info = (PeasPluginInfo *) pl->data;
-      gchar *module_name;
+      char *module_name;
 
       if (peas_plugin_info_is_loaded (info))
         {
@@ -1601,12 +1603,12 @@ peas_engine_get_loaded_plugins (PeasEngine *engine)
         }
     }
 
-  return (gchar **) g_array_free (array, FALSE);
+  return (char **) g_array_free (array, FALSE);
 }
 
 static gboolean
-string_in_strv (const gchar  *needle,
-                const gchar **haystack)
+string_in_strv (const char  *needle,
+                const char **haystack)
 {
   guint i;
 
@@ -1637,8 +1639,8 @@ string_in_strv (const gchar  *needle,
  * If @plugin_names is %NULL, all plugins will be unloaded.
  */
 void
-peas_engine_set_loaded_plugins (PeasEngine   *engine,
-                                const gchar **plugin_names)
+peas_engine_set_loaded_plugins (PeasEngine  *engine,
+                                const char **plugin_names)
 {
   GList *pl;
 
@@ -1647,7 +1649,7 @@ peas_engine_set_loaded_plugins (PeasEngine   *engine,
   for (pl = engine->plugin_list.head; pl != NULL; pl = pl->next)
     {
       PeasPluginInfo *info = (PeasPluginInfo *) pl->data;
-      const gchar *module_name;
+      const char *module_name;
       gboolean is_loaded;
       gboolean to_load;
 
