@@ -117,7 +117,7 @@ peas_plugin_loader_provides_extension (PeasPluginLoader *loader,
 }
 
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-PeasExtension *
+GObject *
 peas_plugin_loader_create_extension (PeasPluginLoader *loader,
                                      PeasPluginInfo   *info,
                                      GType             ext_type,

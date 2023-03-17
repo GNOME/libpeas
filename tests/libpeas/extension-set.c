@@ -47,7 +47,7 @@ static const gchar *loadable_plugins[] = {
 static void
 extension_added_cb (PeasExtensionSet *extension_set,
                     PeasPluginInfo   *info,
-                    PeasExtension    *extension,
+                    GObject    *extension,
                     gint             *active)
 {
   ++(*active);
@@ -56,7 +56,7 @@ extension_added_cb (PeasExtensionSet *extension_set,
 static void
 extension_removed_cb (PeasExtensionSet *extension_set,
                       PeasPluginInfo   *info,
-                      PeasExtension    *extension,
+                      GObject    *extension,
                       gint             *active)
 {
   --(*active);
@@ -152,7 +152,7 @@ test_extension_set_create_valid (PeasEngine *engine)
 static void
 valid_extension_added_cb (PeasExtensionSet *extension_set,
                           PeasPluginInfo   *info,
-                          PeasExtension    *extension,
+                          GObject    *extension,
                           GObject          **obj_ptr)
 {
   g_clear_object (obj_ptr);
@@ -330,7 +330,7 @@ static void
 test_extension_set_get_extension (PeasEngine *engine)
 {
   PeasPluginInfo *info;
-  PeasExtension *extension;
+  GObject *extension;
   PeasExtensionSet *extension_set;
 
   extension_set = testing_extension_set_new (engine, NULL);
@@ -369,7 +369,7 @@ test_extension_set_foreach (PeasEngine *engine)
 static void
 ordering_cb (PeasExtensionSet  *set,
              PeasPluginInfo    *info,
-             PeasExtension     *extension,
+             GObject     *extension,
              GList            **order)
 {
   const gchar *order_module_name = (const gchar *) (*order)->data;

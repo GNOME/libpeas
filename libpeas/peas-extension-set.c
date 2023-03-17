@@ -106,7 +106,7 @@ struct _PeasExtensionSet
 
 typedef struct {
   PeasPluginInfo *info;
-  PeasExtension *exten;
+  GObject *exten;
 } ExtensionItem;
 
 typedef struct {
@@ -208,7 +208,7 @@ static void
 add_extension (PeasExtensionSet *set,
                PeasPluginInfo   *info)
 {
-  PeasExtension *exten;
+  GObject *exten;
   ExtensionItem *item;
   guint position;
 
@@ -368,7 +368,7 @@ peas_extension_set_class_init (PeasExtensionSetClass *klass)
                   G_TYPE_NONE,
                   2,
                   PEAS_TYPE_PLUGIN_INFO | G_SIGNAL_TYPE_STATIC_SCOPE,
-                  PEAS_TYPE_EXTENSION);
+                  G_TYPE_OBJECT);
   g_signal_set_va_marshaller (signals[EXTENSION_ADDED],
                               G_TYPE_FROM_CLASS (klass),
                               peas_cclosure_marshal_VOID__OBJECT_OBJECTv);
@@ -400,7 +400,7 @@ peas_extension_set_class_init (PeasExtensionSetClass *klass)
                   G_TYPE_NONE,
                   2,
                   PEAS_TYPE_PLUGIN_INFO | G_SIGNAL_TYPE_STATIC_SCOPE,
-                  PEAS_TYPE_EXTENSION);
+                  G_TYPE_OBJECT);
   g_signal_set_va_marshaller (signals[EXTENSION_REMOVED],
                               G_TYPE_FROM_CLASS (klass),
                               peas_cclosure_marshal_VOID__OBJECT_OBJECTv);
@@ -443,9 +443,9 @@ peas_extension_set_class_init (PeasExtensionSetClass *klass)
  *
  * If the plugin doesn't provide such an extension, it returns %NULL.
  *
- * Returns: (transfer none) (nullable): a reference to a #PeasExtension
+ * Returns: (transfer none) (nullable): a reference to a #GObject
  */
-PeasExtension *
+GObject *
 peas_extension_set_get_extension (PeasExtensionSet *set,
                                   PeasPluginInfo   *info)
 {

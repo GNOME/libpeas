@@ -101,7 +101,7 @@ peas_plugin_loader_python_provides_extension (PeasPluginLoader *loader,
   return the_type != G_TYPE_INVALID;
 }
 
-static PeasExtension *
+static GObject *
 peas_plugin_loader_python_create_extension (PeasPluginLoader *loader,
                                             PeasPluginInfo   *info,
                                             GType             exten_type,

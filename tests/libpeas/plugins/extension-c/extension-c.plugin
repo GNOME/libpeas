@@ -1,6 +1,6 @@
 [Plugin]
 Module=extension-c
 Name=Extension C
-Description=This plugin is for the C PeasExtension tests.
+Description=This plugin is for the C GObject tests.
 Authors=Garrett Regier
 Copyright=Copyright © 2010 Garrett Regier

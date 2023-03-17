@@ -32,7 +32,6 @@
 #include "peas-dirs.h"
 #include "peas-engine-priv.h"
 #include "peas-engine.h"
-#include "peas-extension.h"
 #include "peas-i18n-priv.h"
 #include "peas-marshal.h"
 #include "peas-object-module.h"
@@ -52,9 +51,6 @@
  *   from all the registered plugin directories;
  * - it will provide you an API to load, control and unload your
  *   plugins and their extensions from within your application.
- *
- * Since libpeas 1.22, @extension_type can be an Abstract [alias@GObject.Type]
- * and not just an Interface [alias@GObject.Type].
  **/
 
 /* Signals */
@@ -532,8 +528,6 @@ peas_engine_add_search_path (PeasEngine *engine,
  * Prepends a search path to the list of paths where to look for plugins.
  *
  * See Also: [method@Engine.add_search_path]
- *
- * Since: 1.6
  */
 void
 peas_engine_prepend_search_path (PeasEngine *engine,
@@ -758,8 +752,6 @@ peas_engine_class_init (PeasEngineClass *klass)
    * If non-global plugin loaders should be used.
    *
    * See [ctor@Engine.new_with_nonglobal_loaders] for more information.
-   *
-   * Since: 1.14
    */
   properties[PROP_NONGLOBAL_LOADERS] =
     g_param_spec_boolean ("nonglobal-loaders",
@@ -1317,9 +1309,6 @@ peas_engine_unload_plugin (PeasEngine     *engine,
  *
  * If the @info is not loaded than %FALSE will always be returned.
  *
- * Since libpeas 1.22, @extension_type can be an Abstract [alias@GObject.Type]
- * and not just an Interface [alias@GObject.Type].
- *
  * Returns: if @info provides an extension for @extension_type.
  */
 gboolean
@@ -1342,7 +1331,7 @@ peas_engine_provides_extension (PeasEngine     *engine,
 }
 
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-PeasExtension *
+GObject *
 _peas_engine_create_extensionv (PeasEngine     *engine,
                                 PeasPluginInfo *info,
                                 GType           extension_type,
@@ -1350,7 +1339,7 @@ _peas_engine_create_extensionv (PeasEngine     *engine,
                                 GParameter     *parameters)
 {
   PeasPluginLoader *loader;
-  PeasExtension *extension;
+  GObject *extension;
 
   g_return_val_if_fail (PEAS_IS_ENGINE (engine), NULL);
   g_return_val_if_fail (info != NULL, NULL);
@@ -1383,20 +1372,14 @@ _peas_engine_create_extensionv (PeasEngine     *engine,
  * @prop_values: (array length=n_properties): an array of property values.
  *
  * If the plugin identified by @info implements the @extension_type,
- * then this function will return a new instance of this implementation,
- * wrapped in a new [alias@Extension] instance. Otherwise, it will return %NULL.
- *
- * Since libpeas 1.22, @extension_type can be an Abstract [alias@GObject.Type]
- * and not just an Interface [alias@GObject.Type].
+ * then this function will return a new instance of this implementation.
  *
  * See [method@Engine.create_extension] for more information.
  *
- * Returns: (transfer full): a new instance of #PeasExtension wrapping
- *   the @extension_type instance, or %NULL.
- *
- * Since: 1.24
+ * Returns: (transfer full): a new instance of #GObject which meets the
+ *   prerequisites of @extension_type, or %NULL.
  */
-PeasExtension *
+GObject *
 peas_engine_create_extension_with_properties (PeasEngine      *engine,
                                               PeasPluginInfo  *info,
                                               GType            extension_type,
@@ -1405,7 +1388,7 @@ peas_engine_create_extension_with_properties (PeasEngine      *engine,
                                               const GValue    *prop_values)
 {
   PeasPluginLoader *loader;
-  PeasExtension *extension;
+  GObject *extension;
   GParameter *parameters = NULL;
 
   g_return_val_if_fail (PEAS_IS_ENGINE (engine), NULL);
@@ -1460,18 +1443,14 @@ peas_engine_create_extension_with_properties (PeasEngine      *engine,
  *   name/value pairs, followed by %NULL.
  *
  * If the plugin identified by @info implements the @extension_type,
- * then this function will return a new instance of this implementation,
- * wrapped in a new [alias@Extension] instance. Otherwise, it will return %NULL.
- *
- * Since libpeas 1.22, @extension_type can be an Abstract [alias@GObject.Type]
- * and not just an Interface [alias@GObject.Type].
+ * then this function will return a new instance of this implementation.
  *
  * See [method@Engine.create_extension] for more information.
  *
- * Returns: a new instance of #PeasExtension wrapping
- *   the @extension_type instance, or %NULL.
+ * Returns: a new instance of #GObject that meets the prerequisites of
+ *   @extension_type, or %NULL.
  */
-PeasExtension *
+GObject *
 peas_engine_create_extension_valist (PeasEngine     *engine,
                                      PeasPluginInfo *info,
                                      GType           extension_type,
@@ -1479,7 +1458,7 @@ peas_engine_create_extension_valist (PeasEngine     *engine,
                                      va_list         var_args)
 {
   GParameter *parameters;
-  PeasExtension *exten;
+  GObject *exten;
   guint n_parameters;
 
   g_return_val_if_fail (PEAS_IS_ENGINE (engine), NULL);
@@ -1517,25 +1496,15 @@ G_GNUC_END_IGNORE_DEPRECATIONS
  *   name/value pairs, followed by %NULL.
  *
  * If the plugin identified by @info implements the @extension_type,
- * then this function will return a new instance of this implementation,
- * wrapped in a new [alias@Extension] instance. Otherwise, it will return %NULL.
+ * then this function will return a new instance of this implementation.
  *
  * When creating the new instance of the @extension_type subtype, the
  * provided construct properties will be passed to the extension construction
  * handler (exactly like if you had called [ctor@GObject.Object.new] yourself).
  *
- * The new extension instance produced by this function will always be
- * returned wrapped in a #PeasExtension proxy, following the current libpeas
- * principle of never giving you the actual object (also because it might as
- * well *not* be an actual object).
- *
- * Since libpeas 1.22, @extension_type can be an Abstract [alias@GObject.Type]
- * and not just an Interface [alias@GObject.Type].
- *
- * Returns: a new instance of #PeasExtension wrapping
- *   the @extension_type instance, or %NULL.
+ * Returns: a new #GObject that implements @extension_type; or %NULL.
  */
-PeasExtension *
+GObject *
 peas_engine_create_extension (PeasEngine     *engine,
                               PeasPluginInfo *info,
                               GType           extension_type,
@@ -1543,7 +1512,7 @@ peas_engine_create_extension (PeasEngine     *engine,
                               ...)
 {
   va_list var_args;
-  PeasExtension *exten;
+  GObject *exten;
 
   g_return_val_if_fail (PEAS_IS_ENGINE (engine), NULL);
   g_return_val_if_fail (info != NULL, NULL);
@@ -1687,8 +1656,6 @@ peas_engine_new (void)
  *   plugin loaders are always global.
  *
  * Returns: a new instance of #PeasEngine that uses non-global loaders.
- *
- * Since: 1.14
  */
 PeasEngine *
 peas_engine_new_with_nonglobal_loaders (void)

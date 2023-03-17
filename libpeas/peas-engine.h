@@ -30,7 +30,6 @@
 #include <glib-object.h>
 
 #include "peas-plugin-info.h"
-#include "peas-extension.h"
 #include "peas-version-macros.h"
 
 G_BEGIN_DECLS
@@ -80,20 +79,20 @@ gboolean         peas_engine_provides_extension               (PeasEngine      *
                                                                PeasPluginInfo  *info,
                                                                GType            extension_type);
 PEAS_AVAILABLE_IN_ALL
-PeasExtension   *peas_engine_create_extension_with_properties (PeasEngine      *engine,
+GObject         *peas_engine_create_extension_with_properties (PeasEngine      *engine,
                                                                PeasPluginInfo  *info,
                                                                GType            extension_type,
                                                                guint            n_properties,
                                                                const char     **prop_names,
                                                                const GValue    *prop_values);
 PEAS_AVAILABLE_IN_ALL
-PeasExtension   *peas_engine_create_extension_valist          (PeasEngine      *engine,
+GObject         *peas_engine_create_extension_valist          (PeasEngine      *engine,
                                                                PeasPluginInfo  *info,
                                                                GType            extension_type,
                                                                const char      *first_property,
                                                                va_list          var_args);
 PEAS_AVAILABLE_IN_ALL
-PeasExtension   *peas_engine_create_extension                 (PeasEngine      *engine,
+GObject         *peas_engine_create_extension                 (PeasEngine      *engine,
                                                                PeasPluginInfo  *info,
                                                                GType            extension_type,
                                                                const char      *first_property,

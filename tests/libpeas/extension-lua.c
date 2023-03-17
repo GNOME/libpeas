@@ -42,7 +42,7 @@ set_garbage_collector_state (PeasEngine     *engine,
                              PeasPluginInfo *info,
                              gboolean        start)
 {
-  PeasExtension *extension;
+  GObject *extension;
 
   extension = peas_engine_create_extension (engine, info,
                                             PEAS_TYPE_ACTIVATABLE,
@@ -66,7 +66,7 @@ static void
 test_extension_lua_instance_refcount (PeasEngine     *engine,
                                       PeasPluginInfo *info)
 {
-  PeasExtension *extension;
+  GObject *extension;
 
   set_garbage_collector_state (engine, info, FALSE);
 
@@ -75,7 +75,7 @@ test_extension_lua_instance_refcount (PeasEngine     *engine,
                                             NULL);
   g_object_add_weak_pointer (extension, (gpointer *) &extension);
 
-  g_assert (PEAS_IS_EXTENSION (extension));
+  g_assert (G_IS_OBJECT (extension));
 
   /* The Lua wrapper created around the extension
    * object should have increased its refcount by 1.
@@ -105,7 +105,7 @@ static void
 test_extension_lua_activatable_subject_refcount (PeasEngine     *engine,
                                                  PeasPluginInfo *info)
 {
-  PeasExtension *extension;
+  GObject *extension;
   GObject *object;
 
   set_garbage_collector_state (engine, info, FALSE);
@@ -125,7 +125,7 @@ test_extension_lua_activatable_subject_refcount (PeasEngine     *engine,
                                             NULL);
   g_object_add_weak_pointer (extension, (gpointer *) &extension);
 
-  g_assert (PEAS_IS_EXTENSION (extension));
+  g_assert (G_IS_OBJECT (extension));
 
   /* The Lua wrapper created around our dummy
    * object should have increased its refcount by 1.

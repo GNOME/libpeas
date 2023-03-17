@@ -26,7 +26,6 @@
 #include <glib-object.h>
 #include <gmodule.h>
 #include "peas-plugin-info.h"
-#include "peas-extension.h"
 
 G_BEGIN_DECLS
 
@@ -48,54 +47,49 @@ G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 struct _PeasPluginLoaderClass {
   GObjectClass parent;
 
-  gboolean       (*initialize)            (PeasPluginLoader *loader);
-  gboolean       (*is_global)             (PeasPluginLoader *loader);
-
-  gboolean       (*load)                  (PeasPluginLoader *loader,
-                                           PeasPluginInfo   *info);
-  void           (*unload)                (PeasPluginLoader *loader,
-                                           PeasPluginInfo   *info);
-  gboolean       (*provides_extension)    (PeasPluginLoader *loader,
-                                           PeasPluginInfo   *info,
-                                           GType             ext_type);
-  PeasExtension *(*create_extension)      (PeasPluginLoader *loader,
-                                           PeasPluginInfo   *info,
-                                           GType             ext_type,
-                                           guint             n_parameters,
-                                           GParameter       *parameters);
-
-  void           (*garbage_collect)       (PeasPluginLoader *loader);
+  gboolean  (*initialize)         (PeasPluginLoader *loader);
+  gboolean  (*is_global)          (PeasPluginLoader *loader);
+  gboolean  (*load)               (PeasPluginLoader *loader,
+                                   PeasPluginInfo   *info);
+  void      (*unload)             (PeasPluginLoader *loader,
+                                   PeasPluginInfo   *info);
+  gboolean  (*provides_extension) (PeasPluginLoader *loader,
+                                   PeasPluginInfo   *info,
+                                   GType             ext_type);
+  GObject  *(*create_extension)   (PeasPluginLoader *loader,
+                                   PeasPluginInfo   *info,
+                                   GType             ext_type,
+                                   guint             n_parameters,
+                                   GParameter       *parameters);
+  void      (*garbage_collect)    (PeasPluginLoader *loader);
 };
 G_GNUC_END_IGNORE_DEPRECATIONS
 
 PEAS_AVAILABLE_IN_ALL
-GType         peas_plugin_loader_get_type             (void)  G_GNUC_CONST;
-
+GType     peas_plugin_loader_get_type           (void) G_GNUC_CONST;
 PEAS_AVAILABLE_IN_ALL
-gboolean      peas_plugin_loader_initialize           (PeasPluginLoader *loader);
+gboolean  peas_plugin_loader_initialize         (PeasPluginLoader *loader);
 PEAS_AVAILABLE_IN_ALL
-gboolean      peas_plugin_loader_is_global            (PeasPluginLoader *loader);
-
+gboolean  peas_plugin_loader_is_global          (PeasPluginLoader *loader);
 PEAS_AVAILABLE_IN_ALL
-gboolean      peas_plugin_loader_load                 (PeasPluginLoader *loader,
-                                                       PeasPluginInfo   *info);
+gboolean  peas_plugin_loader_load               (PeasPluginLoader *loader,
+                                                 PeasPluginInfo   *info);
 PEAS_AVAILABLE_IN_ALL
-void          peas_plugin_loader_unload               (PeasPluginLoader *loader,
-                                                       PeasPluginInfo   *info);
-
+void      peas_plugin_loader_unload             (PeasPluginLoader *loader,
+                                                 PeasPluginInfo   *info);
 PEAS_AVAILABLE_IN_ALL
-gboolean      peas_plugin_loader_provides_extension   (PeasPluginLoader *loader,
-                                                       PeasPluginInfo   *info,
-                                                       GType             ext_type);
+gboolean  peas_plugin_loader_provides_extension (PeasPluginLoader *loader,
+                                                 PeasPluginInfo   *info,
+                                                 GType             ext_type);
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 PEAS_AVAILABLE_IN_ALL
-PeasExtension *peas_plugin_loader_create_extension    (PeasPluginLoader *loader,
-                                                       PeasPluginInfo   *info,
-                                                       GType             ext_type,
-                                                       guint             n_parameters,
-                                                       GParameter       *parameters);
+GObject  *peas_plugin_loader_create_extension   (PeasPluginLoader *loader,
+                                                 PeasPluginInfo   *info,
+                                                 GType             ext_type,
+                                                 guint             n_parameters,
+                                                 GParameter       *parameters);
 G_GNUC_END_IGNORE_DEPRECATIONS
 PEAS_AVAILABLE_IN_ALL
-void          peas_plugin_loader_garbage_collect      (PeasPluginLoader *loader);
+void      peas_plugin_loader_garbage_collect    (PeasPluginLoader *loader);
 
 G_END_DECLS

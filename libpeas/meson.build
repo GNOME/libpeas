@@ -15,7 +15,6 @@ peas_version_h = configure_file(
 
 libpeas_public_h = files(
   'peas-engine.h',
-  'peas-extension.h',
   'peas-extension-base.h',
   'peas-extension-set.h',
   'peas-object-module.h',
@@ -28,7 +27,6 @@ libpeas_sources = files(
   'peas-debug.c',
   'peas-dirs.c',
   'peas-engine.c',
-  'peas-extension.c',
   'peas-extension-base.c',
   'peas-extension-set.c',
   'peas-i18n.c',

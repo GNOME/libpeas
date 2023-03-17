@@ -53,7 +53,7 @@ G_DECLARE_FINAL_TYPE (PeasExtensionSet, peas_extension_set, PEAS, EXTENSION_SET,
  */
 typedef void (*PeasExtensionSetForeachFunc) (PeasExtensionSet *set,
                                              PeasPluginInfo   *info,
-                                             PeasExtension    *exten,
+                                             GObject          *extension,
                                              gpointer          data);
 
 PEAS_AVAILABLE_IN_ALL
@@ -61,7 +61,7 @@ void              peas_extension_set_foreach             (PeasExtensionSet      
                                                           PeasExtensionSetForeachFunc   func,
                                                           gpointer                      data);
 PEAS_AVAILABLE_IN_ALL
-PeasExtension    *peas_extension_set_get_extension       (PeasExtensionSet             *set,
+GObject          *peas_extension_set_get_extension       (PeasExtensionSet             *set,
                                                           PeasPluginInfo               *info);
 PEAS_AVAILABLE_IN_ALL
 PeasExtensionSet *peas_extension_set_new_with_properties (PeasEngine                   *engine,

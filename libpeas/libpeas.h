@@ -23,7 +23,6 @@
 
 #define LIBPEAS_INSIDE
 # include "peas-engine.h"
-# include "peas-extension.h"
 # include "peas-extension-base.h"
 # include "peas-extension-set.h"
 # include "peas-object-module.h"

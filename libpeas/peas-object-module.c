@@ -41,9 +41,6 @@
  * registration of extensions. It will be used by C extensions implementors to
  * register extension implementations from within the peas_register_types module
  * function.
- *
- * Since libpeas 1.22, @extension_type can be an Abstract [alias@GObject.Type]
- * and not just an Interface [alias@GObject.Type].
  **/
 
 typedef void (*PeasObjectModuleRegisterFunc) (PeasObjectModule *module);
@@ -360,8 +357,6 @@ peas_object_module_class_init (PeasObjectModuleClass *klass)
    * PeasObjectModule:local-linkage
    *
    * Whether the module is loaded with local linkage, i.e. #G_MODULE_BIND_LOCAL.
-   *
-   * Since 1.14
    */
   properties[PROP_LOCAL_LINKAGE] =
     g_param_spec_boolean ("local-linkage",
@@ -410,8 +405,6 @@ peas_object_module_new (const gchar *module_name,
  * Creates a new #PeasObjectModule.
  *
  * Returns: a new #PeasObjectModule.
- *
- * Since 1.14
  */
 PeasObjectModule *
 peas_object_module_new_full (const gchar *module_name,
@@ -469,9 +462,6 @@ G_GNUC_BEGIN_IGNORE_DEPRECATIONS
  * If @module does not provide a #PeasFactoryFunc for @exten_type then %NULL is
  * returned.
  *
- * Since libpeas 1.22, @exten_type can be an Abstract [alias@GObject.Type]
- * and not just an Interface [alias@GObject.Type].
- *
  * Returns: (transfer full) (nullable): The created object
  */
 GObject *
@@ -481,7 +471,6 @@ peas_object_module_create_object (PeasObjectModule *module,
                                   GParameter       *parameters)
 {
   PeasObjectModulePrivate *priv = peas_object_module_get_instance_private (module);
-  guint i;
   ExtensionImplementation *impls;
 
   g_return_val_if_fail (PEAS_IS_OBJECT_MODULE (module), NULL);
@@ -489,7 +478,7 @@ peas_object_module_create_object (PeasObjectModule *module,
                         G_TYPE_IS_ABSTRACT (exten_type), NULL);
 
   impls = (ExtensionImplementation *) priv->implementations->data;
-  for (i = 0; i < priv->implementations->len; ++i)
+  for (guint i = 0; i < priv->implementations->len; i++)
     {
       if (impls[i].exten_type == exten_type)
         return impls[i].func (n_parameters, parameters, impls[i].user_data);
@@ -505,9 +494,6 @@ G_GNUC_END_IGNORE_DEPRECATIONS
  * @exten_type: The #GType of the extension.
  *
  * Determines if the module provides an extension for @exten_type.
- *
- * Since libpeas 1.22, @exten_type can be an Abstract [alias@GObject.Type]
- * and not just an Interface [alias@GObject.Type].
  *
  * Returns: if the module provides an extension for @exten_type.
  */
@@ -624,9 +610,6 @@ peas_object_module_get_library (PeasObjectModule *module)
  * creating native types which cannot be instantiated correctly using
  * [ctor@GObject.Object.new].  For other uses, you will usually prefer relying on
  * peas_object_module_register_extension_type().
- *
- * Since libpeas 1.22, @exten_type can be an Abstract [alias@GObject.Type]
- * and not just an Interface [alias@GObject.Type].
  */
 void
 peas_object_module_register_extension_factory (PeasObjectModule *module,
@@ -688,9 +671,6 @@ G_GNUC_END_IGNORE_DEPRECATIONS
  * @impl_type: The #GType of your implementation of @exten_type.
  *
  * Register @impl_type as an extension which implements @extension_type.
- *
- * Since libpeas 1.22, @exten_type can be an Abstract [alias@GObject.Type]
- * and not just an Interface [alias@GObject.Type].
  */
 void
 peas_object_module_register_extension_type (PeasObjectModule *module,

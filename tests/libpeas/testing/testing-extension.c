@@ -134,13 +134,13 @@ static void
 test_extension_create_valid (PeasEngine     *engine,
                              PeasPluginInfo *info)
 {
-  PeasExtension *extension;
+  GObject *extension;
 
   extension = peas_engine_create_extension (engine, info,
                                             INTROSPECTION_TYPE_CALLABLE,
                                             NULL);
 
-  g_assert (PEAS_IS_EXTENSION (extension));
+  g_assert (G_IS_OBJECT (extension));
   g_assert (INTROSPECTION_IS_CALLABLE (extension));
 
   g_object_unref (extension);
@@ -150,14 +150,14 @@ static void
 test_extension_create_valid_without_properties (PeasEngine     *engine,
                                                 PeasPluginInfo *info)
 {
-  PeasExtension *extension;
+  GObject *extension;
 
   extension =
     peas_engine_create_extension_with_properties (engine, info,
                                                   INTROSPECTION_TYPE_CALLABLE,
                                                   0, NULL, NULL);
 
-  g_assert (PEAS_IS_EXTENSION (extension));
+  g_assert (G_IS_OBJECT (extension));
   g_assert (INTROSPECTION_IS_CALLABLE (extension));
 
   g_object_unref (extension);
@@ -167,7 +167,7 @@ static void
 test_extension_create_valid_with_properties (PeasEngine     *engine,
                                              PeasPluginInfo *info)
 {
-  PeasExtension *extension;
+  GObject *extension;
   IntrospectionAbstract *abstract;
   GValue prop_values[1] = { G_VALUE_INIT };
   const gchar *prop_names[1] = { "abstract-property" };
@@ -193,7 +193,7 @@ static void
 test_extension_create_invalid (PeasEngine     *engine,
                                PeasPluginInfo *info)
 {
-  PeasExtension *extension;
+  GObject *extension;
 
   testing_util_push_log_hook ("*assertion*G_TYPE_IS_INTERFACE*failed");
   testing_util_push_log_hook ("*does not provide a 'IntrospectionUnimplemented' extension");
@@ -202,40 +202,40 @@ test_extension_create_invalid (PeasEngine     *engine,
 
   /* Invalid GType */
   extension = peas_engine_create_extension (engine, info, G_TYPE_INVALID, NULL);
-  g_assert (!PEAS_IS_EXTENSION (extension));
+  g_assert (!G_IS_OBJECT (extension));
 
 
   /* GObject but not a GInterface */
   extension = peas_engine_create_extension (engine, info, PEAS_TYPE_ENGINE, NULL);
-  g_assert (!PEAS_IS_EXTENSION (extension));
+  g_assert (!G_IS_OBJECT (extension));
 
 
   /* Does not implement this GType */
   extension = peas_engine_create_extension (engine, info,
                                             INTROSPECTION_TYPE_UNIMPLEMENTED,
                                             NULL);
-  g_assert (!PEAS_IS_EXTENSION (extension));
+  g_assert (!G_IS_OBJECT (extension));
 
   /* Interface does not have a specified property */
   extension = peas_engine_create_extension (engine, info,
                                             INTROSPECTION_TYPE_CALLABLE,
                                             "does-not-exist", "",
                                             NULL);
-  g_assert (!PEAS_IS_EXTENSION (extension));
+  g_assert (!G_IS_OBJECT (extension));
 
   /* Not loaded */
   g_assert (peas_engine_unload_plugin (engine, info));
   extension = peas_engine_create_extension (engine, info,
                                             INTROSPECTION_TYPE_CALLABLE,
                                             NULL);
-  g_assert (!PEAS_IS_EXTENSION (extension));
+  g_assert (!G_IS_OBJECT (extension));
 }
 
 static void
 test_extension_create_invalid_with_properties (PeasEngine     *engine,
                                                PeasPluginInfo *info)
 {
-  PeasExtension *extension;
+  GObject *extension;
   GValue prop_values[1] = { G_VALUE_INIT };
   const gchar *prop_names[1] = { NULL };
   GValue prop_values2[1] = { G_VALUE_INIT };
@@ -254,20 +254,20 @@ test_extension_create_invalid_with_properties (PeasEngine     *engine,
   extension = peas_engine_create_extension_with_properties (engine, info,
                                                             G_TYPE_INVALID, 0,
                                                             NULL, NULL);
-  g_assert (!PEAS_IS_EXTENSION (extension));
+  g_assert (!G_IS_OBJECT (extension));
 
   /* GObject but not a GInterface */
   extension = peas_engine_create_extension_with_properties (engine, info,
                                                             PEAS_TYPE_ENGINE, 0,
                                                             NULL, NULL);
-  g_assert (!PEAS_IS_EXTENSION (extension));
+  g_assert (!G_IS_OBJECT (extension));
 
   /* Does not implement this GType */
   extension =
     peas_engine_create_extension_with_properties (engine, info,
                                                   INTROSPECTION_TYPE_UNIMPLEMENTED,
                                                   0, NULL, NULL);
-  g_assert (!PEAS_IS_EXTENSION (extension));
+  g_assert (!G_IS_OBJECT (extension));
 
   /* Interface has a NULL property name*/
   extension =
@@ -275,7 +275,7 @@ test_extension_create_invalid_with_properties (PeasEngine     *engine,
                                                   INTROSPECTION_TYPE_CALLABLE,
                                                   G_N_ELEMENTS (prop_names2),
                                                   prop_names, prop_values);
-  g_assert (!PEAS_IS_EXTENSION (extension));
+  g_assert (!G_IS_OBJECT (extension));
 
   /* Interface has a not initialiazed GValue */
   extension =
@@ -283,7 +283,7 @@ test_extension_create_invalid_with_properties (PeasEngine     *engine,
                                                   INTROSPECTION_TYPE_CALLABLE,
                                                   G_N_ELEMENTS (prop_names2),
                                                   prop_names2, prop_values2);
-  g_assert (!PEAS_IS_EXTENSION (extension));
+  g_assert (!G_IS_OBJECT (extension));
 
   /* Not loaded */
   g_assert (peas_engine_unload_plugin (engine, info));
@@ -291,7 +291,7 @@ test_extension_create_invalid_with_properties (PeasEngine     *engine,
     peas_engine_create_extension_with_properties (engine, info,
                                                   INTROSPECTION_TYPE_CALLABLE,
                                                   0, NULL, NULL);
-  g_assert (!PEAS_IS_EXTENSION (extension));
+  g_assert (!G_IS_OBJECT (extension));
 
   g_value_unset (&prop_values[0]);
 
@@ -301,7 +301,7 @@ static void
 test_extension_create_with_prerequisite (PeasEngine     *engine,
                                          PeasPluginInfo *info)
 {
-  PeasExtension *extension;
+  GObject *extension;
   gint prerequisite_property = -1;
 
   extension = peas_engine_create_extension (engine, info,
@@ -337,7 +337,7 @@ static void
 test_extension_plugin_info (PeasEngine     *engine,
                             PeasPluginInfo *info)
 {
-  PeasExtension *extension;
+  GObject *extension;
   IntrospectionBase *base;
 
   g_assert (peas_engine_load_plugin (engine, info));
@@ -357,7 +357,7 @@ static void
 test_extension_get_settings (PeasEngine     *engine,
                              PeasPluginInfo *info)
 {
-  PeasExtension *extension;
+  GObject *extension;
   IntrospectionBase *base;
   GSettings *settings;
 
@@ -380,7 +380,7 @@ static void
 test_extension_abstract (PeasEngine     *engine,
                          PeasPluginInfo *info)
 {
-  PeasExtension *extension;
+  GObject *extension;
   IntrospectionAbstract *abstract;
 
   g_assert (peas_engine_load_plugin (engine, info));
@@ -490,7 +490,7 @@ static void
 test_extension_multiple_threads_callbacks (PeasEngine     *engine,
                                            PeasPluginInfo *info)
 {
-  PeasExtension *extension;
+  GObject *extension;
   gint n_threads, update_count;
 
   extension = peas_engine_create_extension (engine, info,
