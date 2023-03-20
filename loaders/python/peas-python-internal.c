@@ -68,7 +68,6 @@ peas_python_internal_setup (gboolean already_initialized)
   PyObject *builtins_module, *globals, *result;
   PyObject *code = NULL, *failed_method = NULL;
   gboolean success = FALSE;
-  char *localedir = NULL;
 
 #define goto_error_if_failed(cond) \
   G_STMT_START { \
@@ -82,11 +81,7 @@ peas_python_internal_setup (gboolean already_initialized)
   prgname = g_get_prgname ();
   prgname = prgname == NULL ? "" : prgname;
 
-#if PY_MAJOR_VERSION < 3
-  builtins_module = PyImport_ImportModule ("__builtin__");
-#else
   builtins_module = PyImport_ImportModule ("builtins");
-#endif
 
   goto_error_if_failed (builtins_module != NULL);
 
@@ -97,11 +92,7 @@ peas_python_internal_setup (gboolean already_initialized)
    * https://bugzilla.gnome.org/show_bug.cgi?id=673101
    */
   internal_python = g_resources_lookup_data ("/org/gnome/libpeas/loaders/"
-#if PY_MAJOR_VERSION < 3
                                              "python/"
-#else
-                                             "python3/"
-#endif
                                              "internal.py",
                                              G_RESOURCE_LOOKUP_FLAGS_NONE,
                                              NULL);
