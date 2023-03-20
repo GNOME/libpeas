@@ -98,6 +98,7 @@ peas_plugin_loader_python_provides_extension (PeasPluginLoader *loader,
   return the_type != G_TYPE_INVALID;
 }
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 static GObject *
 peas_plugin_loader_python_create_extension (PeasPluginLoader *loader,
                                             PeasPluginInfo   *info,
@@ -153,6 +154,7 @@ out:
   PyGILState_Release (state);
   return object;
 }
+G_GNUC_END_IGNORE_DEPRECATIONS
 
 static gboolean
 peas_plugin_loader_python_load (PeasPluginLoader *loader,
