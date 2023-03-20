@@ -26,7 +26,7 @@
 #include <glib-object.h>
 
 #define PEAS_UTILS_C_LOADER_ID  0
-#define PEAS_UTILS_N_LOADERS    4
+#define PEAS_UTILS_N_LOADERS    3
 
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 gboolean     peas_utils_properties_array_to_parameter_list (GType          exten_type,
