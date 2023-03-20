@@ -346,7 +346,7 @@ peas_extension_set_class_init (PeasExtensionSetClass *klass)
    * PeasExtensionSet::extension-added:
    * @set: A #PeasExtensionSet.
    * @info: A #PeasPluginInfo.
-   * @exten: A #PeasExtension.
+   * @extension: A #PeasExtension.
    *
    * Emitted when a new extension has been added to the #PeasExtensionSet.
    *
@@ -377,7 +377,7 @@ peas_extension_set_class_init (PeasExtensionSetClass *klass)
    * PeasExtensionSet::extension-removed:
    * @set: A #PeasExtensionSet.
    * @info: A #PeasPluginInfo.
-   * @exten: A #PeasExtension.
+   * @extension: A #PeasExtension.
    *
    * Emitted when a new extension is about to be removed from the
    * #PeasExtensionSet.

@@ -43,13 +43,11 @@ G_DECLARE_FINAL_TYPE (PeasExtensionSet, peas_extension_set, PEAS, EXTENSION_SET,
  * PeasExtensionSetForeachFunc:
  * @set: A #PeasExtensionSet.
  * @info: A #PeasPluginInfo.
- * @exten: A #PeasExtension.
+ * @extension: The extension instance.
  * @data: Optional data passed to the function.
  *
  * This function is passed to [method@ExtensionSet.foreach] and
  * will be called for each extension in @set.
- *
- * Since: 1.2
  */
 typedef void (*PeasExtensionSetForeachFunc) (PeasExtensionSet *set,
                                              PeasPluginInfo   *info,
