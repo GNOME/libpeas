@@ -257,7 +257,6 @@ peas_plugin_loader_python_initialize (PeasPluginLoader *loader)
 
   /* Initialize support for threads */
   pyg_enable_threads ();
-  PyEval_InitThreads ();
 
   /* Only redirect warnings when python was not already initialized */
   if (!pyloader->must_finalize_python)
