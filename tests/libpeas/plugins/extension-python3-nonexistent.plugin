@@ -1,6 +1,6 @@
 [Plugin]
 Module=extension-python3-nonexistent
-Loader=python3
+Loader=python
 Name=Extension Python 3 Nonexistent
 Description=This plugin is nonexistent.
 Authors=Garrett Regier
