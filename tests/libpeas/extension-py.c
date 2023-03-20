@@ -26,23 +26,15 @@
 
 #include <pygobject.h>
 
-#include <libpeas/peas-activatable.h>
 #include "libpeas/peas-engine-priv.h"
+
+#include "peas-activatable.h"
 
 #include "testing/testing-extension.h"
 #include "introspection/introspection-base.h"
 
-
-#if PY_VERSION_HEX < 0x03000000
-#define PY_LOADER       python
-#define ALT_PY_LOADER   python3
-#else
-#define PY_LOADER       python3
-#define ALT_PY_LOADER   python
-#endif
-
-#define PY_LOADER_STR       G_STRINGIFY (PY_LOADER)
-#define ALT_PY_LOADER_STR   G_STRINGIFY (ALT_PY_LOADER)
+#define PY_LOADER      python
+#define PY_LOADER_STR  G_STRINGIFY (PY_LOADER)
 
 
 static void
@@ -176,49 +168,6 @@ test_extension_py_already_initialized_subprocess (void)
   Py_Finalize ();
 }
 
-#if ENABLE_PYTHON2 && ENABLE_PYTHON3
-static void
-test_extension_py_mixed_python (void)
-{
-  GTestSubprocessFlags flags = 0;
-
-  /* Loading both Python 2 and Python 3 might cause
-   * the linker to spew warnings, i.e. on OpenBSD, so
-   * only inherit standard error when debugging
-   */
-  if (g_getenv ("PEAS_DEBUG") != NULL)
-    flags |= G_TEST_SUBPROCESS_INHERIT_STDERR;
-
-  g_test_trap_subprocess (EXTENSION_TEST_NAME (PY_LOADER,
-                                               "mixed-python/subprocess"),
-                          0, flags);
-  g_test_trap_assert_passed ();
-}
-
-static void
-test_extension_py_mixed_python_subprocess (void)
-{
-  PeasEngine *engine;
-  PeasPluginInfo *info;
-
-  testing_util_push_log_hook ("*mix incompatible Python versions*");
-  testing_util_push_log_hook ("*check the installation*");
-  testing_util_push_log_hook ("*'" ALT_PY_LOADER_STR
-                              "' is not a valid PeasPluginLoader*");
-
-  g_setenv ("PEAS_ALLOW_CONFLICTING_LOADERS", "1", TRUE);
-
-  engine = testing_engine_new ();
-  peas_engine_enable_loader (engine, ALT_PY_LOADER_STR);
-
-  info = peas_engine_get_plugin_info (engine, "extension-" ALT_PY_LOADER_STR);
-
-  g_assert (!peas_engine_load_plugin (engine, info));
-
-  testing_engine_free (engine);
-}
-#endif
-
 int
 main (int   argc,
       char *argv[])
@@ -227,11 +176,6 @@ main (int   argc,
 
   /* Only test the basics */
   testing_extension_basic (PY_LOADER_STR);
-
-  /* We still need to add the callable tests
-   * because of peas_extension_call()
-   */
-  testing_extension_callable (PY_LOADER_STR);
 
 #undef EXTENSION_TEST
 #undef EXTENSION_TEST_FUNC
@@ -253,12 +197,6 @@ main (int   argc,
   EXTENSION_TEST_FUNC (PY_LOADER, "already-initialized", already_initialized);
   EXTENSION_TEST_FUNC (PY_LOADER, "already-initialized/subprocess",
                        already_initialized_subprocess);
-
-#if ENABLE_PYTHON2 && ENABLE_PYTHON3
-  EXTENSION_TEST_FUNC (PY_LOADER, "mixed-python", mixed_python);
-  EXTENSION_TEST_FUNC (PY_LOADER, "mixed-python/subprocess",
-                       mixed_python_subprocess);
-#endif
 
   return testing_extension_run_tests ();
 }
