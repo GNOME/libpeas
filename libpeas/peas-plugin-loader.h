@@ -32,6 +32,7 @@ G_BEGIN_DECLS
 
 #define PEAS_TYPE_PLUGIN_LOADER (peas_plugin_loader_get_type())
 
+PEAS_AVAILABLE_IN_ALL
 G_DECLARE_DERIVABLE_TYPE (PeasPluginLoader, peas_plugin_loader, PEAS, PLUGIN_LOADER, GObject)
 
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
