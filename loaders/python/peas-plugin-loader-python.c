@@ -34,21 +34,18 @@
 #undef _POSIX_C_SOURCE
 #include <pygobject.h>
 
-typedef struct {
+struct _PeasPluginLoaderPython {
+  PeasPluginLoader parent_instance;
+
   PyThreadState *py_thread_state;
 
   guint n_loaded_plugins;
 
   guint init_failed : 1;
   guint must_finalize_python : 1;
-} PeasPluginLoaderPythonPrivate;
+};
 
-G_DEFINE_TYPE_WITH_PRIVATE (PeasPluginLoaderPython,
-                            peas_plugin_loader_python,
-                            PEAS_TYPE_PLUGIN_LOADER)
-
-#define GET_PRIV(o) \
-  (peas_plugin_loader_python_get_instance_private (o))
+G_DEFINE_FINAL_TYPE (PeasPluginLoaderPython, peas_plugin_loader_python, PEAS_TYPE_PLUGIN_LOADER)
 
 static GQuark quark_extension_type = 0;
 
@@ -162,7 +159,6 @@ peas_plugin_loader_python_load (PeasPluginLoader *loader,
                                 PeasPluginInfo   *info)
 {
   PeasPluginLoaderPython *pyloader = PEAS_PLUGIN_LOADER_PYTHON (loader);
-  PeasPluginLoaderPythonPrivate *priv = GET_PRIV (pyloader);
   const gchar *module_dir, *module_name;
   PyObject *pymodule;
   PyGILState_STATE state = PyGILState_Ensure ();
@@ -177,7 +173,7 @@ peas_plugin_loader_python_load (PeasPluginLoader *loader,
   if (pymodule != NULL)
     {
       info->loader_data = pymodule;
-      priv->n_loaded_plugins += 1;
+      pyloader->n_loaded_plugins += 1;
     }
 
   PyGILState_Release (state);
@@ -189,13 +185,12 @@ peas_plugin_loader_python_unload (PeasPluginLoader *loader,
                                   PeasPluginInfo   *info)
 {
   PeasPluginLoaderPython *pyloader = PEAS_PLUGIN_LOADER_PYTHON (loader);
-  PeasPluginLoaderPythonPrivate *priv = GET_PRIV (pyloader);
   PyGILState_STATE state = PyGILState_Ensure ();
 
   /* We have to use this as a hook as the
    * loader will not be finalized by applications
    */
-  if (--priv->n_loaded_plugins == 0)
+  if (--pyloader->n_loaded_plugins == 0)
     peas_python_internal_call ("all_plugins_unloaded", NULL, NULL);
 
   Py_CLEAR (info->loader_data);
@@ -216,7 +211,6 @@ static gboolean
 peas_plugin_loader_python_initialize (PeasPluginLoader *loader)
 {
   PeasPluginLoaderPython *pyloader = PEAS_PLUGIN_LOADER_PYTHON (loader);
-  PeasPluginLoaderPythonPrivate *priv = GET_PRIV (pyloader);
   PyGILState_STATE state = 0;
   long hexversion;
 
@@ -232,7 +226,7 @@ peas_plugin_loader_python_initialize (PeasPluginLoader *loader)
   else
     {
       Py_InitializeEx (FALSE);
-      priv->must_finalize_python = TRUE;
+      pyloader->must_finalize_python = TRUE;
     }
 
   hexversion = PyLong_AsLong (PySys_GetObject ((char *) "hexversion"));
@@ -266,20 +260,20 @@ peas_plugin_loader_python_initialize (PeasPluginLoader *loader)
   PyEval_InitThreads ();
 
   /* Only redirect warnings when python was not already initialized */
-  if (!priv->must_finalize_python)
+  if (!pyloader->must_finalize_python)
     pyg_disable_warning_redirections ();
 
   /* Must be done last, finalize() depends on init_failed */
-  if (!peas_python_internal_setup (!priv->must_finalize_python))
+  if (!peas_python_internal_setup (!pyloader->must_finalize_python))
     {
       /* Already warned */
       goto python_init_error;
     }
 
-  if (!priv->must_finalize_python)
+  if (!pyloader->must_finalize_python)
     PyGILState_Release (state);
   else
-    priv->py_thread_state = PyEval_SaveThread ();
+    pyloader->py_thread_state = PyEval_SaveThread ();
 
   return TRUE;
 
@@ -291,10 +285,10 @@ python_init_error:
   g_warning ("Please check the installation of all the Python "
              "related packages required by libpeas and try again");
 
-  if (!priv->must_finalize_python)
+  if (!pyloader->must_finalize_python)
     PyGILState_Release (state);
 
-  priv->init_failed = TRUE;
+  pyloader->init_failed = TRUE;
   return FALSE;
 }
 
@@ -307,27 +301,26 @@ static void
 peas_plugin_loader_python_finalize (GObject *object)
 {
   PeasPluginLoaderPython *pyloader = PEAS_PLUGIN_LOADER_PYTHON (object);
-  PeasPluginLoaderPythonPrivate *priv = GET_PRIV (pyloader);
   PyGILState_STATE state;
 
   if (!Py_IsInitialized ())
     goto out;
 
-  g_warn_if_fail (priv->n_loaded_plugins == 0);
+  g_warn_if_fail (pyloader->n_loaded_plugins == 0);
 
-  if (!priv->init_failed)
+  if (!pyloader->init_failed)
     {
       state = PyGILState_Ensure ();
       peas_python_internal_shutdown ();
       PyGILState_Release (state);
     }
 
-  if (priv->py_thread_state)
-    PyEval_RestoreThread (priv->py_thread_state);
+  if (pyloader->py_thread_state)
+    PyEval_RestoreThread (pyloader->py_thread_state);
 
-  if (priv->must_finalize_python)
+  if (pyloader->must_finalize_python)
     {
-      if (!priv->init_failed)
+      if (!pyloader->init_failed)
         PyGILState_Ensure ();
 
       Py_Finalize ();

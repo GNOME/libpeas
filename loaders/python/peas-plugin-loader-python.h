@@ -29,28 +29,10 @@
 
 G_BEGIN_DECLS
 
-#define PEAS_TYPE_PLUGIN_LOADER_PYTHON             (peas_plugin_loader_python_get_type ())
-#define PEAS_PLUGIN_LOADER_PYTHON(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), PEAS_TYPE_PLUGIN_LOADER_PYTHON, PeasPluginLoaderPython))
-#define PEAS_PLUGIN_LOADER_PYTHON_CONST(obj)       (G_TYPE_CHECK_INSTANCE_CAST ((obj), PEAS_TYPE_PLUGIN_LOADER_PYTHON, PeasPluginLoaderPython const))
-#define PEAS_PLUGIN_LOADER_PYTHON_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), PEAS_TYPE_PLUGIN_LOADER_PYTHON, PeasPluginLoaderPythonClass))
-#define PEAS_IS_PLUGIN_LOADER_PYTHON(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), PEAS_TYPE_PLUGIN_LOADER_PYTHON))
-#define PEAS_IS_PLUGIN_LOADER_PYTHON_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), PEAS_TYPE_PLUGIN_LOADER_PYTHON))
-#define PEAS_PLUGIN_LOADER_PYTHON_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), PEAS_TYPE_PLUGIN_LOADER_PYTHON, PeasPluginLoaderPythonClass))
+#define PEAS_TYPE_PLUGIN_LOADER_PYTHON (peas_plugin_loader_python_get_type())
 
-typedef struct _PeasPluginLoaderPython         PeasPluginLoaderPython;
-typedef struct _PeasPluginLoaderPythonClass    PeasPluginLoaderPythonClass;
+G_DECLARE_FINAL_TYPE (PeasPluginLoaderPython, peas_plugin_loader_python, PEAS, PLUGIN_LOADER_PYTHON, PeasPluginLoader)
 
-struct _PeasPluginLoaderPython {
-  PeasPluginLoader parent;
-};
-
-struct _PeasPluginLoaderPythonClass {
-  PeasPluginLoaderClass parent_class;
-};
-
-GType                    peas_plugin_loader_python_get_type  (void) G_GNUC_CONST;
-
-/* All the loaders must implement this function */
-G_MODULE_EXPORT void     peas_register_types                 (PeasObjectModule *module);
+G_MODULE_EXPORT void peas_register_types (PeasObjectModule *module);
 
 G_END_DECLS
