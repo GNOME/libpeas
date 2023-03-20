@@ -53,7 +53,7 @@
  * [Plugin]
  * Module=helloworld
  * Depends=foo;bar;baz
- * Loader=python3
+ * Loader=python
  * Name=Hello World
  * Description=Displays "Hello World"
  * Authors=Steve Frécinaux &lt;code@istique.net&gt;
