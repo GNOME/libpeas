@@ -4,7 +4,7 @@ pygobject_version = pygobject_dep.version()
 pygobject_version_arr = pygobject_version.split('.')
 pygobject_version_major = pygobject_version_arr[0].to_int()
 pygobject_version_minor = pygobject_version_arr[1].to_int()
-pygobject_version_micro = pygobject_version_arr[3].to_int()
+pygobject_version_micro = pygobject_version_arr[2].to_int()
 
 python3_loader_c = files(
   'peas-plugin-loader-python.c',
