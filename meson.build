@@ -330,7 +330,7 @@ endif
 build_lua51_loader = get_option('lua51')
 lua51_found = (luajit_dep.found() or lua51_dep.found()) and lua_lgi_found
 if build_lua51_loader and not lua51_found
-  build_lua51_loader = false
+  error('Lua51 requested by failed to locate suitable Lua51 and LGI support')
 endif
 
 build_python3_loader = get_option('python3')
