@@ -55,7 +55,7 @@ void             peas_engine_enable_loader                    (PeasEngine      *
 PEAS_AVAILABLE_IN_ALL
 void             peas_engine_rescan_plugins                   (PeasEngine      *engine);
 PEAS_AVAILABLE_IN_ALL
-char           **peas_engine_get_loaded_plugins               (PeasEngine      *engine);
+char           **peas_engine_dup_loaded_plugins               (PeasEngine      *engine);
 PEAS_AVAILABLE_IN_ALL
 void             peas_engine_set_loaded_plugins               (PeasEngine      *engine,
                                                                const char     **plugin_names);

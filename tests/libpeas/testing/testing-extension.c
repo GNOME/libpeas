@@ -89,7 +89,7 @@ test_extension_garbage_collect (PeasEngine     *engine,
   /* Check that we can collect the garbage when no plugins are loaded */
   g_assert (peas_engine_unload_plugin (engine, info));
 
-  loaded_plugins = peas_engine_get_loaded_plugins (engine);
+  loaded_plugins = peas_engine_dup_loaded_plugins (engine);
   g_assert_cmpstr (loaded_plugins[0], ==, NULL);
   g_strfreev (loaded_plugins);
 

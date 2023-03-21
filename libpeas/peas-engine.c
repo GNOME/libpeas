@@ -611,7 +611,7 @@ peas_engine_get_property (GObject    *object,
   switch (prop_id)
     {
     case PROP_LOADED_PLUGINS:
-      g_value_take_boxed (value, peas_engine_get_loaded_plugins (engine));
+      g_value_take_boxed (value, peas_engine_dup_loaded_plugins (engine));
       break;
 
     case PROP_NONGLOBAL_LOADERS:
@@ -1499,7 +1499,7 @@ peas_engine_create_extension (PeasEngine     *engine,
 }
 
 /**
- * peas_engine_get_loaded_plugins:
+ * peas_engine_dup_loaded_plugins:
  * @engine: A #PeasEngine.
  *
  * Returns the list of the names of all the loaded plugins.
@@ -1514,7 +1514,7 @@ peas_engine_create_extension (PeasEngine     *engine,
  *   %NULL-terminated array of strings.
  */
 char **
-peas_engine_get_loaded_plugins (PeasEngine *engine)
+peas_engine_dup_loaded_plugins (PeasEngine *engine)
 {
   GArray *array;
   GList *pl;

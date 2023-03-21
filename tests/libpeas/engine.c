@@ -319,7 +319,7 @@ notify_loaded_plugins_cb (PeasEngine   *engine,
   if (*loaded_plugins != NULL)
     g_strfreev (*loaded_plugins);
 
-  *loaded_plugins = peas_engine_get_loaded_plugins (engine);
+  *loaded_plugins = peas_engine_dup_loaded_plugins (engine);
 }
 
 static void
