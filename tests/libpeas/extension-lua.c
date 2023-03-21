@@ -26,10 +26,10 @@
 #include <lua.h>
 #include <lauxlib.h>
 
-#include <libpeas/peas-activatable.h>
 #include "libpeas/peas-engine-priv.h"
 
 #include "testing/testing-extension.h"
+#include "introspection/introspection-activatable.h"
 #include "introspection/introspection-base.h"
 
 
@@ -51,12 +51,12 @@ set_garbage_collector_state (PeasEngine     *engine,
   if (start)
     {
       /* collectgarbage('restart') */
-      peas_activatable_activate (INTROSPECTION_ACTIVATABLE (extension));
+      introspection_activatable_activate (INTROSPECTION_ACTIVATABLE (extension));
     }
   else
     {
       /* collectgarbage('stop') */
-      peas_activatable_deactivate (INTROSPECTION_ACTIVATABLE (extension));
+      introspection_activatable_deactivate (INTROSPECTION_ACTIVATABLE (extension));
     }
 
   g_object_unref (extension);
@@ -87,7 +87,7 @@ test_extension_lua_instance_refcount (PeasEngine     *engine,
   g_assert_cmpint (G_OBJECT (extension)->ref_count, ==, 1);
 
   /* Create a new Lua wrapper around the extension */
-  peas_activatable_update_state (INTROSPECTION_ACTIVATABLE (extension));
+  introspection_activatable_update_state (INTROSPECTION_ACTIVATABLE (extension));
   g_assert_cmpint (G_OBJECT (extension)->ref_count, ==, 2);
 
   /* The Lua wrapper still exists */
@@ -169,11 +169,6 @@ main (int   argc,
 
   /* Only test the basics */
   testing_extension_basic ("lua5.1");
-
-  /* We still need to add the callable tests
-   * because of peas_extension_call()
-   */
-  testing_extension_callable ("lua5.1");
 
 #undef EXTENSION_TEST
 #undef EXTENSION_TEST_FUNC

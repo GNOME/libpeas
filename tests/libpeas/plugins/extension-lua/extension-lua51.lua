@@ -28,7 +28,7 @@ local ExtensionLuaAbstract =
 
 local ExtensionLuaPlugin =
     Introspection.Prerequisite:derive('ExtensionLuaPlugin', {
-                                      Peas.Activatable,
+                                      Introspection.Activatable,
                                       Introspection.Base,
                                       Introspection.Callable,
                                       Introspection.HasPrerequisite })
