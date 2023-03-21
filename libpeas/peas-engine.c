@@ -461,34 +461,6 @@ peas_engine_rescan_plugins (PeasEngine *engine)
   g_object_thaw_notify (G_OBJECT (engine));
 }
 
-static void
-peas_engine_insert_search_path (PeasEngine *engine,
-                                gboolean    prepend,
-                                const char *module_dir,
-                                const char *data_dir)
-{
-  SearchPath *sp;
-
-  g_return_if_fail (PEAS_IS_ENGINE (engine));
-  g_return_if_fail (module_dir != NULL);
-
-  sp = g_slice_new (SearchPath);
-  sp->module_dir = g_strdup (module_dir);
-  sp->data_dir = g_strdup (data_dir ? data_dir : module_dir);
-
-  if (prepend)
-    g_queue_push_head (&engine->search_paths, sp);
-  else
-    g_queue_push_tail (&engine->search_paths, sp);
-
-  g_object_freeze_notify (G_OBJECT (engine));
-
-  if (load_dir_real (engine, sp))
-    plugin_list_changed (engine);
-
-  g_object_thaw_notify (G_OBJECT (engine));
-}
-
 /**
  * peas_engine_add_search_path:
  * @engine: A #PeasEngine.
@@ -516,25 +488,23 @@ peas_engine_add_search_path (PeasEngine *engine,
                              const char *module_dir,
                              const char *data_dir)
 {
-  peas_engine_insert_search_path (engine, FALSE, module_dir, data_dir);
-}
+  SearchPath *sp;
 
-/**
- * peas_engine_prepend_search_path:
- * @engine: A #PeasEngine.
- * @module_dir: the plugin module directory.
- * @data_dir: (allow-none): the plugin data directory.
- *
- * Prepends a search path to the list of paths where to look for plugins.
- *
- * See Also: [method@Engine.add_search_path]
- */
-void
-peas_engine_prepend_search_path (PeasEngine *engine,
-                                 const char *module_dir,
-                                 const char *data_dir)
-{
-  peas_engine_insert_search_path (engine, TRUE, module_dir, data_dir);
+  g_return_if_fail (PEAS_IS_ENGINE (engine));
+  g_return_if_fail (module_dir != NULL);
+
+  sp = g_slice_new (SearchPath);
+  sp->module_dir = g_strdup (module_dir);
+  sp->data_dir = g_strdup (data_dir ? data_dir : module_dir);
+
+  g_queue_push_tail (&engine->search_paths, sp);
+
+  g_object_freeze_notify (G_OBJECT (engine));
+
+  if (load_dir_real (engine, sp))
+    plugin_list_changed (engine);
+
+  g_object_thaw_notify (G_OBJECT (engine));
 }
 
 static void

@@ -50,10 +50,6 @@ void             peas_engine_add_search_path                  (PeasEngine      *
                                                                const char      *module_dir,
                                                                const char      *data_dir);
 PEAS_AVAILABLE_IN_ALL
-void             peas_engine_prepend_search_path              (PeasEngine      *engine,
-                                                               const char      *module_dir,
-                                                               const char      *data_dir);
-PEAS_AVAILABLE_IN_ALL
 void             peas_engine_enable_loader                    (PeasEngine      *engine,
                                                                const char      *loader_name);
 PEAS_AVAILABLE_IN_ALL
