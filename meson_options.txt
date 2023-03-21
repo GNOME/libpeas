@@ -17,10 +17,6 @@ option('vapi',
        type: 'boolean', value: false,
        description: 'Generate vapi data (requires vapigen)')
 
-option('demos',
-       type: 'boolean', value: true,
-       description: 'Build demo programs')
-
 option('gtk_doc',
        type: 'boolean', value: false,
        description: 'Build reference manual (requires gi-docgen)')
