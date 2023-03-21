@@ -102,6 +102,7 @@ pygobject_req = '>= 3.2.0'
 lua_req = '>= 5.1.0'
 lua_lgi_req = '>= 0.9.0'
 luajit_req = '>= 2.0'
+gjs_req = '>= 1.77.1'
 
 glib_dep = dependency('glib-2.0', version: glib_req)
 gobject_dep = dependency('gobject-2.0', version: glib_req)
@@ -115,6 +116,7 @@ gi_docgen_dep = dependency('gi-docgen', version: '>= 2021.7',
                            fallback: ['gi-docgen', 'dummy_dep'],
                            native: true,
                            required: get_option('gtk_doc'))
+gjs_dep = dependency('gjs-1.0', version: gjs_req, required: get_option('gjs'))
 
 # From python 3.8 we neeed python3-embed
 python3_dep = dependency('python3-embed', required: false)
@@ -342,6 +344,8 @@ if not generate_gir
   generate_vapi = false
 endif
 
+build_gjs_loader = get_option('gjs')
+
 build_lua51_loader = get_option('lua51')
 lua51_found = (luajit_dep.found() or lua51_dep.found()) and lua_lgi_found
 if build_lua51_loader and not lua51_found
@@ -378,6 +382,9 @@ summary = [
   '',
   '     Documentation: @0@'.format(build_gtk_doc),
   '     Introspection: @0@'.format(generate_gir),
+  '',
+  'Loaders:',
+  '       GJS support: @0@'.format(build_gjs_loader),
   '   Lua 5.1 support: @0@'.format(build_lua51_loader),
   '  Python 3 support: @0@'.format(build_python3_loader),
   '',

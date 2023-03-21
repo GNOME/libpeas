@@ -369,7 +369,8 @@ test_extension_get_settings (PeasEngine     *engine,
   base = INTROSPECTION_BASE (extension);
 
   settings = introspection_base_get_settings (base);
-  g_assert (G_IS_SETTINGS (settings));
+  g_assert_nonnull (settings);
+  g_assert_true (G_IS_SETTINGS (settings));
 
   g_object_unref (settings);
   g_object_unref (extension);
@@ -567,13 +568,16 @@ testing_extension_basic (const char *loader_)
 
   _EXTENSION_TEST (loader, "abstract", abstract);
 
-  _EXTENSION_TEST (loader, "multiple-threads/global-loaders",
-                   multiple_threads_global_loaders);
-  _EXTENSION_TEST (loader, "multiple-threads/nonglobal-loaders",
-                   multiple_threads_nonglobal_loaders);
+  if (g_strcmp0 (loader, "gjs") != 0)
+    {
+      _EXTENSION_TEST (loader, "multiple-threads/global-loaders",
+                       multiple_threads_global_loaders);
+      _EXTENSION_TEST (loader, "multiple-threads/nonglobal-loaders",
+                       multiple_threads_nonglobal_loaders);
+    }
 
   /* Not needed for C plugins as they are independent of libpeas */
-  if (g_strcmp0 (loader, "c") != 0)
+  if (g_strcmp0 (loader, "c") != 0 && g_strcmp0 (loader, "gjs") != 0)
     {
       _EXTENSION_TEST (loader, "multiple-threads/callbacks",
                        multiple_threads_callbacks);

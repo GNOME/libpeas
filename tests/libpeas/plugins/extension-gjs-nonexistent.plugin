@@ -1,0 +1,7 @@
+[Plugin]
+Module=extension-gjs-nonexistent
+Loader=gjs
+Name=Extension GJS Nonexistent
+Description=This plugin is nonexistent.
+Authors=Christian Hergert
+Copyright=Copyright © 2023 Christian Hergert

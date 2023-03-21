@@ -1,3 +1,7 @@
+option('gjs',
+       type: 'boolean', value: true,
+       description: 'Enable GJS support (requires gjs-1.0)')
+
 option('lua51',
        type: 'boolean', value: true,
        description: 'Enable Lua 5.1 support (requires lua-lgi)')

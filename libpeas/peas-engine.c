@@ -967,7 +967,7 @@ get_plugin_loader (PeasEngine *engine,
  * Enable a loader, enables a loader for plugins.
  *
  * The C plugin loader is always enabled. The other plugin
- * loaders are: lua5.1, python and python3.
+ * loaders are: gjs, lua5.1, python and python3.
  *
  * For instance, the following code will enable Python 2 plugins
  * to be loaded:

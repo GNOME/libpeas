@@ -1,5 +1,6 @@
 libpeas_plugins_data = [
   'extension-c-nonexistent.plugin',
+  'extension-gjs-nonexistent.plugin',
   'extension-lua51-nonexistent.plugin',
   'extension-python-nonexistent.plugin',
   'info-missing-module.plugin',
@@ -22,6 +23,10 @@ custom_target(
 
 subdir('embedded')
 subdir('extension-c')
+
+if build_gjs_loader == true
+  subdir('extension-gjs')
+endif
 
 if build_lua51_loader == true
   subdir('extension-lua')

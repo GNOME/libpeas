@@ -1,0 +1,7 @@
+[Plugin]
+Module=extension-gjs
+Loader=gjs
+Name=Extension GJS
+Description=This plugin is for the GJS GObject tests.
+Authors=Christian Hergert
+Copyright=Copyright © 2023 Christian Hergert

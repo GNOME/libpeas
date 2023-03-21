@@ -387,7 +387,8 @@ _peas_plugin_info_new (const char *filename,
           goto error;
         }
     }
-  else if (is_resource)
+  else if (is_resource &&
+           info->loader_id != PEAS_UTILS_GJS_LOADER_ID)
     {
       g_warning ("Bad plugin file '%s': resource plugins must be embedded",
                  filename);
