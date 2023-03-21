@@ -54,6 +54,7 @@ struct _PeasPluginInfo {
 
   GHashTable *external_data;
 
+  GPtrArray *resources;
   GSettingsSchemaSource *schema_source;
 
   GError *error;

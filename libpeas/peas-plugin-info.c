@@ -107,6 +107,7 @@ peas_plugin_info_finalize (GObject *object)
   g_clear_pointer (&info->schema_source, g_settings_schema_source_unref);
   g_clear_pointer (&info->external_data, g_hash_table_unref);
   g_clear_pointer (&info->error, g_error_free);
+  g_clear_pointer (&info->resources, g_ptr_array_unref);
 
   G_OBJECT_CLASS (peas_plugin_info_parent_class)->finalize (object);
 }
@@ -950,4 +951,82 @@ peas_plugin_info_get_external_data (const PeasPluginInfo *info,
     key += 2;
 
   return g_hash_table_lookup (info->external_data, key);
+}
+
+ /**
+ * peas_plugin_info_get_resource:
+ * @info: A #PeasPluginInfo.
+ * @filename: (allow-none): The filename of the resource, or %NULL.
+ * @error: a #GError for error reporting, or %NULL.
+ *
+ * Creates a new #GResource for the given @filename
+ * located in the module directory. If @filename is %NULL
+ * then "${module_name}.gresource" will be loaded.
+ *
+ * Returns: (transfer full): a new #GResource, or %NULL.
+ */
+GResource *
+peas_plugin_info_get_resource (const PeasPluginInfo  *info,
+                               const char           *filename,
+                               GError               **error)
+{
+  char *default_filename = NULL;
+  char *full_filename;
+  GResource *resource;
+
+  g_return_val_if_fail (info != NULL, NULL);
+  g_return_val_if_fail (filename == NULL || filename[0] != '\0', NULL);
+  g_return_val_if_fail (error == NULL || *error == NULL, NULL);
+
+  if (filename == NULL)
+    {
+      default_filename = g_strconcat (info->module_name, ".gresource", NULL);
+      filename = (const char *) default_filename;
+    }
+
+  full_filename = g_build_filename (info->module_dir, filename, NULL);
+  resource = g_resource_load (full_filename, error);
+
+  g_free (full_filename);
+  g_free (default_filename);
+
+  return resource;
+}
+
+/**
+ * peas_plugin_info_load_resource:
+ * @info: A #PeasPluginInfo.
+ * @filename: (allow-none): The filename of the resource, or %NULL.
+ * @error: a #GError for error reporting, or %NULL.
+ *
+ * Loads the resource using peas_plugin_info_get_resource() and
+ * registers it. The resource's lifetime will be automatically
+ * handled by @info.
+ *
+ * See peas_plugin_info_get_resource() for more information.
+ */
+void
+peas_plugin_info_load_resource (const PeasPluginInfo  *info,
+                                const char            *filename,
+                                GError               **error)
+{
+  GResource *resource;
+  PeasPluginInfo *info_ = (PeasPluginInfo *) info;
+
+  resource = peas_plugin_info_get_resource (info, filename, error);
+
+  if (resource == NULL)
+    return;
+
+  if (info_->resources == NULL)
+    {
+      info_->resources = g_ptr_array_new ();
+      g_ptr_array_set_free_func (info_->resources,
+                                 (GDestroyNotify) g_resources_unregister);
+    }
+
+  g_resources_register (resource);
+
+  g_ptr_array_add (info_->resources, resource);
+  g_resource_unref (resource);
 }

@@ -113,5 +113,13 @@ const char          *peas_plugin_info_get_help_uri      (const PeasPluginInfo  *
 PEAS_AVAILABLE_IN_ALL
 const char          *peas_plugin_info_get_external_data (const PeasPluginInfo  *info,
                                                          const char            *key);
+PEAS_AVAILABLE_IN_ALL
+GResource           *peas_plugin_info_get_resource      (const PeasPluginInfo  *info,
+                                                         const char            *filename,
+                                                         GError               **error);
+PEAS_AVAILABLE_IN_ALL
+void                 peas_plugin_info_load_resource     (const PeasPluginInfo  *info,
+                                                         const char            *filename,
+                                                         GError               **error);
 
 G_END_DECLS
