@@ -69,6 +69,7 @@ G_DEFINE_FINAL_TYPE (PeasPluginInfo, peas_plugin_info, G_TYPE_OBJECT)
 enum {
   PROP_0,
   PROP_AUTHORS,
+  PROP_BUILTIN,
   PROP_COPYRIGHT,
   PROP_DEPENDENCIES,
   PROP_DESCRIPTION,
@@ -124,6 +125,10 @@ peas_plugin_info_get_property (GObject    *object,
     {
     case PROP_AUTHORS:
       g_value_set_boxed (value, peas_plugin_info_get_authors (info));
+      break;
+
+    case PROP_BUILTIN:
+      g_value_set_boolean (value, peas_plugin_info_is_builtin (info));
       break;
 
     case PROP_COPYRIGHT:
@@ -182,6 +187,11 @@ peas_plugin_info_class_init (PeasPluginInfoClass *klass)
 
   object_class->finalize = peas_plugin_info_finalize;
   object_class->get_property = peas_plugin_info_get_property;
+
+  properties[PROP_BUILTIN] =
+    g_param_spec_boolean (I_("builtin"), NULL, NULL,
+                          FALSE,
+                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
   properties[PROP_LOADED] =
     g_param_spec_boolean (I_("loaded"), NULL, NULL,
