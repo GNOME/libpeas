@@ -34,23 +34,23 @@ struct _PeasPluginInfo {
   /* Used and managed by PeasPluginLoader */
   gpointer loader_data;
 
-  gchar *filename;
-  gchar *module_dir;
-  gchar *data_dir;
+  char *filename;
+  char *module_dir;
+  char *data_dir;
 
   gint loader_id;
-  gchar *embedded;
-  gchar *module_name;
-  gchar **dependencies;
+  char *embedded;
+  char *module_name;
+  char **dependencies;
 
-  gchar *name;
-  gchar *desc;
-  gchar *icon_name;
-  gchar **authors;
-  gchar *copyright;
-  gchar *website;
-  gchar *version;
-  gchar *help_uri;
+  char *name;
+  char *desc;
+  char *icon_name;
+  char **authors;
+  char *copyright;
+  char *website;
+  char *version;
+  char *help_uri;
 
   GHashTable *external_data;
 
@@ -69,6 +69,6 @@ struct _PeasPluginInfo {
   guint hidden : 1;
 };
 
-PeasPluginInfo *_peas_plugin_info_new (const gchar *filename,
-                                       const gchar *module_dir,
-                                       const gchar *data_dir);
+PeasPluginInfo *_peas_plugin_info_new (const char *filename,
+                                       const char *module_dir,
+                                       const char *data_dir);
