@@ -38,5 +38,6 @@ lua51_loader_sha = shared_module(
     pkglibdir,
     'loaders',
   ),
-  name_suffix: module_suffix
+  name_suffix: module_suffix,
+  gnu_symbol_visibility: 'hidden',
 )
