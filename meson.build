@@ -1,6 +1,6 @@
 project(
   'libpeas', 'c',
-  version: '2.0.0.alpha',
+  version: '1.99.0',
   license: 'LGPLv2.1+',
   meson_version: '>= 0.62.0',
   default_options: ['buildtype=debugoptimized', 'warning_level=2']
@@ -18,7 +18,11 @@ version_major = version_arr[0].to_int()
 version_minor = version_arr[1].to_int()
 version_micro = version_arr[2].to_int()
 
-api_version = '@0@'.format(version_major)
+if version_minor == 99
+  api_version = '@0@'.format(version_major+1)
+else
+  api_version = '@0@'.format(version_major)
+endif
 
 if version_minor.is_odd()
   interface_age = 0
@@ -30,7 +34,10 @@ endif
 #  current = minor * 100 + micro - interface
 #  revision = interface
 lib_version_soversion = 0
-lib_version_current = version_minor * 100 + version_micro - interface_age
+lib_version_current = 0
+if version_minor != 99
+  lib_version_current = version_minor * 100 + version_micro - interface_age
+endif
 lib_version_revision = interface_age
 lib_version = '@0@.@1@.@2@'.format(
   lib_version_soversion,
@@ -78,7 +85,7 @@ config_h.set_quoted('PACKAGE_URL', 'https://wiki.gnome.org/Projects/Libpeas')
 config_h.set_quoted('PACKAGE_URL', 'https://wiki.gnome.org/Projects/Libpeas')
 config_h.set_quoted('PACKAGE_VERSION', version)
 config_h.set_quoted('VERSION', version)
-config_h.set_quoted('VERSION_MAJOR_S', '@0@'.format(version_major))
+config_h.set_quoted('API_VERSION_S', '@0@'.format(api_version))
 
 config_h.set_quoted('GETTEXT_PACKAGE', package_string)
 

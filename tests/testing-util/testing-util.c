@@ -211,7 +211,7 @@ testing_util_init (void)
 
   g_irepository_require_private (g_irepository_get_default (),
                                  BUILDDIR "/libpeas",
-                                 "Peas", VERSION_MAJOR_S, 0, &error);
+                                 "Peas", API_VERSION_S, 0, &error);
   g_assert_no_error (error);
 
   initialized = TRUE;

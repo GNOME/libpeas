@@ -50,7 +50,7 @@ testing_init (int    *argc,
 
   g_irepository_require_private (g_irepository_get_default (),
                                  BUILDDIR "/tests/libpeas/introspection",
-                                 "Introspection", VERSION_MAJOR_S, 0, &error);
+                                 "Introspection", API_VERSION_S, 0, &error);
   g_assert_no_error (error);
 
   initialized = TRUE;
