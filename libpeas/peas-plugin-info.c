@@ -38,8 +38,6 @@
 #define OS_HELP_KEY "Help-GNOME"
 #endif
 
-#define I_(s) g_intern_string(s)
-
 /**
  * PeasPluginInfo:
  *
