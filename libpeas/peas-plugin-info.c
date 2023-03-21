@@ -74,6 +74,7 @@ enum {
   PROP_DEPENDENCIES,
   PROP_DESCRIPTION,
   PROP_HELP_URI,
+  PROP_HIDDEN,
   PROP_ICON_NAME,
   PROP_LOADED,
   PROP_MODULE_DIR,
@@ -145,6 +146,10 @@ peas_plugin_info_get_property (GObject    *object,
 
     case PROP_HELP_URI:
       g_value_set_string (value, peas_plugin_info_get_help_uri (info));
+      break;
+
+    case PROP_HIDDEN:
+      g_value_set_boolean (value, peas_plugin_info_is_hidden (info));
       break;
 
     case PROP_ICON_NAME:
@@ -237,6 +242,11 @@ peas_plugin_info_class_init (PeasPluginInfoClass *klass)
     g_param_spec_string (I_("version"), NULL, NULL,
                          NULL,
                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_HIDDEN] =
+    g_param_spec_boolean (I_("hidden"), NULL, NULL,
+                          FALSE,
+                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
   properties[PROP_HELP_URI] =
     g_param_spec_string (I_("help-uri"), NULL, NULL,
