@@ -14,7 +14,7 @@ python3_loader_c = files(
 python3_loader_res = gnome.compile_resources(
   'peas-python-resources',
   'peas-python.gresource.xml',
-  export: true,
+  export: false,
 )
 
 python3_loader_deps = [
@@ -41,5 +41,6 @@ python3_loader_sha = shared_module(
     pkglibdir,
     'loaders',
   ),
-  name_suffix: module_suffix
+  name_suffix: module_suffix,
+  gnu_symbol_visibility: 'hidden',
 )
