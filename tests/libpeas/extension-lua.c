@@ -45,18 +45,18 @@ set_garbage_collector_state (PeasEngine     *engine,
   GObject *extension;
 
   extension = peas_engine_create_extension (engine, info,
-                                            PEAS_TYPE_ACTIVATABLE,
+                                            INTROSPECTION_TYPE_ACTIVATABLE,
                                             NULL);
 
   if (start)
     {
       /* collectgarbage('restart') */
-      peas_activatable_activate (PEAS_ACTIVATABLE (extension));
+      peas_activatable_activate (INTROSPECTION_ACTIVATABLE (extension));
     }
   else
     {
       /* collectgarbage('stop') */
-      peas_activatable_deactivate (PEAS_ACTIVATABLE (extension));
+      peas_activatable_deactivate (INTROSPECTION_ACTIVATABLE (extension));
     }
 
   g_object_unref (extension);
@@ -71,7 +71,7 @@ test_extension_lua_instance_refcount (PeasEngine     *engine,
   set_garbage_collector_state (engine, info, FALSE);
 
   extension = peas_engine_create_extension (engine, info,
-                                            PEAS_TYPE_ACTIVATABLE,
+                                            INTROSPECTION_TYPE_ACTIVATABLE,
                                             NULL);
   g_object_add_weak_pointer (extension, (gpointer *) &extension);
 
@@ -87,7 +87,7 @@ test_extension_lua_instance_refcount (PeasEngine     *engine,
   g_assert_cmpint (G_OBJECT (extension)->ref_count, ==, 1);
 
   /* Create a new Lua wrapper around the extension */
-  peas_activatable_update_state (PEAS_ACTIVATABLE (extension));
+  peas_activatable_update_state (INTROSPECTION_ACTIVATABLE (extension));
   g_assert_cmpint (G_OBJECT (extension)->ref_count, ==, 2);
 
   /* The Lua wrapper still exists */
@@ -120,7 +120,7 @@ test_extension_lua_activatable_subject_refcount (PeasEngine     *engine,
 
   /* We pre-create the wrapper to make it easier to check reference count */
   extension = peas_engine_create_extension (engine, info,
-                                            PEAS_TYPE_ACTIVATABLE,
+                                            INTROSPECTION_TYPE_ACTIVATABLE,
                                             "object", object,
                                             NULL);
   g_object_add_weak_pointer (extension, (gpointer *) &extension);

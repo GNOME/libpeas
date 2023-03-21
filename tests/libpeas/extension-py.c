@@ -28,9 +28,9 @@
 
 #include "libpeas/peas-engine-priv.h"
 
-#include "peas-activatable.h"
-
 #include "testing/testing-extension.h"
+
+#include "introspection/introspection-activatable.h"
 #include "introspection/introspection-base.h"
 
 #define PY_LOADER      python
@@ -73,7 +73,7 @@ test_extension_py_activatable_subject_refcount (PeasEngine     *engine,
 
   /* we pre-create the wrapper to make it easier to check reference count */
   extension = peas_engine_create_extension (engine, info,
-                                            PEAS_TYPE_ACTIVATABLE,
+                                            INTROSPECTION_TYPE_ACTIVATABLE,
                                             "object", object,
                                             NULL);
 

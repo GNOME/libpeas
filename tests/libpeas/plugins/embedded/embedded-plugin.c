@@ -29,21 +29,21 @@
 
 #include "embedded-plugin.h"
 
-#include "peas-activatable.h"
+#include "introspection-activatable.h"
 
 typedef struct {
   GObject *object;
 } TestingEmbeddedPluginPrivate;
 
-static void peas_activatable_iface_init (PeasActivatableInterface *iface);
+static void introspection_activatable_iface_init (IntrospectionActivatableInterface *iface);
 
 G_DEFINE_TYPE_EXTENDED (TestingEmbeddedPlugin,
                         testing_embedded_plugin,
                         PEAS_TYPE_EXTENSION_BASE,
                         0,
                         G_ADD_PRIVATE (TestingEmbeddedPlugin)
-                        G_IMPLEMENT_INTERFACE (PEAS_TYPE_ACTIVATABLE,
-                                               peas_activatable_iface_init))
+                        G_IMPLEMENT_INTERFACE (INTROSPECTION_TYPE_ACTIVATABLE,
+                                               introspection_activatable_iface_init))
 
 #define GET_PRIV(o) \
   (testing_embedded_plugin_get_instance_private (o))
@@ -101,12 +101,12 @@ testing_embedded_plugin_init (TestingEmbeddedPlugin *plugin)
 }
 
 static void
-testing_embedded_plugin_activate (PeasActivatable *activatable)
+testing_embedded_plugin_activate (IntrospectionActivatable *activatable)
 {
 }
 
 static void
-testing_embedded_plugin_deactivate (PeasActivatable *activatable)
+testing_embedded_plugin_deactivate (IntrospectionActivatable *activatable)
 {
 }
 
@@ -122,7 +122,7 @@ testing_embedded_plugin_class_init (TestingEmbeddedPluginClass *klass)
 }
 
 static void
-peas_activatable_iface_init (PeasActivatableInterface *iface)
+introspection_activatable_iface_init (IntrospectionActivatableInterface *iface)
 {
   iface->activate = testing_embedded_plugin_activate;
   iface->deactivate = testing_embedded_plugin_deactivate;
@@ -132,6 +132,6 @@ G_MODULE_EXPORT void
 testing_embedded_plugin_register_types (PeasObjectModule *module)
 {
   peas_object_module_register_extension_type (module,
-                                              PEAS_TYPE_ACTIVATABLE,
+                                              INTROSPECTION_TYPE_ACTIVATABLE,
                                               TESTING_TYPE_EMBEDDED_PLUGIN);
 }

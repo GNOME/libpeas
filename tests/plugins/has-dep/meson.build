@@ -17,7 +17,7 @@ libhas_dep_plugin_deps = [
   gobject_dep,
   gmodule_dep,
   libpeas_dep,
-  libtesting_util_dep,
+  libintrospection_dep,
 ]
 
 libhas_dep_lib = shared_library(

@@ -1,15 +1,15 @@
 /*
- * peas-activatable.c
- * This file is part of libpeas
+ * introspection-activatable.c
+ * This file is part of libintrospection
  *
  * Copyright (C) 2010 Steve Frécinaux
  *
- * libpeas is free software; you can redistribute it and/or
+ * libintrospection is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
  *
- * libpeas is distributed in the hope that it will be useful,
+ * libintrospection is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
@@ -23,20 +23,20 @@
 
 #include "config.h"
 
-#include "peas-activatable.h"
+#include "introspection-activatable.h"
 
 /**
- * PeasActivatable:
+ * IntrospectionActivatable:
  *
  * Interface for activatable plugins.
  *
- * #PeasActivatable is an interface which should be implemented by plugins
+ * #IntrospectionActivatable is an interface which should be implemented by plugins
  * that should be activated on an object of a certain type (depending on the
  * application). For instance, in a typical windowed application,
- * #PeasActivatable plugin instances could be bound to individual toplevel
+ * #IntrospectionActivatable plugin instances could be bound to individual toplevel
  * windows.
  *
- * It is typical to use #PeasActivatable along with [class@ExtensionSet] in order
+ * It is typical to use #IntrospectionActivatable along with [class@ExtensionSet] in order
  * to activate and deactivate extensions automatically when plugins are loaded
  * or unloaded.
  *
@@ -45,15 +45,15 @@
  * %GeditDocumentActivatable interfaces.
  **/
 
-G_DEFINE_INTERFACE(PeasActivatable, peas_activatable, G_TYPE_OBJECT)
+G_DEFINE_INTERFACE(IntrospectionActivatable, introspection_activatable, G_TYPE_OBJECT)
 
 static void
-peas_activatable_default_init (PeasActivatableInterface *iface)
+introspection_activatable_default_init (IntrospectionActivatableInterface *iface)
 {
   /**
-   * PeasActivatable:object:
+   * IntrospectionActivatable:object:
    *
-   * The object property contains the targetted object for this #PeasActivatable
+   * The object property contains the targetted object for this #IntrospectionActivatable
    * instance.
    *
    * For example a toplevel window in a typical windowed application. It is set
@@ -70,8 +70,8 @@ peas_activatable_default_init (PeasActivatableInterface *iface)
 }
 
 /**
- * peas_activatable_activate:
- * @activatable: A #PeasActivatable.
+ * introspection_activatable_activate:
+ * @activatable: A #IntrospectionActivatable.
  *
  * Activates the extension on the targetted object.
  *
@@ -79,21 +79,21 @@ peas_activatable_default_init (PeasActivatableInterface *iface)
  * where it makes sense.
  */
 void
-peas_activatable_activate (PeasActivatable *activatable)
+introspection_activatable_activate (IntrospectionActivatable *activatable)
 {
-  PeasActivatableInterface *iface;
+  IntrospectionActivatableInterface *iface;
 
-  g_return_if_fail (PEAS_IS_ACTIVATABLE (activatable));
+  g_return_if_fail (INTROSPECTION_IS_ACTIVATABLE (activatable));
 
-  iface = PEAS_ACTIVATABLE_GET_IFACE (activatable);
+  iface = INTROSPECTION_ACTIVATABLE_GET_IFACE (activatable);
   g_return_if_fail (iface->activate != NULL);
 
   iface->activate (activatable);
 }
 
 /**
- * peas_activatable_deactivate:
- * @activatable: A #PeasActivatable.
+ * introspection_activatable_deactivate:
+ * @activatable: A #IntrospectionActivatable.
  *
  * Deactivates the extension on the targetted object.
  *
@@ -102,33 +102,33 @@ peas_activatable_activate (PeasActivatable *activatable)
  * and without any more effect on the host application.
  */
 void
-peas_activatable_deactivate (PeasActivatable *activatable)
+introspection_activatable_deactivate (IntrospectionActivatable *activatable)
 {
-  PeasActivatableInterface *iface;
+  IntrospectionActivatableInterface *iface;
 
-  g_return_if_fail (PEAS_IS_ACTIVATABLE (activatable));
+  g_return_if_fail (INTROSPECTION_IS_ACTIVATABLE (activatable));
 
-  iface = PEAS_ACTIVATABLE_GET_IFACE (activatable);
+  iface = INTROSPECTION_ACTIVATABLE_GET_IFACE (activatable);
   g_return_if_fail (iface->deactivate != NULL);
 
   iface->deactivate (activatable);
 }
 
 /**
- * peas_activatable_update_state:
- * @activatable: A #PeasActivatable.
+ * introspection_activatable_update_state:
+ * @activatable: A #IntrospectionActivatable.
  *
  * Triggers an update of the extension internal state to take into account
  * state changes in the targetted object, due to some event or user action.
  */
 void
-peas_activatable_update_state (PeasActivatable *activatable)
+introspection_activatable_update_state (IntrospectionActivatable *activatable)
 {
-  PeasActivatableInterface *iface;
+  IntrospectionActivatableInterface *iface;
 
-  g_return_if_fail (PEAS_IS_ACTIVATABLE (activatable));
+  g_return_if_fail (INTROSPECTION_IS_ACTIVATABLE (activatable));
 
-  iface = PEAS_ACTIVATABLE_GET_IFACE (activatable);
+  iface = INTROSPECTION_ACTIVATABLE_GET_IFACE (activatable);
   if (iface->update_state != NULL)
     iface->update_state (activatable);
 }

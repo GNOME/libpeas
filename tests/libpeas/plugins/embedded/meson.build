@@ -33,7 +33,7 @@ libembedded_res = gnome.compile_resources(
 libembedded_deps = [
   glib_dep,
   libpeas_dep,
-  libtesting_util_dep,
+  libintrospection_dep,
 ]
 
 libembedded_lib = shared_library(

@@ -3,12 +3,10 @@ libtesting_util_string = '@0@-@1@'.format(libtesting_util_name, api_version)
 
 libtesting_util_public_h = [
   'testing-util.h',
-  'peas-activatable.h',
 ]
 
 libtesting_util_c = [
   'testing-util.c',
-  'peas-activatable.c',
 ]
 
 libtesting_util_deps = [

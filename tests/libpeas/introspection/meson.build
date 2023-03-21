@@ -3,6 +3,7 @@ libintrospection_string = '@0@-@1@'.format(libintrospection_name, api_version)
 
 libintrospection_public_h = [
   'introspection-abstract.h',
+  'introspection-activatable.h',
   'introspection-base.h',
   'introspection-callable.h',
   'introspection-has-prerequisite.h',
@@ -12,6 +13,7 @@ libintrospection_public_h = [
 
 libintrospection_c = [
   'introspection-abstract.c',
+  'introspection-activatable.c',
   'introspection-base.c',
   'introspection-callable.c',
   'introspection-has-prerequisite.c',

@@ -16,7 +16,7 @@ libself_dep_plugin_deps = [
   glib_dep,
   gobject_dep,
   libpeas_dep,
-  libtesting_util_dep,
+  libintrospection_dep,
 ]
 
 libself_dep_lib = shared_library(

@@ -31,7 +31,7 @@
 #include "plugins/embedded/embedded-plugin.h"
 #include "plugins/embedded/embedded-resources.h"
 
-#include "peas-activatable.h"
+#include "introspection/introspection-activatable.h"
 
 static void
 test_extension_c_embedded (PeasEngine *engine)
@@ -67,7 +67,7 @@ test_extension_c_embedded (PeasEngine *engine)
   g_assert (peas_plugin_info_is_loaded (info));
 
   extension = peas_engine_create_extension (engine, info,
-                                            PEAS_TYPE_ACTIVATABLE,
+                                            INTROSPECTION_TYPE_ACTIVATABLE,
                                             NULL);
 
   g_assert (TESTING_IS_EMBEDDED_PLUGIN (extension));
@@ -137,7 +137,7 @@ test_extension_c_local_linkage (PeasEngine     *engine,
                                               INTROSPECTION_TYPE_BASE,
                                               NULL);
   loadable_extension = peas_engine_create_extension (engine, loadable_info,
-                                                     PEAS_TYPE_ACTIVATABLE,
+                                                     INTROSPECTION_TYPE_ACTIVATABLE,
                                                      NULL);
 
   g_assert (G_IS_OBJECT (c_extension));

@@ -29,7 +29,7 @@
 
 #include <libpeas.h>
 
-#include "peas-activatable.h"
+#include "introspection-activatable.h"
 
 #include "loadable-plugin.h"
 
@@ -37,15 +37,15 @@ typedef struct {
   GObject *object;
 } TestingLoadablePluginPrivate;
 
-static void peas_activatable_iface_init (PeasActivatableInterface *iface);
+static void introspection_activatable_iface_init (IntrospectionActivatableInterface *iface);
 
 G_DEFINE_DYNAMIC_TYPE_EXTENDED (TestingLoadablePlugin,
                                 testing_loadable_plugin,
                                 G_TYPE_OBJECT,
                                 0,
                                 G_ADD_PRIVATE_DYNAMIC (TestingLoadablePlugin)
-                                G_IMPLEMENT_INTERFACE_DYNAMIC (PEAS_TYPE_ACTIVATABLE,
-                                                               peas_activatable_iface_init))
+                                G_IMPLEMENT_INTERFACE_DYNAMIC (INTROSPECTION_TYPE_ACTIVATABLE,
+                                                               introspection_activatable_iface_init))
 
 #define GET_PRIV(o) \
   (testing_loadable_plugin_get_instance_private (o))
@@ -54,7 +54,7 @@ enum {
   PROP_0,
   PROP_GLOBAL_SYMBOL_CLASH,
 
-  /* PeasActivatable */
+  /* IntrospectionActivatable */
   PROP_OBJECT,
   N_PROPERTIES = PROP_OBJECT
 };
@@ -113,12 +113,12 @@ testing_loadable_plugin_init (TestingLoadablePlugin *plugin)
 }
 
 static void
-testing_loadable_plugin_activate (PeasActivatable *activatable)
+testing_loadable_plugin_activate (IntrospectionActivatable *activatable)
 {
 }
 
 static void
-testing_loadable_plugin_deactivate (PeasActivatable *activatable)
+testing_loadable_plugin_deactivate (IntrospectionActivatable *activatable)
 {
 }
 
@@ -143,7 +143,7 @@ testing_loadable_plugin_class_init (TestingLoadablePluginClass *klass)
 }
 
 static void
-peas_activatable_iface_init (PeasActivatableInterface *iface)
+introspection_activatable_iface_init (IntrospectionActivatableInterface *iface)
 {
   iface->activate = testing_loadable_plugin_activate;
   iface->deactivate = testing_loadable_plugin_deactivate;
@@ -160,6 +160,6 @@ peas_register_types (PeasObjectModule *module)
   testing_loadable_plugin_register_type (G_TYPE_MODULE (module));
 
   peas_object_module_register_extension_type (module,
-                                              PEAS_TYPE_ACTIVATABLE,
+                                              INTROSPECTION_TYPE_ACTIVATABLE,
                                               TESTING_TYPE_LOADABLE_PLUGIN);
 }

@@ -29,7 +29,7 @@
 
 #include <libpeas.h>
 
-#include "peas-activatable.h"
+#include "introspection-activatable.h"
 
 #include "has-dep-plugin.h"
 
@@ -37,15 +37,15 @@ typedef struct {
   GObject *object;
 } TestingHasDepPluginPrivate;
 
-static void peas_activatable_iface_init (PeasActivatableInterface *iface);
+static void introspection_activatable_iface_init (IntrospectionActivatableInterface *iface);
 
 G_DEFINE_DYNAMIC_TYPE_EXTENDED (TestingHasDepPlugin,
                                 testing_has_dep_plugin,
                                 PEAS_TYPE_EXTENSION_BASE,
                                 0,
                                 G_ADD_PRIVATE_DYNAMIC (TestingHasDepPlugin)
-                                G_IMPLEMENT_INTERFACE_DYNAMIC (PEAS_TYPE_ACTIVATABLE,
-                                                               peas_activatable_iface_init))
+                                G_IMPLEMENT_INTERFACE_DYNAMIC (INTROSPECTION_TYPE_ACTIVATABLE,
+                                                               introspection_activatable_iface_init))
 
 #define GET_PRIV(o) \
   (testing_has_dep_plugin_get_instance_private (o))
@@ -103,12 +103,12 @@ testing_has_dep_plugin_init (TestingHasDepPlugin *plugin)
 }
 
 static void
-testing_has_dep_plugin_activate (PeasActivatable *activatable)
+testing_has_dep_plugin_activate (IntrospectionActivatable *activatable)
 {
 }
 
 static void
-testing_has_dep_plugin_deactivate (PeasActivatable *activatable)
+testing_has_dep_plugin_deactivate (IntrospectionActivatable *activatable)
 {
 }
 
@@ -124,7 +124,7 @@ testing_has_dep_plugin_class_init (TestingHasDepPluginClass *klass)
 }
 
 static void
-peas_activatable_iface_init (PeasActivatableInterface *iface)
+introspection_activatable_iface_init (IntrospectionActivatableInterface *iface)
 {
   iface->activate = testing_has_dep_plugin_activate;
   iface->deactivate = testing_has_dep_plugin_deactivate;
@@ -141,6 +141,6 @@ peas_register_types (PeasObjectModule *module)
   testing_has_dep_plugin_register_type (G_TYPE_MODULE (module));
 
   peas_object_module_register_extension_type (module,
-                                              PEAS_TYPE_ACTIVATABLE,
+                                              INTROSPECTION_TYPE_ACTIVATABLE,
                                               TESTING_TYPE_HAS_DEP_PLUGIN);
 }

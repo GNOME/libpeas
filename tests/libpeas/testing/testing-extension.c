@@ -34,12 +34,11 @@
 #include "testing-extension.h"
 
 #include "introspection-abstract.h"
+#include "introspection-activatable.h"
 #include "introspection-base.h"
 #include "introspection-callable.h"
 #include "introspection-has-prerequisite.h"
 #include "introspection-unimplemented.h"
-
-#include "peas-activatable.h"
 
 typedef struct _TestFixture TestFixture;
 
@@ -477,13 +476,13 @@ test_extension_multiple_threads_nonglobal_loaders (PeasEngine     *engine,
 }
 
 static void
-multiple_threads_callbacks_in_thread (guint            nth_thread,
-                                      PeasActivatable *activatable)
+multiple_threads_callbacks_in_thread (guint                     nth_thread,
+                                      IntrospectionActivatable *activatable)
 {
   gint i;
 
   for (i = 0; i < 100; ++i)
-    peas_activatable_update_state (activatable);
+    introspection_activatable_update_state (activatable);
 }
 
 static void
@@ -494,7 +493,7 @@ test_extension_multiple_threads_callbacks (PeasEngine     *engine,
   gint n_threads, update_count;
 
   extension = peas_engine_create_extension (engine, info,
-                                            PEAS_TYPE_ACTIVATABLE,
+                                            INTROSPECTION_TYPE_ACTIVATABLE,
                                             NULL);
 
   n_threads = run_in_multiple_threads ((GFunc) multiple_threads_callbacks_in_thread,

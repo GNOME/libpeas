@@ -29,7 +29,7 @@
 #include <glib-object.h>
 #include <libpeas.h>
 
-#include "peas-activatable.h"
+#include "introspection-activatable.h"
 
 #include "testing/testing.h"
 
@@ -71,7 +71,7 @@ testing_extension_set_new (PeasEngine *engine,
   PeasExtensionSet *extension_set;
 
   extension_set = peas_extension_set_new (engine,
-                                          PEAS_TYPE_ACTIVATABLE,
+                                          INTROSPECTION_TYPE_ACTIVATABLE,
                                           "object", NULL,
                                           NULL);
 
@@ -106,7 +106,7 @@ testing_extension_set_new (PeasEngine *engine,
       g_assert (peas_engine_load_plugin (engine, info));
     }
 
-  /* Load a plugin that does not provide a PeasActivatable */
+  /* Load a plugin that does not provide a IntrospectionActivatable */
   info = peas_engine_get_plugin_info (engine, "extension-c");
   g_assert (peas_engine_load_plugin (engine, info));
 
@@ -142,7 +142,7 @@ test_extension_set_create_valid (PeasEngine *engine)
   PeasExtensionSet *extension_set;
 
   extension_set = peas_extension_set_new (engine,
-                                          PEAS_TYPE_ACTIVATABLE,
+                                          INTROSPECTION_TYPE_ACTIVATABLE,
                                           "object", NULL,
                                           NULL);
 
@@ -156,7 +156,7 @@ valid_extension_added_cb (PeasExtensionSet *extension_set,
                           GObject          **obj_ptr)
 {
   g_clear_object (obj_ptr);
-  g_object_get (PEAS_ACTIVATABLE (extension), "object", obj_ptr, NULL);
+  g_object_get (INTROSPECTION_ACTIVATABLE (extension), "object", obj_ptr, NULL);
 }
 
 static void
@@ -174,7 +174,7 @@ test_extension_set_create_valid_with_properties (PeasEngine *engine)
   g_value_set_object (&prop_value, obj);
 
   extension_set = peas_extension_set_new_with_properties (engine,
-                                                          PEAS_TYPE_ACTIVATABLE,
+                                                          INTROSPECTION_TYPE_ACTIVATABLE,
                                                           G_N_ELEMENTS (prop_names),
                                                           prop_names,
                                                           &prop_value);
@@ -202,7 +202,7 @@ test_extension_set_create_invalid (PeasEngine *engine)
   PeasExtensionSet *extension_set;
 
   testing_util_push_log_hook ("*assertion*G_TYPE_IS_INTERFACE*failed");
-  testing_util_push_log_hook ("*type 'PeasActivatable' has no property named 'invalid-property'");
+  testing_util_push_log_hook ("*type 'IntrospectionActivatable' has no property named 'invalid-property'");
 
   /* Invalid GType */
   extension_set = peas_extension_set_new (engine, G_TYPE_INVALID, NULL);
@@ -216,7 +216,7 @@ test_extension_set_create_invalid (PeasEngine *engine)
 
   /* Interface does not have an 'invalid-property' property */
   extension_set = peas_extension_set_new (engine,
-                                          PEAS_TYPE_ACTIVATABLE,
+                                          INTROSPECTION_TYPE_ACTIVATABLE,
                                           "invalid-property", "does-not-exist",
                                           NULL);
   g_assert (!PEAS_IS_EXTENSION_SET (extension_set));
@@ -242,7 +242,7 @@ test_extension_set_create_invalid_with_properties (PeasEngine *engine)
   /* Interface has a NULL property name*/
   n_elements = G_N_ELEMENTS (prop_values);
   extension_set = peas_extension_set_new_with_properties (engine,
-                                                          PEAS_TYPE_ACTIVATABLE,
+                                                          INTROSPECTION_TYPE_ACTIVATABLE,
                                                           n_elements,
                                                           prop_names,
                                                           prop_values);
@@ -258,7 +258,7 @@ test_extension_set_create_invalid_with_properties (PeasEngine *engine)
   /* Uninitialized GValue */
   n_elements = 1;
   extension_set = peas_extension_set_new_with_properties (engine,
-                                                          PEAS_TYPE_ACTIVATABLE,
+                                                          INTROSPECTION_TYPE_ACTIVATABLE,
                                                           n_elements,
                                                           prop_names,
                                                           prop_values);
@@ -269,7 +269,7 @@ test_extension_set_create_invalid_with_properties (PeasEngine *engine)
   g_value_set_pointer (&prop_values[0], NULL);
   n_elements = G_N_ELEMENTS (prop_names_not_exist);
   extension_set = peas_extension_set_new_with_properties (engine,
-                                                          PEAS_TYPE_ACTIVATABLE,
+                                                          INTROSPECTION_TYPE_ACTIVATABLE,
                                                           n_elements,
                                                           prop_names_not_exist,
                                                           prop_values);
@@ -307,7 +307,7 @@ test_extension_set_extension_removed (PeasEngine *engine)
 
   extension_set = testing_extension_set_new (engine, &active);
 
-  /* Unload the plugin that does not provide a PeasActivatable */
+  /* Unload the plugin that does not provide a IntrospectionActivatable */
   info = peas_engine_get_plugin_info (engine, "extension-c");
   g_assert (peas_engine_unload_plugin (engine, info));
 
@@ -337,7 +337,7 @@ test_extension_set_get_extension (PeasEngine *engine)
   info = peas_engine_get_plugin_info (engine, loadable_plugins[0]);
 
   extension = peas_extension_set_get_extension (extension_set, info);
-  g_assert (PEAS_IS_ACTIVATABLE (extension));
+  g_assert (INTROSPECTION_IS_ACTIVATABLE (extension));
 
   g_object_add_weak_pointer (G_OBJECT (extension),
                              (gpointer) &extension);

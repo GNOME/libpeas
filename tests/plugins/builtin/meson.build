@@ -16,7 +16,7 @@ libbuiltin_plugin_deps = [
   glib_dep,
   gobject_dep,
   libpeas_dep,
-  libtesting_util_dep,
+  libintrospection_dep,
 ]
 
 libbuiltin_lib = shared_library(
