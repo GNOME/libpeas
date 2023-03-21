@@ -62,7 +62,7 @@ test_plugin_info_verify_full_info (PeasEngine *engine)
 {
   PeasPluginInfo *info;
   GError *error = NULL;
-  const gchar * const *authors;
+  const char * const *authors;
 
   info = peas_engine_get_plugin_info (engine, "full-info");
 
@@ -112,7 +112,7 @@ test_plugin_info_verify_min_info (PeasEngine *engine)
 {
   PeasPluginInfo *info;
   GError *error = NULL;
-  const gchar * const *authors;
+  const char * const *authors;
 
   info = peas_engine_get_plugin_info (engine, "min-info");
 
@@ -173,7 +173,7 @@ static void
 test_plugin_info_os_dependant_help (PeasEngine *engine)
 {
   PeasPluginInfo *info;
-  const gchar *help;
+  const char *help;
 
   info = peas_engine_get_plugin_info (engine, "os-dependant-help");
 

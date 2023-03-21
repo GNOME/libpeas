@@ -45,14 +45,14 @@ struct _IntrospectionCallableInterface {
   GTypeInterface g_iface;
 
   /* Virtual public methods */
-  gchar       *(*call_with_return) (IntrospectionCallable *callable);
+  char        *(*call_with_return) (IntrospectionCallable *callable);
   void         (*call_no_args)     (IntrospectionCallable *callable);
   void         (*call_single_arg)  (IntrospectionCallable *callable,
                                     gboolean              *called);
   void         (*call_multi_args)  (IntrospectionCallable *callable,
-                                    gint                   in,
-                                    gint                  *out,
-                                    gint                  *inout);
+                                    int                    in,
+                                    int                   *out,
+                                    int                   *inout);
 
   /* libpeas must have an invoker to implement an interface's vfunc */
   void         (*no_invoker_)      (IntrospectionCallable *callable);
@@ -65,7 +65,7 @@ PEAS_TEST_EXPORT
 GType        introspection_callable_get_type         (void) G_GNUC_CONST;
 
 PEAS_TEST_EXPORT
-gchar       *introspection_callable_call_with_return (IntrospectionCallable *callable);
+char        *introspection_callable_call_with_return (IntrospectionCallable *callable);
 
 
 PEAS_TEST_EXPORT
@@ -77,8 +77,8 @@ void         introspection_callable_call_single_arg  (IntrospectionCallable *cal
 
 PEAS_TEST_EXPORT
 void         introspection_callable_call_multi_args  (IntrospectionCallable *callable,
-                                                      gint                   in,
-                                                      gint                  *out,
-                                                      gint                  *inout);
+                                                      int                    in,
+                                                      int                   *out,
+                                                      int                   *inout);
 
 G_END_DECLS

@@ -28,12 +28,12 @@
 
 G_BEGIN_DECLS
 
-gchar *peas_dirs_os_x_get_bundle_resource_dir (void);
-gchar *peas_dirs_os_x_get_resource_dir        (const gchar *subdir,
-                                               const gchar *default_dir);
-gchar *peas_dirs_os_x_get_data_dir            (void);
-gchar *peas_dirs_os_x_get_lib_dir             (void);
-gchar *peas_dirs_os_x_get_locale_dir          (void);
-void   peas_open_url_osx                      (const gchar *uri);
+char *peas_dirs_os_x_get_bundle_resource_dir (void);
+char *peas_dirs_os_x_get_resource_dir        (const char *subdir,
+                                              const char *default_dir);
+char *peas_dirs_os_x_get_data_dir            (void);
+char *peas_dirs_os_x_get_lib_dir             (void);
+char *peas_dirs_os_x_get_locale_dir          (void);
+void  peas_open_url_osx                      (const char *uri);
 
 G_END_DECLS

@@ -65,17 +65,17 @@ PEAS_AVAILABLE_IN_ALL
 PeasExtensionSet *peas_extension_set_new_with_properties (PeasEngine                   *engine,
                                                           GType                         exten_type,
                                                           guint                         n_properties,
-                                                          const gchar                 **prop_names,
+                                                          const char                  **prop_names,
                                                           const GValue                 *prop_values);
 PEAS_AVAILABLE_IN_ALL
 PeasExtensionSet *peas_extension_set_new_valist          (PeasEngine                   *engine,
                                                           GType                         exten_type,
-                                                          const gchar                  *first_property,
+                                                          const char                   *first_property,
                                                           va_list                       var_args);
 PEAS_AVAILABLE_IN_ALL
 PeasExtensionSet *peas_extension_set_new                 (PeasEngine                   *engine,
                                                           GType                         exten_type,
-                                                          const gchar                  *first_property,
+                                                          const char                   *first_property,
                                                           ...);
 
 G_END_DECLS

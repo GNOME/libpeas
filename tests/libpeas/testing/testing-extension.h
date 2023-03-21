@@ -30,15 +30,12 @@
 G_BEGIN_DECLS
 
 PEAS_TEST_EXPORT
-void testing_extension_basic      (const gchar   *loader);
-
+void testing_extension_basic      (const char    *loader);
 PEAS_TEST_EXPORT
-void testing_extension_add        (const gchar   *path,
+void testing_extension_add        (const char    *path,
                                    GTestDataFunc  func);
-
-
 PEAS_TEST_EXPORT
-int testing_extension_run_tests   (void);
+int  testing_extension_run_tests  (void);
 
 #define testing_extension_all(loader) \
   testing_extension_basic (loader);

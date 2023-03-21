@@ -27,9 +27,9 @@
 
 
 static void
-debug_log_handler (const gchar    *log_domain,
+debug_log_handler (const char     *log_domain,
                    GLogLevelFlags  log_level,
-                   const gchar    *message,
+                   const char     *message,
                    gpointer        user_data)
 {
 }
@@ -46,7 +46,7 @@ peas_debug_init (void)
     }
   else
     {
-      const gchar *g_messages_debug;
+      const char *g_messages_debug;
 
       g_messages_debug = g_getenv ("G_MESSAGES_DEBUG");
 
@@ -56,7 +56,7 @@ peas_debug_init (void)
         }
       else
         {
-          gchar *new_g_messages_debug;
+          char *new_g_messages_debug;
 
           new_g_messages_debug = g_strconcat (g_messages_debug, " ",
                                               G_LOG_DOMAIN, NULL);

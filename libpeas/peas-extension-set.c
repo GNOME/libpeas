@@ -527,7 +527,7 @@ PeasExtensionSet *
 peas_extension_set_new_with_properties (PeasEngine    *engine,
                                         GType          exten_type,
                                         guint          n_properties,
-                                        const gchar  **prop_names,
+                                        const char   **prop_names,
                                         const GValue  *prop_values)
 {
   PeasExtensionSet *ret;
@@ -585,10 +585,10 @@ peas_extension_set_new_with_properties (PeasEngine    *engine,
  * Returns: a new instance of #PeasExtensionSet.
  */
 PeasExtensionSet *
-peas_extension_set_new_valist (PeasEngine  *engine,
-                               GType        exten_type,
-                               const gchar *first_property,
-                               va_list      var_args)
+peas_extension_set_new_valist (PeasEngine *engine,
+                               GType       exten_type,
+                               const char *first_property,
+                               va_list     var_args)
 {
   GParameter *parameters;
   guint n_parameters;
@@ -639,9 +639,9 @@ peas_extension_set_new_valist (PeasEngine  *engine,
  * Returns: a new instance of #PeasExtensionSet.
  */
 PeasExtensionSet *
-peas_extension_set_new (PeasEngine  *engine,
-                        GType        exten_type,
-                        const gchar *first_property,
+peas_extension_set_new (PeasEngine *engine,
+                        GType       exten_type,
+                        const char *first_property,
                         ...)
 {
   va_list var_args;

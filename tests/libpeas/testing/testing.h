@@ -29,8 +29,8 @@
 G_BEGIN_DECLS
 
 PEAS_TEST_EXPORT
-void        testing_init             (gint    *argc,
-                                      gchar ***argv);
+void        testing_init             (int    *argc,
+                                      char ***argv);
 
 PEAS_TEST_EXPORT
 PeasEngine *testing_engine_new_full  (gboolean nonglobal_loaders);

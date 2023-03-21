@@ -40,7 +40,7 @@ G_DEFINE_CONSTRUCTOR(peas_init_ctor)
 static void
 peas_init_ctor (void)
 {
-  gchar *locale_dir = peas_dirs_get_locale_dir ();
+  char *locale_dir = peas_dirs_get_locale_dir ();
 
   bindtextdomain (GETTEXT_PACKAGE, locale_dir);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");

@@ -40,7 +40,7 @@ struct _TestFixture {
 };
 
 /* Have dependencies before the plugin that requires them */
-static const gchar *loadable_plugins[] = {
+static const char *loadable_plugins[] = {
   "loadable", "has-dep", "self-dep"
 };
 
@@ -48,7 +48,7 @@ static void
 extension_added_cb (PeasExtensionSet *extension_set,
                     PeasPluginInfo   *info,
                     GObject    *extension,
-                    gint             *active)
+                    int             *active)
 {
   ++(*active);
 }
@@ -57,16 +57,16 @@ static void
 extension_removed_cb (PeasExtensionSet *extension_set,
                       PeasPluginInfo   *info,
                       GObject    *extension,
-                      gint             *active)
+                      int             *active)
 {
   --(*active);
 }
 
 static PeasExtensionSet *
 testing_extension_set_new (PeasEngine *engine,
-                           gint       *active)
+                           int       *active)
 {
-  gint i;
+  int i;
   PeasPluginInfo *info;
   PeasExtensionSet *extension_set;
 
@@ -77,7 +77,7 @@ testing_extension_set_new (PeasEngine *engine,
 
   if (active == NULL)
     {
-      active = g_new (gint, 1);
+      active = g_new (int, 1);
       g_object_set_data_full (G_OBJECT (extension_set),
                               "testing-extension-set-active", active,
                               g_free);
@@ -167,7 +167,7 @@ test_extension_set_create_valid_with_properties (PeasEngine *engine)
   GValue prop_value = G_VALUE_INIT;
   GObject *obj;
   GObject *obj_cmp = NULL;
-  const gchar *prop_names[1] = { "object" };
+  const char *prop_names[1] = { "object" };
 
   obj = g_object_new (G_TYPE_OBJECT, NULL);
   g_value_init (&prop_value, G_TYPE_OBJECT);
@@ -227,8 +227,8 @@ test_extension_set_create_invalid_with_properties (PeasEngine *engine)
 {
   PeasExtensionSet *extension_set;
   GValue prop_values[2] = { G_VALUE_INIT };
-  const gchar *prop_names[2] = { "object", NULL };
-  const gchar *prop_names_not_exist[1] = { "aleb" };
+  const char *prop_names[2] = { "object", NULL };
+  const char *prop_names_not_exist[1] = { "aleb" };
   guint n_elements;
 
   testing_util_push_log_hook ("*property name*should not be NULL.");
@@ -281,7 +281,7 @@ test_extension_set_create_invalid_with_properties (PeasEngine *engine)
 static void
 test_extension_set_extension_added (PeasEngine *engine)
 {
-  gint active;
+  int active;
   PeasExtensionSet *extension_set;
 
   /* This will check that an extension is added
@@ -301,7 +301,7 @@ test_extension_set_extension_added (PeasEngine *engine)
 static void
 test_extension_set_extension_removed (PeasEngine *engine)
 {
-  gint i, active;
+  int i, active;
   PeasPluginInfo *info;
   PeasExtensionSet *extension_set;
 
@@ -352,7 +352,7 @@ test_extension_set_get_extension (PeasEngine *engine)
 static void
 test_extension_set_foreach (PeasEngine *engine)
 {
-  gint count = 0;
+  int count = 0;
   PeasExtensionSet *extension_set;
 
   extension_set = testing_extension_set_new (engine, NULL);
@@ -369,10 +369,10 @@ test_extension_set_foreach (PeasEngine *engine)
 static void
 ordering_cb (PeasExtensionSet  *set,
              PeasPluginInfo    *info,
-             GObject     *extension,
+             GObject           *extension,
              GList            **order)
 {
-  const gchar *order_module_name = (const gchar *) (*order)->data;
+  const char *order_module_name = (const char *) (*order)->data;
 
   g_assert_cmpstr (order_module_name, ==,
                    peas_plugin_info_get_module_name (info));

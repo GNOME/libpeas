@@ -37,7 +37,7 @@ static gpointer failed_err_key = NULL;
 static int
 failed_fn (lua_State *L)
 {
-  gchar *msg;
+  char *msg;
 
   /* The first parameter is the Hooks table instance */
   luaL_checktype (L, 1, LUA_TTABLE);
@@ -96,10 +96,10 @@ peas_lua_internal_shutdown (lua_State *L)
 }
 
 gboolean
-peas_lua_internal_call (lua_State   *L,
-                        const gchar *name,
-                        guint        n_args,
-                        gint         return_type)
+peas_lua_internal_call (lua_State  *L,
+                        const char *name,
+                        guint       n_args,
+                        int         return_type)
 {
   /* Get the Hooks table */
   lua_pushlightuserdata (L, &hooks_key);

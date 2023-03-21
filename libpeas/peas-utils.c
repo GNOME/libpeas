@@ -30,15 +30,15 @@
 
 #include "peas-utils.h"
 
-static const gchar *all_plugin_loaders[] = {
+static const char *all_plugin_loaders[] = {
   "c", "lua5.1", "python",
 };
 
-static const gchar *all_plugin_loader_modules[] = {
+static const char *all_plugin_loader_modules[] = {
   "cloader", "lua51loader", "pythonloader",
 };
 
-static const gint conflicting_plugin_loaders[PEAS_UTILS_N_LOADERS][2] = {
+static const int conflicting_plugin_loaders[PEAS_UTILS_N_LOADERS][2] = {
   { -1, -1 }, /* c       => {} */
   { -1, -1 }, /* lua5.1  => {} */
   { -1, -1 }, /* python  => {} */
@@ -113,7 +113,7 @@ find_base_class_and_interfaces (GType exten_type)
     }
   else
     {
-      gint i;
+      int i;
       GType *interfaces;
 
       interfaces = g_type_interfaces (exten_type, NULL);
@@ -163,7 +163,7 @@ get_base_class_and_interfaces (GType          exten_type,
 }
 
 static inline GParamSpec *
-find_param_spec_for_prerequisites (const gchar  *name,
+find_param_spec_for_prerequisites (const char   *name,
                                    GObjectClass *base_class,
                                    gpointer     *ifaces)
 {
@@ -183,7 +183,7 @@ G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 gboolean
 peas_utils_properties_array_to_parameter_list (GType          exten_type,
                                                guint          n_properties,
-                                               const gchar  **prop_names,
+                                               const char   **prop_names,
                                                const GValue  *prop_values,
                                                GParameter    *parameters)
 {
@@ -235,15 +235,15 @@ error:
 }
 
 gboolean
-peas_utils_valist_to_parameter_list (GType         exten_type,
-                                     const gchar  *first_property,
-                                     va_list       args,
-                                     GParameter  **params,
-                                     guint        *n_params)
+peas_utils_valist_to_parameter_list (GType        exten_type,
+                                     const char  *first_property,
+                                     va_list      args,
+                                     GParameter **params,
+                                     guint       *n_params)
 {
   gpointer *ifaces;
   GObjectClass *base_class;
-  const gchar *name;
+  const char *name;
   guint n_allocated_params;
 
   g_return_val_if_fail (G_TYPE_IS_INTERFACE (exten_type) ||
@@ -258,7 +258,7 @@ peas_utils_valist_to_parameter_list (GType         exten_type,
   name = first_property;
   while (name)
     {
-      gchar *error_msg = NULL;
+      char *error_msg = NULL;
       GParamSpec *pspec;
 
       pspec = find_param_spec_for_prerequisites (name, base_class, ifaces);
@@ -291,7 +291,7 @@ peas_utils_valist_to_parameter_list (GType         exten_type,
           goto error;
         }
 
-      name = va_arg (args, gchar*);
+      name = va_arg (args, char*);
     }
 
   return TRUE;
@@ -306,12 +306,12 @@ error:
 }
 G_GNUC_END_IGNORE_DEPRECATIONS
 
-gint
-peas_utils_get_loader_id (const gchar *loader)
+int
+peas_utils_get_loader_id (const char *loader)
 {
-  gint i;
+  int i;
   gsize len;
-  gchar lowercase[32];
+  char lowercase[32];
 
   len = strlen (loader);
 
@@ -333,8 +333,8 @@ peas_utils_get_loader_id (const gchar *loader)
   return -1;
 }
 
-const gchar *
-peas_utils_get_loader_from_id (gint loader_id)
+const char *
+peas_utils_get_loader_from_id (int loader_id)
 {
   g_return_val_if_fail (loader_id >= 0, NULL);
   g_return_val_if_fail (loader_id < PEAS_UTILS_N_LOADERS, NULL);
@@ -342,8 +342,8 @@ peas_utils_get_loader_from_id (gint loader_id)
   return all_plugin_loaders[loader_id];
 }
 
-const gchar *
-peas_utils_get_loader_module_from_id (gint loader_id)
+const char *
+peas_utils_get_loader_module_from_id (int loader_id)
 {
   g_return_val_if_fail (loader_id >= 0, NULL);
   g_return_val_if_fail (loader_id < PEAS_UTILS_N_LOADERS, NULL);
@@ -351,8 +351,8 @@ peas_utils_get_loader_module_from_id (gint loader_id)
   return all_plugin_loader_modules[loader_id];
 }
 
-const gint *
-peas_utils_get_conflicting_loaders_from_id (gint loader_id)
+const int *
+peas_utils_get_conflicting_loaders_from_id (int loader_id)
 {
   g_return_val_if_fail (loader_id >= 0, NULL);
   g_return_val_if_fail (loader_id < PEAS_UTILS_N_LOADERS, NULL);

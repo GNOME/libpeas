@@ -26,7 +26,7 @@
 #include "introspection-prerequisite.h"
 
 typedef struct {
-  gint value;
+  int value;
 } IntrospectionPrerequisitePrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (IntrospectionPrerequisite,

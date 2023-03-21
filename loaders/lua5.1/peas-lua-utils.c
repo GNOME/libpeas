@@ -31,8 +31,8 @@
 
 
 gboolean
-peas_lua_utils_require (lua_State   *L,
-                        const gchar *name)
+peas_lua_utils_require (lua_State  *L,
+                        const char *name)
 {
   luaL_checkstack (L, 2, "");
 
@@ -69,11 +69,11 @@ peas_lua_utils_check_version (lua_State *L,
                               guint      req_minor,
                               guint      req_micro)
 {
-  const gchar *version_str;
-  gchar **version_str_parts;
-  gint n_version_parts;
+  const char *version_str;
+  char **version_str_parts;
+  int n_version_parts;
   gint64 *version_parts;
-  gint i;
+  int i;
   gboolean success = FALSE;
 
   lua_getfield (L, -1, "_VERSION");
@@ -86,7 +86,7 @@ peas_lua_utils_check_version (lua_State *L,
 
   for (i = 0; i < n_version_parts; ++i)
     {
-      gchar *end;
+      char *end;
 
       version_parts[i] = g_ascii_strtoll (version_str_parts[i], &end, 10);
 
@@ -120,7 +120,7 @@ error:
   return success;
 }
 
-static gint
+static int
 traceback (lua_State *L)
 {
   /* Always ignore an error that isn't a string */
@@ -176,16 +176,16 @@ peas_lua_utils_call (lua_State *L,
 }
 
 gboolean
-peas_lua_utils_load_resource (lua_State   *L,
-                              const gchar *name,
-                              guint        n_args,
-                              guint        n_results)
+peas_lua_utils_load_resource (lua_State  *L,
+                              const char *name,
+                              guint       n_args,
+                              guint       n_results)
 {
-  gchar *resource_path;
+  char *resource_path;
   GBytes *lua_resource;
-  const gchar *code;
+  const char *code;
   gsize code_len;
-  gchar *lua_filename;
+  char *lua_filename;
 
   /* We don't use the byte-compiled Lua source
    * because glib-compile-resources cannot output

@@ -40,7 +40,7 @@ struct _PeasPluginLoaderC {
 G_DEFINE_FINAL_TYPE (PeasPluginLoaderC, peas_plugin_loader_c, PEAS_TYPE_PLUGIN_LOADER)
 
 static GQuark quark_extension_type = 0;
-static const gchar *intern_plugin_info = NULL;
+static const char *intern_plugin_info = NULL;
 
 static gboolean
 peas_plugin_loader_c_load (PeasPluginLoader *loader,
@@ -54,7 +54,7 @@ peas_plugin_loader_c_load (PeasPluginLoader *loader,
                                      info->filename,
                                      NULL, (gpointer *) &info->loader_data))
     {
-      const gchar *module_name, *module_dir;
+      const char *module_name, *module_dir;
 
       module_name = peas_plugin_info_get_module_name (info);
       module_dir = peas_plugin_info_get_module_dir (info);

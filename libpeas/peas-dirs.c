@@ -51,13 +51,13 @@ BOOL WINAPI DllMain (HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 #endif
 #endif
 
-gchar *
+char *
 peas_dirs_get_data_dir (void)
 {
-  gchar *data_dir;
+  char *data_dir;
 
 #ifdef G_OS_WIN32
-  gchar *win32_dir;
+  char *win32_dir;
 
   win32_dir = g_win32_get_package_installation_directory_of_module (libpeas_dll);
 
@@ -72,13 +72,13 @@ peas_dirs_get_data_dir (void)
   return data_dir;
 }
 
-gchar *
+char *
 peas_dirs_get_lib_dir (void)
 {
-  gchar *lib_dir;
+  char *lib_dir;
 
 #ifdef G_OS_WIN32
-  gchar *win32_dir;
+  char *win32_dir;
 
   win32_dir = g_win32_get_package_installation_directory_of_module (libpeas_dll);
 
@@ -93,12 +93,12 @@ peas_dirs_get_lib_dir (void)
   return lib_dir;
 }
 
-gchar *
-peas_dirs_get_plugin_loader_dir (const gchar *loader_name)
+char *
+peas_dirs_get_plugin_loader_dir (const char *loader_name)
 {
-  const gchar *env_var;
-  gchar *lib_dir;
-  gchar *loader_dir;
+  const char *env_var;
+  char *lib_dir;
+  char *loader_dir;
 
   env_var = g_getenv ("PEAS_PLUGIN_LOADERS_DIR");
   if (env_var != NULL)
@@ -112,13 +112,13 @@ peas_dirs_get_plugin_loader_dir (const gchar *loader_name)
   return loader_dir;
 }
 
-gchar *
+char *
 peas_dirs_get_locale_dir (void)
 {
-  gchar *locale_dir;
+  char *locale_dir;
 
 #ifdef G_OS_WIN32
-  gchar *win32_dir;
+  char *win32_dir;
 
   win32_dir = g_win32_get_package_installation_directory_of_module (libpeas_dll);
 

@@ -161,7 +161,7 @@ peas_plugin_loader_python_load (PeasPluginLoader *loader,
                                 PeasPluginInfo   *info)
 {
   PeasPluginLoaderPython *pyloader = PEAS_PLUGIN_LOADER_PYTHON (loader);
-  const gchar *module_dir, *module_name;
+  const char *module_dir, *module_name;
   PyObject *pymodule;
   PyGILState_STATE state = PyGILState_Ensure ();
 

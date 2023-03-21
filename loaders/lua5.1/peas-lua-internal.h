@@ -28,12 +28,11 @@
 
 G_BEGIN_DECLS
 
-gboolean  peas_lua_internal_setup    (lua_State   *L);
-void      peas_lua_internal_shutdown (lua_State   *L);
-
-gboolean  peas_lua_internal_call     (lua_State   *L,
-                                      const gchar *name,
-                                      guint        n_args,
-                                      gint         return_type);
+gboolean  peas_lua_internal_setup    (lua_State  *L);
+void      peas_lua_internal_shutdown (lua_State  *L);
+gboolean  peas_lua_internal_call     (lua_State  *L,
+                                      const char *name,
+                                      guint       n_args,
+                                      int         return_type);
 
 G_END_DECLS

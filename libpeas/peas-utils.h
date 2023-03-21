@@ -31,16 +31,16 @@
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 gboolean     peas_utils_properties_array_to_parameter_list (GType          exten_type,
                                                             guint          n_properties,
-                                                            const gchar  **prop_names,
+                                                            const char  **prop_names,
                                                             const GValue  *prop_values,
                                                             GParameter    *params);
 gboolean     peas_utils_valist_to_parameter_list           (GType          exten_type,
-                                                            const gchar   *first_property,
+                                                            const char   *first_property,
                                                             va_list        var_args,
                                                             GParameter   **params,
                                                             guint         *n_params);
 G_GNUC_END_IGNORE_DEPRECATIONS
-gint         peas_utils_get_loader_id                      (const gchar   *loader) G_GNUC_CONST;
-const gchar *peas_utils_get_loader_from_id                 (gint           loader_id) G_GNUC_CONST;
-const gchar *peas_utils_get_loader_module_from_id          (gint           loader_id) G_GNUC_CONST;
-const gint  *peas_utils_get_conflicting_loaders_from_id    (gint           loader_id) G_GNUC_CONST;
+int         peas_utils_get_loader_id                       (const char   *loader) G_GNUC_CONST;
+const char *peas_utils_get_loader_from_id                  (int           loader_id) G_GNUC_CONST;
+const char *peas_utils_get_loader_module_from_id           (int           loader_id) G_GNUC_CONST;
+const int  *peas_utils_get_conflicting_loaders_from_id     (int           loader_id) G_GNUC_CONST;

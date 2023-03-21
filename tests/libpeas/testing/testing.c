@@ -32,8 +32,8 @@
 #include "testing.h"
 
 void
-testing_init (gint    *argc,
-              gchar ***argv)
+testing_init (int    *argc,
+              char ***argv)
 {
   GError *error = NULL;
   static gboolean initialized = FALSE;

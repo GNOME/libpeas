@@ -37,8 +37,8 @@ static PyObject *
 failed_fn (PyObject *self,
            PyObject *args)
 {
-  const gchar *msg;
-  gchar *clean_msg;
+  const char *msg;
+  char *clean_msg;
 
   if (!PyArg_ParseTuple (args, "s:Hooks.failed", &msg))
     return NULL;
@@ -63,7 +63,7 @@ static PyMethodDef failed_method_def = {
 gboolean
 peas_python_internal_setup (gboolean already_initialized)
 {
-  const gchar *prgname;
+  const char *prgname;
   GBytes *internal_python = NULL;
   PyObject *builtins_module, *globals, *result;
   PyObject *code = NULL, *failed_method = NULL;
@@ -185,9 +185,9 @@ peas_python_internal_shutdown (void)
 }
 
 PyObject *
-peas_python_internal_call (const gchar  *name,
+peas_python_internal_call (const char   *name,
                            PyTypeObject *return_type,
-                           const gchar  *format,
+                           const char   *format,
                            ...)
 {
   PyObject *args;

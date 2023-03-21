@@ -70,9 +70,9 @@ typedef struct _PeasObjectModulePrivate {
   PeasObjectModuleRegisterFunc register_func;
   GArray *implementations;
 
-  gchar *path;
-  gchar *module_name;
-  gchar *symbol;
+  char *path;
+  char *module_name;
+  char *symbol;
 
   guint resident : 1;
   guint local_linkage : 1;
@@ -82,7 +82,7 @@ G_DEFINE_TYPE_WITH_PRIVATE (PeasObjectModule, peas_object_module, G_TYPE_TYPE_MO
 
 #define TYPE_MISSING_PLUGIN_INFO_PROPERTY (G_TYPE_FLAG_RESERVED_ID_BIT)
 
-static const gchar *intern_plugin_info = NULL;
+static const char *intern_plugin_info = NULL;
 
 static gboolean
 peas_object_module_load (GTypeModule *gmodule)
@@ -101,9 +101,9 @@ peas_object_module_load (GTypeModule *gmodule)
     }
   else
     {
-      gchar *path;
+      char *path;
       GModuleFlags flags = 0;
-      gchar *fallback_path = NULL;
+      char *fallback_path = NULL;
 
 #ifdef G_OS_WIN32
       if (!g_str_has_suffix (priv->module_name, "." G_MODULE_SUFFIX))
@@ -115,7 +115,7 @@ peas_object_module_load (GTypeModule *gmodule)
            * not found, as it is commonly the case on Meson builds and
            * also likely in other cases.
            */
-          gchar *mod_file = g_strconcat (priv->module_name, "." G_MODULE_SUFFIX, NULL);
+          char *mod_file = g_strconcat (priv->module_name, "." G_MODULE_SUFFIX, NULL);
           fallback_path = g_module_build_path (priv->path, mod_file);
           g_free (mod_file);
         }
@@ -381,9 +381,9 @@ peas_object_module_class_init (PeasObjectModuleClass *klass)
  * Returns: a new #PeasObjectModule.
  */
 PeasObjectModule *
-peas_object_module_new (const gchar *module_name,
-                        const gchar *path,
-                        gboolean     resident)
+peas_object_module_new (const char *module_name,
+                        const char *path,
+                        gboolean    resident)
 {
   g_return_val_if_fail (module_name != NULL && *module_name != '\0', NULL);
   g_return_val_if_fail (path != NULL && *path != '\0', NULL);
@@ -407,10 +407,10 @@ peas_object_module_new (const gchar *module_name,
  * Returns: a new #PeasObjectModule.
  */
 PeasObjectModule *
-peas_object_module_new_full (const gchar *module_name,
-                             const gchar *path,
-                             gboolean     resident,
-                             gboolean     local_linkage)
+peas_object_module_new_full (const char *module_name,
+                             const char *path,
+                             gboolean    resident,
+                             gboolean    local_linkage)
 {
   g_return_val_if_fail (module_name != NULL && *module_name != '\0', NULL);
   g_return_val_if_fail (path != NULL && *path != '\0', NULL);
@@ -434,8 +434,8 @@ peas_object_module_new_full (const gchar *module_name,
  * Since: 1.18
  */
 PeasObjectModule *
-peas_object_module_new_embedded (const gchar *module_name,
-                                 const gchar *symbol)
+peas_object_module_new_embedded (const char *module_name,
+                                 const char *symbol)
 {
   g_return_val_if_fail (module_name != NULL && *module_name != '\0', NULL);
   g_return_val_if_fail (symbol != NULL && *symbol != '\0', NULL);
@@ -527,7 +527,7 @@ peas_object_module_provides_object (PeasObjectModule *module,
  *
  * Returns: the path.
  */
-const gchar *
+const char *
 peas_object_module_get_path (PeasObjectModule *module)
 {
   PeasObjectModulePrivate *priv = peas_object_module_get_instance_private (module);
@@ -545,7 +545,7 @@ peas_object_module_get_path (PeasObjectModule *module)
  *
  * Returns: the module name.
  */
-const gchar *
+const char *
 peas_object_module_get_module_name (PeasObjectModule *module)
 {
   PeasObjectModulePrivate *priv = peas_object_module_get_instance_private (module);
@@ -565,7 +565,7 @@ peas_object_module_get_module_name (PeasObjectModule *module)
  *
  * Since: 1.18
  */
-const gchar *
+const char *
 peas_object_module_get_symbol (PeasObjectModule *module)
 {
   PeasObjectModulePrivate *priv = peas_object_module_get_instance_private (module);

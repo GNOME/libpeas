@@ -33,12 +33,11 @@
 
 G_BEGIN_DECLS
 
-gboolean  peas_python_internal_setup    (gboolean     already_initialized);
+gboolean  peas_python_internal_setup    (gboolean      already_initialized);
 void      peas_python_internal_shutdown (void);
-
-PyObject *peas_python_internal_call     (const gchar  *name,
+PyObject *peas_python_internal_call     (const char   *name,
                                          PyTypeObject *return_type,
-                                         const gchar  *format,
+                                         const char   *format,
                                          ...);
 
 G_END_DECLS

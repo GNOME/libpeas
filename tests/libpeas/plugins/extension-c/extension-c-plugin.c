@@ -88,7 +88,7 @@ testing_extension_c_plugin_call_no_args (IntrospectionCallable *callable)
 {
 }
 
-static gchar *
+static char *
 testing_extension_c_plugin_call_with_return (IntrospectionCallable *callable)
 {
   return g_strdup ("Hello, World!");
@@ -103,9 +103,9 @@ testing_extension_c_plugin_call_single_arg (IntrospectionCallable *callable,
 
 static void
 testing_extension_c_plugin_call_multi_args (IntrospectionCallable *callable,
-                                            gint                   in,
-                                            gint                  *out,
-                                            gint                  *inout)
+                                            int                    in,
+                                            int                   *out,
+                                            int                   *inout)
 {
   *out = *inout;
   *inout = in;

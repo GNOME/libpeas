@@ -38,7 +38,7 @@ struct _PeasPluginInfo {
   char *module_dir;
   char *data_dir;
 
-  gint loader_id;
+  int loader_id;
   char *embedded;
   char *module_name;
   char **dependencies;

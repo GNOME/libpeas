@@ -30,16 +30,16 @@
 #import <AppKit/AppKit.h>
 
 void
-peas_open_url_osx (const gchar *uri)
+peas_open_url_osx (const char *uri)
 {
   [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithUTF8String:uri]]];
 }
 
-gchar *
+char *
 peas_dirs_os_x_get_bundle_resource_dir (void)
 {
   NSAutoreleasePool *pool;
-  gchar *str = NULL;
+  char *str = NULL;
   NSString *path;
 
   pool = [[NSAutoreleasePool alloc] init];
@@ -63,12 +63,12 @@ peas_dirs_os_x_get_bundle_resource_dir (void)
   return str;
 }
 
-gchar *
-peas_dirs_os_x_get_resource_dir (const gchar *subdir,
-                                 const gchar *default_dir)
+char *
+peas_dirs_os_x_get_resource_dir (const char *subdir,
+                                 const char *default_dir)
 {
-  gchar *res_dir;
-  gchar *ret;
+  char *res_dir;
+  char *ret;
 
   res_dir = peas_dirs_os_x_get_bundle_resource_dir ();
 
@@ -85,23 +85,23 @@ peas_dirs_os_x_get_resource_dir (const gchar *subdir,
   return ret;
 }
 
-gchar *
+char *
 peas_dirs_os_x_get_data_dir (void)
 {
   return peas_dirs_os_x_get_resource_dir ("share", DATADIR);
 }
 
-gchar *
+char *
 peas_dirs_os_x_get_lib_dir (void)
 {
   return peas_dirs_os_x_get_resource_dir ("lib", LIBDIR);
 }
 
-gchar *
+char *
 peas_dirs_os_x_get_locale_dir (void)
 {
-  gchar *res_dir;
-  gchar *ret;
+  char *res_dir;
+  char *ret;
 
   res_dir = peas_dirs_os_x_get_bundle_resource_dir ();
 

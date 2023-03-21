@@ -266,8 +266,8 @@ list_index (GListModel     *model,
 static void
 test_engine_plugin_list (PeasEngine *engine)
 {
-  const gchar * const *dependencies;
-  gint builtin_index, loadable_index, two_deps_index;
+  const char * const *dependencies;
+  int builtin_index, loadable_index, two_deps_index;
   PeasPluginInfo *builtin_info, *loadable_info, *two_deps_info;
 
   builtin_info = peas_engine_get_plugin_info (engine, "builtin");
@@ -296,7 +296,7 @@ test_engine_plugin_list (PeasEngine *engine)
 static void
 load_plugin_cb (PeasEngine     *engine,
                 PeasPluginInfo *info,
-                gint           *loaded)
+                int            *loaded)
 {
   /* PeasEngine:load is not stopped if loading fails */
   if (peas_plugin_info_is_loaded (info))
@@ -306,7 +306,7 @@ load_plugin_cb (PeasEngine     *engine,
 static void
 unload_plugin_cb (PeasEngine     *engine,
                   PeasPluginInfo *info,
-                  gint           *loaded)
+                  int            *loaded)
 {
   --(*loaded);
 }
@@ -314,7 +314,7 @@ unload_plugin_cb (PeasEngine     *engine,
 static void
 notify_loaded_plugins_cb (PeasEngine   *engine,
                           GParamSpec   *pspec,
-                          gchar      ***loaded_plugins)
+                          char       ***loaded_plugins)
 {
   if (*loaded_plugins != NULL)
     g_strfreev (*loaded_plugins);
@@ -326,9 +326,9 @@ static void
 test_engine_loaded_plugins (PeasEngine *engine)
 {
   PeasPluginInfo *info;
-  gint loaded = 0;
-  gchar **load_plugins;
-  gchar **loaded_plugins = NULL;
+  int loaded = 0;
+  char **load_plugins;
+  char **loaded_plugins = NULL;
 
   testing_util_push_log_hook ("Could not find plugin 'does-not-exist'*");
 
@@ -361,8 +361,8 @@ test_engine_loaded_plugins (PeasEngine *engine)
   g_assert (loaded_plugins != NULL);
   g_assert (loaded_plugins[0] == NULL);
 
-  load_plugins = g_new0 (gchar *, 1);
-  peas_engine_set_loaded_plugins (engine, (const gchar **) load_plugins);
+  load_plugins = g_new0 (char *, 1);
+  peas_engine_set_loaded_plugins (engine, (const char **) load_plugins);
   g_strfreev (load_plugins);
 
   g_assert_cmpint (loaded, ==, 0);
@@ -371,9 +371,9 @@ test_engine_loaded_plugins (PeasEngine *engine)
 
 
   /* Load a plugin */
-  load_plugins = g_new0 (gchar *, 2);
+  load_plugins = g_new0 (char *, 2);
   load_plugins[0] = g_strdup ("loadable");
-  peas_engine_set_loaded_plugins (engine, (const gchar **) load_plugins);
+  peas_engine_set_loaded_plugins (engine, (const char **) load_plugins);
   g_strfreev (load_plugins);
 
   g_assert_cmpint (loaded, ==, 1);
@@ -383,9 +383,9 @@ test_engine_loaded_plugins (PeasEngine *engine)
 
 
   /* Try to load an unavailable plugin */
-  load_plugins = g_new0 (gchar *, 2);
+  load_plugins = g_new0 (char *, 2);
   load_plugins[0] = g_strdup ("unavailable");
-  peas_engine_set_loaded_plugins (engine, (const gchar **) load_plugins);
+  peas_engine_set_loaded_plugins (engine, (const char **) load_plugins);
   g_strfreev (load_plugins);
 
   g_assert_cmpint (loaded, ==, 0);

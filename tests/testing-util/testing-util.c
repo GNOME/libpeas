@@ -33,7 +33,7 @@
 #include "testing-util.h"
 
 typedef struct {
-  const gchar *pattern;
+  const char *pattern;
   gboolean hit;
 } LogHook;
 
@@ -106,9 +106,9 @@ get_log_hooks (void)
 }
 
 static void
-log_handler (const gchar    *log_domain,
+log_handler (const char     *log_domain,
              GLogLevelFlags  log_level,
-             const gchar    *message,
+             const char     *message,
              gpointer        user_data)
 {
   LogHooks *log_hooks = get_log_hooks ();
@@ -136,7 +136,7 @@ log_handler (const gchar    *log_domain,
   for (i = 0; i < hooks->len; ++i)
     {
       LogHook *hook = g_ptr_array_index (hooks, i);
-      gchar *msg;
+      char *msg;
 
       if (!g_pattern_match_simple (hook->pattern, message))
         continue;
@@ -306,7 +306,7 @@ testing_util_run_tests (void)
 }
 
 void
-testing_util_push_log_hook (const gchar *pattern)
+testing_util_push_log_hook (const char *pattern)
 {
   LogHooks *log_hooks = get_log_hooks ();
   LogHook *hook;
@@ -402,7 +402,7 @@ testing_util_pop_log_hooks (void)
 
       for (i = 0; i < hits->len; ++i)
         {
-          const gchar *hit = g_ptr_array_index (hits, i);
+          const char *hit = g_ptr_array_index (hits, i);
 
           g_string_append_printf (msg, "\n\t%s", hit);
         }

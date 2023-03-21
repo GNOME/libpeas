@@ -30,19 +30,16 @@ G_BEGIN_DECLS
 
 
 gboolean peas_lua_utils_require       (lua_State   *L,
-                                       const gchar *name);
-
+                                       const char  *name);
 gboolean peas_lua_utils_check_version (lua_State   *L,
                                        guint        req_major,
                                        guint        req_minor,
                                        guint        req_micro);
-
 gboolean peas_lua_utils_call          (lua_State   *L,
                                        guint        n_args,
                                        guint        n_results);
-
 gboolean peas_lua_utils_load_resource (lua_State   *L,
-                                       const gchar *name,
+                                       const char  *name,
                                        guint        n_args,
                                        guint        n_results);
 

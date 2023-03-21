@@ -26,7 +26,7 @@
 #include "introspection-abstract.h"
 
 typedef struct {
-  gint value;
+  int value;
 } IntrospectionAbstractPrivate;
 
 G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (IntrospectionAbstract,
@@ -110,7 +110,7 @@ introspection_abstract_init (IntrospectionAbstract *prereq)
 {
 }
 
-gint
+int
 introspection_abstract_get_value (IntrospectionAbstract *abstract)
 {
   IntrospectionAbstractPrivate *priv = GET_PRIV (abstract);
@@ -122,7 +122,7 @@ introspection_abstract_get_value (IntrospectionAbstract *abstract)
 
 void
 introspection_abstract_set_value (IntrospectionAbstract *abstract,
-                                  gint                   value)
+                                  int                    value)
 {
   IntrospectionAbstractPrivate *priv = GET_PRIV (abstract);
 

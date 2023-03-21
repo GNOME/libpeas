@@ -47,8 +47,8 @@ struct _TestFixture {
   PeasPluginInfo *info;
 };
 
-static gchar *loader = NULL;
-static gchar *extension_plugin = NULL;
+static char *loader = NULL;
+static char *extension_plugin = NULL;
 
 static void
 test_setup (TestFixture    *fixture,
@@ -82,7 +82,7 @@ static void
 test_extension_garbage_collect (PeasEngine     *engine,
                                 PeasPluginInfo *info)
 {
-  gchar **loaded_plugins;
+  char **loaded_plugins;
 
   peas_engine_garbage_collect (engine);
 
@@ -169,7 +169,7 @@ test_extension_create_valid_with_properties (PeasEngine     *engine,
   GObject *extension;
   IntrospectionAbstract *abstract;
   GValue prop_values[1] = { G_VALUE_INIT };
-  const gchar *prop_names[1] = { "abstract-property" };
+  const char *prop_names[1] = { "abstract-property" };
 
   g_assert (peas_engine_load_plugin (engine, info));
 
@@ -236,9 +236,9 @@ test_extension_create_invalid_with_properties (PeasEngine     *engine,
 {
   GObject *extension;
   GValue prop_values[1] = { G_VALUE_INIT };
-  const gchar *prop_names[1] = { NULL };
+  const char *prop_names[1] = { NULL };
   GValue prop_values2[1] = { G_VALUE_INIT };
-  const gchar *prop_names2[1] = { "does-not-exist" };
+  const char *prop_names2[1] = { "does-not-exist" };
 
   g_value_init (&prop_values[0], G_TYPE_STRING);
   g_value_set_string (&prop_values[0], "foo");
@@ -301,7 +301,7 @@ test_extension_create_with_prerequisite (PeasEngine     *engine,
                                          PeasPluginInfo *info)
 {
   GObject *extension;
-  gint prerequisite_property = -1;
+  int prerequisite_property = -1;
 
   extension = peas_engine_create_extension (engine, info,
                                             INTROSPECTION_TYPE_HAS_PREREQUISITE,
@@ -323,7 +323,7 @@ static void
 test_extension_reload (PeasEngine     *engine,
                        PeasPluginInfo *info)
 {
-  gint i;
+  int i;
 
   for (i = 0; i < 3; ++i)
     {
@@ -398,11 +398,11 @@ test_extension_abstract (PeasEngine     *engine,
   g_object_unref (extension);
 }
 
-static gint
+static int
 run_in_multiple_threads (GFunc    func,
                          gpointer user_data)
 {
-  gint i, n_threads;
+  int i, n_threads;
   GThreadPool *pool;
   GError *error = NULL;
 
@@ -428,7 +428,7 @@ static void
 multiple_threads_loaders_in_thread (guint    nth_thread,
                                     gboolean use_nonglobal_loaders)
 {
-  gint i, j;
+  int i, j;
   PeasEngine *engine;
   PeasPluginInfo *info;
   GObject *extension;
@@ -479,7 +479,7 @@ static void
 multiple_threads_callbacks_in_thread (guint                     nth_thread,
                                       IntrospectionActivatable *activatable)
 {
-  gint i;
+  int i;
 
   for (i = 0; i < 100; ++i)
     introspection_activatable_update_state (activatable);
@@ -490,7 +490,7 @@ test_extension_multiple_threads_callbacks (PeasEngine     *engine,
                                            PeasPluginInfo *info)
 {
   GObject *extension;
-  gint n_threads, update_count;
+  int n_threads, update_count;
 
   extension = peas_engine_create_extension (engine, info,
                                             INTROSPECTION_TYPE_ACTIVATABLE,
@@ -507,26 +507,26 @@ test_extension_multiple_threads_callbacks (PeasEngine     *engine,
 
 #define _EXTENSION_TEST(loader, path, ftest) \
   G_STMT_START { \
-    gchar *full_path = g_strdup_printf (EXTENSION_TEST_NAME (%s, "%s"), \
-                                        loader, path); \
-\
-    g_test_add (full_path, TestFixture, \
-                (gpointer) test_extension_##ftest, \
-                test_setup, test_runner, test_teardown); \
-\
-    g_free (full_path); \
+    char *full_path = g_strdup_printf (EXTENSION_TEST_NAME (%s, "%s"), \
+                                       loader, path);                  \
+                                                                       \
+    g_test_add (full_path, TestFixture,                                \
+                (gpointer) test_extension_##ftest,                     \
+                test_setup, test_runner, test_teardown);               \
+                                                                       \
+    g_free (full_path);                                                \
   } G_STMT_END
 
 void
-testing_extension_basic (const gchar *loader_)
+testing_extension_basic (const char *loader_)
 {
-  gint i, j;
-  gchar *loader_name;
+  int i, j;
+  char *loader_name;
   PeasEngine *engine;
 
   loader = g_strdup (loader_);
 
-  loader_name = g_new0 (gchar, strlen (loader) + 1);
+  loader_name = g_new0 (char, strlen (loader) + 1);
   for (i = 0, j = 0; loader[i] != '\0'; ++i)
     {
       if (loader[i] != '.')
@@ -581,7 +581,7 @@ testing_extension_basic (const gchar *loader_)
 }
 
 void
-testing_extension_add (const gchar   *path,
+testing_extension_add (const char    *path,
                        GTestDataFunc  func)
 {
   g_test_add (path, TestFixture, (gpointer) func,
