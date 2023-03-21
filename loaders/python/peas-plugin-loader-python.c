@@ -132,7 +132,7 @@ peas_plugin_loader_python_create_extension (PeasPluginLoader *loader,
                       GSIZE_TO_POINTER (exten_type));
 
   pyobject = pygobject_new (object);
-  pyplinfo = pyg_boxed_new (PEAS_TYPE_PLUGIN_INFO, info, TRUE, TRUE);
+  pyplinfo = pygobject_new (G_OBJECT (info));
 
   /* Set the plugin info as an attribute of the instance */
   if (PyObject_SetAttrString (pyobject, "plugin_info", pyplinfo) != 0)
