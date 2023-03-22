@@ -61,12 +61,12 @@ peas_dirs_get_data_dir (void)
 
   win32_dir = g_win32_get_package_installation_directory_of_module (libpeas_dll);
 
-  data_dir = g_build_filename (win32_dir, "share", "libpeas-1.0", NULL);
+  data_dir = g_build_filename (win32_dir, "share", "libpeas-2", NULL);
   g_free (win32_dir);
 #elif defined (OS_OSX)
   data_dir = peas_dirs_os_x_get_data_dir ();
 #else
-  data_dir = g_build_filename (DATADIR, "libpeas-1.0", NULL);
+  data_dir = g_build_filename (DATADIR, "libpeas-2", NULL);
 #endif
 
   return data_dir;
@@ -82,12 +82,12 @@ peas_dirs_get_lib_dir (void)
 
   win32_dir = g_win32_get_package_installation_directory_of_module (libpeas_dll);
 
-  lib_dir = g_build_filename (win32_dir, "lib", "libpeas-1.0", NULL);
+  lib_dir = g_build_filename (win32_dir, "lib", "libpeas-2", NULL);
   g_free (win32_dir);
 #elif defined (OS_OSX)
   lib_dir = peas_dirs_os_x_get_lib_dir ();
 #else
-  lib_dir = g_build_filename (LIBDIR, "libpeas-1.0", NULL);
+  lib_dir = g_build_filename (LIBDIR, "libpeas-2", NULL);
 #endif
 
   return lib_dir;
@@ -133,4 +133,3 @@ peas_dirs_get_locale_dir (void)
 
   return locale_dir;
 }
-

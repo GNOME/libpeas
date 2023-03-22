@@ -1,7 +1,0 @@
-[Plugin]
-Module=configurable
-Name=Configurable
-Description=A plugin that can be loaded and configured.
-Authors=Garrett Regier
-Copyright=Copyright © 2010 Garrett Regier
-Help=This is required to test that the Help button is enabled.

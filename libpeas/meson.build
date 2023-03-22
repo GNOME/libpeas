@@ -10,14 +10,10 @@ peas_version_h = configure_file(
   input: 'peas-version.h.in',
   output: 'peas-version.h',
   configuration: version_data,
-  install_dir: join_paths(
-    pkgincludedir,
-    package_name,
-  ),
+  install_dir: pkgincludedir,
 )
 
 libpeas_public_h = files(
-  'peas-activatable.h',
   'peas-autocleanups.h',
   'peas-engine.h',
   'peas-extension.h',
@@ -30,7 +26,6 @@ libpeas_public_h = files(
 )
 
 libpeas_sources = files(
-  'peas-activatable.c',
   'peas-debug.c',
   'peas-dirs.c',
   'peas-engine.c',
@@ -88,13 +83,7 @@ libpeas_marshal = gnome.genmarshal(
 
 libpeas_marshals_h = libpeas_marshal.get(1)
 
-install_headers(
-  libpeas_public_h,
-  install_dir: join_paths(
-    pkgincludedir,
-    package_name,
-  ),
-)
+install_headers(libpeas_public_h, install_dir: pkgincludedir)
 
 libpeas_sha = library(
   package_string.strip('lib'),
@@ -128,7 +117,7 @@ if generate_gir == true
     namespace: 'Peas',
     symbol_prefix: 'peas',
     identifier_prefix: 'Peas',
-    header: 'libpeas/peas.h',
+    header: 'peas.h',
     export_packages: [package_string],
     includes: libpeas_gir_includes,
     link_with: libpeas_sha,

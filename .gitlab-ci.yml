@@ -16,9 +16,7 @@ stages:
       ninja-build
       redhat-rpm-config
       glib2-devel
-      gtk3-devel
       gobject-introspection-devel
-      python2-devel
       python3-devel
       xorg-x11-server-Xvfb
       git
@@ -39,7 +37,7 @@ stages:
 build peas:
   extends: '.build'
   script:
-    - 'meson -Dwidgetry=false -Dintrospection=true -Dvapi=true -Ddemos=false -Dgtk_doc=false _build .'
+    - 'meson -Dintrospection=true -Dvapi=true -Dgtk_doc=false _build .'
     - 'ninja -C _build test'
 
 build peas-gtk:
@@ -53,16 +51,11 @@ reference:
   variables:
     MESON_ARGS: >-
       -Dgtk_doc=true
-      -Ddemos=false
-      -Dglade_catalog=false
-      -Dwidgetry=true
   script:
-    - mkdir -p _reference/libpeas-1.0
-    - mkdir -p _reference/libpeas-gtk-1.0
+    - mkdir -p _reference/libpeas-2.0
     - meson ${MESON_ARGS} _build
     - ninja -C _build
-    - mv _build/docs/reference/libpeas-1.0/* _reference/libpeas-1.0
-    - mv _build/docs/reference/libpeas-gtk-1.0/* _reference/libpeas-gtk-1.0
+    - mv _build/docs/reference/libpeas-2.0/* _reference/libpeas-2.0
   artifacts:
     paths:
       - _reference

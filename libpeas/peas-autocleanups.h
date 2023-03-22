@@ -22,7 +22,6 @@
 #ifndef __PEAS_AUTOCLEANUPS_H__
 #define __PEAS_AUTOCLEANUPS_H__
 
-#include "peas-activatable.h"
 #include "peas-engine.h"
 #include "peas-extension.h"
 #include "peas-extension-base.h"
@@ -34,7 +33,6 @@ G_BEGIN_DECLS
 #ifndef __GI_SCANNER__
 #if GLIB_CHECK_VERSION (2, 44, 0)
 
-G_DEFINE_AUTOPTR_CLEANUP_FUNC (PeasActivatable, g_object_unref)
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (PeasEngine, g_object_unref)
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (PeasExtension, g_object_unref)
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (PeasExtensionBase, g_object_unref)

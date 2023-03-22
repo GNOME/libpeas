@@ -52,19 +52,19 @@
  *
  * ```c
  * static void
- * on_extension_added (PeasExtensionSet *set,
- *                     PeasPluginInfo   *info,
- *                     PeasActivatable  *activatable)
+ * on_extension_added (PeasExtensionSet   *set,
+ *                     PeasPluginInfo     *info,
+ *                     ExampleActivatable *activatable)
  * {
- *   peas_activatable_activate (activatable);
+ *   example_activatable_activate (activatable);
  * }
  *
  * static void
- * on_extension_removed (PeasExtensionSet *set,
- *                       PeasPluginInfo   *info,
- *                       PeasActivatable  *activatable)
+ * on_extension_removed (PeasExtensionSet   *set,
+ *                       PeasPluginInfo     *info,
+ *                       ExampleActivatable *activatable)
  * {
- *   peas_activatable_deactivate (activatable);
+ *   example_activatable_deactivate (activatable);
  * }
  *
  * PeasExtensionSet *
@@ -73,7 +73,7 @@
  * {
  *   PeasExtensionSet *set;
  *
- *   set = peas_extension_set_new (engine, PEAS_TYPE_ACTIVATABLE,
+ *   set = peas_extension_set_new (engine, EXAMPLE_TYPE_ACTIVATABLE,
  *                                 "object", window, NULL);
  *   peas_extension_set_foreach (set,
  *                               (PeasExtensionSetForeachFunc) on_extension_added,

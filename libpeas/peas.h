@@ -20,7 +20,6 @@
 #ifndef __PEAS_H__
 #define __PEAS_H__
 
-#include "peas-activatable.h"
 #include "peas-autocleanups.h"
 #include "peas-engine.h"
 #include "peas-extension.h"

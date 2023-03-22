@@ -1,11 +1,9 @@
 project(
   'libpeas', 'c',
-  version: '1.36.1',
+  version: '2.0.0.alpha',
   license: 'LGPLv2.1+',
-  meson_version: '>= 0.50.0',
-  default_options: [
-    'buildtype=debugoptimized',
-  ]
+  meson_version: '>= 0.62.0',
+  default_options: ['buildtype=debugoptimized', 'warning_level=2']
 )
 
 gnome = import('gnome')
@@ -20,7 +18,7 @@ version_major = version_arr[0].to_int()
 version_minor = version_arr[1].to_int()
 version_micro = version_arr[2].to_int()
 
-api_version = '@0@.0'.format(version_major)
+api_version = '@0@'.format(version_major)
 
 if version_minor.is_odd()
   interface_age = 0
@@ -86,13 +84,11 @@ config_h.set_quoted('GETTEXT_PACKAGE', package_string)
 # Dependencies
 cc = meson.get_compiler('c')
 
-glib_req_version = '2.44.0'
+glib_req_version = '2.74'
 
 glib_req = '>= @0@'.format(glib_req_version)
 introspection_req = '>= 1.39.0'
-gtk_req = '>= 3.0.0'
 gtk_doc_req = '>= 1.11'
-python2_req = '>= 2.5.2'
 python3_req = '>= 3.2.0'
 pygobject_req = '>= 3.2.0'
 lua_req = '>= 5.1.0'
@@ -104,13 +100,11 @@ gobject_dep = dependency('gobject-2.0', version: glib_req)
 gmodule_dep = dependency('gmodule-2.0', version: glib_req)
 gio_dep = dependency('gio-2.0', version: glib_req)
 introspection_dep = dependency('gobject-introspection-1.0', version: introspection_req)
-gtk_dep = dependency('gtk+-3.0', version: gtk_req, required: false)
 
 gi_docgen_dep = dependency('gi-docgen', version: '>= 2021.7',
                            fallback: ['gi-docgen', 'dummy_dep'],
                            native: true,
                            required: get_option('gtk_doc'))
-gladeui_dep = dependency('gladeui-2.0', required: false)
 
 # From python 3.8 we neeed python3-embed
 python3_dep = dependency('python3-embed', required: false)
@@ -123,16 +117,6 @@ if host_machine.system() == 'windows' and not python3_dep.found()
                                     required: false)
   if python3.found()
     python3_dep = python3.dependency(version: python3_req, required: false)
-  endif
-endif
-
-
-python2_dep = dependency('python2', version: python2_req, required: false)
-if host_machine.system() == 'windows' and not python2_dep.found()
-  python2 = pymod.find_installation(get_option('python2_path') != '' ? get_option('python2_path') : 'python2',
-                                    required: false)
-  if python2.found()
-    python2_dep = python2.dependency(version: python2_req, required: false)
   endif
 endif
 
@@ -253,31 +237,6 @@ configure_file(
 # Options
 build_gtk_doc = get_option('gtk_doc') and gi_docgen_dep.found()
 
-install_glade_catalog = get_option('glade_catalog')
-if install_glade_catalog and not gladeui_dep.found()
-  install_glade_catalog = false
-elif install_glade_catalog == true
-  catalogdir = join_paths(datadir, 'glade', 'catalogs')
-# FIXME: In gladeui-2.0.pc, catalogdir should be relative to datadir:
-# https://gitlab.gnome.org/GNOME/glade/issues/353
-#   catalogdir = gladeui_dep.get_pkgconfig_variable(
-#     'catalogdir',
-#     define_variable: [
-#       'datadir', datadir,
-#     ]
-#   )
-endif
-
-build_gtk_widgetry = get_option('widgetry')
-if build_gtk_widgetry and not gtk_dep.found()
-  build_gtk_widgetry = false
-endif
-
-build_demos = get_option('demos')
-if build_demos and not build_gtk_widgetry
-  build_demos = false
-endif
-
 generate_gir = get_option('introspection')
 if generate_gir and not introspection_dep.found()
   generate_gir = false
@@ -287,12 +246,6 @@ build_lua51_loader = get_option('lua51')
 lua51_found = (luajit_dep.found() or lua51_dep.found()) and lua_lgi_found
 if build_lua51_loader and not lua51_found
   build_lua51_loader = false
-endif
-
-build_python2_loader = get_option('python2')
-python2_found = python2_dep.found() and pygobject_dep.found()
-if build_python2_loader and not python2_found
-  build_python2_loader = false
 endif
 
 build_python3_loader = get_option('python3')
@@ -305,9 +258,6 @@ endif
 copyfile_script = find_program('copyfile.py')
 
 subdir('libpeas')
-if build_gtk_widgetry == true
-  subdir('libpeas-gtk')
-endif
 
 if build_gtk_doc == true
   subdir('docs')
@@ -318,9 +268,6 @@ subdir('po')
 
 subdir('loaders')
 
-if build_demos == true
-  subdir('peas-demo')
-endif
 if generate_gir == true
   subdir('tests')
 endif
@@ -330,13 +277,9 @@ summary = [
   '------',
   'libpeas @0@ (@1@)'.format(version, api_version),
   '',
-  '             Demos: @0@'.format(build_demos),
   '     Documentation: @0@'.format(build_gtk_doc),
-  '     Glade catalog: @0@'.format(install_glade_catalog),
-  '     GTK+ widgetry: @0@'.format(build_gtk_widgetry),
   '     Introspection: @0@'.format(generate_gir),
   '   Lua 5.1 support: @0@'.format(build_lua51_loader),
-  '  Python 2 support: @0@'.format(build_python2_loader),
   '  Python 3 support: @0@'.format(build_python3_loader),
   '',
   'Directories:',
