@@ -18,6 +18,7 @@ stages:
       glib2-devel
       gobject-introspection-devel
       python3-devel
+      python3-packaging
       xorg-x11-server-Xvfb
       git
       pip
