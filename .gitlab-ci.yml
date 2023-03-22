@@ -21,6 +21,8 @@ stages:
       xorg-x11-server-Xvfb
       git
       pip
+      luajit-devel
+      lua-lgi-compat
   before_script:
     - "dnf install -y $DEPS"
     - 'mkdir -p _ccache'
