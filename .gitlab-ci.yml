@@ -42,12 +42,6 @@ build peas:
     - 'meson -Dintrospection=true -Dvapi=true -Dgtk_doc=false _build .'
     - 'ninja -C _build test'
 
-build peas-gtk:
-  extends: '.build'
-  script:
-    - 'meson -Dwidgetry=true -Dglade_catalog=true -Dintrospection=true -Dvapi=true -Dgtk_doc=false _build .'
-    - 'xvfb-run -a -s "-screen 0 1024x768x24"  ninja -C _build test'
-
 reference:
   extends: '.build'
   variables:
