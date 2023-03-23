@@ -1,5 +1,4 @@
-Introducing libpeas
-===================
+# Introducing libpeas
 
 libpeas is a gobject-based plugins engine, and is targetted at giving every
 application the chance to assume its own extensibility. It is currently used by
@@ -9,23 +8,21 @@ It takes its roots in the old gedit plugins engine, and provides an extensive se
 of features mirroring the desiderata of most of the applications providing an
 extension framework.
 
-Documentation
--------------------------
+# Documentation
 
 Documentation can be found at:
 
-- Peas-2.0: https://gnome.pages.gitlab.gnome.org/libpeas/libpeas-2.0/.
+ * Peas-1: https://gnome.pages.gitlab.gnome.org/libpeas/libpeas-1.0/
+ * Peas-2: https://gnome.pages.gitlab.gnome.org/libpeas/libpeas-2/
 
-Multiple extension points
--------------------------
+# Multiple extension points
 
 One of the most frustrating limitations of the Gedit plugins engine was that it
 only allows extending a single class, called GeditPlugin. With libpeas, this
 limitation vanishes, and the application writer is now able to provide a set of
 GInterfaces the plugin writer will be able to implement as his plugin requires.
 
-On-demand programming language support
---------------------------------------
+# On-demand programming language support
 
 libpeas comes with a set of supported languages (currently, C, Lua 5.1,
 and Python 3). Those languages are supported through “loaders” which
@@ -33,16 +30,14 @@ are loaded on demand. What it means is that you only pay for what you use: if
 you have no Python plugin, the Python interpreter won't be loaded in memory.
 Of course, the same goes for the C loader.
 
-Damn simple to use (or at least we try hard)
---------------------------------------------
+# Damn simple to use (or at least we try hard)
 
 Adding support for libpeas-enabled plugins in your own application is a matter
 of minutes. You only have to create an instance of the plugins engine, and
 call methods on the implementations of the various extension points. That's it,
 no clock harmed.
 
-A shared library for everyone
------------------------------
+# A shared library for everyone
 
 As I noted earlier, the latest improvements of our beloved development platform
 made it possible to create bindings for apps very quickly. And with the Gnome 3
@@ -60,14 +55,12 @@ shares most of the Gnome infrastructure and philosophy:
     * And you can report bug or propose new features through the good old Gnome
       Bugzilla, against the libpeas module.
 
-A few hints on using libpeas
-============================
+# A few hints on using libpeas
 
 As always for the new projects, it can take some time to grasp all the
 subtleties at first.
 
-Plugins versus Extensions
--------------------------
+## Plugins versus Extensions
 
 Something that is going to puzzle most of the newcomers is the fact that the
 libpeas API talks about both plugins and extensions, two terms that are usually
@@ -75,15 +68,14 @@ used interchangeably, but who have very different meanings in libpeas.
 
 Let's try and give a definition of both of these words in this context:
 
-- Plugin: In the context of libpeas, a plugin is a logical package. It's what
-  you will enable or disable from the UI, and at the end it is what the user
-  will see. An example of plugin for gedit would be the file browser plugin.
+ * Plugin: In the context of libpeas, a plugin is a logical package. It's what
+   you will enable or disable from the UI, and at the end it is what the user
+   will see. An example of plugin for gedit would be the file browser plugin.
 
-- Extension. An extension is an object which implements an interface
-  associated to an extension point. There can be several extensions in a single
-  plugin. Examples of extensions provided by the file browser plugin would be
-  the configuration dialog, the left panel pane and a completion provider for
-  file names.
-
+ * Extension. An extension is an object which implements an interface
+   associated to an extension point. There can be several extensions in a single
+   plugin. Examples of extensions provided by the file browser plugin would be
+   the configuration dialog, the left panel pane and a completion provider for
+   file names.
 
 Copied from http://log.istique.net/2010/announcing-libpeas
