@@ -34,7 +34,7 @@
  *
  * #PeasExtensionBase can optionally be used as a base class for the extensions
  * of your plugin. By inheriting from it, you will make your extension able to
- * access the related [struct@PluginInfo], and especially the location where all
+ * access the related [object@PluginInfo], and especially the location where all
  * the data of your plugin lives.
  *
  * Non-C extensions will usually not inherit from this class: Python
@@ -132,7 +132,7 @@ peas_extension_base_class_init (PeasExtensionBaseClass *klass)
   /**
    * PeasExtensionBase:plugin-info:
    *
-   * The [struct@PluginInfo] related to the current plugin.
+   * The [object@PluginInfo] related to the current plugin.
    */
   properties[PROP_PLUGIN_INFO] =
     g_param_spec_object ("plugin-info",
@@ -170,7 +170,7 @@ peas_extension_base_class_init (PeasExtensionBaseClass *klass)
  *
  * Get information relative to @extbase.
  *
- * Returns: (transfer none): the [struct@PluginInfo] relative
+ * Returns: (transfer none): the [object@PluginInfo] relative
  *   to the #PeasExtensionBase.
  */
 PeasPluginInfo *

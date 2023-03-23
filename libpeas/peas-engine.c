@@ -1055,7 +1055,7 @@ peas_engine_enable_loader (PeasEngine *engine,
  * @engine: A #PeasEngine.
  * @plugin_name: A plugin name.
  *
- * Gets the [struct@PluginInfo] corresponding with @plugin_name,
+ * Gets the [object@PluginInfo] corresponding with @plugin_name,
  * or %NULL if @plugin_name was not found.
  *
  * Returns: (transfer none): the #PeasPluginInfo corresponding with
