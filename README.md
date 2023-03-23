@@ -12,7 +12,6 @@ extension framework.
 
 Documentation can be found at:
 
- * Peas-1: https://gnome.pages.gitlab.gnome.org/libpeas/libpeas-1.0/
  * Peas-2: https://gnome.pages.gitlab.gnome.org/libpeas/libpeas-2/
 
 # Multiple extension points
