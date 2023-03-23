@@ -387,7 +387,7 @@ peas_extension_set_class_init (PeasExtensionSetClass *klass)
    *
    * You should connect to this signal in order to clean up the extensions
    * when their plugin is unload. Note that this signal is not fired for the
-   * [object@GObject.Object] instances still available when the #PeasExtensionSet
+   * [class@GObject.Object] instances still available when the #PeasExtensionSet
    * instance is destroyed. You should clean those up by yourself.
    */
   signals[EXTENSION_REMOVED] =
@@ -439,7 +439,7 @@ peas_extension_set_class_init (PeasExtensionSetClass *klass)
  * @set: A #PeasExtensionSet
  * @info: a #PeasPluginInfo
  *
- * Returns the [object@GObject.Object] object corresponding to @info.
+ * Returns the [class@GObject.Object] object corresponding to @info.
  *
  * If the plugin doesn't provide such an extension, it returns %NULL.
  *
@@ -469,7 +469,7 @@ peas_extension_set_get_extension (PeasExtensionSet *set,
  * @func: (scope call): A function call for each extension.
  * @data: Optional data to be passed to the function or %NULL.
  *
- * Calls @func for each [object@GObject.Object].
+ * Calls @func for each [class@GObject.Object].
  */
 void
 peas_extension_set_foreach (PeasExtensionSet            *set,
