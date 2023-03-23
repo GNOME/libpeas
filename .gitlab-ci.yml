@@ -50,10 +50,10 @@ reference:
     MESON_ARGS: >-
       -Dgtk_doc=true
   script:
-    - mkdir -p _reference/libpeas-2.0
+    - mkdir -p _reference/libpeas-2
     - meson ${MESON_ARGS} _build
     - ninja -C _build
-    - mv _build/docs/reference/libpeas-2.0/* _reference/libpeas-2.0
+    - mv _build/docs/reference/libpeas-2/* _reference/libpeas-2
   artifacts:
     paths:
       - _reference
