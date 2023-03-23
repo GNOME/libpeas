@@ -355,7 +355,6 @@ if build_gtk_doc == true
   subdir('docs')
 endif
 
-subdir('data')
 subdir('po')
 
 subdir('loaders')
@@ -378,7 +377,6 @@ summary = [
   '            prefix: @0@'.format(prefix),
   '        includedir: @0@'.format(includedir),
   '            libdir: @0@'.format(libdir),
-  '           datadir: @0@'.format(datadir),
   '------',
 ]
 
