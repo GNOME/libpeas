@@ -49,7 +49,7 @@
  * wish to call specific methods on loading or unloading time.
  *
  * Here is the code for a typical setup of #PeasExtensionSet with
- * [iface@Activatable] as the watched extension point, and [class@Gtk.Window]
+ * ExampleActivatable as the watched extension point, and GtkWindow
  * instances as the target objects:
  *
  * ```c
