@@ -25,6 +25,7 @@ stages:
       luajit-devel
       lua-lgi-compat
       gi-docgen
+      vala
   before_script:
     - "dnf install -y $DEPS"
     - 'mkdir -p _ccache'
