@@ -142,6 +142,8 @@ if not lua51_prg.found()
 endif
 luajit_prg = find_program('luajit', required: false)
 xmllint_prg = find_program('xmllint', required: false)
+generate_vapi = get_option('vapi')
+vapigen_prg = find_program('vapigen', required: generate_vapi)
 
 if cc.get_id() == 'msvc'
   if luajit_prg.found()
@@ -332,6 +334,10 @@ build_gtk_doc = get_option('gtk_doc') and gi_docgen_dep.found()
 generate_gir = get_option('introspection')
 if generate_gir and not introspection_dep.found()
   generate_gir = false
+endif
+
+if not generate_gir
+  generate_vapi = false
 endif
 
 build_lua51_loader = get_option('lua51')

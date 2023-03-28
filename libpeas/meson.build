@@ -112,7 +112,7 @@ if generate_gir == true
     namespace: 'Peas',
     symbol_prefix: 'peas',
     identifier_prefix: 'Peas',
-    header: 'peas.h',
+    header: 'libpeas.h',
     export_packages: [package_string],
     includes: libpeas_gir_includes,
     link_with: libpeas_sha,
@@ -123,6 +123,19 @@ if generate_gir == true
       '--warn-all',
     ],
   )
+
+  if generate_vapi == true
+    vapi_dependencies = [
+      'gio-2.0',
+      'gobject-introspection-1.0',
+    ]
+    gnome.generate_vapi(
+      'Peas',
+      install: true,
+      packages: vapi_dependencies,
+      sources: libpeas_gir[0]
+    )
+  endif
 
   libpeas_dep_sources += [
     libpeas_gir,
