@@ -102,7 +102,6 @@ if generate_gir == true
     'GObject-2.0',
     'GModule-2.0',
     'Gio-2.0',
-    'GIRepository-2.0'
   ]
 
   libpeas_gir = gnome.generate_gir(
@@ -126,8 +125,8 @@ if generate_gir == true
 
   if generate_vapi == true
     vapi_dependencies = [
+      'gmodule-2.0',
       'gio-2.0',
-      'gobject-introspection-1.0',
     ]
     gnome.generate_vapi(
       package_string,
