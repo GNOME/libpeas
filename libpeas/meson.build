@@ -130,7 +130,7 @@ if generate_gir == true
       'gobject-introspection-1.0',
     ]
     gnome.generate_vapi(
-      'Peas',
+      package_string,
       install: true,
       packages: vapi_dependencies,
       sources: libpeas_gir[0]
