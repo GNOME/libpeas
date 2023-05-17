@@ -107,7 +107,9 @@ glib_dep = dependency('glib-2.0', version: glib_req)
 gobject_dep = dependency('gobject-2.0', version: glib_req)
 gmodule_dep = dependency('gmodule-2.0', version: glib_req)
 gio_dep = dependency('gio-2.0', version: glib_req)
-introspection_dep = dependency('gobject-introspection-1.0', version: introspection_req)
+introspection_dep = dependency('gobject-introspection-1.0',
+                               version: introspection_req,
+                               required: get_option('introspection'))
 
 gi_docgen_dep = dependency('gi-docgen', version: '>= 2021.7',
                            fallback: ['gi-docgen', 'dummy_dep'],
