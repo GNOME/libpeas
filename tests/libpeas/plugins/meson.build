@@ -2,7 +2,6 @@ libpeas_plugins_data = [
   'extension-c-nonexistent.plugin',
   'extension-lua51-nonexistent.plugin',
   'extension-python-nonexistent.plugin',
-  'extension-python3-nonexistent.plugin',
   'info-missing-module.plugin',
   'info-missing-name.plugin',
   'invalid.plugin',
