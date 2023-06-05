@@ -20,6 +20,7 @@ stages:
       gobject-introspection-devel
       python3-devel
       python3-packaging
+      python3-gobject-devel
       xorg-x11-server-Xvfb
       git
       pip
