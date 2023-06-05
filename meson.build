@@ -355,7 +355,7 @@ endif
 build_python3_loader = get_option('python3')
 python3_found = python3_dep.found() and pygobject_dep.found()
 if build_python3_loader and not python3_found
-  build_python3_loader = false
+  error('python3 requested but both python3 and pygobject are required')
 endif
 
 # Replace 'cp' calls
