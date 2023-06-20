@@ -224,75 +224,119 @@ add_project_arguments(project_c_args, language: 'c')
 global_c_args = []
 global_link_args = []
 
-test_c_args = [
-  '-Wcast-align',
-  '-Wdeclaration-after-statement',
-  '-Werror=address',
-  '-Werror=array-bounds',
-  '-Werror=empty-body',
-  '-Werror=implicit',
-  '-Werror=implicit-function-declaration',
-  '-Werror=incompatible-pointer-types',
-  '-Werror=init-self',
-  '-Werror=int-conversion',
-  '-Werror=int-to-pointer-cast',
-  '-Werror=main',
-  '-Werror=misleading-indentation',
-  '-Werror=missing-braces',
-  '-Werror=missing-include-dirs',
-  '-Werror=nonnull',
-  '-Werror=overflow',
-  '-Werror=parenthesis',
-  '-Werror=pointer-arith',
-  '-Werror=pointer-to-int-cast',
-  '-Werror=redundant-decls',
-  '-Werror=return-type',
-  '-Werror=sequence-point',
-  '-Werror=shadow',
-  '-Werror=trigraphs',
-  '-Werror=undef',
-  '-Werror=write-strings',
-  '-Wformat-nonliteral',
-  ['-Werror=format-security', '-Werror=format=2'],
-  '-Wignored-qualifiers',
-  '-Wimplicit-function-declaration',
-  '-Wlogical-op',
-  '-Wmissing-declarations',
-  '-Wmissing-format-attribute',
-  '-Wmissing-include-dirs',
-  '-Wmissing-noreturn',
-  '-Wnested-externs',
-  '-Wno-cast-function-type',
-  '-Wno-dangling-pointer',
-  '-Wno-missing-field-initializers',
-  '-Wno-sign-compare',
-  '-Wno-unused-parameter',
-  '-Wold-style-definition',
-  '-Wpointer-arith',
-  '-Wredundant-decls',
-  '-Wstrict-prototypes',
-  '-Wswitch-default',
-  '-Wswitch-enum',
-  '-Wundef',
-  '-Wuninitialized',
-  '-Wunused',
-  '-fno-strict-aliasing',
-]
-foreach arg: test_c_args
-  if cc.has_multi_arguments(arg)
-    global_c_args += arg
+test_c_args = []
+if cc.get_id() == 'msvc'
+  # Look for msvc_recommended_pragmas.h first in GLib's includedir if
+  # GLib is found, otherwise look for it in GLib's subproject directory
+  # then as a standalone header (i.e. somewhere in %INCLUDE%)
+  # Force-include it in our builds if it is found
+
+  msvc_force_include_h = 'msvc_recommended_pragmas.h'
+  msvc_force_include_h_cflags = []
+  if glib_dep.type_name() == 'pkgconfig'
+    glib_include_dir = glib_dep.get_variable(pkgconfig : 'includedir') / 'glib-2.0'
+    msvc_force_include_h_cflags += \
+      '-FI@0@/@1@'.format(glib_include_dir, msvc_force_include_h)
+  elif glib_dep.type_name() == 'internal'
+    glib_subproject_dir = meson.source_root() / 'subprojects' / 'glib'
+
+    # Drop the second one once we require glib-2.77.x or later
+    msvc_force_include_h_cflags += [
+      '-FI@0@/@1@'.format(glib_subproject_dir / 'glib', msvc_force_include_h),
+      '-FI@0@/@1@'.format(glib_subproject_dir, msvc_force_include_h)
+    ]
   endif
-endforeach
-test_link_args = [
-  '-Wl,-z,relro',
-  '-Wl,-z,now',
-]
+  msvc_force_include_h_cflags += '-FI@0@'.format(msvc_force_include_h)
+  test_c_args += msvc_force_include_h_cflags
+
+  c_fi_carg_found = false
+  foreach fi_carg : msvc_force_include_h_cflags
+    if not c_fi_carg_found
+      if cc.has_multi_arguments(fi_carg)
+        global_c_args += fi_carg
+        c_fi_carg_found = true
+      endif
+    endif
+  endforeach
+else
+  test_c_args += [
+    '-Wcast-align',
+    '-Wdeclaration-after-statement',
+    '-Werror=address',
+    '-Werror=array-bounds',
+    '-Werror=empty-body',
+    '-Werror=implicit',
+    '-Werror=implicit-function-declaration',
+    '-Werror=incompatible-pointer-types',
+    '-Werror=init-self',
+    '-Werror=int-conversion',
+    '-Werror=int-to-pointer-cast',
+    '-Werror=main',
+    '-Werror=misleading-indentation',
+    '-Werror=missing-braces',
+    '-Werror=missing-include-dirs',
+    '-Werror=nonnull',
+    '-Werror=overflow',
+    '-Werror=parenthesis',
+    '-Werror=pointer-arith',
+    '-Werror=pointer-to-int-cast',
+    '-Werror=redundant-decls',
+    '-Werror=return-type',
+    '-Werror=sequence-point',
+    '-Werror=shadow',
+    '-Werror=trigraphs',
+    '-Werror=undef',
+    '-Werror=write-strings',
+    '-Wformat-nonliteral',
+    ['-Werror=format-security', '-Werror=format=2'],
+    '-Wignored-qualifiers',
+    '-Wimplicit-function-declaration',
+    '-Wlogical-op',
+    '-Wmissing-declarations',
+    '-Wmissing-format-attribute',
+    '-Wmissing-include-dirs',
+    '-Wmissing-noreturn',
+    '-Wnested-externs',
+    '-Wno-cast-function-type',
+    '-Wno-dangling-pointer',
+    '-Wno-missing-field-initializers',
+    '-Wno-sign-compare',
+    '-Wno-unused-parameter',
+    '-Wold-style-definition',
+    '-Wpointer-arith',
+    '-Wredundant-decls',
+    '-Wstrict-prototypes',
+    '-Wswitch-default',
+    '-Wswitch-enum',
+    '-Wundef',
+    '-Wuninitialized',
+    '-Wunused',
+    '-fno-strict-aliasing',
+  ]
+  foreach arg: test_c_args
+    if cc.has_multi_arguments(arg)
+      global_c_args += arg
+    endif
+  endforeach
+endif
+
+test_link_args = []
+
+if cc.get_id() != 'msvc'
+  test_link_args += [
+    '-Wl,-z,relro',
+    '-Wl,-z,now',
+  ]
+endif
+
 if not get_option('buildtype').startswith('debug')
   global_c_args += ['-DG_DISABLE_CAST_CHECKS', '-DG_DISABLE_ASSERT']
-  test_link_args += [
-    '-Wl,-Bsymbolic',
-    '-fno-plt',
-  ]
+  if cc.get_id() != 'msvc'
+    test_link_args += [
+      '-Wl,-Bsymbolic',
+      '-fno-plt',
+    ]
+  endif
 endif
 foreach link_arg: test_link_args
   if cc.has_link_argument(link_arg)
