@@ -21,6 +21,7 @@
 
 #include "config.h"
 
+#include <memory>
 #include <vector>
 
 #include <js/Array.h>
@@ -122,10 +123,11 @@ obtain_gtypes (GjsContext *gjs,
   }
   )js";
 
-  g_autofree char *code = g_strdup_printf (import_template, loader_data->module_name);
+  std::unique_ptr<char, decltype(g_free) *>
+    code{g_strdup_printf (import_template, loader_data->module_name), g_free};
 
   JS::SourceText<mozilla::Utf8Unit> source;
-  if (!source.init (cx, code, strlen (code), JS::SourceOwnership::Borrowed))
+  if (!source.init (cx, code.get(), strlen (code.get()), JS::SourceOwnership::Borrowed))
     {
       report_thrown (cx, "Error storing getGTypes");
       return;
