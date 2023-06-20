@@ -18,10 +18,26 @@ gjs_loader_c_args = [
 ]
 
 gjs_loader_cpp_args = []
-test_cpp_args = [
-  '-Wno-missing-field-initializers',
-  '-Wno-unused-parameter',
-]
+test_cpp_args = []
+if cxx.get_argument_syntax() == 'msvc'
+  # Visual Studio and clang-cl use the Windows SDK, which has no ssize_t
+  test_cpp_args += ['-Dssize_t=gssize']
+  if cxx.get_id() == 'msvc'
+    # We need additional flags for building with Visual C++ to use the
+    # SpiderMonkey headers
+    test_cpp_args += [
+      '-Zc:externConstexpr',  # Required for 'extern constexpr' on MSVC
+      '-Zc:preprocessor',     # Required to consume the mozjs-102 headers on MSVC
+    ]
+  endif
+endif
+if cxx.get_id() != 'msvc'
+  test_cpp_args += [
+    '-Wno-missing-field-initializers',
+    '-Wno-unused-parameter',
+  ]
+endif
+
 foreach arg: test_cpp_args
   if cxx.has_multi_arguments(arg)
     gjs_loader_cpp_args += arg

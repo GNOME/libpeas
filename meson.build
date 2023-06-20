@@ -3,7 +3,11 @@ project(
   version: '1.99.0',
   license: 'LGPLv2.1+',
   meson_version: '>= 0.62.0',
-  default_options: ['buildtype=debugoptimized', 'warning_level=2']
+  default_options: [
+    'buildtype=debugoptimized',
+    'cpp_std=c++17',
+    'warning_level=2',
+  ]
 )
 
 gnome = import('gnome')
