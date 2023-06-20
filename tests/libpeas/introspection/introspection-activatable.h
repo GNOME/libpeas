@@ -25,6 +25,8 @@
 
 #include <glib-object.h>
 
+#include "../../testing-util/peas-test-common.h"
+
 G_BEGIN_DECLS
 
 #define INTROSPECTION_TYPE_ACTIVATABLE             (introspection_activatable_get_type ())
@@ -43,9 +45,13 @@ struct _IntrospectionActivatableInterface {
   void        (*update_state)             (IntrospectionActivatable *activatable);
 };
 
+PEAS_TEST_EXPORT
 GType             introspection_activatable_get_type       (void)  G_GNUC_CONST;
+PEAS_TEST_EXPORT
 void              introspection_activatable_activate       (IntrospectionActivatable *activatable);
+PEAS_TEST_EXPORT
 void              introspection_activatable_deactivate     (IntrospectionActivatable *activatable);
+PEAS_TEST_EXPORT
 void              introspection_activatable_update_state   (IntrospectionActivatable *activatable);
 
 G_END_DECLS
