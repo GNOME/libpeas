@@ -158,7 +158,7 @@ if cc.get_id() == 'msvc'
     # luajit has lua51.lib as its import library
     lua_names = ['lua51']
   else
-    lua_names = ['lua53', 'lua52', 'lua51']
+    lua_names = ['lua54', 'lua53', 'lua52', 'lua51']
   endif
 
   lua_headers = ['lua.h', 'lualib.h', 'lauxlib.h']
