@@ -6,9 +6,17 @@ versions of libpeas and therefore can be installed along-side libpeas-1.0.
 This allows libpeas to improve API ergonomics as well as implement features
 which will improve integration with GTK 4.
 
-## Removals
+## GJS
 
-### Removal of libpeas-gtk
+With libpeas-2 we are gaining a new plugin loader in GJS. This is the same
+JavaScript engine (powered by SpiderMonkey) that GNOME Shell uses and allows
+for modern JavaScript programming with clean integration of GObject.
+
+This works using new-style JavaScript modules and recent feature additions
+to GJS. See https://gitlab.gnome.org/GNOME/gjs/-/merge_requests/846 for
+more information.
+
+## Removal of libpeas-gtk
 
 libpeas-gtk is not part of libpeas-2.
 
@@ -16,25 +24,23 @@ Application developers are encouraged to use GTK 4's integration with
 GtkListView and similar widgets with PeasEngine. It provides a GListModel
 implementation with PeasPluginInfo to bind into row widgets.
 
-### Removal of PeasActivatable
+## Removal of PeasActivatable
 
 Interfaces are cheap and easy to create in GObject these days. Application
 developers are encouraged to create their own interfaces or base-objects
 which can implemented by their plugins.
 
-### Removal of Python 2 support
+## Removal of Python 2 support
 
 Everything of consequence is on Python 3 now. There is no need for us to
 maintain the Python 2 loader for new applications targeting libpeas-2.
 
-### Deprecated API
+## Deprecated API
 
 Previously deprecated API has been removed from libpeas such as the very
 old GObject Introspection integration using "call" on extension objects.
 
-## List Models
-
-### PeasEngine
+## PeasEngine
 
 The PeasEngine object now implements a GListModel of PeasPluginInfo. Now
 that PeasPluginInfo is a GObject, you may bind its properties to labels
@@ -43,7 +49,7 @@ within rows of a GtkListView with relative ease.
 Additionally, you can easily filter lists based on type-to-search with
 GtkFilterListModel, more than you could ever do with libpeas-gtk.
 
-### PeasExtensionSet
+## PeasExtensionSet
 
 PeasExtensionSet is also a GListModel which improves situations where an
 application wants to limit which extensions within a set are active based
