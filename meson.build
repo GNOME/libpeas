@@ -1,6 +1,6 @@
 project(
   'libpeas', 'c',
-  version: '1.99.0',
+  version: '1.99.1',
   license: 'LGPLv2.1+',
   meson_version: '>= 0.62.0',
   default_options: [
