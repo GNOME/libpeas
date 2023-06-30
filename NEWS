@@ -16,7 +16,7 @@ Application developers are encouraged to use GTK 4's integration with
 GtkListView and similar widgets with PeasEngine. It provides a GListModel
 implementation with PeasPluginInfo to bind into row widgets.
 
-### Reoval of PeasActivatable
+### Removal of PeasActivatable
 
 Interfaces are cheap and easy to create in GObject these days. Application
 developers are encouraged to create their own interfaces or base-objects
@@ -37,7 +37,7 @@ old GObject Introspection integration using "call" on extension objects.
 ### PeasEngine
 
 The PeasEngine object now implements a GListModel of PeasPluginInfo. Now
-that PeasPluginInfo is a GObject, you may bind it's properties to labels
+that PeasPluginInfo is a GObject, you may bind its properties to labels
 within rows of a GtkListView with relative ease.
 
 Additionally, you can easily filter lists based on type-to-search with
