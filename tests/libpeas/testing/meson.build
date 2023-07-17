@@ -22,6 +22,8 @@ libpeas_testing_deps = [
 libpeas_testing_c_args = [
   '-DBUILDDIR="@0@"'.format(builddir),
   '-DSRCDIR="@0@"'.format(srcdir),
+  '-UG_DISABLE_ASSERT',
+  '-UG_DISABLE_CAST_CHEKCS',
 ]
 
 libpeas_testing_lib = library(
