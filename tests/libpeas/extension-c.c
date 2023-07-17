@@ -42,10 +42,10 @@ test_extension_c_embedded (PeasEngine *engine)
   info = peas_engine_get_plugin_info (engine, "embedded");
 
   /* Check that the various data is correct */
-  g_assert (!peas_plugin_info_is_loaded (info));
-  g_assert (peas_plugin_info_is_available (info, NULL));
-  g_assert (!peas_plugin_info_is_builtin (info));
-  g_assert (!peas_plugin_info_is_hidden (info));
+  g_assert_true (!peas_plugin_info_is_loaded (info));
+  g_assert_true (peas_plugin_info_is_available (info, NULL));
+  g_assert_true (!peas_plugin_info_is_builtin (info));
+  g_assert_true (!peas_plugin_info_is_hidden (info));
   g_assert_cmpstr (peas_plugin_info_get_module_name (info), ==, "embedded");
   g_assert_cmpstr (peas_plugin_info_get_module_dir (info), ==,
                    "resource:///org/gnome/libpeas/tests/plugins");
@@ -55,22 +55,22 @@ test_extension_c_embedded (PeasEngine *engine)
                    "testing_embedded_plugin_register_types");
 
   /* Check that we can load and unload the plugin multiple times */
-  g_assert (peas_engine_load_plugin (engine, info));
-  g_assert (peas_plugin_info_is_loaded (info));
-  g_assert (peas_engine_load_plugin (engine, info));
-  g_assert (peas_plugin_info_is_loaded (info));
-  g_assert (peas_engine_unload_plugin (engine, info));
-  g_assert (!peas_plugin_info_is_loaded (info));
-  g_assert (peas_engine_unload_plugin (engine, info));
-  g_assert (!peas_plugin_info_is_loaded (info));
-  g_assert (peas_engine_load_plugin (engine, info));
-  g_assert (peas_plugin_info_is_loaded (info));
+  g_assert_true (peas_engine_load_plugin (engine, info));
+  g_assert_true (peas_plugin_info_is_loaded (info));
+  g_assert_true (peas_engine_load_plugin (engine, info));
+  g_assert_true (peas_plugin_info_is_loaded (info));
+  g_assert_true (peas_engine_unload_plugin (engine, info));
+  g_assert_true (!peas_plugin_info_is_loaded (info));
+  g_assert_true (peas_engine_unload_plugin (engine, info));
+  g_assert_true (!peas_plugin_info_is_loaded (info));
+  g_assert_true (peas_engine_load_plugin (engine, info));
+  g_assert_true (peas_plugin_info_is_loaded (info));
 
   extension = peas_engine_create_extension (engine, info,
                                             INTROSPECTION_TYPE_ACTIVATABLE,
                                             NULL);
 
-  g_assert (TESTING_IS_EMBEDDED_PLUGIN (extension));
+  g_assert_true (TESTING_IS_EMBEDDED_PLUGIN (extension));
 
   g_object_unref (extension);
 }
@@ -86,7 +86,7 @@ test_extension_c_embedded_missing_symbol (PeasEngine *engine)
 
   info = peas_engine_get_plugin_info (engine, "embedded-missing-symbol");
 
-  g_assert (!peas_engine_load_plugin (engine, info));
+  g_assert_true (!peas_engine_load_plugin (engine, info));
 }
 
 static void
@@ -99,7 +99,7 @@ test_extension_c_instance_refcount (PeasEngine     *engine,
                                             INTROSPECTION_TYPE_BASE,
                                             NULL);
 
-  g_assert (G_IS_OBJECT (extension));
+  g_assert_true (G_IS_OBJECT (extension));
 
   /* The refcount of the returned object should be 1:
    *  - one ref for the PeasExtension
@@ -119,7 +119,7 @@ test_extension_c_nonexistent (PeasEngine *engine)
 
   info = peas_engine_get_plugin_info (engine, "extension-c-nonexistent");
 
-  g_assert (!peas_engine_load_plugin (engine, info));
+  g_assert_true (!peas_engine_load_plugin (engine, info));
 }
 
 static void
@@ -131,7 +131,7 @@ test_extension_c_local_linkage (PeasEngine     *engine,
   gpointer c_global_symbol, loadable_global_symbol;
 
   loadable_info = peas_engine_get_plugin_info (engine, "loadable");
-  g_assert (peas_engine_load_plugin (engine, loadable_info));
+  g_assert_true (peas_engine_load_plugin (engine, loadable_info));
 
   c_extension = peas_engine_create_extension (engine, info,
                                               INTROSPECTION_TYPE_BASE,
@@ -140,9 +140,9 @@ test_extension_c_local_linkage (PeasEngine     *engine,
                                                      INTROSPECTION_TYPE_ACTIVATABLE,
                                                      NULL);
 
-  g_assert (G_IS_OBJECT (c_extension));
-  g_assert (G_IS_OBJECT (loadable_extension));
-  g_assert (c_extension != loadable_extension);
+  g_assert_true (G_IS_OBJECT (c_extension));
+  g_assert_true (G_IS_OBJECT (loadable_extension));
+  g_assert_true (c_extension != loadable_extension);
 
   g_object_get (c_extension,
                 "global-symbol-clash", &c_global_symbol,
@@ -154,7 +154,7 @@ test_extension_c_local_linkage (PeasEngine     *engine,
   /* Both plugins export the same global variable,
    * check that they are not the same global reference
    */
-  g_assert (c_global_symbol != loadable_global_symbol);
+  g_assert_true (c_global_symbol != loadable_global_symbol);
 
   g_object_unref (loadable_extension);
   g_object_unref (c_extension);
@@ -172,7 +172,7 @@ test_extension_c_missing_symbol (PeasEngine *engine)
 
   info = peas_engine_get_plugin_info (engine, "extension-c-missing-symbol");
 
-  g_assert (!peas_engine_load_plugin (engine, info));
+  g_assert_true (!peas_engine_load_plugin (engine, info));
 }
 
 int

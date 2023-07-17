@@ -46,8 +46,8 @@ test_extension_gjs_instance_refcount (PeasEngine     *engine,
                                             INTROSPECTION_TYPE_BASE,
                                             NULL);
 
-  g_assert (G_IS_OBJECT (extension));
-  g_assert (INTROSPECTION_IS_BASE (extension));
+  g_assert_true (G_IS_OBJECT (extension));
+  g_assert_true (INTROSPECTION_IS_BASE (extension));
 
   g_object_add_weak_pointer (extension, (gpointer *) &extension);
 
@@ -76,7 +76,7 @@ test_extension_gjs_activatable_subject_refcount (PeasEngine     *engine,
                                             "object", object,
                                             NULL);
 
-  g_assert (G_IS_OBJECT (extension));
+  g_assert_true (G_IS_OBJECT (extension));
 
   g_assert_cmpint (object->ref_count, ==, 2);
   g_assert_cmpint (G_OBJECT (extension)->ref_count, ==, 2);
@@ -99,8 +99,8 @@ test_extension_gjs_nonexistent (PeasEngine *engine)
   info = peas_engine_get_plugin_info (engine,
                                       "extension-" GJS_LOADER_STR "-nonexistent");
 
-  g_assert (info != NULL);
-  g_assert (!peas_engine_load_plugin (engine, info));
+  g_assert_true (info != NULL);
+  g_assert_true (!peas_engine_load_plugin (engine, info));
 }
 
 int

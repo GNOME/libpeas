@@ -75,7 +75,7 @@ test_extension_lua_instance_refcount (PeasEngine     *engine,
                                             NULL);
   g_object_add_weak_pointer (extension, (gpointer *) &extension);
 
-  g_assert (G_IS_OBJECT (extension));
+  g_assert_true (G_IS_OBJECT (extension));
 
   /* The Lua wrapper created around the extension
    * object should have increased its refcount by 1.
@@ -96,7 +96,7 @@ test_extension_lua_instance_refcount (PeasEngine     *engine,
 
   /* The Lua wrapper around the extension has been garbage collected */
   peas_engine_garbage_collect (engine);
-  g_assert (extension == NULL);
+  g_assert_true (extension == NULL);
 
   set_garbage_collector_state (engine, info, TRUE);
 }
@@ -125,7 +125,7 @@ test_extension_lua_activatable_subject_refcount (PeasEngine     *engine,
                                             NULL);
   g_object_add_weak_pointer (extension, (gpointer *) &extension);
 
-  g_assert (G_IS_OBJECT (extension));
+  g_assert_true (G_IS_OBJECT (extension));
 
   /* The Lua wrapper created around our dummy
    * object should have increased its refcount by 1.
@@ -134,7 +134,7 @@ test_extension_lua_activatable_subject_refcount (PeasEngine     *engine,
   g_assert_cmpint (object->ref_count, ==, 2);
 
   g_object_unref (extension);
-  g_assert (extension == NULL);
+  g_assert_true (extension == NULL);
 
   /* We unreffed the extension, so it should have been
    * destroyed and our dummy object's refcount should be back to 1.
@@ -143,7 +143,7 @@ test_extension_lua_activatable_subject_refcount (PeasEngine     *engine,
   g_assert_cmpint (object->ref_count, ==, 1);
 
   g_object_unref (object);
-  g_assert (object == NULL);
+  g_assert_true (object == NULL);
 
   set_garbage_collector_state (engine, info, TRUE);
 }
@@ -158,7 +158,7 @@ test_extension_lua_nonexistent (PeasEngine *engine)
 
   info = peas_engine_get_plugin_info (engine, "extension-lua51-nonexistent");
 
-  g_assert (!peas_engine_load_plugin (engine, info));
+  g_assert_true (!peas_engine_load_plugin (engine, info));
 }
 
 int

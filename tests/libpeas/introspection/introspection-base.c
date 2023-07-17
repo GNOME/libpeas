@@ -46,7 +46,7 @@ introspection_base_get_plugin_info (IntrospectionBase *base)
   g_return_val_if_fail (INTROSPECTION_IS_BASE (base), NULL);
 
   iface = INTROSPECTION_BASE_GET_IFACE (base);
-  g_assert (iface->get_plugin_info != NULL);
+  g_assert_true (iface->get_plugin_info != NULL);
 
   return iface->get_plugin_info (base);
 }
@@ -65,7 +65,7 @@ introspection_base_get_settings (IntrospectionBase *base)
   g_return_val_if_fail (INTROSPECTION_IS_BASE (base), NULL);
 
   iface = INTROSPECTION_BASE_GET_IFACE (base);
-  g_assert (iface->get_settings != NULL);
+  g_assert_true (iface->get_settings != NULL);
 
   return iface->get_settings (base);
 }

@@ -103,12 +103,12 @@ testing_extension_set_new (PeasEngine *engine,
       g_assert_cmpint (*active, ==, i);
 
       info = peas_engine_get_plugin_info (engine, loadable_plugins[i]);
-      g_assert (peas_engine_load_plugin (engine, info));
+      g_assert_true (peas_engine_load_plugin (engine, info));
     }
 
   /* Load a plugin that does not provide a IntrospectionActivatable */
   info = peas_engine_get_plugin_info (engine, "extension-c");
-  g_assert (peas_engine_load_plugin (engine, info));
+  g_assert_true (peas_engine_load_plugin (engine, info));
 
   g_assert_cmpint (*active, ==, G_N_ELEMENTS (loadable_plugins));
 
@@ -184,10 +184,10 @@ test_extension_set_create_valid_with_properties (PeasEngine *engine)
                     &obj_cmp);
   info = peas_engine_get_plugin_info (engine, "builtin");
 
-  g_assert (peas_engine_load_plugin (engine, info));
-  g_assert (obj == obj_cmp);
+  g_assert_true (peas_engine_load_plugin (engine, info));
+  g_assert_true (obj == obj_cmp);
 
-  g_assert (PEAS_IS_EXTENSION_SET (extension_set));
+  g_assert_true (PEAS_IS_EXTENSION_SET (extension_set));
   g_assert_finalize_object (extension_set);
   g_value_unset (&prop_value);
 
@@ -206,12 +206,12 @@ test_extension_set_create_invalid (PeasEngine *engine)
 
   /* Invalid GType */
   extension_set = peas_extension_set_new (engine, G_TYPE_INVALID, NULL);
-  g_assert (!PEAS_IS_EXTENSION_SET (extension_set));
+  g_assert_true (!PEAS_IS_EXTENSION_SET (extension_set));
 
 
   /* GObject but not a GInterface */
   extension_set = peas_extension_set_new (engine, G_TYPE_OBJECT, NULL);
-  g_assert (!PEAS_IS_EXTENSION_SET (extension_set));
+  g_assert_true (!PEAS_IS_EXTENSION_SET (extension_set));
 
 
   /* Interface does not have an 'invalid-property' property */
@@ -219,7 +219,7 @@ test_extension_set_create_invalid (PeasEngine *engine)
                                           INTROSPECTION_TYPE_ACTIVATABLE,
                                           "invalid-property", "does-not-exist",
                                           NULL);
-  g_assert (!PEAS_IS_EXTENSION_SET (extension_set));
+  g_assert_true (!PEAS_IS_EXTENSION_SET (extension_set));
 }
 
 static void
@@ -246,14 +246,14 @@ test_extension_set_create_invalid_with_properties (PeasEngine *engine)
                                                           n_elements,
                                                           prop_names,
                                                           prop_values);
-  g_assert (!PEAS_IS_EXTENSION_SET (extension_set));
+  g_assert_true (!PEAS_IS_EXTENSION_SET (extension_set));
   g_value_unset (&prop_values[0]);
 
   /* Invalid GType */
   extension_set = peas_extension_set_new_with_properties (engine,
                                                           G_TYPE_INVALID,
                                                           0, NULL, NULL);
-  g_assert (!PEAS_IS_EXTENSION_SET (extension_set));
+  g_assert_true (!PEAS_IS_EXTENSION_SET (extension_set));
 
   /* Uninitialized GValue */
   n_elements = 1;
@@ -262,7 +262,7 @@ test_extension_set_create_invalid_with_properties (PeasEngine *engine)
                                                           n_elements,
                                                           prop_names,
                                                           prop_values);
-  g_assert (!PEAS_IS_EXTENSION_SET (extension_set));
+  g_assert_true (!PEAS_IS_EXTENSION_SET (extension_set));
 
   /* Uninitialized GValue*/
   g_value_init (&prop_values[0], G_TYPE_POINTER);
@@ -273,7 +273,7 @@ test_extension_set_create_invalid_with_properties (PeasEngine *engine)
                                                           n_elements,
                                                           prop_names_not_exist,
                                                           prop_values);
-  g_assert (!PEAS_IS_EXTENSION_SET (extension_set));
+  g_assert_true (!PEAS_IS_EXTENSION_SET (extension_set));
   g_value_unset (&prop_values[0]);
 }
 
@@ -309,7 +309,7 @@ test_extension_set_extension_removed (PeasEngine *engine)
 
   /* Unload the plugin that does not provide a IntrospectionActivatable */
   info = peas_engine_get_plugin_info (engine, "extension-c");
-  g_assert (peas_engine_unload_plugin (engine, info));
+  g_assert_true (peas_engine_unload_plugin (engine, info));
 
   /* To keep deps in order */
   for (i = G_N_ELEMENTS (loadable_plugins); i > 0; --i)
@@ -318,7 +318,7 @@ test_extension_set_extension_removed (PeasEngine *engine)
 
       info = peas_engine_get_plugin_info (engine, loadable_plugins[i - 1]);
 
-      g_assert (peas_engine_unload_plugin (engine, info));
+      g_assert_true (peas_engine_unload_plugin (engine, info));
     }
 
   g_assert_cmpint (active, ==, 0);
@@ -337,14 +337,14 @@ test_extension_set_get_extension (PeasEngine *engine)
   info = peas_engine_get_plugin_info (engine, loadable_plugins[0]);
 
   extension = peas_extension_set_get_extension (extension_set, info);
-  g_assert (INTROSPECTION_IS_ACTIVATABLE (extension));
+  g_assert_true (INTROSPECTION_IS_ACTIVATABLE (extension));
 
   g_object_add_weak_pointer (G_OBJECT (extension),
                              (gpointer) &extension);
-  g_assert (peas_engine_unload_plugin (engine, info));
+  g_assert_true (peas_engine_unload_plugin (engine, info));
 
-  g_assert (extension == NULL);
-  g_assert (peas_extension_set_get_extension (extension_set, info) == NULL);
+  g_assert_true (extension == NULL);
+  g_assert_true (peas_extension_set_get_extension (extension_set, info) == NULL);
 
   g_object_unref (extension_set);
 }
@@ -401,7 +401,7 @@ test_extension_set_ordering (PeasEngine *engine)
   peas_extension_set_foreach (extension_set,
                               (PeasExtensionSetForeachFunc) ordering_cb,
                               &foreach_order);
-  g_assert (foreach_order == NULL);
+  g_assert_true (foreach_order == NULL);
 
 
   g_signal_connect (extension_set,
@@ -409,7 +409,7 @@ test_extension_set_ordering (PeasEngine *engine)
                     G_CALLBACK (ordering_cb),
                     &dispose_order);
   g_object_unref (extension_set);
-  g_assert (dispose_order == NULL);
+  g_assert_true (dispose_order == NULL);
 }
 
 int

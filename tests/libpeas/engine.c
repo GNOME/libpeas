@@ -66,13 +66,13 @@ test_engine_new (PeasEngine *engine)
   /* Only one testing engine can be alive */
   new_engine = peas_engine_new ();
 
-  g_assert (engine != NULL);
-  g_assert (new_engine != NULL);
+  g_assert_true (engine != NULL);
+  g_assert_true (new_engine != NULL);
 
   /* Does not return the same engine */
-  g_assert (engine != new_engine);
+  g_assert_true (engine != new_engine);
   /* peas_engine_new() sets the default engine */
-  g_assert (engine == peas_engine_get_default ());
+  g_assert_true (engine == peas_engine_get_default ());
 
   g_object_unref (new_engine);
 }
@@ -96,14 +96,14 @@ test_engine_get_default (void)
 {
   PeasEngine *test_engine;
 
-  g_assert (peas_engine_get_default () == peas_engine_get_default ());
+  g_assert_true (peas_engine_get_default () == peas_engine_get_default ());
 
   /* Only has a single ref */
   test_engine = peas_engine_get_default ();
   g_object_add_weak_pointer (G_OBJECT (test_engine),
                              (gpointer *) &test_engine);
   g_object_unref (test_engine);
-  g_assert (test_engine == NULL);
+  g_assert_true (test_engine == NULL);
 }
 
 static void
@@ -113,11 +113,11 @@ test_engine_load_plugin (PeasEngine *engine)
 
   info = peas_engine_get_plugin_info (engine, "loadable");
 
-  g_assert (peas_engine_load_plugin (engine, info));
-  g_assert (peas_plugin_info_is_loaded (info));
+  g_assert_true (peas_engine_load_plugin (engine, info));
+  g_assert_true (peas_plugin_info_is_loaded (info));
 
   /* Check that we can load a plugin that is already loaded */
-  g_assert (peas_engine_load_plugin (engine, info));
+  g_assert_true (peas_engine_load_plugin (engine, info));
 }
 
 static void
@@ -127,12 +127,12 @@ test_engine_load_plugin_with_dep (PeasEngine *engine)
 
   info = peas_engine_get_plugin_info (engine, "has-dep");
 
-  g_assert (peas_engine_load_plugin (engine, info));
-  g_assert (peas_plugin_info_is_loaded (info));
+  g_assert_true (peas_engine_load_plugin (engine, info));
+  g_assert_true (peas_plugin_info_is_loaded (info));
 
   info = peas_engine_get_plugin_info (engine, "loadable");
 
-  g_assert (peas_plugin_info_is_loaded (info));
+  g_assert_true (peas_plugin_info_is_loaded (info));
 }
 
 static void
@@ -142,8 +142,8 @@ test_engine_load_plugin_with_self_dep (PeasEngine *engine)
 
   info = peas_engine_get_plugin_info (engine, "self-dep");
 
-  g_assert (peas_engine_load_plugin (engine, info));
-  g_assert (peas_plugin_info_is_loaded (info));
+  g_assert_true (peas_engine_load_plugin (engine, info));
+  g_assert_true (peas_plugin_info_is_loaded (info));
 }
 
 static void
@@ -156,9 +156,9 @@ test_engine_load_plugin_with_nonexistent_dep (PeasEngine *engine)
 
   info = peas_engine_get_plugin_info (engine, "nonexistent-dep");
 
-  g_assert (!peas_engine_load_plugin (engine, info));
-  g_assert (!peas_plugin_info_is_loaded (info));
-  g_assert (!peas_plugin_info_is_available (info, &error));
+  g_assert_true (!peas_engine_load_plugin (engine, info));
+  g_assert_true (!peas_plugin_info_is_loaded (info));
+  g_assert_true (!peas_plugin_info_is_available (info, &error));
   g_assert_error (error, PEAS_PLUGIN_INFO_ERROR,
                   PEAS_PLUGIN_INFO_ERROR_DEP_NOT_FOUND);
 
@@ -173,12 +173,12 @@ test_engine_unload_plugin (PeasEngine *engine)
   info = peas_engine_get_plugin_info (engine, "loadable");
 
   /* Check that we can unload a plugin that is not loaded */
-  g_assert (peas_engine_unload_plugin (engine, info));
+  g_assert_true (peas_engine_unload_plugin (engine, info));
 
   test_engine_load_plugin (engine);
 
-  g_assert (peas_engine_unload_plugin (engine, info));
-  g_assert (!peas_plugin_info_is_loaded (info));
+  g_assert_true (peas_engine_unload_plugin (engine, info));
+  g_assert_true (!peas_plugin_info_is_loaded (info));
 }
 
 static void
@@ -190,12 +190,12 @@ test_engine_unload_plugin_with_dep (PeasEngine *engine)
 
   info = peas_engine_get_plugin_info (engine, "loadable");
 
-  g_assert (peas_engine_unload_plugin (engine, info));
-  g_assert (!peas_plugin_info_is_loaded (info));
+  g_assert_true (peas_engine_unload_plugin (engine, info));
+  g_assert_true (!peas_plugin_info_is_loaded (info));
 
   info = peas_engine_get_plugin_info (engine, "has-dep");
 
-  g_assert (!peas_plugin_info_is_loaded (info));
+  g_assert_true (!peas_plugin_info_is_loaded (info));
 }
 
 static void
@@ -207,8 +207,8 @@ test_engine_unload_plugin_with_self_dep (PeasEngine *engine)
 
   info = peas_engine_get_plugin_info (engine, "self-dep");
 
-  g_assert (peas_engine_unload_plugin (engine, info));
-  g_assert (!peas_plugin_info_is_loaded (info));
+  g_assert_true (peas_engine_unload_plugin (engine, info));
+  g_assert_true (!peas_plugin_info_is_loaded (info));
 }
 
 static void
@@ -220,9 +220,9 @@ test_engine_unavailable_plugin (PeasEngine *engine)
 
   info = peas_engine_get_plugin_info (engine, "unavailable");
 
-  g_assert (!peas_engine_load_plugin (engine, info));
-  g_assert (!peas_plugin_info_is_loaded (info));
-  g_assert (!peas_plugin_info_is_available (info, NULL));
+  g_assert_true (!peas_engine_load_plugin (engine, info));
+  g_assert_true (!peas_plugin_info_is_loaded (info));
+  g_assert_true (!peas_plugin_info_is_available (info, NULL));
 }
 
 static void
@@ -236,9 +236,9 @@ test_engine_not_loadable_plugin (PeasEngine *engine)
 
   info = peas_engine_get_plugin_info (engine, "not-loadable");
 
-  g_assert (!peas_engine_load_plugin (engine, info));
-  g_assert (!peas_plugin_info_is_loaded (info));
-  g_assert (!peas_plugin_info_is_available (info, &error));
+  g_assert_true (!peas_engine_load_plugin (engine, info));
+  g_assert_true (!peas_plugin_info_is_loaded (info));
+  g_assert_true (!peas_plugin_info_is_available (info, &error));
   g_assert_error (error, PEAS_PLUGIN_INFO_ERROR,
                   PEAS_PLUGIN_INFO_ERROR_LOADING_FAILED);
 
@@ -348,7 +348,7 @@ test_engine_loaded_plugins (PeasEngine *engine)
 
   /* Need to cause the plugin to be unavailable */
   info = peas_engine_get_plugin_info (engine, "unavailable");
-  g_assert (!peas_engine_load_plugin (engine, info));
+  g_assert_true (!peas_engine_load_plugin (engine, info));
 
   info = peas_engine_get_plugin_info (engine, "loadable");
 
@@ -358,16 +358,16 @@ test_engine_loaded_plugins (PeasEngine *engine)
   /* Unload all plugins */
   peas_engine_set_loaded_plugins (engine, NULL);
   g_assert_cmpint (loaded, ==, 0);
-  g_assert (loaded_plugins != NULL);
-  g_assert (loaded_plugins[0] == NULL);
+  g_assert_true (loaded_plugins != NULL);
+  g_assert_true (loaded_plugins[0] == NULL);
 
   load_plugins = g_new0 (char *, 1);
   peas_engine_set_loaded_plugins (engine, (const char **) load_plugins);
   g_strfreev (load_plugins);
 
   g_assert_cmpint (loaded, ==, 0);
-  g_assert (loaded_plugins != NULL);
-  g_assert (loaded_plugins[0] == NULL);
+  g_assert_true (loaded_plugins != NULL);
+  g_assert_true (loaded_plugins[0] == NULL);
 
 
   /* Load a plugin */
@@ -377,9 +377,9 @@ test_engine_loaded_plugins (PeasEngine *engine)
   g_strfreev (load_plugins);
 
   g_assert_cmpint (loaded, ==, 1);
-  g_assert (loaded_plugins != NULL);
+  g_assert_true (loaded_plugins != NULL);
   g_assert_cmpstr (loaded_plugins[0], ==, "loadable");
-  g_assert (loaded_plugins[1] == NULL);
+  g_assert_true (loaded_plugins[1] == NULL);
 
 
   /* Try to load an unavailable plugin */
@@ -389,23 +389,23 @@ test_engine_loaded_plugins (PeasEngine *engine)
   g_strfreev (load_plugins);
 
   g_assert_cmpint (loaded, ==, 0);
-  g_assert (loaded_plugins != NULL);
-  g_assert (loaded_plugins[0] == NULL);
+  g_assert_true (loaded_plugins != NULL);
+  g_assert_true (loaded_plugins[0] == NULL);
 
 
-  g_assert (peas_engine_load_plugin (engine, info));
+  g_assert_true (peas_engine_load_plugin (engine, info));
 
   g_assert_cmpint (loaded, ==, 1);
-  g_assert (loaded_plugins != NULL);
+  g_assert_true (loaded_plugins != NULL);
   g_assert_cmpstr (loaded_plugins[0], ==, "loadable");
-  g_assert (loaded_plugins[1] == NULL);
+  g_assert_true (loaded_plugins[1] == NULL);
 
   g_object_unref (engine);
 
   g_assert_cmpint (loaded, ==, 0);
-  g_assert (loaded_plugins != NULL);
+  g_assert_true (loaded_plugins != NULL);
   g_assert_cmpstr (loaded_plugins[0], ==, "loadable");
-  g_assert (loaded_plugins[1] == NULL);
+  g_assert_true (loaded_plugins[1] == NULL);
 
   g_strfreev (loaded_plugins);
 }
@@ -452,7 +452,7 @@ test_engine_shutdown_subprocess (PeasEngine *engine)
 
     /* Cannot create an engine because libpeas has been shutdown */
     engine = peas_engine_new ();
-    g_assert (engine == NULL);
+    g_assert_true (engine == NULL);
 }
 
 int

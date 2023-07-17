@@ -66,14 +66,14 @@ test_plugin_info_verify_full_info (PeasEngine *engine)
 
   info = peas_engine_get_plugin_info (engine, "full-info");
 
-  g_assert (!peas_plugin_info_is_loaded (info));
-  g_assert (peas_plugin_info_is_available (info, &error));
+  g_assert_true (!peas_plugin_info_is_loaded (info));
+  g_assert_true (peas_plugin_info_is_available (info, &error));
   g_assert_no_error (error);
-  g_assert (peas_plugin_info_is_builtin (info));
+  g_assert_true (peas_plugin_info_is_builtin (info));
 
   g_assert_cmpstr (peas_plugin_info_get_module_name (info), ==, "full-info");
-  g_assert (g_str_has_suffix (peas_plugin_info_get_module_dir (info), "/tests/plugins"));
-  g_assert (g_str_has_suffix (peas_plugin_info_get_data_dir (info), "/tests/plugins" G_DIR_SEPARATOR_S "full-info"));
+  g_assert_true (g_str_has_suffix (peas_plugin_info_get_module_dir (info), "/tests/plugins"));
+  g_assert_true (g_str_has_suffix (peas_plugin_info_get_data_dir (info), "/tests/plugins" G_DIR_SEPARATOR_S "full-info"));
 
   g_assert_cmpstr (peas_plugin_info_get_dependencies (info)[0], ==, "something");
   g_assert_cmpstr (peas_plugin_info_get_dependencies (info)[1], ==, "something-else");
@@ -88,7 +88,7 @@ test_plugin_info_verify_full_info (PeasEngine *engine)
   g_assert_cmpstr (peas_plugin_info_get_help_uri (info), ==, "Help Me!");
 
   authors = peas_plugin_info_get_authors (info);
-  g_assert (authors != NULL && authors[1] == NULL);
+  g_assert_true (authors != NULL && authors[1] == NULL);
   g_assert_cmpstr (authors[0], ==, "Garrett Regier");
 
   g_assert_cmpstr (peas_plugin_info_get_external_data (info, "External"), ==, "external data");
@@ -116,14 +116,14 @@ test_plugin_info_verify_min_info (PeasEngine *engine)
 
   info = peas_engine_get_plugin_info (engine, "min-info");
 
-  g_assert (!peas_plugin_info_is_loaded (info));
-  g_assert (peas_plugin_info_is_available (info, &error));
+  g_assert_true (!peas_plugin_info_is_loaded (info));
+  g_assert_true (peas_plugin_info_is_available (info, &error));
   g_assert_no_error (error);
-  g_assert (!peas_plugin_info_is_builtin (info));
+  g_assert_true (!peas_plugin_info_is_builtin (info));
 
   g_assert_cmpstr (peas_plugin_info_get_module_name (info), ==, "min-info");
-  g_assert (g_str_has_suffix (peas_plugin_info_get_module_dir (info), "/tests/plugins"));
-  g_assert (g_str_has_suffix (peas_plugin_info_get_data_dir (info), "/tests/plugins" G_DIR_SEPARATOR_S "min-info"));
+  g_assert_true (g_str_has_suffix (peas_plugin_info_get_module_dir (info), "/tests/plugins"));
+  g_assert_true (g_str_has_suffix (peas_plugin_info_get_data_dir (info), "/tests/plugins" G_DIR_SEPARATOR_S "min-info"));
 
   g_assert_cmpstr (peas_plugin_info_get_dependencies (info)[0], ==, NULL);
 
@@ -136,7 +136,7 @@ test_plugin_info_verify_min_info (PeasEngine *engine)
   g_assert_cmpstr (peas_plugin_info_get_help_uri (info), ==, NULL);
 
   authors = peas_plugin_info_get_authors (info);
-  g_assert (authors != NULL && authors[0] == NULL);
+  g_assert_true (authors != NULL && authors[0] == NULL);
 }
 
 static void
@@ -146,27 +146,27 @@ test_plugin_info_has_dep (PeasEngine *engine)
 
   info = peas_engine_get_plugin_info (engine, "full-info");
 
-  g_assert (peas_plugin_info_has_dependency (info, "something"));
-  g_assert (peas_plugin_info_has_dependency (info, "something-else"));
-  g_assert (!peas_plugin_info_has_dependency (info, "does-not-exist"));
+  g_assert_true (peas_plugin_info_has_dependency (info, "something"));
+  g_assert_true (peas_plugin_info_has_dependency (info, "something-else"));
+  g_assert_true (!peas_plugin_info_has_dependency (info, "does-not-exist"));
 
 
   info = peas_engine_get_plugin_info (engine, "min-info");
 
   g_assert_cmpstr (peas_plugin_info_get_dependencies (info)[0], ==, NULL);
-  g_assert (!peas_plugin_info_has_dependency (info, "does-not-exist"));
+  g_assert_true (!peas_plugin_info_has_dependency (info, "does-not-exist"));
 }
 
 static void
 test_plugin_info_missing_module (PeasEngine *engine)
 {
-  g_assert (peas_engine_get_plugin_info (engine, "invalid-info-module") == NULL);
+  g_assert_true (peas_engine_get_plugin_info (engine, "invalid-info-module") == NULL);
 }
 
 static void
 test_plugin_info_missing_name (PeasEngine *engine)
 {
-  g_assert (peas_engine_get_plugin_info (engine, "invalid-info-name") == NULL);
+  g_assert_true (peas_engine_get_plugin_info (engine, "invalid-info-name") == NULL);
 }
 
 static void

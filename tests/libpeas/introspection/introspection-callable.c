@@ -46,7 +46,7 @@ introspection_callable_call_with_return (IntrospectionCallable *callable)
   g_return_val_if_fail (INTROSPECTION_IS_CALLABLE (callable), NULL);
 
   iface = INTROSPECTION_CALLABLE_GET_IFACE (callable);
-  g_assert (iface->call_with_return != NULL);
+  g_assert_true (iface->call_with_return != NULL);
 
   return iface->call_with_return (callable);
 }
@@ -63,7 +63,7 @@ introspection_callable_call_no_args (IntrospectionCallable *callable)
   g_return_if_fail (INTROSPECTION_IS_CALLABLE (callable));
 
   iface = INTROSPECTION_CALLABLE_GET_IFACE (callable);
-  g_assert (iface->call_no_args != NULL);
+  g_assert_true (iface->call_no_args != NULL);
 
   iface->call_no_args (callable);
 }
@@ -82,7 +82,7 @@ introspection_callable_call_single_arg (IntrospectionCallable *callable,
   g_return_if_fail (INTROSPECTION_IS_CALLABLE (callable));
 
   iface = INTROSPECTION_CALLABLE_GET_IFACE (callable);
-  g_assert (iface->call_single_arg != NULL);
+  g_assert_true (iface->call_single_arg != NULL);
 
   iface->call_single_arg (callable, called);
 }
@@ -105,7 +105,7 @@ introspection_callable_call_multi_args (IntrospectionCallable *callable,
   g_return_if_fail (INTROSPECTION_IS_CALLABLE (callable));
 
   iface = INTROSPECTION_CALLABLE_GET_IFACE (callable);
-  g_assert (iface->call_multi_args != NULL);
+  g_assert_true (iface->call_multi_args != NULL);
 
   iface->call_multi_args (callable, in, out, inout);
 }

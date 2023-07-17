@@ -47,14 +47,14 @@ test_extension_py_instance_refcount (PeasEngine     *engine,
                                             INTROSPECTION_TYPE_BASE,
                                             NULL);
 
-  g_assert (G_IS_OBJECT (extension));
+  g_assert_true (G_IS_OBJECT (extension));
 
   g_object_add_weak_pointer (extension, (gpointer *) &extension);
 
   g_assert_cmpint (extension->ref_count, ==, 2);
 
   g_object_unref (extension);
-  g_assert (extension == NULL);
+  g_assert_true (extension == NULL);
 }
 
 static void
@@ -77,7 +77,7 @@ test_extension_py_activatable_subject_refcount (PeasEngine     *engine,
                                             "object", object,
                                             NULL);
 
-  g_assert (G_IS_OBJECT (extension));
+  g_assert_true (G_IS_OBJECT (extension));
 
   /* The python wrapper created around our dummy object should have increased
    * its refcount by 1.
@@ -111,7 +111,7 @@ test_extension_py_nonexistent (PeasEngine *engine)
   info = peas_engine_get_plugin_info (engine,
                                       "extension-" PY_LOADER_STR "-nonexistent");
 
-  g_assert (!peas_engine_load_plugin (engine, info));
+  g_assert_true (!peas_engine_load_plugin (engine, info));
 }
 
 static void
@@ -131,14 +131,14 @@ test_extension_py_already_initialized_subprocess (void)
   PyObject *module, *dict, *pyengine, *result;
 
   /* Check that python has not been initialized yet */
-  g_assert (!Py_IsInitialized ());
+  g_assert_true (!Py_IsInitialized ());
   Py_InitializeEx (FALSE);
 
   /* Initialize PyGObject */
   pygobject_init (PYGOBJECT_MAJOR_VERSION,
                   PYGOBJECT_MINOR_VERSION,
                   PYGOBJECT_MICRO_VERSION);
-  g_assert (!PyErr_Occurred ());
+  g_assert_true (!PyErr_Occurred ());
 
   engine = testing_engine_new ();
   peas_engine_enable_loader (engine, PY_LOADER_STR);
@@ -147,7 +147,7 @@ test_extension_py_already_initialized_subprocess (void)
   dict = PyModule_GetDict (module);
 
   pyengine = pygobject_new (G_OBJECT (engine));
-  g_assert (PyDict_SetItemString (dict, "engine", pyengine) == 0);
+  g_assert_true (PyDict_SetItemString (dict, "engine", pyengine) == 0);
   Py_DECREF (pyengine);
 
   result = PyRun_String ("plugin_name = 'extension-" PY_LOADER_STR "'\n"
@@ -156,7 +156,7 @@ test_extension_py_already_initialized_subprocess (void)
                          Py_file_input, dict, dict);
   Py_XDECREF (result);
 
-  g_assert (!PyErr_Occurred ());
+  g_assert_true (!PyErr_Occurred ());
 
   PyDict_Clear (dict);
   testing_engine_free (engine);
@@ -164,7 +164,7 @@ test_extension_py_already_initialized_subprocess (void)
   _peas_engine_shutdown ();
 
   /* Should still be initialized */
-  g_assert (Py_IsInitialized ());
+  g_assert_true (Py_IsInitialized ());
   Py_Finalize ();
 }
 

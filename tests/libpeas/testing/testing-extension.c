@@ -71,8 +71,8 @@ static void
 test_runner  (TestFixture   *fixture,
               gconstpointer  data)
 {
-  g_assert (fixture->info != NULL);
-  g_assert (peas_engine_load_plugin (fixture->engine, fixture->info));
+  g_assert_true (fixture->info != NULL);
+  g_assert_true (peas_engine_load_plugin (fixture->engine, fixture->info));
 
   ((void (*) (PeasEngine *, PeasPluginInfo *)) data) (fixture->engine,
                                                       fixture->info);
@@ -87,7 +87,7 @@ test_extension_garbage_collect (PeasEngine     *engine,
   peas_engine_garbage_collect (engine);
 
   /* Check that we can collect the garbage when no plugins are loaded */
-  g_assert (peas_engine_unload_plugin (engine, info));
+  g_assert_true (peas_engine_unload_plugin (engine, info));
 
   loaded_plugins = peas_engine_dup_loaded_plugins (engine);
   g_assert_cmpstr (loaded_plugins[0], ==, NULL);
@@ -100,7 +100,7 @@ static void
 test_extension_provides_valid (PeasEngine     *engine,
                                PeasPluginInfo *info)
 {
-  g_assert (peas_engine_provides_extension (engine, info,
+  g_assert_true (peas_engine_provides_extension (engine, info,
                                             INTROSPECTION_TYPE_CALLABLE));
 }
 
@@ -120,12 +120,12 @@ test_extension_provides_invalid (PeasEngine     *engine,
 
 
   /* Does not implement this GType */
-  g_assert (!peas_engine_provides_extension (engine, info,
+  g_assert_true (!peas_engine_provides_extension (engine, info,
                                              INTROSPECTION_TYPE_UNIMPLEMENTED));
 
   /* Not loaded */
-  g_assert (peas_engine_unload_plugin (engine, info));
-  g_assert (!peas_engine_provides_extension (engine, info,
+  g_assert_true (peas_engine_unload_plugin (engine, info));
+  g_assert_true (!peas_engine_provides_extension (engine, info,
                                              INTROSPECTION_TYPE_CALLABLE));
 }
 
@@ -139,8 +139,8 @@ test_extension_create_valid (PeasEngine     *engine,
                                             INTROSPECTION_TYPE_CALLABLE,
                                             NULL);
 
-  g_assert (G_IS_OBJECT (extension));
-  g_assert (INTROSPECTION_IS_CALLABLE (extension));
+  g_assert_true (G_IS_OBJECT (extension));
+  g_assert_true (INTROSPECTION_IS_CALLABLE (extension));
 
   g_object_unref (extension);
 }
@@ -156,8 +156,8 @@ test_extension_create_valid_without_properties (PeasEngine     *engine,
                                                   INTROSPECTION_TYPE_CALLABLE,
                                                   0, NULL, NULL);
 
-  g_assert (G_IS_OBJECT (extension));
-  g_assert (INTROSPECTION_IS_CALLABLE (extension));
+  g_assert_true (G_IS_OBJECT (extension));
+  g_assert_true (INTROSPECTION_IS_CALLABLE (extension));
 
   g_object_unref (extension);
 }
@@ -171,7 +171,7 @@ test_extension_create_valid_with_properties (PeasEngine     *engine,
   GValue prop_values[1] = { G_VALUE_INIT };
   const char *prop_names[1] = { "abstract-property" };
 
-  g_assert (peas_engine_load_plugin (engine, info));
+  g_assert_true (peas_engine_load_plugin (engine, info));
 
   g_value_init (&prop_values[0], G_TYPE_INT);
   g_value_set_int (&prop_values[0], 47);
@@ -201,33 +201,33 @@ test_extension_create_invalid (PeasEngine     *engine,
 
   /* Invalid GType */
   extension = peas_engine_create_extension (engine, info, G_TYPE_INVALID, NULL);
-  g_assert (!G_IS_OBJECT (extension));
+  g_assert_true (!G_IS_OBJECT (extension));
 
 
   /* GObject but not a GInterface */
   extension = peas_engine_create_extension (engine, info, PEAS_TYPE_ENGINE, NULL);
-  g_assert (!G_IS_OBJECT (extension));
+  g_assert_true (!G_IS_OBJECT (extension));
 
 
   /* Does not implement this GType */
   extension = peas_engine_create_extension (engine, info,
                                             INTROSPECTION_TYPE_UNIMPLEMENTED,
                                             NULL);
-  g_assert (!G_IS_OBJECT (extension));
+  g_assert_true (!G_IS_OBJECT (extension));
 
   /* Interface does not have a specified property */
   extension = peas_engine_create_extension (engine, info,
                                             INTROSPECTION_TYPE_CALLABLE,
                                             "does-not-exist", "",
                                             NULL);
-  g_assert (!G_IS_OBJECT (extension));
+  g_assert_true (!G_IS_OBJECT (extension));
 
   /* Not loaded */
-  g_assert (peas_engine_unload_plugin (engine, info));
+  g_assert_true (peas_engine_unload_plugin (engine, info));
   extension = peas_engine_create_extension (engine, info,
                                             INTROSPECTION_TYPE_CALLABLE,
                                             NULL);
-  g_assert (!G_IS_OBJECT (extension));
+  g_assert_true (!G_IS_OBJECT (extension));
 }
 
 static void
@@ -253,20 +253,20 @@ test_extension_create_invalid_with_properties (PeasEngine     *engine,
   extension = peas_engine_create_extension_with_properties (engine, info,
                                                             G_TYPE_INVALID, 0,
                                                             NULL, NULL);
-  g_assert (!G_IS_OBJECT (extension));
+  g_assert_true (!G_IS_OBJECT (extension));
 
   /* GObject but not a GInterface */
   extension = peas_engine_create_extension_with_properties (engine, info,
                                                             PEAS_TYPE_ENGINE, 0,
                                                             NULL, NULL);
-  g_assert (!G_IS_OBJECT (extension));
+  g_assert_true (!G_IS_OBJECT (extension));
 
   /* Does not implement this GType */
   extension =
     peas_engine_create_extension_with_properties (engine, info,
                                                   INTROSPECTION_TYPE_UNIMPLEMENTED,
                                                   0, NULL, NULL);
-  g_assert (!G_IS_OBJECT (extension));
+  g_assert_true (!G_IS_OBJECT (extension));
 
   /* Interface has a NULL property name*/
   extension =
@@ -274,7 +274,7 @@ test_extension_create_invalid_with_properties (PeasEngine     *engine,
                                                   INTROSPECTION_TYPE_CALLABLE,
                                                   G_N_ELEMENTS (prop_names2),
                                                   prop_names, prop_values);
-  g_assert (!G_IS_OBJECT (extension));
+  g_assert_true (!G_IS_OBJECT (extension));
 
   /* Interface has a not initialiazed GValue */
   extension =
@@ -282,15 +282,15 @@ test_extension_create_invalid_with_properties (PeasEngine     *engine,
                                                   INTROSPECTION_TYPE_CALLABLE,
                                                   G_N_ELEMENTS (prop_names2),
                                                   prop_names2, prop_values2);
-  g_assert (!G_IS_OBJECT (extension));
+  g_assert_true (!G_IS_OBJECT (extension));
 
   /* Not loaded */
-  g_assert (peas_engine_unload_plugin (engine, info));
+  g_assert_true (peas_engine_unload_plugin (engine, info));
   extension =
     peas_engine_create_extension_with_properties (engine, info,
                                                   INTROSPECTION_TYPE_CALLABLE,
                                                   0, NULL, NULL);
-  g_assert (!G_IS_OBJECT (extension));
+  g_assert_true (!G_IS_OBJECT (extension));
 
   g_value_unset (&prop_values[0]);
 
@@ -308,8 +308,8 @@ test_extension_create_with_prerequisite (PeasEngine     *engine,
                                             "prerequisite-property", 47,
                                             NULL);
 
-  g_assert (INTROSPECTION_IS_HAS_PREREQUISITE (extension));
-  g_assert (INTROSPECTION_IS_CALLABLE (extension));
+  g_assert_true (INTROSPECTION_IS_HAS_PREREQUISITE (extension));
+  g_assert_true (INTROSPECTION_IS_CALLABLE (extension));
 
   g_object_get (extension,
                 "prerequisite-property", &prerequisite_property,
@@ -327,8 +327,8 @@ test_extension_reload (PeasEngine     *engine,
 
   for (i = 0; i < 3; ++i)
     {
-      g_assert (peas_engine_load_plugin (engine, info));
-      g_assert (peas_engine_unload_plugin (engine, info));
+      g_assert_true (peas_engine_load_plugin (engine, info));
+      g_assert_true (peas_engine_unload_plugin (engine, info));
     }
 }
 
@@ -339,7 +339,7 @@ test_extension_plugin_info (PeasEngine     *engine,
   GObject *extension;
   IntrospectionBase *base;
 
-  g_assert (peas_engine_load_plugin (engine, info));
+  g_assert_true (peas_engine_load_plugin (engine, info));
 
   extension = peas_engine_create_extension (engine, info,
                                             INTROSPECTION_TYPE_BASE,
@@ -347,7 +347,7 @@ test_extension_plugin_info (PeasEngine     *engine,
 
   base = INTROSPECTION_BASE (extension);
 
-  g_assert (introspection_base_get_plugin_info (base) == info);
+  g_assert_true (introspection_base_get_plugin_info (base) == info);
 
   g_object_unref (extension);
 }
@@ -360,7 +360,7 @@ test_extension_get_settings (PeasEngine     *engine,
   IntrospectionBase *base;
   GSettings *settings;
 
-  g_assert (peas_engine_load_plugin (engine, info));
+  g_assert_true (peas_engine_load_plugin (engine, info));
 
   extension = peas_engine_create_extension (engine, info,
                                             INTROSPECTION_TYPE_BASE,
@@ -383,7 +383,7 @@ test_extension_abstract (PeasEngine     *engine,
   GObject *extension;
   IntrospectionAbstract *abstract;
 
-  g_assert (peas_engine_load_plugin (engine, info));
+  g_assert_true (peas_engine_load_plugin (engine, info));
 
   extension = peas_engine_create_extension (engine, info,
                                             INTROSPECTION_TYPE_ABSTRACT,
@@ -438,11 +438,11 @@ multiple_threads_loaders_in_thread (guint    nth_thread,
   peas_engine_enable_loader (engine, loader);
 
   info = peas_engine_get_plugin_info (engine, extension_plugin);
-  g_assert (info != NULL);
+  g_assert_true (info != NULL);
 
   for (i = 0; i < 10; ++i)
     {
-      g_assert (peas_engine_load_plugin (engine, info));
+      g_assert_true (peas_engine_load_plugin (engine, info));
 
       for (j = 0; j < 50; ++j)
         {
@@ -450,11 +450,11 @@ multiple_threads_loaders_in_thread (guint    nth_thread,
                                                     INTROSPECTION_TYPE_BASE,
                                                     NULL);
 
-          g_assert (extension != NULL);
+          g_assert_true (extension != NULL);
           g_object_unref (extension);
         }
 
-      g_assert (peas_engine_unload_plugin (engine, info));
+      g_assert_true (peas_engine_unload_plugin (engine, info));
     }
 
   testing_engine_free (engine);
@@ -541,7 +541,7 @@ testing_extension_basic (const char *loader_)
   peas_engine_enable_loader (engine, loader);
 
   /* Check that the loaders are created lazily */
-  g_assert (g_type_from_name ("PeasPluginLoader") == G_TYPE_INVALID);
+  g_assert_true (g_type_from_name ("PeasPluginLoader") == G_TYPE_INVALID);
 
   testing_engine_free (engine);
 

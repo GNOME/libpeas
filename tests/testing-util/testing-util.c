@@ -95,7 +95,7 @@ get_log_hooks (void)
   if (log_hooks != NULL)
     return log_hooks;
 
-  g_assert (initialized);
+  g_assert_true (initialized);
 
   log_hooks = g_new (LogHooks, 1);
   log_hooks->hooks = g_ptr_array_new_with_free_func (g_free);
@@ -230,12 +230,12 @@ testing_util_engine_new_full (gboolean nonglobal_loaders)
 {
   PeasEngine *engine;
 
-  g_assert (initialized);
+  g_assert_true (initialized);
 
   /* testing_util_engine_free() checks that the
    * engine is freed so only one engine can be created
    */
-  g_assert (g_private_get (&engine_key) == NULL);
+  g_assert_true (g_private_get (&engine_key) == NULL);
 
   /* Must be after requiring typelibs */
   if (!nonglobal_loaders)
@@ -276,7 +276,7 @@ testing_util_engine_free (PeasEngine *engine)
       g_object_unref (engine);
 
       /* Make sure that at the end of every test the engine is freed */
-      g_assert (g_private_get (&engine_key) == DEAD_ENGINE);
+      g_assert_true (g_private_get (&engine_key) == DEAD_ENGINE);
     }
 
   g_private_set (&engine_key, NULL);
@@ -290,7 +290,7 @@ testing_util_run_tests (void)
 {
   int retval;
 
-  g_assert (initialized);
+  g_assert_true (initialized);
 
   retval = g_test_run ();
 
