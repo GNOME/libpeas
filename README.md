@@ -14,6 +14,9 @@ Documentation can be found at:
 
  * Peas-2: https://gnome.pages.gitlab.gnome.org/libpeas/libpeas-2/
 
+See the [Migration Guide](https://gnome.pages.gitlab.gnome.org/libpeas/libpeas-2/migrating-1to2.html)
+for help migrating from Peas-1.0 to Peas-2.
+
 # Multiple extension points
 
 One of the most frustrating limitations of the Gedit plugins engine was that it

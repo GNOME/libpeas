@@ -1,4 +1,5 @@
 expand_content_md_files = [
+  'migrating-1to2.md',
 ]
 
 toml_data = configuration_data()
