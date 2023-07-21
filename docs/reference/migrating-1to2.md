@@ -89,7 +89,7 @@ the emphasis on `GListModel` in user interface patterns.
 
 ### PeasPluginInfo
 
-[`Peas.PluginInfo`][peas-plugininfo] is now a GObject, instead of a boxed
+[class@Peas.PluginInfo] is now a GObject, instead of a boxed
 type, making it possible to bind properties and integrate with APIs that
 operate on GObjects. It also means you may hold a reference to a plugin info
 if necessary, instead of creating a copy of the structure.
@@ -105,10 +105,10 @@ allows the use of `g_autoptr()` for compilers that support it.
 
 ### PeasEngine
 
-[`Peas.Engine`][peas-engine] is now a [`Gio.ListModel`][glistmodel] of
-`Peas.PluginInfo` objects. This makes it simple to bind properties to labels
-and other widgets within rows of a `Gtk.ListView` and filter lists using
-type-to-search with `Gtk.FilterListModel`.
+[class@Peas.Engine] is now a [iface@Gio.ListModel] of
+[class@Peas.PluginInfo] objects. This makes it simple to bind properties to labels
+and other widgets within rows of a [class@Gtk.ListView] and filter lists using
+type-to-search with [class@Gtk.FilterListModel].
 
 The `peas_engine_prepend_search_path()` method has been removed, due to
 confusing semantics, and `peas_engine_add_search_path()` should be used instead.
@@ -122,7 +122,7 @@ deprecation of `GParameter`, and applications should instead call one of:
 
 ### PeasExtensionSet
 
-[`Peas.ExtensionSet`][peas-extensionset] also implements `Gio.ListModel` which
+[class@Peas.ExtensionSet] also implements [iface@Gio.ListModel] which
 improves situations where an application wants to limit which extensions within
 a set are active based on arbitrary conditions.
 
