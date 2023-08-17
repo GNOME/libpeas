@@ -11,6 +11,7 @@ gjs_loader_c = files(
 gjs_loader_deps = [
   libpeas_dep,
   gjs_dep,
+  mozjs_dep,
 ]
 
 gjs_loader_c_args = [

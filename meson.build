@@ -121,6 +121,7 @@ gi_docgen_dep = dependency('gi-docgen', version: '>= 2021.7',
                            native: true,
                            required: get_option('gtk_doc'))
 gjs_dep = dependency('gjs-1.0', version: gjs_req, required: get_option('gjs'))
+mozjs_dep = dependency('mozjs-115', required: get_option('gjs'))
 
 # From python 3.8 we neeed python3-embed
 python3_dep = dependency('python3-embed', required: false)
