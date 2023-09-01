@@ -1,3 +1,10 @@
+# Libpeas 1.99.1
+
+This release corresponds with GNOME 45.rc.
+
+It contains various build system improvements that were found when
+integrating 1.99.0 with various distribution channels.
+
 # Libpeas 1.99.0
 
 This is the beginning of the libpeas 2.0 series. It breaks ABI with previous
