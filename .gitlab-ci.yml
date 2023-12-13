@@ -3,7 +3,7 @@ stages:
   - 'deploy'
 
 .build:
-  image: 'registry.fedoraproject.org/fedora:38'
+  image: 'registry.fedoraproject.org/fedora:39'
   stage: 'build'
   variables:
     CCACHE_BASEDIR: "${CI_PROJECT_DIR}"
@@ -23,21 +23,17 @@ stages:
       python3-gobject-devel
       xorg-x11-server-Xvfb
       git
-      pip
       luajit-devel
       lua-lgi-compat
       gi-docgen
       vala
-      mozjs102-devel
+      mozjs115-devel
+      gjs-devel
   before_script:
     - "dnf install -y $DEPS"
     - 'mkdir -p _ccache'
     - 'ccache --zero-stats'
     - 'ccache --show-stats'
-    - 'pip install markdown markupsafe pygments jinja2 toml typogrify'
-    - 'git clone https://gitlab.gnome.org/GNOME/gjs.git'
-    - 'meson setup _build_gjs gjs/ --prefix=/usr -Dskip_dbus_tests=true -Dskip_gtk_tests=false -Dprofiler=disabled -Dreadline=disabled -Dinstalled_tests=false'
-    - 'ninja -C _build_gjs install'
   after_script:
     - 'ccache --show-stats'
   cache:
