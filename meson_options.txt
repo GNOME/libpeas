@@ -12,7 +12,7 @@ option('python3',
 
 option('python3_path',
        type: 'string', value: '',
-       description: 'Path to Python 3.x interpreter (Windows only)')
+       description: 'Path to Python 3.x interpreter to override the default one used')
 
 option('introspection',
        type: 'boolean', value: true,

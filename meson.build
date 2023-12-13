@@ -123,17 +123,22 @@ gi_docgen_dep = dependency('gi-docgen', version: '>= 2021.7',
 gjs_dep = dependency('gjs-1.0', version: gjs_req, required: get_option('gjs'))
 mozjs_dep = dependency('mozjs-115', required: get_option('gjs'))
 
-# From python 3.8 we neeed python3-embed
-python3_dep = dependency('python3-embed', required: false)
-if not python3_dep.found()
-  python3_dep = dependency('python3', version: python3_req, required: false)
+# Check if user specified a Python installation path, if so, use it
+python_path = get_option('python3_path')
+python3_dep = disabler()
+
+if python_path == ''
+  # From python 3.8 we neeed python3-embed
+  python3_dep = dependency('python3-embed', required: false)
+  if not python3_dep.found()
+    python3_dep = dependency('python3', version: python3_req, required: false)
+  endif
 endif
 
-if host_machine.system() == 'windows' and not python3_dep.found()
-  python3 = pymod.find_installation(get_option('python3_path'),
-                                    required: false)
-  if python3.found()
-    python3_dep = python3.dependency(version: python3_req, required: false)
+if not python3_dep.found() or python_path != ''
+  python_inst = pymod.find_installation(python_path, required: false)
+  if python_inst.found()
+    python3_dep = python_inst.dependency(version: python3_req, required: false)
   endif
 endif
 
