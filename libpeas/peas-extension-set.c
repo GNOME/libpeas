@@ -672,11 +672,15 @@ peas_extension_set_get_item (GListModel *model,
                              guint       position)
 {
   PeasExtensionSet *set = PEAS_EXTENSION_SET (model);
+  ExtensionItem *item;
 
   if (position >= set->extensions.length)
     return NULL;
 
-  return g_object_ref (g_queue_peek_nth (&set->extensions, position));
+  item = g_queue_peek_nth (&set->extensions, position);
+  g_assert (item != NULL);
+
+  return g_object_ref (item->exten);
 }
 
 static GType
