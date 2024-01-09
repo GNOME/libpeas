@@ -271,7 +271,6 @@ if cc.get_id() == 'msvc'
 else
   test_c_args += [
     '-Wcast-align',
-    '-Wdeclaration-after-statement',
     '-Werror=address',
     '-Werror=array-bounds',
     '-Werror=empty-body',
