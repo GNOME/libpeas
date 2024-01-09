@@ -7,9 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libpeas master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=libpeas&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-09-14 09:45+0000\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues\n"
+"POT-Creation-Date: 2020-06-26 03:39+0000\n"
 "PO-Revision-Date: 2014-09-14 23:46+0630\n"
 "Last-Translator: Shantha kumar <shkumar@redhat.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -18,153 +17,170 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Lokalize 1.5\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Language: ta\n"
+"X-Source-Language: C\n"
 
-#: ../data/glade/libpeas-gtk.xml.in.h:1
-msgid "Plugin Manager"
-msgstr "சொருகி மேலாளர்"
-
-#. Translators: What PeasGtkPluginManagerView to use
-#: ../data/glade/libpeas-gtk.xml.in.h:3
-msgid "View"
-msgstr "காட்சி"
-
-#: ../data/glade/libpeas-gtk.xml.in.h:4
-msgid "Plugin Manager View"
-msgstr "சொருகி மேலாளர் காட்சி"
-
-#. Translators: Whether builtin plugins should appear in the view (property name)
-#: ../data/glade/libpeas-gtk.xml.in.h:6
-msgid "Show Builtin"
-msgstr "பில்டின் ஐ காட்டு"
-
-#: ../data/glade/libpeas-gtk.xml.in.h:7
-msgid "Peas Gtk"
-msgstr "பீஸ் ஜிடிகே"
-
-#: ../libpeas/peas-engine.c:856
+#: libpeas/peas-engine.c:1116
 #, c-format
-msgid "Dependency '%s' was not found"
-msgstr "சார்ந்தது '%s' கண்டு பிடிக்கப் படவில்லை"
+#| msgid "Dependency '%s' was not found"
+msgid "Dependency “%s” was not found"
+msgstr "சார்பு-உருப்படி \"%s\" காணப் படவில்லை"
 
-#: ../libpeas/peas-engine.c:866
+#: libpeas/peas-engine.c:1126
 #, c-format
-msgid "Dependency '%s' failed to load"
-msgstr "சார்ந்தது '%s' கண்டு ஏற்றப் படவில்லை"
+#| msgid "Dependency '%s' failed to load"
+msgid "Dependency “%s” failed to load"
+msgstr "சார்பு-உருப்படி \"%s\" ஏற்றப் படவில்லை"
 
-#: ../libpeas/peas-engine.c:880
+#: libpeas/peas-engine.c:1140
 #, c-format
-msgid "Plugin loader '%s' was not found"
-msgstr "சொருகி ஏற்றி '%s' காணப்படவில்லை"
+#| msgid "Plugin loader '%s' was not found"
+msgid "Plugin loader “%s” was not found"
+msgstr "சொருகி ஏற்றி \"%s\" காணப்படவில்லை"
 
-#: ../libpeas/peas-engine.c:892
+#: libpeas/peas-engine.c:1152
 #, c-format
 msgid "Failed to load"
 msgstr "ஏற்றுதல் தோல்வி அடைந்தது"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:91
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:95
 msgid "Additional plugins must be disabled"
-msgstr "கூடுதல் சொருகிகள் செயல் நீக்கப்பட வேண்டும்."
+msgstr "கூடுதல்-சொருகிகள் செயல் நீக்கப்பட வேண்டும்"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:98
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:102
 #, c-format
-msgid "The following plugins depend on '%s' and will also be disabled:"
+#| msgid "The following plugins depend on '%s' and will also be disabled:"
+msgid "The following plugins depend on “%s” and will also be disabled:"
 msgstr ""
-"பின்வரும் சொருகிகள் '%s' மீது சார்ந்துள்ளன; அவைகளும் செயல் நீக்கப்படும்:"
+"பின்வரும் சொருகிகள் \"%s\" மீது சார்ந்துள்ளன; அவைகளும் செயல் நீக்கப்படும்:"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:140
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:144
 msgid "Plugins"
 msgstr "சொருகிகள்"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:156
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:161
 msgid "An additional plugin must be disabled"
-msgstr "கூடுதல் சொருகி செயல்நீக்கப்பட வேண்டும்"
+msgstr "ஒரு கூடுதல்-சொருகி செயல்நீக்கப்பட வேண்டும்"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:163
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:168
 #, c-format
+#| msgid ""
+#| "The '%s' plugin depends on the '%s' plugin.\n"
+#| "If you disable '%s', '%s' will also be disabled."
 msgid ""
-"The '%s' plugin depends on the '%s' plugin.\n"
-"If you disable '%s', '%s' will also be disabled."
+"The “%s” plugin depends on the “%s” plugin.\n"
+"If you disable “%s”, “%s” will also be disabled."
 msgstr ""
-"'%s' சொருகி '%s' சொருகி மீது சார்ந்துள்ளது. ; '%s'  ஐ செயல்நீக்கினால், '%s' "
-"உம் செயல் "
-"நீக்கப்படும்:"
+"“%s” சொருகி “%s” சொருகியைச் சார்ந்துள்ளது.\n"
+"நீங்கள் “%s” ஐ முடக்கினால், “%s” முடக்கப்படும்."
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:181
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:182
 msgid "_Cancel"
-msgstr "ரத்து (_C)"
+msgstr "(_C) ரத்து"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:183
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:184
 msgid "Disable Plugins"
 msgstr "சொருகிகளை செயல்நீக்கு"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:187
+#: libpeas-gtk/peas-gtk-plugin-manager.c:207
 msgid "There was an error displaying the help."
 msgstr "உதவியை காட்டுவதில் ஒரு பிழை நேர்ந்தது."
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:244
+#: libpeas-gtk/peas-gtk-plugin-manager.c:253
 msgid "_Close"
-msgstr "மூடு (_C)"
+msgstr "(_C) மூடு"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:256
+#: libpeas-gtk/peas-gtk-plugin-manager.c:265
 msgid "_Help"
-msgstr "உதவி (_H)"
+msgstr "(_H) உதவி"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:323
-#| msgid "_Preferences"
+#: libpeas-gtk/peas-gtk-plugin-manager.c:323
 msgid "Pr_eferences"
-msgstr "முன்னுரிமைகள் (_e)"
+msgstr "(_e) விருப்பத்தேர்வுகள்"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:328
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:382
+#: libpeas-gtk/peas-gtk-plugin-manager.c:328
+#: libpeas-gtk/peas-gtk-plugin-manager.c:379
 msgid "_About"
-msgstr "_A பற்றி"
+msgstr "(_A) பற்றி"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:390
+#: libpeas-gtk/peas-gtk-plugin-manager.c:387
 msgid "_Preferences"
-msgstr "_P முன்னுரிமைகள்"
+msgstr "(_P) விருப்பத்தேர்வுகள்"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:334
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:351
 msgid "_Enabled"
-msgstr "செயலாக்கப்பட்டது"
+msgstr "(_E) செயலாக்கப்பட்டது"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:345
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:362
 msgid "E_nable All"
-msgstr "அனைத்தையும் செயாலாக்கு"
+msgstr "(_n) அனைத்தையும் செயாலாக்கு"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:349
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:366
 msgid "_Disable All"
-msgstr "அனைத்தையும் செயல்நீக்கு"
+msgstr "(_D) அனைத்தையும் செயல்நீக்கு"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:509
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:575
 msgid "Enabled"
 msgstr "செயலாக்கப்பட்டது"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:530
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:596
 msgid "Plugin"
 msgstr "சொருகி"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:615
+#. Avoid having markup in a translated string
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:683
 #, c-format
-msgid ""
-"<b>The plugin '%s' could not be loaded</b>\n"
-"An error occurred: %s"
-msgstr ""
-"<b>சொருகி '%s' ஏற்றபப்பட முடியவில்லை</b>\n"
-"ஒரு பிழை நேர்ந்தது: %s"
+#| msgid ""
+#| "<b>The plugin '%s' could not be loaded</b>\n"
+#| "An error occurred: %s"
+msgid "The plugin “%s” could not be loaded"
+msgstr "சொருகி \"%s\" ஏற்றபப்பட முடியவில்லை"
+
+#. Keep separate because some translations do special things* for the ':' and might accidentally not keep the space after it
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:689
+#, c-format
+msgid "An error occurred: %s"
+msgstr "ஒரு பிழை ஏற்பட்டது: %s"
 
 #. Translators: The directory in which the demo program was compiled at
-#: ../peas-demo/peas-demo.c:41
+#: peas-demo/peas-demo.c:43
 msgid "Run from build directory"
 msgstr "உருவாக்க அடைவில் இருந்து இயக்கு"
 
-#: ../peas-demo/peas-demo.c:83
+#: peas-demo/peas-demo.c:94
 msgid "_Quit"
-msgstr "வெளியேறு (_Q)"
+msgstr "(_Q) வெளியேறு"
 
-#: ../peas-demo/peas-demo.c:99
-msgid "- libpeas demo application"
-msgstr "-லிப்பீஸ் மாதிரி பயன்பாடு"
+#: peas-demo/peas-demo.c:119
+#| msgid "- libpeas demo application"
+msgid "— libpeas demo application"
+msgstr "— லிப்பீஸ் மாதிரி பயன்பாடு"
+
+#: tests/libpeas-gtk/plugin-manager.c:75
+#| msgid "_About"
+msgid "About"
+msgstr "பற்றி"
+
+#: tests/libpeas-gtk/plugin-manager.c:80
+#| msgid "_Preferences"
+msgid "Preferences"
+msgstr "விருப்பத்தேர்வுகள்"
+
+#~ msgid "Plugin Manager"
+#~ msgstr "சொருகி மேலாளர்"
+
+#~ msgid "View"
+#~ msgstr "காட்சி"
+
+#~ msgid "Plugin Manager View"
+#~ msgstr "சொருகி மேலாளர் காட்சி"
+
+#~ msgid "Show Builtin"
+#~ msgstr "பில்டின் ஐ காட்டு"
+
+#~ msgid "Peas Gtk"
+#~ msgstr "பீஸ் ஜிடிகே"
 
 #~ msgid "C_onfigure"
 #~ msgstr "_c வடிவமை"
