@@ -1,3 +1,13 @@
+# Libpeas 2.0.1
+
+Changes since 2.0.0:
+
+ * Improve dependency searching for Python when building
+ * Fix g_object_ref() usage with PeasExtensionSet as a GListModel
+ * Translation updates
+
+It is recommended that distributions update to 2.0.1.
+
 # Libpeas 2.0.0
 
 This release corresponds with GNOME 45.0.
