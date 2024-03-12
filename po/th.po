@@ -6,10 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libpeas master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=libpeas&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-07-15 10:42+0000\n"
-"PO-Revision-Date: 2015-07-28 13:32+0700\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues\n"
+"POT-Creation-Date: 2023-03-27 20:02+0000\n"
+"PO-Revision-Date: 2024-03-12 18:03+0700\n"
 "Last-Translator: Akom Chotiphantawanon <knight2000@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "Language: th\n"
@@ -17,160 +16,122 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Poedit 3.4.2\n"
 
-#: ../data/glade/libpeas-gtk.xml.in.h:1
-msgid "Plugin Manager"
-msgstr "เครื่องมือจัดการปลั๊กอิน"
-
-#. Translators: What PeasGtkPluginManagerView to use
-#: ../data/glade/libpeas-gtk.xml.in.h:3
-msgid "View"
-msgstr "มุมมอง"
-
-#: ../data/glade/libpeas-gtk.xml.in.h:4
-msgid "Plugin Manager View"
-msgstr "มุมมองเครื่องมือจัดการปลั๊กอิน"
-
-#. Translators: Whether builtin plugins should appear in the view (property name)
-#: ../data/glade/libpeas-gtk.xml.in.h:6
-msgid "Show Builtin"
-msgstr "แสดงปลั๊กอินที่มีในตัว"
-
-#: ../data/glade/libpeas-gtk.xml.in.h:7
-msgid "Peas Gtk"
-msgstr "Peas Gtk"
-
-#: ../libpeas/peas-engine.c:976
+#: libpeas/peas-engine.c:1115
 #, c-format
-msgid "Dependency '%s' was not found"
-msgstr "ไม่พบ '%s' ที่ต้องใช้"
+msgid "Dependency “%s” was not found"
+msgstr "ไม่พบ “%s” ที่ต้องใช้"
 
-#: ../libpeas/peas-engine.c:986
+#: libpeas/peas-engine.c:1125
 #, c-format
-msgid "Dependency '%s' failed to load"
-msgstr "โหลด '%s' ที่ต้องใช้ไม่สำเร็จ"
+msgid "Dependency “%s” failed to load"
+msgstr "โหลด “%s” ที่ต้องใช้ไม่สำเร็จ"
 
-#: ../libpeas/peas-engine.c:1000
+#: libpeas/peas-engine.c:1139
 #, c-format
-msgid "Plugin loader '%s' was not found"
-msgstr "ไม่พบเครื่องมือโหลดปลั๊กอิน '%s'"
+msgid "Plugin loader “%s” was not found"
+msgstr "ไม่พบเครื่องมือโหลดปลั๊กอิน “%s”"
 
-#: ../libpeas/peas-engine.c:1012
+#: libpeas/peas-engine.c:1151
 #, c-format
 msgid "Failed to load"
 msgstr "โหลดไม่สำเร็จ"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:95
-msgid "Additional plugins must be disabled"
-msgstr "ต้องปิดปลั๊กอินเพิ่มเติม"
+#~ msgid "Plugin Manager"
+#~ msgstr "เครื่องมือจัดการปลั๊กอิน"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:102
+#~ msgid "View"
+#~ msgstr "มุมมอง"
+
+#~ msgid "Plugin Manager View"
+#~ msgstr "มุมมองเครื่องมือจัดการปลั๊กอิน"
+
+#~ msgid "Show Builtin"
+#~ msgstr "แสดงปลั๊กอินที่มีในตัว"
+
+#~ msgid "Peas Gtk"
+#~ msgstr "Peas Gtk"
+
+#~ msgid "Additional plugins must be disabled"
+#~ msgstr "ต้องปิดปลั๊กอินเพิ่มเติม"
+
 #, c-format
-msgid "The following plugins depend on '%s' and will also be disabled:"
-msgstr "ปลั๊กอินต่อไปนี้ต้องใช้ '%s' และจะถูกปิดการใช้งานด้วย:"
+#~ msgid "The following plugins depend on '%s' and will also be disabled:"
+#~ msgstr "ปลั๊กอินต่อไปนี้ต้องใช้ '%s' และจะถูกปิดการใช้งานด้วย:"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:144
-msgid "Plugins"
-msgstr "ปลั๊กอิน"
+#~ msgid "Plugins"
+#~ msgstr "ปลั๊กอิน"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:161
-msgid "An additional plugin must be disabled"
-msgstr "ต้องปิดปลั๊กอินเพิ่มเติม"
+#~ msgid "An additional plugin must be disabled"
+#~ msgstr "ต้องปิดปลั๊กอินเพิ่มเติม"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:168
 #, c-format
-msgid ""
-"The '%s' plugin depends on the '%s' plugin.\n"
-"If you disable '%s', '%s' will also be disabled."
-msgstr ""
-"ปลั๊กอิน '%s' ต้องใช้ปลั๊กอิน '%s'\n"
-"ถ้าคุณปิดการใช้งาน '%s', ก็จะเป็นการปิด '%s' ด้วย"
+#~ msgid ""
+#~ "The '%s' plugin depends on the '%s' plugin.\n"
+#~ "If you disable '%s', '%s' will also be disabled."
+#~ msgstr ""
+#~ "ปลั๊กอิน '%s' ต้องใช้ปลั๊กอิน '%s'\n"
+#~ "ถ้าคุณปิดการใช้งาน '%s', ก็จะเป็นการปิด '%s' ด้วย"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:182
-msgid "_Cancel"
-msgstr "_ยกเลิก"
+#~ msgid "_Cancel"
+#~ msgstr "_ยกเลิก"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:184
-msgid "Disable Plugins"
-msgstr "ปิดการใช้งานปลั๊กอิน"
+#~ msgid "Disable Plugins"
+#~ msgstr "ปิดการใช้งานปลั๊กอิน"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:207
-msgid "There was an error displaying the help."
-msgstr "เกิดข้อผิดพลาดขณะแสดงวิธีใช้"
+#~ msgid "There was an error displaying the help."
+#~ msgstr "เกิดข้อผิดพลาดขณะแสดงวิธีใช้"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:253
-msgid "_Close"
-msgstr "ปิ_ด"
+#~ msgid "_Close"
+#~ msgstr "ปิ_ด"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:265
-msgid "_Help"
-msgstr "_วิธีใช้"
+#~ msgid "_Help"
+#~ msgstr "_วิธีใช้"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:323
-msgid "Pr_eferences"
-msgstr "_ปรับแต่ง"
+#~ msgid "Pr_eferences"
+#~ msgstr "_ปรับแต่ง"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:328
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:379
-msgid "_About"
-msgstr "เ_กี่ยวกับ"
+#~ msgid "_About"
+#~ msgstr "เ_กี่ยวกับ"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:387
-msgid "_Preferences"
-msgstr "_ปรับแต่ง"
+#~ msgid "_Preferences"
+#~ msgstr "_ปรับแต่ง"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:351
-msgid "_Enabled"
-msgstr "_เปิดใช้งาน"
+#~ msgid "_Enabled"
+#~ msgstr "_เปิดใช้งาน"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:362
-msgid "E_nable All"
-msgstr "เปิดใช้งาน_ทั้งหมด"
+#~ msgid "E_nable All"
+#~ msgstr "เปิดใช้งาน_ทั้งหมด"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:366
-msgid "_Disable All"
-msgstr "ปิ_ดการใช้งานทั้งหมด"
+#~ msgid "_Disable All"
+#~ msgstr "ปิ_ดการใช้งานทั้งหมด"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:526
-msgid "Enabled"
-msgstr "เปิดใช้งาน"
+#~ msgid "Enabled"
+#~ msgstr "เปิดใช้งาน"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:547
-msgid "Plugin"
-msgstr "ปลั๊กอิน"
+#~ msgid "Plugin"
+#~ msgstr "ปลั๊กอิน"
 
-#. Avoid having markup in a translated string
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:634
 #, c-format
-msgid "The plugin '%s' could not be loaded"
-msgstr "ปลั๊กอิน '%s' ไม่สามารถโหลดได้"
+#~ msgid "The plugin '%s' could not be loaded"
+#~ msgstr "ปลั๊กอิน '%s' ไม่สามารถโหลดได้"
 
-#. Keep separate because some translations do special things
-#. * for the ':' and might accidentally not keep the space after it
-#.
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:640
 #, c-format
-msgid "An error occurred: %s"
-msgstr "เกิดข้อผิดพลาด: %s"
+#~ msgid "An error occurred: %s"
+#~ msgstr "เกิดข้อผิดพลาด: %s"
 
-#. Translators: The directory in which the demo program was compiled at
-#: ../peas-demo/peas-demo.c:41
-msgid "Run from build directory"
-msgstr "เรียกจากไดเรกทอรีที่ใช้ประกอบสร้าง"
+#~ msgid "Run from build directory"
+#~ msgstr "เรียกจากไดเรกทอรีที่ใช้ประกอบสร้าง"
 
-#: ../peas-demo/peas-demo.c:92
-msgid "_Quit"
-msgstr "_ออก"
+#~ msgid "_Quit"
+#~ msgstr "_ออก"
 
-#: ../peas-demo/peas-demo.c:108
-msgid "- libpeas demo application"
-msgstr "- โปรแกรมตัวอย่างของ libpeas"
+#~ msgid "- libpeas demo application"
+#~ msgstr "- โปรแกรมตัวอย่างของ libpeas"
 
-#: ../tests/libpeas-gtk/plugin-manager.c:77
-msgid "About"
-msgstr "เกี่ยวกับ"
+#~ msgid "About"
+#~ msgstr "เกี่ยวกับ"
 
-#: ../tests/libpeas-gtk/plugin-manager.c:82
-msgid "Preferences"
-msgstr "ปรับแต่ง"
+#~ msgid "Preferences"
+#~ msgstr "ปรับแต่ง"
