@@ -82,7 +82,7 @@ typelibdir = join_paths(libdir, 'girepository-1.0')
 # Configurations
 config_h = configuration_data()
 config_h.set_quoted('PACKAGE', package_name)
-config_h.set_quoted('PACKAGE_BUGREPORT', 'http://bugzilla.gnome.org/enter_bug.cgi?product=libpeas')
+config_h.set_quoted('PACKAGE_BUGREPORT', 'https://gitlab.gnome.org/GNOME/libpeas/-/issues/')
 config_h.set_quoted('PACKAGE_NAME', package_name)
 config_h.set_quoted('PACKAGE_STRING', package_long_string)
 config_h.set_quoted('PACKAGE_URL', 'https://wiki.gnome.org/Projects/Libpeas')
