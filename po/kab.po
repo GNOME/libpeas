@@ -1,0 +1,38 @@
+# Kabyle translation for libpeas.
+# Copyright (C) 2024 libpeas's COPYRIGHT HOLDER
+# This file is distributed under the same license as the libpeas package.
+# Rachida SACI <rgebbid@gmail.com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: libpeas main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues/\n"
+"POT-Creation-Date: 2024-03-16 05:48+0000\n"
+"PO-Revision-Date: 2024-03-21 22:10+0100\n"
+"Last-Translator: sa\n"
+"Language-Team: Kabyle <kab@li.org>\n"
+"Language: kab\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#: libpeas/peas-engine.c:1115
+#, c-format
+msgid "Dependency “%s” was not found"
+msgstr "Aḍaraε \"%s\" ulac-it"
+
+#: libpeas/peas-engine.c:1125
+#, c-format
+msgid "Dependency “%s” failed to load"
+msgstr "Aḍaraε \"%s\" yecceḍ deg walluy"
+
+#: libpeas/peas-engine.c:1139
+#, c-format
+msgid "Plugin loader “%s” was not found"
+msgstr "Asaly n uzegrir \"%s\" ulac-it"
+
+#: libpeas/peas-engine.c:1151
+#, c-format
+msgid "Failed to load"
+msgstr "Yecceḍ usali"
