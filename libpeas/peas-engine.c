@@ -567,7 +567,7 @@ peas_engine_garbage_collect (PeasEngine *engine)
 {
   g_return_if_fail (PEAS_IS_ENGINE (engine));
 
-  for (guint i = 0; i < G_N_ELEMENTS (loaders); i++)
+  for (guint i = 0; i < G_N_ELEMENTS (engine->loaders); i++)
     {
       LoaderInfo *loader_info = &engine->loaders[i];
 
