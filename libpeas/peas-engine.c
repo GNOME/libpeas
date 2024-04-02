@@ -876,24 +876,30 @@ create_plugin_loader (int loader_id)
   return loader;
 }
 
-/* loaders_lock is held */
 static PeasPluginLoader *
 get_local_plugin_loader (PeasEngine *engine,
                          int         loader_id)
 {
-  GlobalLoaderInfo *global_loader_info = &loaders[loader_id];
+  GlobalLoaderInfo *global_loader_info;
   PeasPluginLoader *loader;
 
   g_assert (PEAS_IS_ENGINE (engine));
   g_assert (loader_id < PEAS_UTILS_N_LOADERS);
 
+  g_mutex_lock (&loaders_lock);
+
+  global_loader_info = &loaders[loader_id];
   if (global_loader_info->failed)
-    return NULL;
+    {
+      g_mutex_unlock (&loaders_lock);
+      return NULL;
+    }
 
   if (global_loader_info->loader != NULL &&
       (!engine->use_nonglobal_loaders ||
        peas_plugin_loader_is_global (global_loader_info->loader)))
     {
+      g_mutex_unlock (&loaders_lock);
       return g_object_ref (global_loader_info->loader);
     }
 
@@ -902,6 +908,7 @@ get_local_plugin_loader (PeasEngine *engine,
   if (loader == NULL)
     {
       global_loader_info->failed = TRUE;
+      g_mutex_unlock (&loaders_lock);
       return NULL;
     }
 
@@ -911,6 +918,7 @@ get_local_plugin_loader (PeasEngine *engine,
       global_loader_info->loader = g_object_ref (loader);
     }
 
+  g_mutex_unlock (&loaders_lock);
   return loader;
 }
 
@@ -927,10 +935,10 @@ get_plugin_loader (PeasEngine *engine,
   if (loader_info->loader != NULL || loader_info->failed)
     return loader_info->loader;
 
-  g_mutex_lock (&loaders_lock);
-
   if (!loader_info->enabled)
     {
+      g_mutex_lock (&loaders_lock);
+
       global_loader_info = &loaders[loader_id];
       if (!global_loader_info->enabled)
         {
@@ -941,12 +949,12 @@ get_plugin_loader (PeasEngine *engine,
           return NULL;
         }
 
+      g_mutex_unlock (&loaders_lock);
+
       g_warning ("The '%s' plugin loader was not enabled "
                  "for this engine. This will no longer be "
                  "supported at some point in the future!",
                  peas_utils_get_loader_from_id (loader_id));
-
-      g_mutex_unlock (&loaders_lock);
 
       /* Avoid bypassing logic in peas_engine_enable_loader() */
       peas_engine_enable_loader (engine,
@@ -959,7 +967,6 @@ get_plugin_loader (PeasEngine *engine,
   if (loader_info->loader == NULL)
     loader_info->failed = TRUE;
 
-  g_mutex_unlock (&loaders_lock);
   return loader_info->loader;
 }
 
