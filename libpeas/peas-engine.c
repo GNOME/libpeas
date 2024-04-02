@@ -875,8 +875,8 @@ create_plugin_loader (int loader_id)
 }
 
 static PeasPluginLoader *
-get_local_plugin_loader (PeasEngine *engine,
-                         int         loader_id)
+get_local_plugin_loader_locked (PeasEngine *engine,
+                                int         loader_id)
 {
   GlobalLoaderInfo *global_loader_info = &loaders[loader_id];
   PeasPluginLoader *loader;
@@ -950,7 +950,7 @@ get_plugin_loader (PeasEngine *engine,
       return get_plugin_loader (engine, loader_id);
     }
 
-  loader_info->loader = get_local_plugin_loader (engine, loader_id);
+  loader_info->loader = get_local_plugin_loader_locked (engine, loader_id);
 
   if (loader_info->loader == NULL)
     loader_info->failed = TRUE;
