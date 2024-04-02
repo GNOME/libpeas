@@ -809,6 +809,7 @@ peas_engine_class_init (PeasEngineClass *klass)
   loaders[PEAS_UTILS_C_LOADER_ID].enabled = TRUE;
 }
 
+/* loaders_lock is held */
 static PeasObjectModule *
 get_plugin_loader_module (int loader_id)
 {
@@ -841,6 +842,7 @@ get_plugin_loader_module (int loader_id)
   return global_loader_info->module;
 }
 
+/* loaders_lock is held */
 static PeasPluginLoader *
 create_plugin_loader (int loader_id)
 {
@@ -874,6 +876,7 @@ create_plugin_loader (int loader_id)
   return loader;
 }
 
+/* loaders_lock is held */
 static PeasPluginLoader *
 get_local_plugin_loader (PeasEngine *engine,
                          int         loader_id)
@@ -916,7 +919,7 @@ get_plugin_loader (PeasEngine *engine,
                    int         loader_id)
 {
   LoaderInfo *loader_info = &engine->loaders[loader_id];
-  GlobalLoaderInfo *global_loader_info = &loaders[loader_id];
+  GlobalLoaderInfo *global_loader_info;
 
   g_assert (PEAS_IS_ENGINE (engine));
   g_assert (loader_id < PEAS_UTILS_N_LOADERS);
@@ -928,6 +931,7 @@ get_plugin_loader (PeasEngine *engine,
 
   if (!loader_info->enabled)
     {
+      global_loader_info = &loaders[loader_id];
       if (!global_loader_info->enabled)
         {
           g_warning ("The '%s' plugin loader has not been enabled",
