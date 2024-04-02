@@ -921,10 +921,13 @@ get_plugin_loader (PeasEngine *engine,
   g_assert (PEAS_IS_ENGINE (engine));
   g_assert (loader_id < PEAS_UTILS_N_LOADERS);
 
-  if (loader_info->loader != NULL || loader_info->failed)
-    return loader_info->loader;
-
   g_mutex_lock (&loaders_lock);
+
+  if (loader_info->loader != NULL || loader_info->failed)
+    {
+      g_mutex_unlock (&loaders_lock);
+      return loader_info->loader;
+    }
 
   if (!loader_info->enabled)
     {
@@ -1000,10 +1003,13 @@ peas_engine_enable_loader (PeasEngine *engine,
     }
 
   loader_info = &engine->loaders[loader_id];
-  if (loader_info->enabled || loader_info->failed)
-    return;
 
   g_mutex_lock (&loaders_lock);
+  if (loader_info->enabled || loader_info->failed)
+    {
+      g_mutex_unlock (&loaders_lock);
+      return;
+    }
 
   /* Don't check if the loader failed
    * as we want to warn multiple times
