@@ -27,7 +27,7 @@ stages:
       lua-lgi-compat
       gi-docgen
       vala
-      mozjs115-devel
+      mozjs128-devel
       gjs-devel
   before_script:
     - "dnf install -y $DEPS"
