@@ -18,22 +18,6 @@
 
   <maintainer>
     <foaf:Person>
-      <foaf:name>Steve Frécinaux</foaf:name>
-      <foaf:mbox rdf:resource="mailto:code@istique.net" />
-<!--      <gnome:userid>sfre</gnome:userid> -->
-    </foaf:Person>
-  </maintainer>
-
-  <maintainer>
-    <foaf:Person>
-      <foaf:name>Garrett Regier</foaf:name>
-      <foaf:mbox rdf:resource="mailto:garrettregier@gmail.com" />
-<!--      <gnome:userid>gregier</gnome:userid> -->
-    </foaf:Person>
-  </maintainer>
-
-  <maintainer>
-    <foaf:Person>
       <foaf:name>Christian Hergert</foaf:name>
       <foaf:mbox rdf:resource="mailto:chergert@gnome.org" />
       <gnome:userid>chergert</gnome:userid>
