@@ -49,8 +49,6 @@ test_extension_gjs_instance_refcount (PeasEngine     *engine,
   g_assert_true (G_IS_OBJECT (extension));
   g_assert_true (INTROSPECTION_IS_BASE (extension));
 
-  g_object_add_weak_pointer (extension, (gpointer *) &extension);
-
   /* GJS will add_toggle_ref which increases the reference count by 1. */
   g_assert_cmpint (extension->ref_count, ==, 2);
 
