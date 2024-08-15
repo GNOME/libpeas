@@ -240,7 +240,8 @@ peas_plugin_loader_gjs_create_extension (PeasPluginLoader *loader,
        * source GValues are longer lived than our local copy.
        */
       exten_parameters = g_newa (GParameter, n_parameters + 1);
-      memcpy (exten_parameters, parameters, sizeof (GParameter) * n_parameters);
+      if (n_parameters > 0)
+        memcpy (exten_parameters, parameters, sizeof (GParameter) * n_parameters);
 
       /* Initialize our additional property.
        * If the instance does not have a plugin-info property
