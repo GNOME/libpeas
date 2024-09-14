@@ -1,166 +1,132 @@
 # British English translation of libpeas
 # Copyright (C) 2011 libpeas'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the libpeas package.
-# Bruce Cowan <bruce@bcowan.me.uk>, 2011, 2012.
+# Bruce Cowan <bruce@bcowan.me.uk>, 2011-2024.
 # Zander Brown <zbrown@gnome.org>, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: libpeas\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues\n"
-"POT-Creation-Date: 2019-08-06 00:27+0000\n"
-"PO-Revision-Date: 2019-08-25 01:17+0100\n"
-"Last-Translator: Zander Brown <zbrown@gnome.org>\n"
+"POT-Creation-Date: 2023-03-27 20:02+0000\n"
+"PO-Revision-Date: 2024-09-01 12:46+0100\n"
+"Last-Translator: Bruce Cowan <bruce@bcowan.me.uk>\n"
 "Language-Team: English - United Kingdom <en_GB@li.org>\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 3.32.1\n"
+"X-Generator: Poedit 3.4.4\n"
 
-#: libpeas/peas-engine.c:1118
+#: libpeas/peas-engine.c:1115
 #, c-format
-#| msgid "Dependency '%s' was not found"
 msgid "Dependency “%s” was not found"
 msgstr "Dependency “%s” was not found"
 
-#: libpeas/peas-engine.c:1128
+#: libpeas/peas-engine.c:1125
 #, c-format
-#| msgid "Dependency '%s' failed to load"
 msgid "Dependency “%s” failed to load"
 msgstr "Dependency “%s” failed to load"
 
-#: libpeas/peas-engine.c:1142
+#: libpeas/peas-engine.c:1139
 #, c-format
-#| msgid "Plugin loader '%s' was not found"
 msgid "Plugin loader “%s” was not found"
-msgstr "Plugin loader “%s” was not found"
+msgstr "Plug-in loader “%s” was not found"
 
-#: libpeas/peas-engine.c:1154
+#: libpeas/peas-engine.c:1151
 #, c-format
 msgid "Failed to load"
 msgstr "Failed to load"
 
-#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:95
-msgid "Additional plugins must be disabled"
-msgstr "Additional plugins must be disabled"
+#~ msgid "Additional plugins must be disabled"
+#~ msgstr "Additional plugins must be disabled"
 
-#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:102
 #, c-format
-#| msgid "The following plugins depend on '%s' and will also be disabled:"
-msgid "The following plugins depend on “%s” and will also be disabled:"
-msgstr "The following plugins depend on “%s” and will also be disabled:"
+#~| msgid "The following plugins depend on '%s' and will also be disabled:"
+#~ msgid "The following plugins depend on “%s” and will also be disabled:"
+#~ msgstr "The following plugins depend on “%s” and will also be disabled:"
 
-#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:144
-msgid "Plugins"
-msgstr "Plugins"
+#~ msgid "Plugins"
+#~ msgstr "Plugins"
 
-#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:161
-msgid "An additional plugin must be disabled"
-msgstr "An additional plugin must be disabled"
+#~ msgid "An additional plugin must be disabled"
+#~ msgstr "An additional plugin must be disabled"
 
-#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:168
 #, c-format
-#| msgid ""
-#| "The '%s' plugin depends on the '%s' plugin.\n"
-#| "If you disable '%s', '%s' will also be disabled."
-msgid ""
-"The “%s” plugin depends on the “%s” plugin.\n"
-"If you disable “%s”, “%s” will also be disabled."
-msgstr ""
-"The “%s” plugin depends on the “%s” plugin.\n"
-"If you disable “%s”, “%s” will also be disabled."
+#~| msgid ""
+#~| "The '%s' plugin depends on the '%s' plugin.\n"
+#~| "If you disable '%s', '%s' will also be disabled."
+#~ msgid ""
+#~ "The “%s” plugin depends on the “%s” plugin.\n"
+#~ "If you disable “%s”, “%s” will also be disabled."
+#~ msgstr ""
+#~ "The “%s” plugin depends on the “%s” plugin.\n"
+#~ "If you disable “%s”, “%s” will also be disabled."
 
-#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:182
-msgid "_Cancel"
-msgstr "_Cancel"
+#~ msgid "_Cancel"
+#~ msgstr "_Cancel"
 
-#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:184
-msgid "Disable Plugins"
-msgstr "Disable Plugins"
+#~ msgid "Disable Plugins"
+#~ msgstr "Disable Plugins"
 
-#: libpeas-gtk/peas-gtk-plugin-manager.c:207
-msgid "There was an error displaying the help."
-msgstr "There was an error displaying the help."
+#~ msgid "There was an error displaying the help."
+#~ msgstr "There was an error displaying the help."
 
-#: libpeas-gtk/peas-gtk-plugin-manager.c:253
-msgid "_Close"
-msgstr "_Close"
+#~ msgid "_Close"
+#~ msgstr "_Close"
 
-#: libpeas-gtk/peas-gtk-plugin-manager.c:265
-msgid "_Help"
-msgstr "_Help"
+#~ msgid "_Help"
+#~ msgstr "_Help"
 
-#: libpeas-gtk/peas-gtk-plugin-manager.c:323
-msgid "Pr_eferences"
-msgstr "Pr_eferences"
+#~ msgid "Pr_eferences"
+#~ msgstr "Pr_eferences"
 
-#: libpeas-gtk/peas-gtk-plugin-manager.c:328
-#: libpeas-gtk/peas-gtk-plugin-manager.c:379
-msgid "_About"
-msgstr "_About"
+#~ msgid "_About"
+#~ msgstr "_About"
 
-#: libpeas-gtk/peas-gtk-plugin-manager.c:387
-msgid "_Preferences"
-msgstr "_Preferences"
+#~ msgid "_Preferences"
+#~ msgstr "_Preferences"
 
-#: libpeas-gtk/peas-gtk-plugin-manager-view.c:351
-msgid "_Enabled"
-msgstr "_Enabled"
+#~ msgid "_Enabled"
+#~ msgstr "_Enabled"
 
-#: libpeas-gtk/peas-gtk-plugin-manager-view.c:362
-msgid "E_nable All"
-msgstr "E_nable All"
+#~ msgid "E_nable All"
+#~ msgstr "E_nable All"
 
-#: libpeas-gtk/peas-gtk-plugin-manager-view.c:366
-msgid "_Disable All"
-msgstr "_Disable All"
+#~ msgid "_Disable All"
+#~ msgstr "_Disable All"
 
-#: libpeas-gtk/peas-gtk-plugin-manager-view.c:526
-msgid "Enabled"
-msgstr "Enabled"
+#~ msgid "Enabled"
+#~ msgstr "Enabled"
 
-#: libpeas-gtk/peas-gtk-plugin-manager-view.c:547
-msgid "Plugin"
-msgstr "Plugin"
+#~ msgid "Plugin"
+#~ msgstr "Plugin"
 
-#. Avoid having markup in a translated string
-#: libpeas-gtk/peas-gtk-plugin-manager-view.c:634
 #, c-format
-#| msgid "The plugin '%s' could not be loaded"
-msgid "The plugin “%s” could not be loaded"
-msgstr "The plugin “%s” could not be loaded"
+#~| msgid "The plugin '%s' could not be loaded"
+#~ msgid "The plugin “%s” could not be loaded"
+#~ msgstr "The plugin “%s” could not be loaded"
 
-#. Keep separate because some translations do special things
-#. * for the ':' and might accidentally not keep the space after it
-#.
-#: libpeas-gtk/peas-gtk-plugin-manager-view.c:640
 #, c-format
-msgid "An error occurred: %s"
-msgstr "An error occurred: %s"
+#~ msgid "An error occurred: %s"
+#~ msgstr "An error occurred: %s"
 
-#. Translators: The directory in which the demo program was compiled at
-#: peas-demo/peas-demo.c:41
-msgid "Run from build directory"
-msgstr "Run from build directory"
+#~ msgid "Run from build directory"
+#~ msgstr "Run from build directory"
 
-#: peas-demo/peas-demo.c:92
-msgid "_Quit"
-msgstr "_Quit"
+#~ msgid "_Quit"
+#~ msgstr "_Quit"
 
-#: peas-demo/peas-demo.c:108
-#| msgid "- libpeas demo application"
-msgid "— libpeas demo application"
-msgstr "— libpeas demo application"
+#~| msgid "- libpeas demo application"
+#~ msgid "— libpeas demo application"
+#~ msgstr "— libpeas demo application"
 
-#: tests/libpeas-gtk/plugin-manager.c:77
-msgid "About"
-msgstr "About"
+#~ msgid "About"
+#~ msgstr "About"
 
-#: tests/libpeas-gtk/plugin-manager.c:82
-msgid "Preferences"
-msgstr "Preferences"
+#~ msgid "Preferences"
+#~ msgstr "Preferences"
 
 #~ msgid "Plugin Manager"
 #~ msgstr "Plugin Manager"
