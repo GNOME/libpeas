@@ -3,7 +3,7 @@ stages:
   - 'deploy'
 
 .build:
-  image: 'registry.fedoraproject.org/fedora:39'
+  image: 'registry.fedoraproject.org/fedora:41'
   stage: 'build'
   variables:
     CCACHE_BASEDIR: "${CI_PROJECT_DIR}"
