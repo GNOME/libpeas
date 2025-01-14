@@ -4,17 +4,14 @@ include:
   - component: "gitlab.gnome.org/GNOME/citemplates/gnomeos-basic-ci@master"
     inputs:
       # FIXME: currently we don't have lua, should fix that at some point
-      meson-options: "-Dlua51=false"
+      meson-options: "-Dlua51=false -Dgtk_doc=true"
+  - component: "gitlab.gnome.org/GNOME/citemplates/basic-deploy-docs@master"
   - component: "gitlab.gnome.org/GNOME/citemplates/release-service@master"
     inputs:
       dist-job-name: "build-gnomeos"
       tarball-artifact-path: "_builddir/meson-dist/$CI_PROJECT_NAME-$CI_COMMIT_TAG.tar.xz"
 
-stages:
-  - 'build'
-  - 'deploy'
-
-.build:
+build peas:
   image: 'registry.fedoraproject.org/fedora:41'
   stage: 'build'
   variables:
@@ -46,39 +43,12 @@ stages:
     - 'mkdir -p _ccache'
     - 'ccache --zero-stats'
     - 'ccache --show-stats'
+  script:
+    - 'meson -Dintrospection=true -Dvapi=true -Dgtk_doc=false _build .'
+    - 'ninja -C _build test'
   after_script:
     - 'ccache --show-stats'
   cache:
     key: "$CI_JOB_NAME"
     paths:
       - '_ccache/'
-
-build peas:
-  extends: '.build'
-  script:
-    - 'meson -Dintrospection=true -Dvapi=true -Dgtk_doc=false _build .'
-    - 'ninja -C _build test'
-
-reference:
-  extends: '.build'
-  variables:
-    MESON_ARGS: >-
-      -Dgtk_doc=true -Dgjs=false -Dlua51=false -Dpython3=false
-  script:
-    - mkdir -p _reference/libpeas-2
-    - meson ${MESON_ARGS} _build
-    - ninja -C _build
-    - mv _build/docs/reference/libpeas-2/* _reference/libpeas-2
-  artifacts:
-    paths:
-      - _reference
-
-pages:
-  stage: deploy
-  needs: ['reference']
-  script:
-    - mv _reference public
-  artifacts:
-    when: on_success
-    paths:
-      - public
