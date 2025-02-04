@@ -1,0 +1,45 @@
+# Interlingua translation for libpeas.
+# Copyright (C) 2025 libpeas's COPYRIGHT HOLDER
+# This file is distributed under the same license as the libpeas package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# FULL NAME <EMAIL@ADDRESS>, 2025.
+# Emilio Sepúlveda <emism.translations@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: libpeas main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues/\n"
+"POT-Creation-Date: 2025-01-14 10:17+0000\n"
+"PO-Revision-Date: 2025-02-04 17:22-0300\n"
+"Last-Translator: Emilio Sepúlveda <emism.translations@gmail.com>\n"
+"Language-Team: Interlingua <softinterlingua@gmail.com>\n"
+"Language: ia\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-DL-Lang: ia\n"
+"X-DL-Module: libpeas\n"
+"X-DL-Branch: main\n"
+"X-DL-Domain: po\n"
+"X-DL-State: None\n"
+"X-Generator: Gtranslator 47.1\n"
+
+#: libpeas/peas-engine.c:1121
+#, c-format
+msgid "Dependency “%s” was not found"
+msgstr "Dependentia “%s” non trovate"
+
+#: libpeas/peas-engine.c:1131
+#, c-format
+msgid "Dependency “%s” failed to load"
+msgstr "Falleva le cargamento del dependentia “%s”"
+
+#: libpeas/peas-engine.c:1145
+#, c-format
+msgid "Plugin loader “%s” was not found"
+msgstr "Cargator de plug-in “%s” non trovate"
+
+#: libpeas/peas-engine.c:1157
+#, c-format
+msgid "Failed to load"
+msgstr "Falleva le cargamento"
