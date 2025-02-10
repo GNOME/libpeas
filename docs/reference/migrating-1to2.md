@@ -159,6 +159,8 @@ actively maintained language bindings for the platform.
 Accordingly, the Python 2 plugin loader has been removed and any applications
 depending on it should continue to use Peas 1.0, or migrate to Python 3.
 
+In Libpeas 2 the "python3" loader has been renamed to "python".
+
 ## GTK 4 Examples
 
 Below are a few simple examples of how applications can benefit from and
