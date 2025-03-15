@@ -1,7 +1,7 @@
 include:
   - project: "GNOME/citemplates"
     file: "templates/default-rules.yml"
-  - component: "gitlab.gnome.org/GNOME/citemplates/gnomeos-basic-ci@master"
+  - component: "gitlab.gnome.org/alatiera/citemplates/gnomeos-basic-ci@alatiera/run-tests-change"
     inputs:
       # FIXME: currently we don't have lua, should fix that at some point
       meson-options: "-Dlua51=false -Dgtk_doc=true"
