@@ -1,3 +1,7 @@
+# Libpeas 2.0.7
+
+ * CI fixes
+
 # Libpeas 2.0.6
 
  * Translation updates
@@ -103,4 +107,3 @@ GtkFilterListModel, more than you could ever do with libpeas-gtk.
 PeasExtensionSet is also a GListModel which improves situations where an
 application wants to limit which extensions within a set are active based
 on arbitrary conditions.
-
