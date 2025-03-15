@@ -5,6 +5,7 @@ include:
     inputs:
       # FIXME: currently we don't have lua, should fix that at some point
       meson-options: "-Dlua51=false -Dgtk_doc=true"
+      run-tests: "no"
   - component: "gitlab.gnome.org/GNOME/citemplates/basic-deploy-docs@master"
   - component: "gitlab.gnome.org/GNOME/citemplates/release-service@master"
     inputs:
@@ -12,8 +13,8 @@ include:
       tarball-artifact-path: "_builddir/meson-dist/$CI_PROJECT_NAME-$CI_COMMIT_TAG.tar.xz"
 
 build peas:
-  image: 'registry.fedoraproject.org/fedora:41'
-  stage: 'build'
+  image: "registry.fedoraproject.org/fedora:41"
+  stage: "build"
   variables:
     CCACHE_BASEDIR: "${CI_PROJECT_DIR}"
     CCACHE_DIR: "${CI_PROJECT_DIR}/_ccache"
@@ -40,15 +41,15 @@ build peas:
       gjs-devel
   before_script:
     - "dnf install -y $DEPS"
-    - 'mkdir -p _ccache'
-    - 'ccache --zero-stats'
-    - 'ccache --show-stats'
+    - "mkdir -p _ccache"
+    - "ccache --zero-stats"
+    - "ccache --show-stats"
   script:
-    - 'meson -Dintrospection=true -Dvapi=true -Dgtk_doc=false _build .'
-    - 'ninja -C _build test'
+    - "meson -Dintrospection=true -Dvapi=true -Dgtk_doc=false _build ."
+    - "ninja -C _build test"
   after_script:
-    - 'ccache --show-stats'
+    - "ccache --show-stats"
   cache:
     key: "$CI_JOB_NAME"
     paths:
-      - '_ccache/'
+      - "_ccache/"
