@@ -1814,3 +1814,14 @@ _peas_engine_shutdown (void)
 
   g_mutex_unlock (&loaders_lock);
 }
+
+GIRepository *
+peas_gi_repository (void)
+{
+	static GIRepository *repo = NULL;
+
+	if (repo == NULL)
+		repo = gi_repository_new ();
+
+	return repo;
+}

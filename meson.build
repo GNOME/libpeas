@@ -1,6 +1,6 @@
 project(
   'libpeas', 'c',
-  version: '1.36.1',
+  version: '1.38.0',
   license: 'LGPLv2.1+',
   meson_version: '>= 0.50.0',
   default_options: [
@@ -103,6 +103,7 @@ glib_dep = dependency('glib-2.0', version: glib_req)
 gobject_dep = dependency('gobject-2.0', version: glib_req)
 gmodule_dep = dependency('gmodule-2.0', version: glib_req)
 gio_dep = dependency('gio-2.0', version: glib_req)
+girepository_dep = dependency('girepository-2.0', version: glib_req)
 introspection_dep = dependency('gobject-introspection-1.0', version: introspection_req)
 gtk_dep = dependency('gtk+-3.0', version: gtk_req, required: false)
 

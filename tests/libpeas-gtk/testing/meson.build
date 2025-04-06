@@ -11,7 +11,7 @@ libpeas_gtk_testing_c = [
 
 libpeas_gtk_testing_deps = [
   glib_dep,
-  introspection_dep,
+  girepository_dep,
   libpeas_dep,
   libpeas_gtk_dep,
   libtesting_util_dep,

@@ -27,6 +27,8 @@
 
 #include "peas-introspection.h"
 
+GIRepository *peas_gi_repository (void);
+
 void
 peas_gi_valist_to_arguments (GICallableInfo *callable_info,
                              va_list         va_args,
@@ -41,15 +43,15 @@ peas_gi_valist_to_arguments (GICallableInfo *callable_info,
 
   g_return_if_fail (callable_info != NULL);
 
-  n_args = g_callable_info_get_n_args (callable_info);
+  n_args = gi_callable_info_get_n_args (callable_info);
 
   for (i = 0; i < n_args; i++)
     {
-      g_callable_info_load_arg (callable_info, i, &arg_info);
-      g_arg_info_load_type (&arg_info, &arg_type_info);
+      gi_callable_info_load_arg (callable_info, i, &arg_info);
+      gi_arg_info_load_type_info (&arg_info, &arg_type_info);
       cur_arg = &arguments[i];
 
-      switch (g_arg_info_get_direction (&arg_info))
+      switch (gi_arg_info_get_direction (&arg_info))
         {
         case GI_DIRECTION_IN:
           {
@@ -57,7 +59,7 @@ peas_gi_valist_to_arguments (GICallableInfo *callable_info,
              *  - int8, uint8, int16, uint16, short and ushort are promoted to int when passed through '...'
              *  - float is promoted to double when passed through '...'
              */
-            switch (g_type_info_get_tag (&arg_type_info))
+            switch (gi_type_info_get_tag (&arg_type_info))
               {
               case GI_TYPE_TAG_VOID:
                 cur_arg->v_pointer = va_arg (va_args, gpointer);
@@ -129,9 +131,9 @@ peas_gi_valist_to_arguments (GICallableInfo *callable_info,
 
   if (return_value != NULL)
     {
-      g_callable_info_load_return_type (callable_info, &retval_info);
+      gi_callable_info_load_return_type (callable_info, &retval_info);
 
-      if (g_type_info_get_tag (&retval_info) != GI_TYPE_TAG_VOID)
+      if (gi_type_info_get_tag (&retval_info) != GI_TYPE_TAG_VOID)
         *return_value = va_arg (va_args, gpointer);
       else
         *return_value = NULL;
@@ -151,13 +153,13 @@ peas_gi_split_in_and_out_arguments (GICallableInfo *callable_info,
 
   g_return_if_fail (callable_info != NULL);
 
-  n_args = g_callable_info_get_n_args (callable_info);
+  n_args = gi_callable_info_get_n_args (callable_info);
 
   for (i = 0; i < n_args; i++)
     {
-      g_callable_info_load_arg (callable_info, i, &arg_info);
+      gi_callable_info_load_arg (callable_info, i, &arg_info);
 
-      switch (g_arg_info_get_direction (&arg_info))
+      switch (gi_arg_info_get_direction (&arg_info))
         {
         case GI_DIRECTION_IN:
           in_args[(*n_in_args)++] = args[i];
@@ -178,7 +180,7 @@ peas_gi_argument_to_pointer (GITypeInfo     *type_info,
                              GIArgument     *arg,
                              gpointer        ptr)
 {
-  switch (g_type_info_get_tag (type_info))
+  switch (gi_type_info_get_tag (type_info))
     {
     case GI_TYPE_TAG_VOID:
       *((gpointer **) ptr) = arg->v_pointer;
@@ -242,12 +244,10 @@ GICallableInfo *
 peas_gi_get_method_info (GType        gtype,
                          const gchar *method_name)
 {
-  GIRepository *repo;
   GIBaseInfo *type_info;
   GIFunctionInfo *func_info;
 
-  repo = g_irepository_get_default ();
-  type_info = g_irepository_find_by_gtype (repo, gtype);
+  type_info = gi_repository_find_by_gtype (peas_gi_repository (), gtype);
   if (type_info == NULL)
     {
       g_warning ("Type not found in introspection: '%s'",
@@ -255,21 +255,17 @@ peas_gi_get_method_info (GType        gtype,
       return NULL;
     }
 
-  switch (g_base_info_get_type (type_info))
-    {
-    case GI_INFO_TYPE_OBJECT:
-      func_info = g_object_info_find_method ((GIObjectInfo *) type_info,
-                                             method_name);
-      break;
-    case GI_INFO_TYPE_INTERFACE:
-      func_info = g_interface_info_find_method ((GIInterfaceInfo *) type_info,
-                                                method_name);
-      break;
-    default:
-      func_info = NULL;
-    }
+  if (GI_IS_OBJECT_INFO (type_info)) {
+    func_info = gi_object_info_find_method ((GIObjectInfo *) type_info,
+                                            method_name);
+  } else if (GI_IS_INTERFACE_INFO (type_info)) {
+    func_info = gi_interface_info_find_method ((GIInterfaceInfo *) type_info,
+                                               method_name);
+  } else {
+    func_info = NULL;
+  }
 
-  g_base_info_unref (type_info);
+  gi_base_info_unref (type_info);
   return (GICallableInfo *) func_info;
 }
 
@@ -295,7 +291,7 @@ peas_gi_method_call (GObject        *instance,
                         FALSE);
   g_return_val_if_fail (method_name != NULL, FALSE);
 
-  n_args = g_callable_info_get_n_args (func_info);
+  n_args = gi_callable_info_get_n_args (func_info);
   g_return_val_if_fail (n_args >= 0, FALSE);
   n_in_args = 0;
   n_out_args = 0;
@@ -314,8 +310,8 @@ peas_gi_method_call (GObject        *instance,
   g_debug ("Calling '%s.%s' on '%p'",
            g_type_name (gtype), method_name, instance);
 
-  ret = g_function_info_invoke (func_info, in_args, n_in_args, out_args,
-                                n_out_args, return_value, &error);
+  ret = gi_function_info_invoke (GI_FUNCTION_INFO (func_info), in_args, n_in_args, out_args,
+                                 n_out_args, return_value, &error);
   if (!ret)
     {
       g_warning ("Error while calling '%s.%s': %s",

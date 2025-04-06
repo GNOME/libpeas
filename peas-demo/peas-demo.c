@@ -23,7 +23,7 @@
 #include <config.h>
 #endif
 
-#include <girepository.h>
+#include <girepository/girepository.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <locale.h>
@@ -134,8 +134,10 @@ main (int    argc,
       g_debug ("Running from build directory: %s", PEAS_BUILDDIR);
 
       /* Use the uninstalled typelibs */
-      g_irepository_prepend_search_path (PEAS_BUILDDIR "/libpeas");
-      g_irepository_prepend_search_path (PEAS_BUILDDIR "/libpeas-gtk");
+      gi_repository_prepend_search_path (peas_gi_repository (),
+					 PEAS_BUILDDIR "/libpeas");
+      gi_repository_prepend_search_path (peas_gi_repository (),
+					 PEAS_BUILDDIR "/libpeas-gtk");
 
       /* Use the uninstalled plugin loaders */
       g_setenv ("PEAS_PLUGIN_LOADERS_DIR", PEAS_BUILDDIR "/loaders", TRUE);

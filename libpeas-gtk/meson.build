@@ -19,7 +19,7 @@ libpeas_gtk_c = files(
 libpeas_gtk_deps = [
   glib_dep,
   gobject_dep,
-  introspection_dep,
+  girepository_dep,
   gtk_dep,
   libpeas_dep,
 ]

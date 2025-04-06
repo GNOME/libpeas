@@ -23,7 +23,7 @@
 #define __PEAS_EXTENSION_H__
 
 #include <glib-object.h>
-#include <girepository.h>
+#include <girepository/girepository.h>
 
 #include "peas-version-macros.h"
 

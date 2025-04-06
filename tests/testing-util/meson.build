@@ -11,7 +11,7 @@ libtesting_util_c = [
 
 libtesting_util_deps = [
   glib_dep,
-  introspection_dep,
+  girepository_dep,
   libpeas_dep,
 ]
 

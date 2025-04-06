@@ -160,6 +160,9 @@ PeasExtension    *peas_engine_create_extension    (PeasEngine      *engine,
                                                    ...);
 
 
+PEAS_AVAILABLE_IN_1_38
+GIRepository	*peas_gi_repository		  (void);
+
 G_END_DECLS
 
 #endif /* __PEAS_ENGINE_H__ */
