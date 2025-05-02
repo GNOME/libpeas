@@ -138,7 +138,7 @@ endif
 if not python3_dep.found() or python_path != ''
   python_inst = pymod.find_installation(python_path, required: false)
   if python_inst.found()
-    python3_dep = python_inst.dependency(version: python3_req, required: false)
+    python3_dep = python_inst.dependency(embed: true, version: python3_req, required: false)
   endif
 endif
 
