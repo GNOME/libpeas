@@ -99,7 +99,6 @@ cc = meson.get_compiler('c')
 glib_req_version = '2.74'
 
 glib_req = '>= @0@'.format(glib_req_version)
-introspection_req = '>= 1.39.0'
 gtk_doc_req = '>= 1.11'
 python3_req = '>= 3.2.0'
 pygobject_req = '>= 3.2.0'
@@ -112,9 +111,7 @@ glib_dep = dependency('glib-2.0', version: glib_req)
 gobject_dep = dependency('gobject-2.0', version: glib_req)
 gmodule_dep = dependency('gmodule-2.0', version: glib_req)
 gio_dep = dependency('gio-2.0', version: glib_req)
-introspection_dep = dependency('gobject-introspection-1.0',
-                               version: introspection_req,
-                               required: get_option('introspection'))
+introspection_dep = dependency('girepository-2.0', version: glib_req)
 
 gi_docgen_dep = dependency('gi-docgen', version: '>= 2021.7',
                            fallback: ['gi-docgen', 'dummy_dep'],

@@ -26,7 +26,12 @@
 #include <stdlib.h>
 
 #include <glib.h>
-#include <girepository.h>
+
+#if GLIB_CHECK_VERSION(2, 85, 0)
+# include <girepository/girepository.h>
+#else
+# include <girepository.h>
+#endif
 
 #include "libpeas/peas-engine-priv.h"
 
@@ -189,6 +194,7 @@ void
 testing_util_init (void)
 {
   GError *error = NULL;
+  GIRepository *repository;
   const GDebugKey glib_debug_keys[] = {
     { "fatal-criticals", G_LOG_LEVEL_CRITICAL },
     { "fatal-warnings",  G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING }
@@ -209,10 +215,20 @@ testing_util_init (void)
   fatal_flags = g_parse_debug_string (g_getenv ("G_DEBUG"), glib_debug_keys,
                                       G_N_ELEMENTS (glib_debug_keys));
 
-  g_irepository_require_private (g_irepository_get_default (),
+  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+#if GLIB_CHECK_VERSION(2, 85, 0)
+  repository = gi_repository_dup_default ();
+  gi_repository_require_private (repository,
+#else
+  repository = g_object_ref (g_irepository_get_default ());
+  g_irepository_require_private (repository,
+#endif
                                  BUILDDIR "/libpeas",
                                  "Peas", API_VERSION_S, 0, &error);
+  G_GNUC_END_IGNORE_DEPRECATIONS
+
   g_assert_no_error (error);
+  g_clear_object (&repository);
 
   initialized = TRUE;
 }
