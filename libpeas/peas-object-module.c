@@ -127,7 +127,9 @@ peas_object_module_load (GTypeModule *gmodule)
        * which allows uninstalled builds to load plugins as well, as there
        * is only the .la file in the build directory.
        */
+      G_GNUC_BEGIN_IGNORE_DEPRECATIONS
       path = g_module_build_path (priv->path, priv->module_name);
+      G_GNUC_END_IGNORE_DEPRECATIONS
 
       if (G_MODULE_SUFFIX[0] != '\0' && g_str_has_suffix (path, "." G_MODULE_SUFFIX))
         path[strlen (path) - strlen (G_MODULE_SUFFIX) - 1] = '\0';
