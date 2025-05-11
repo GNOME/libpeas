@@ -26,7 +26,7 @@
 #include <stdlib.h>
 
 #include <glib.h>
-#include <girepository.h>
+#include <girepository/girepository.h>
 #include <testing-util.h>
 
 #include "testing.h"
@@ -48,7 +48,7 @@ testing_init (int    *argc,
   /* Must be after g_test_init() changes the log settings*/
   testing_util_init ();
 
-  g_irepository_require_private (g_irepository_get_default (),
+  gi_repository_require_private (gi_repository_get_default (),
                                  BUILDDIR "/tests/libpeas/introspection",
                                  "Introspection", API_VERSION_S, 0, &error);
   g_assert_no_error (error);

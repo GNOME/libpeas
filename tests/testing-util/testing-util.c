@@ -26,7 +26,8 @@
 #include <stdlib.h>
 
 #include <glib.h>
-#include <girepository.h>
+
+#include <girepository/girepository.h>
 
 #include "libpeas/peas-engine-priv.h"
 
@@ -209,9 +210,10 @@ testing_util_init (void)
   fatal_flags = g_parse_debug_string (g_getenv ("G_DEBUG"), glib_debug_keys,
                                       G_N_ELEMENTS (glib_debug_keys));
 
-  g_irepository_require_private (g_irepository_get_default (),
+  gi_repository_require_private (gi_repository_get_default (),
                                  BUILDDIR "/libpeas",
                                  "Peas", API_VERSION_S, 0, &error);
+
   g_assert_no_error (error);
 
   initialized = TRUE;
