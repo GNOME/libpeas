@@ -24,7 +24,7 @@
 #include <stdlib.h>
 
 #include <glib.h>
-#include <girepository.h>
+#include <girepository/girepository.h>
 
 #include "libpeas/peas-engine-priv.h"
 
@@ -187,6 +187,7 @@ void
 testing_util_init (void)
 {
   GError *error = NULL;
+  GIRepository *repository;
   const GDebugKey glib_debug_keys[] = {
     { "fatal-criticals", G_LOG_LEVEL_CRITICAL },
     { "fatal-warnings",  G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING }
@@ -207,10 +208,12 @@ testing_util_init (void)
   fatal_flags = g_parse_debug_string (g_getenv ("G_DEBUG"), glib_debug_keys,
                                       G_N_ELEMENTS (glib_debug_keys));
 
-  g_irepository_require_private (g_irepository_get_default (),
+  repository = gi_repository_dup_default ();
+  gi_repository_require_private (repository,
                                  BUILDDIR "/libpeas",
                                  "Peas", "1.0", 0, &error);
   g_assert_no_error (error);
+  g_clear_object (&repository);
 
   initialized = TRUE;
 }

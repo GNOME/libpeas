@@ -27,7 +27,7 @@
 #endif
 
 #include <string.h>
-#include <girepository.h>
+#include <girepository/girepository.h>
 
 #ifdef OS_OSX
 #include "peas-utils-osx.h"
@@ -337,6 +337,7 @@ static void
 peas_gtk_plugin_manager_init (PeasGtkPluginManager *pm)
 {
   PeasGtkPluginManagerPrivate *priv = peas_gtk_plugin_manager_get_instance_private (pm);
+  GIRepository *repository;
   GtkWidget *toolbar;
   GtkStyleContext *context;
   GtkToolItem *toolitem;
@@ -345,8 +346,8 @@ peas_gtk_plugin_manager_init (PeasGtkPluginManager *pm)
 
   /* If we are using a PeasGtkPluginManager, we know for sure we will be using
      libpeas-gtk, so let's load the typelib for it here. */
-  g_irepository_require (g_irepository_get_default (),
-                         "PeasGtk", "1.0", 0, NULL);
+  repository = gi_repository_dup_default ();
+  gi_repository_require (repository, "PeasGtk", "1.0", 0, NULL);
 
   gtk_orientable_set_orientation (GTK_ORIENTABLE (pm),
                                   GTK_ORIENTATION_VERTICAL);
@@ -402,6 +403,8 @@ peas_gtk_plugin_manager_init (PeasGtkPluginManager *pm)
                     "clicked",
                     G_CALLBACK (show_configure_cb),
                     pm);
+
+  g_clear_object (&repository);
 }
 
 static void

@@ -3,7 +3,7 @@ stages:
   - 'deploy'
 
 .build:
-  image: 'registry.fedoraproject.org/fedora:35'
+  image: 'registry.fedoraproject.org/fedora:42'
   stage: 'build'
   variables:
     CCACHE_BASEDIR: "${CI_PROJECT_DIR}"
@@ -17,7 +17,6 @@ stages:
       redhat-rpm-config
       glib2-devel
       gtk3-devel
-      gobject-introspection-devel
       python2-devel
       python3-devel
       xorg-x11-server-Xvfb

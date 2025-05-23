@@ -26,7 +26,7 @@
 #include <stdlib.h>
 
 #include <glib.h>
-#include <girepository.h>
+#include <girepository/girepository.h>
 #include <testing-util.h>
 
 #include "testing.h"
@@ -37,6 +37,7 @@ testing_init (gint    *argc,
 {
   GError *error = NULL;
   static gboolean initialized = FALSE;
+  GIRepository *repository;
 
   if (initialized)
     return;
@@ -51,10 +52,12 @@ testing_init (gint    *argc,
    */
   testing_util_init ();
 
-  g_irepository_require_private (g_irepository_get_default (),
+  repository = gi_repository_dup_default ();
+  gi_repository_require_private (repository,
                                  BUILDDIR "/libpeas-gtk",
                                  "PeasGtk", "1.0", 0, &error);
   g_assert_no_error (error);
+  g_clear_object (&repository);
 
   initialized = TRUE;
 }

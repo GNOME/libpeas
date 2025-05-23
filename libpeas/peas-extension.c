@@ -40,8 +40,8 @@
  * to load the required "Peas" typelib:
  *
  * ```c
- * g_irepository_require (g_irepository_get_default (),
- *                        "Peas", "1.0", 0, NULL);
+ * GIRepository *repository = gi_repository_dup_default ();
+ * gi_repository_require (repository, "Peas", "1.0", 0, NULL);
  * ```
  *
  * You should proceed the same way for any namespace which provides types
@@ -145,7 +145,7 @@ peas_extension_get_extension_type (PeasExtension *exten)
  * |[ peas_extension_call (extension, "my_method", "some_str", obj, &gint_var); ]|
  *
  * This function will not do anything if the introspection data for the proxied
- * object's class has not been loaded previously through g_irepository_require().
+ * object's class has not been loaded previously through gi_repository_require().
  *
  * Returns: %TRUE on successful call.
  *
@@ -205,7 +205,7 @@ peas_extension_call_valist (PeasExtension *exten,
   if (callable_info == NULL)
     return FALSE;
 
-  n_args = g_callable_info_get_n_args (callable_info);
+  n_args = gi_callable_info_get_n_args (callable_info);
   g_return_val_if_fail (n_args >= 0, FALSE);
   gargs = g_newa (GIArgument, n_args);
   peas_gi_valist_to_arguments (callable_info, args, gargs, &retval_ptr);
@@ -214,11 +214,12 @@ peas_extension_call_valist (PeasExtension *exten,
 
   if (retval_ptr != NULL)
     {
-      g_callable_info_load_return_type (callable_info, &retval_info);
+      gi_callable_info_load_return_type (callable_info, &retval_info);
       peas_gi_argument_to_pointer (&retval_info, &retval, retval_ptr);
+      gi_base_info_clear (&retval_info);
     }
 
-  g_base_info_unref ((GIBaseInfo *) callable_info);
+  gi_base_info_unref ((GIBaseInfo *) callable_info);
 
   return ret;
 }
@@ -260,6 +261,6 @@ peas_extension_callv (PeasExtension *exten,
   success = peas_gi_method_call (G_OBJECT (exten), method_info, gtype,
                                  method_name, args, return_value);
 
-  g_base_info_unref (method_info);
+  gi_base_info_unref (method_info);
   return success;
 }

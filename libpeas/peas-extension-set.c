@@ -552,13 +552,13 @@ peas_extension_set_call_valist (PeasExtensionSet *set,
       return FALSE;
     }
 
-  n_args = g_callable_info_get_n_args (callable_info);
+  n_args = gi_callable_info_get_n_args (callable_info);
   g_return_val_if_fail (n_args >= 0, FALSE);
 
   args = g_newa (GIArgument, n_args);
   peas_gi_valist_to_arguments (callable_info, va_args, args, NULL);
 
-  g_base_info_unref ((GIBaseInfo *) callable_info);
+  gi_base_info_unref ((GIBaseInfo *) callable_info);
 
   return peas_extension_set_callv (set, method_name, args);
 }

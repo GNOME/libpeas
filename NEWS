@@ -1,3 +1,16 @@
+Overview of Changes in libpeas 1.38.0.alpha
+===========================================
+
+ * Break ABI to support girepository-2.0. This is required as language
+   bindings are moving to the same GIRepository version. We will try to
+   minimize application changes as much as possible but it is likely that
+   applications using libpeas will need to be recompiled and update any
+   local usage of GIRepository to the new girepository-2.0.
+
+   As libpeas-2.0 does not link against gobject-introspection-1.0 or
+   libgirepository-2.0, it is unaffected. You may find it a better use
+   of time to port to libpeas-2.x instead.
+
 Overview of Changes in libpeas 1.36.0
 =====================================
 
