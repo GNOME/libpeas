@@ -213,8 +213,11 @@ if lua_found
 endif
 
 glib_version_arr = glib_req_version.split('.')
-glib_major_version = glib_version_arr[0]
-glib_minor_version = glib_version_arr[1]
+glib_major_version = glib_version_arr[0].to_int()
+glib_minor_version = glib_version_arr[1].to_int()
+if glib_minor_version % 2 == 1
+  glib_minor_version = glib_minor_version + 1
+endif
 
 project_c_args = [
   '-DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_@0@_@1@'.format(glib_major_version, glib_minor_version),
