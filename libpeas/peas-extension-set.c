@@ -87,6 +87,8 @@
  * ```
  **/
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+
 struct _PeasExtensionSetPrivate {
   PeasEngine *engine;
   GType exten_type;
@@ -107,6 +109,8 @@ typedef struct {
 
   GParameter *parameters;
 } PeasParameterArray;
+
+G_GNUC_END_IGNORE_DEPRECATIONS
 
 /* Signals */
 enum {
@@ -145,7 +149,9 @@ set_construct_properties (PeasExtensionSet   *set,
 
   priv->n_parameters = array->n_parameters;
 
+  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   priv->parameters = g_new0 (GParameter, array->n_parameters);
+  G_GNUC_END_IGNORE_DEPRECATIONS
 
   for (i = 0; i < array->n_parameters; i++)
     {
@@ -612,6 +618,7 @@ peas_extension_set_foreach (PeasExtensionSet            *set,
     }
 }
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 /**
  * peas_extension_set_newv: (skip)
  * @engine: (allow-none): A #PeasEngine, or %NULL.
@@ -764,6 +771,7 @@ peas_extension_set_new_valist (PeasEngine  *engine,
 
   return set;
 }
+G_GNUC_END_IGNORE_DEPRECATIONS
 
 /**
  * peas_extension_set_new: (skip)

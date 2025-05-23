@@ -1355,6 +1355,7 @@ peas_engine_provides_extension (PeasEngine     *engine,
   return peas_plugin_loader_provides_extension (loader, info, extension_type);
 }
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 /**
  * peas_engine_create_extensionv: (skip)
  * @engine: A #PeasEngine.
@@ -1542,6 +1543,7 @@ peas_engine_create_extension_valist (PeasEngine     *engine,
 
   return exten;
 }
+G_GNUC_END_IGNORE_DEPRECATIONS
 
 /**
  * peas_engine_create_extension: (skip)

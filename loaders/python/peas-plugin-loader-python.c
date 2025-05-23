@@ -101,6 +101,7 @@ peas_plugin_loader_python_provides_extension (PeasPluginLoader *loader,
   return the_type != G_TYPE_INVALID;
 }
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 static PeasExtension *
 peas_plugin_loader_python_create_extension (PeasPluginLoader *loader,
                                             PeasPluginInfo   *info,
@@ -183,6 +184,7 @@ peas_plugin_loader_python_load (PeasPluginLoader *loader,
   PyGILState_Release (state);
   return pymodule != NULL;
 }
+G_GNUC_END_IGNORE_DEPRECATIONS
 
 static void
 peas_plugin_loader_python_unload (PeasPluginLoader *loader,
