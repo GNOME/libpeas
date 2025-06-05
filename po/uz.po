@@ -1,0 +1,38 @@
+# Uzbek (Latin) translation for libpeas.
+# Copyright (C) 2025 libpeas's COPYRIGHT HOLDER
+# This file is distributed under the same license as the libpeas package.
+# Islom Karimov <ikarimov253@gmail.com>,  2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: libpeas main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues/\n"
+"POT-Creation-Date: 2025-05-11 22:01+0000\n"
+"PO-Revision-Date: 2025-05-17 17:42+0500\n"
+"Last-Translator: \n"
+"Language-Team: Uzbek (Latin) <Uzbek>\n"
+"Language: uz\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+
+#: libpeas/peas-engine.c:1123
+#, c-format
+msgid "Dependency “%s” was not found"
+msgstr "\"%s\" bog'liqligi topilmadi"
+
+#: libpeas/peas-engine.c:1133
+#, c-format
+msgid "Dependency “%s” failed to load"
+msgstr "\"%s\" bog'liqligi yuklanishda xatoga uchradi"
+
+#: libpeas/peas-engine.c:1147
+#, c-format
+msgid "Plugin loader “%s” was not found"
+msgstr "Plugin yuklovchisi \"%s\" topilmadi"
+
+#: libpeas/peas-engine.c:1159
+#, c-format
+msgid "Failed to load"
+msgstr "Yuklashda xato"
