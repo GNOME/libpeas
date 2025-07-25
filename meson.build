@@ -2,7 +2,7 @@ project(
   'libpeas', 'c',
   version: '2.1.0',
   license: 'LGPLv2.1+',
-  meson_version: '>= 0.62.0',
+  meson_version: '>= 1.0',
   default_options: [
     'buildtype=debugoptimized',
     'cpp_std=c++17',
