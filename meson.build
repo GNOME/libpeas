@@ -119,7 +119,7 @@ gi_docgen_dep = dependency('gi-docgen', version: '>= 2021.7',
                            required: get_option('gtk_doc'))
 gjs_dep = dependency('gjs-1.0', version: gjs_req, required: get_option('gjs'))
 if gjs_dep.found()
-  mozjs_dep = dependency(gjs_dep.get_pkgconfig_variable('mozjs_dep_name'), required: true)
+  mozjs_dep = dependency(gjs_dep.get_variable(pkgconfig: 'mozjs_dep_name'), required: true)
 else
   mozjs_dep = disabler()
 endif
