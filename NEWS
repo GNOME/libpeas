@@ -1,3 +1,21 @@
+# Libpeas 2.1.0
+
+This is a beta release for GNOME 49.beta
+
+ * Support builds with custom python path
+ * Support mozjs_dep_name pkgconfig variable from GJS
+ * Port testsuite to girepository-2.0
+
+Distributors, if you are building with Lua support, there is no way you
+can make the testsuite pass unless you have an LGI with girepository-2.0
+support. I've posted patches to help with that at¹ but you may instead
+choose to just disable the lua testsuite for now.
+
+Note that you do not need girepository-2.0 at runtime for libpeas 2.0,
+only for the testsuite.
+
+¹ https://github.com/lgi-devs/lgi/pull/337
+
 # Libpeas 2.0.7
 
  * CI fixes
