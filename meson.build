@@ -210,7 +210,7 @@ if lua_found
     else
         lua_prg = lua51_prg
     endif
-    lua_lgi_check = run_command(lua_prg, ['-e', 'print(require("lgi")._VERSION)'])
+    lua_lgi_check = run_command(lua_prg, ['-e', 'print(require("lgi")._VERSION)'], check: false)
     if lua_lgi_check.returncode() == 0
         lua_lgi_ver = lua_lgi_check.stdout().strip()
         if lua_lgi_ver.version_compare(lua_lgi_req)
