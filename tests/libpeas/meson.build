@@ -13,7 +13,8 @@ if build_gjs_loader == true
 endif
 
 if build_lua51_loader == true
-  libpeas_tests_sources += [['extension-lua', [lua51_dep, luajit_dep]]]
+  warning('Lua51 tests are currently disabled due to LGI lacking girepository-2.0 support')
+  # libpeas_tests_sources += [['extension-lua', [lua51_dep, luajit_dep]]]
 endif
 
 if build_python3_loader == true
