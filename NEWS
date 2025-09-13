@@ -1,3 +1,12 @@
+# Libpeas 2.2.0
+
+This is a stable release for GNOME 49.0
+
+ * Disable Lua tests until we have a GIRepository-2.0 supported
+   version of LuaGI. Only our testsuite requires it, not runtime
+   use of libpeas-2.x.
+ * Build system improvements.
+
 # Libpeas 2.1.0
 
 This is a beta release for GNOME 49.beta
