@@ -1,0 +1,157 @@
+# Kabyle translation for libpeas.
+# Copyright (C) 2025 libpeas's COPYRIGHT HOLDER
+# This file is distributed under the same license as the libpeas package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# ButterflyOfFire <butterflyoffire@protonmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: libpeas 1.38\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues/\n"
+"POT-Creation-Date: 2025-09-10 21:24+0000\n"
+"PO-Revision-Date: 2025-09-14 10:20+0100\n"
+"Last-Translator: ButterflyOfFire <butterflyoffire@protonmail.com>\n"
+"Language-Team: Kabyle\n"
+"Language: kab\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-DL-Lang: kab\n"
+"X-DL-Module: libpeas\n"
+"X-DL-Branch: 1.38\n"
+"X-DL-Domain: po\n"
+"X-DL-State: Translating\n"
+"Plural-Forms: nplurals=2; plural=n>1;\n"
+"X-Generator: Gtranslator 48.0\n"
+
+#: libpeas/peas-engine.c:1169
+#, c-format
+msgid "Dependency “%s” was not found"
+msgstr ""
+
+#: libpeas/peas-engine.c:1179
+#, c-format
+msgid "Dependency “%s” failed to load"
+msgstr ""
+
+#: libpeas/peas-engine.c:1193
+#, c-format
+msgid "Plugin loader “%s” was not found"
+msgstr ""
+
+#: libpeas/peas-engine.c:1205
+#, c-format
+msgid "Failed to load"
+msgstr ""
+
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:95
+msgid "Additional plugins must be disabled"
+msgstr ""
+
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:102
+#, c-format
+msgid "The following plugins depend on “%s” and will also be disabled:"
+msgstr ""
+
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:144
+msgid "Plugins"
+msgstr "Izegrar"
+
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:161
+msgid "An additional plugin must be disabled"
+msgstr ""
+
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:168
+#, c-format
+msgid ""
+"The “%s” plugin depends on the “%s” plugin.\n"
+"If you disable “%s”, “%s” will also be disabled."
+msgstr ""
+
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:182
+msgid "_Cancel"
+msgstr "Semmet (_C)"
+
+#: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:184
+msgid "Disable Plugins"
+msgstr ""
+
+#: libpeas-gtk/peas-gtk-plugin-manager.c:210
+msgid "There was an error displaying the help."
+msgstr ""
+
+#: libpeas-gtk/peas-gtk-plugin-manager.c:256
+msgid "_Close"
+msgstr "Mdel (_C)"
+
+#: libpeas-gtk/peas-gtk-plugin-manager.c:268
+msgid "_Help"
+msgstr "Tallalt (_H)"
+
+#: libpeas-gtk/peas-gtk-plugin-manager.c:326
+msgid "Pr_eferences"
+msgstr "Imenyaf_en"
+
+#: libpeas-gtk/peas-gtk-plugin-manager.c:331
+#: libpeas-gtk/peas-gtk-plugin-manager.c:383
+msgid "_About"
+msgstr "Ɣef (_A)"
+
+#: libpeas-gtk/peas-gtk-plugin-manager.c:391
+msgid "_Preferences"
+msgstr "Imenyafen (_P)"
+
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:352
+msgid "_Enabled"
+msgstr "Yerm_ed"
+
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:363
+msgid "E_nable All"
+msgstr "Sermed-ite_n akk"
+
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:367
+msgid "_Disable All"
+msgstr ""
+
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:576
+msgid "Enabled"
+msgstr "Yermed"
+
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:597
+msgid "Plugin"
+msgstr "Azegrir"
+
+#. Avoid having markup in a translated string
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:684
+#, c-format
+msgid "The plugin “%s” could not be loaded"
+msgstr ""
+
+#. Keep separate because some translations do special things
+#. * for the ':' and might accidentally not keep the space after it
+#.
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:690
+#, c-format
+msgid "An error occurred: %s"
+msgstr ""
+
+#. Translators: The directory in which the demo program was compiled at
+#: peas-demo/peas-demo.c:43
+msgid "Run from build directory"
+msgstr ""
+
+#: peas-demo/peas-demo.c:94
+msgid "_Quit"
+msgstr "Ffeɣ (_Q)"
+
+#: peas-demo/peas-demo.c:119
+msgid "— libpeas demo application"
+msgstr ""
+
+#: tests/libpeas-gtk/plugin-manager.c:80
+msgid "About"
+msgstr "Ɣef"
+
+#: tests/libpeas-gtk/plugin-manager.c:85
+msgid "Preferences"
+msgstr "Imenyafen"
