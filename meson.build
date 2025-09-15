@@ -96,7 +96,7 @@ config_h.set_quoted('GETTEXT_PACKAGE', package_string)
 # Dependencies
 cc = meson.get_compiler('c')
 
-glib_req_version = '2.74'
+glib_req_version = '2.86'
 
 glib_req = '>= @0@'.format(glib_req_version)
 gtk_doc_req = '>= 1.11'
