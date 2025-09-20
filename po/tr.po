@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libpeas master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues\n"
-"POT-Creation-Date: 2023-03-28 17:44+0000\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues/\n"
+"POT-Creation-Date: 2025-09-15 22:26+0000\n"
 "PO-Revision-Date: 2023-02-20 21:57+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
@@ -24,106 +24,22 @@ msgstr ""
 "X-Generator: Poedit 3.1.1\n"
 "X-POOTLE-MTIME: 1433229099.000000\n"
 
-#: libpeas/peas-engine.c:1115
+#: libpeas/peas-engine.c:1123
 #, c-format
 msgid "Dependency “%s” was not found"
 msgstr "“%s” bağımlılığı bulunamadı"
 
-#: libpeas/peas-engine.c:1125
+#: libpeas/peas-engine.c:1133
 #, c-format
 msgid "Dependency “%s” failed to load"
 msgstr "“%s” bağımlılığı yüklenemedi"
 
-#: libpeas/peas-engine.c:1139
+#: libpeas/peas-engine.c:1147
 #, c-format
 msgid "Plugin loader “%s” was not found"
 msgstr "Eklenti yükleyicisi “%s” bulunamadı"
 
-#: libpeas/peas-engine.c:1151
+#: libpeas/peas-engine.c:1159
 #, c-format
 msgid "Failed to load"
 msgstr "Yüklenemedi"
-
-#~ msgid "Additional plugins must be disabled"
-#~ msgstr "İlave eklentilerin devre dışı bırakılması gerekiyor"
-
-#, c-format
-#~ msgid "The following plugins depend on “%s” and will also be disabled:"
-#~ msgstr "Şu eklentiler “%s” eklentisine bağlı ve devre dışı bırakılacak:"
-
-#~ msgid "Plugins"
-#~ msgstr "Eklentiler"
-
-#~ msgid "An additional plugin must be disabled"
-#~ msgstr "İlave bir eklentinin devre dışı bırakılması gerekiyor"
-
-#, c-format
-#~ msgid ""
-#~ "The “%s” plugin depends on the “%s” plugin.\n"
-#~ "If you disable “%s”, “%s” will also be disabled."
-#~ msgstr ""
-#~ "“%s” eklentisi “%s” eklentisine bağlı.\n"
-#~ "Eğer “%s” eklentisini devre dışı bırakırsanız, “%s” eklentisi de devre "
-#~ "dışı kalacak."
-
-#~ msgid "_Cancel"
-#~ msgstr "_İptal"
-
-#~ msgid "Disable Plugins"
-#~ msgstr "Eklentileri Devre Dışı Bırak"
-
-#~ msgid "There was an error displaying the help."
-#~ msgstr "Yardım görüntülenirken bir hata oluştu."
-
-#~ msgid "_Close"
-#~ msgstr "_Kapat"
-
-#~ msgid "_Help"
-#~ msgstr "_Yardım"
-
-#~ msgid "Pr_eferences"
-#~ msgstr "T_ercihler"
-
-#~ msgid "_About"
-#~ msgstr "_Hakkında"
-
-#~ msgid "_Preferences"
-#~ msgstr "_Tercihler"
-
-#~ msgid "_Enabled"
-#~ msgstr "_Etkinleştirildi"
-
-#~ msgid "E_nable All"
-#~ msgstr "_Tümünü Etkinleştir"
-
-#~ msgid "_Disable All"
-#~ msgstr "Tü_münü Devre Dışı Bırak"
-
-#~ msgid "Enabled"
-#~ msgstr "Etkinleştirildi"
-
-#~ msgid "Plugin"
-#~ msgstr "Eklenti"
-
-#, c-format
-#~ msgid "The plugin “%s” could not be loaded"
-#~ msgstr "“%s” eklentisi yüklenemedi"
-
-#, c-format
-#~ msgid "An error occurred: %s"
-#~ msgstr "Bir hata oluştu: %s"
-
-#~ msgid "Run from build directory"
-#~ msgstr "İnşa dizininden çalıştır"
-
-#~ msgid "_Quit"
-#~ msgstr "_Çık"
-
-#~ msgid "— libpeas demo application"
-#~ msgstr "— libpeas deneme uygulaması"
-
-#~ msgid "About"
-#~ msgstr "Hakkında"
-
-#~ msgid "Preferences"
-#~ msgstr "Tercihler"
