@@ -4,10 +4,9 @@
 # Temkin <temkin119@gmail.com>, 2011.
 #
 msgid ""
-msgstr ""
-"Project-Id-Version: libpeas\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=libpeas&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-02-17 07:46+0000\n"
+msgstr "Project-Id-Version: libpeas\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues/\n"
+"POT-Creation-Date: 2025-09-10 21:25+0000\n"
 "PO-Revision-Date: 2013-01-27 14:01+0900\n"
 "Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -16,123 +15,102 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/glade/libpeas-gtk.xml.in.h:1
-msgid "Plugin Manager"
-msgstr "قىستۇرما باشقۇرغۇچ"
-
-#: ../data/glade/libpeas-gtk.xml.in.h:2
-msgid "View"
-msgstr "كۆرۈنۈش"
-
-#: ../data/glade/libpeas-gtk.xml.in.h:3
-msgid "Plugin Manager View"
-msgstr "قىستۇرما باشقۇرغۇ كۆرۈنۈشى"
-
-#. Translators: Whether builtin plugins should appear in the view (property name)
-#: ../data/glade/libpeas-gtk.xml.in.h:5
-msgid "Show Builtin"
-msgstr "ئىچىگە قوشۇۋېتىلگىنى كۆرسەت"
-
-#: ../data/glade/libpeas-gtk.xml.in.h:6
-msgid "Peas Gtk"
-msgstr "Peas Gtk"
-
-#: ../libpeas/peas-engine.c:789
+#: libpeas/peas-engine.c:1123
 #, c-format
-msgid "Dependency '%s' was not found"
-msgstr "‹%s› دېگەن بېقىندى تېپىلمىدى"
+msgid "Dependency “%s” was not found"
+msgstr "«%s» بېقىندى تېپىلمىدى"
 
-#: ../libpeas/peas-engine.c:799
+#: libpeas/peas-engine.c:1133
 #, c-format
-msgid "Dependency '%s' failed to load"
-msgstr "‹%s› دېگەن بېقىندى نى يۈكلىيەلمىدى"
+msgid "Dependency “%s” failed to load"
+msgstr "«%s» بېقىندىنى يۈكلىيەلمىدى"
 
-#: ../libpeas/peas-engine.c:814
+#: libpeas/peas-engine.c:1147
 #, c-format
-msgid "Plugin loader '%s' was not found"
-msgstr "قىستۇرما يۈكلىگۈچ ‹%s›  تېپىلمىدى"
+msgid "Plugin loader “%s” was not found"
+msgstr "قىستۇرما يۈكلىگۈچ «%s»  تېپىلمىدى"
 
-#: ../libpeas/peas-engine.c:826
+#: libpeas/peas-engine.c:1159
 #, c-format
 msgid "Failed to load"
-msgstr "يۈكلەش مەغلۇپ بولدى"
+msgstr "يۈكلىيەلمىدى"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:91
-msgid "Additional plugins must be disabled"
-msgstr "قوشۇمچە قىستۇرمىلار چەكلىنىشى كېرەك"
+#~ msgid "Plugin Manager"
+#~ msgstr "قىستۇرما باشقۇرغۇچ"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:98
+#~ msgid "View"
+#~ msgstr "كۆرۈنۈش"
+
+#~ msgid "Plugin Manager View"
+#~ msgstr "قىستۇرما باشقۇرغۇ كۆرۈنۈشى"
+
+#~ msgid "Show Builtin"
+#~ msgstr "ئىچىگە قوشۇۋېتىلگىنى كۆرسەت"
+
+#~ msgid "Peas Gtk"
+#~ msgstr "Peas Gtk"
+
+#~ msgid "Additional plugins must be disabled"
+#~ msgstr "قوشۇمچە قىستۇرمىلار چەكلىنىشى كېرەك"
+
 #, c-format
-msgid "The following plugins depend on '%s' and will also be disabled:"
-msgstr "«%s» نىڭ بېقىنىدىغان تۆۋەندىكى قىستۇرمىلارمۇ چەكلىنىشى كېرەك:"
+#~ msgid "The following plugins depend on '%s' and will also be disabled:"
+#~ msgstr "«%s» نىڭ بېقىنىدىغان تۆۋەندىكى قىستۇرمىلارمۇ چەكلىنىشى كېرەك:"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:140
-msgid "Plugins"
-msgstr "قىستۇرما"
+#~ msgid "Plugins"
+#~ msgstr "قىستۇرما"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:156
-msgid "An additional plugin must be disabled"
-msgstr "بىر قوشۇمچە قىستۇرما چەكلىنىشى كېرەك"
+#~ msgid "An additional plugin must be disabled"
+#~ msgstr "بىر قوشۇمچە قىستۇرما چەكلىنىشى كېرەك"
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:163
 #, c-format
-msgid ""
-"The '%s' plugin depends on the '%s' plugin.\n"
-"If you disable '%s', '%s' will also be disabled."
-msgstr "«%s» دېگەن قىستۇرما «%s» دېگەن قىستۇرمىغا بېقىنىدۇ.\n"
-"ئەگەر «%s» چەكلەنسە «%s» مۇ چەكلىنىدۇ."
+#~ msgid ""
+#~ "The '%s' plugin depends on the '%s' plugin.\n"
+#~ "If you disable '%s', '%s' will also be disabled."
+#~ msgstr ""
+#~ "«%s» دېگەن قىستۇرما «%s» دېگەن قىستۇرمىغا بېقىنىدۇ.\n"
+#~ "ئەگەر «%s» چەكلەنسە «%s» مۇ چەكلىنىدۇ."
 
-#: ../libpeas-gtk/peas-gtk-disable-plugins-dialog.c:183
-msgid "Disable Plugins"
-msgstr "قىستۇرمىلارنى چەكلەش"
+#~ msgid "Disable Plugins"
+#~ msgstr "قىستۇرمىلارنى چەكلەش"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:182
-msgid "There was an error displaying the help."
-msgstr "ياردەم ھۆججىتىنى كۆرسىتىشتە خاتالىق كۆرۈلدى."
+#~ msgid "There was an error displaying the help."
+#~ msgstr "ياردەم ھۆججىتىنى كۆرسىتىشتە خاتالىق كۆرۈلدى."
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:387
-msgid "_About"
-msgstr "ھەققىدە(_A)"
+#~ msgid "_About"
+#~ msgstr "ھەققىدە(_A)"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager.c:395
-msgid "_Preferences"
-msgstr "مايىللىق(_P)"
+#~ msgid "_Preferences"
+#~ msgstr "مايىللىق(_P)"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:334
-msgid "_Enabled"
-msgstr "قوزغىتىلغان(_E)"
+#~ msgid "_Enabled"
+#~ msgstr "قوزغىتىلغان(_E)"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:345
-msgid "E_nable All"
-msgstr "ھەممىنى قوزغات(_E)"
+#~ msgid "E_nable All"
+#~ msgstr "ھەممىنى قوزغات(_E)"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:349
-msgid "_Disable All"
-msgstr "ھەممىنى چەكلە(_D)"
+#~ msgid "_Disable All"
+#~ msgstr "ھەممىنى چەكلە(_D)"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:508
-msgid "Enabled"
-msgstr "ئىناۋەتلىك قىلىنغان"
+#~ msgid "Enabled"
+#~ msgstr "ئىناۋەتلىك قىلىنغان"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:529
-msgid "Plugin"
-msgstr "قىستۇرما"
+#~ msgid "Plugin"
+#~ msgstr "قىستۇرما"
 
-#: ../libpeas-gtk/peas-gtk-plugin-manager-view.c:619
 #, c-format
-msgid ""
-"<b>The plugin '%s' could not be loaded</b>\n"
-"An error occurred: %s"
-msgstr "<b>قىستۇرما ‹%s› نى يۈكلىگىلى بولمىدى</b>\n"
-"خاتالىق كۆرۈلدى: %s"
+#~ msgid ""
+#~ "<b>The plugin '%s' could not be loaded</b>\n"
+#~ "An error occurred: %s"
+#~ msgstr ""
+#~ "<b>قىستۇرما ‹%s› نى يۈكلىگىلى بولمىدى</b>\n"
+#~ "خاتالىق كۆرۈلدى: %s"
 
-#: ../peas-demo/peas-demo.c:40
-msgid "Run from build directory"
-msgstr "قۇرۇلغان مۇندەرىجىدىن ئىجرا قىل"
+#~ msgid "Run from build directory"
+#~ msgstr "قۇرۇلغان مۇندەرىجىدىن ئىجرا قىل"
 
-#: ../peas-demo/peas-demo.c:100
-msgid "- libpeas demo application"
-msgstr "- libpeas سىناق پروگراممىسى"
+#~ msgid "- libpeas demo application"
+#~ msgstr "- libpeas سىناق پروگراممىسى"
 
 #~ msgid "C_onfigure"
 #~ msgstr "سەپلىمە(_O)"
