@@ -1066,6 +1066,9 @@ peas_engine_enable_loader (PeasEngine *engine,
  * Gets the [class@PluginInfo] corresponding with @plugin_name,
  * or %NULL if @plugin_name was not found.
  *
+ * @plugin_name should be the value from the "Module=" line of your
+ * `*.plugin` manifest.
+ *
  * Returns: (transfer none): the #PeasPluginInfo corresponding with
  *   a given plugin module name.
  */
