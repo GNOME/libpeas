@@ -362,7 +362,7 @@ _peas_plugin_info_new (const char *filename,
 
       if (info->loader_id == -1)
         {
-          g_warning ("Unkown 'Loader' in '[Plugin]' section in '%s': %s",
+          g_warning ("Unknown 'Loader' in '[Plugin]' section in '%s': %s",
                      filename, loader);
           goto error;
         }

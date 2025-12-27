@@ -10,7 +10,7 @@ libpeas_plugins_data = [
   'not-loadable.plugin',
   'os-dependant-help.plugin',
   'two-deps.plugin',
-  'unkown-loader.plugin',
+  'unknown-loader.plugin',
 ]
 
 custom_target(
