@@ -4,47 +4,48 @@
 # devill08 <moto.devill@gmail.com>, 2010.
 # Lucian Adrian Grijincu <lucian.grijincu@gmail.com>, 2011.
 # Daniel Șerbănescu <daniel [at] serbanescu [dot] dk>, 2015.
+# Antonio Marin <gnmer.6qxyg@slmail.me>, 2026.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: libpeas master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues\n"
-"POT-Creation-Date: 2019-08-06 00:27+0000\n"
-"PO-Revision-Date: 2019-08-18 14:33+0300\n"
-"Last-Translator: Florentina Mușat <florentina.musat.28 [at] gmail [dot] "
-"com>\n"
-"Language-Team: Gnome Romanian Translation Team\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues/\n"
+"POT-Creation-Date: 2025-12-10 20:52+0000\n"
+"PO-Revision-Date: 2026-01-01 17:14+0100\n"
+"Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
+"Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
-"20)) ? 1 : 2);;\n"
-"X-Generator: Poedit 2.2.3\n"
+"20)) ? 1 : 2);\n"
+"X-Generator: Gtranslator 48.0\n"
 "X-Project-Style: gnome\n"
 
-#: libpeas/peas-engine.c:1118
+#: libpeas/peas-engine.c:1169
 #, c-format
 msgid "Dependency “%s” was not found"
 msgstr "Dependența „%s” nu a fost găsită"
 
-#: libpeas/peas-engine.c:1128
+#: libpeas/peas-engine.c:1179
 #, c-format
 msgid "Dependency “%s” failed to load"
 msgstr "Dependența „%s” nu a putut fi încărcată"
 
-#: libpeas/peas-engine.c:1142
+#: libpeas/peas-engine.c:1193
 #, c-format
 msgid "Plugin loader “%s” was not found"
 msgstr "Încărcătorul de module „%s” nu a fost găsit"
 
-#: libpeas/peas-engine.c:1154
+#: libpeas/peas-engine.c:1205
 #, c-format
 msgid "Failed to load"
-msgstr "Nu a putut fi încărcat"
+msgstr "Nu s-a putut încărca"
 
 #: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:95
 msgid "Additional plugins must be disabled"
-msgstr "Module suplimentare trebuie să fie dezactivate"
+msgstr "Trebuie dezactivate module suplimentare"
 
 #: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:102
 #, c-format
@@ -57,7 +58,7 @@ msgstr "Module"
 
 #: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:161
 msgid "An additional plugin must be disabled"
-msgstr "Un plugin suplimentar trebuie să fie dezactivat"
+msgstr "Trebuie dezactivat un modul suplimentar"
 
 #: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:168
 #, c-format
@@ -66,7 +67,7 @@ msgid ""
 "If you disable “%s”, “%s” will also be disabled."
 msgstr ""
 "Modulul „%s” depinde de modulul „%s”.\n"
-"Dacă dezactivați modulul „%s”, va fi dezactivat și „%s”."
+"Dacă se dezactivează modulul „%s”, va fi dezactivat și „%s”."
 
 #: libpeas-gtk/peas-gtk-disable-plugins-dialog.c:182
 msgid "_Cancel"
@@ -76,53 +77,53 @@ msgstr "_Anulează"
 msgid "Disable Plugins"
 msgstr "Dezactivează module"
 
-#: libpeas-gtk/peas-gtk-plugin-manager.c:207
+#: libpeas-gtk/peas-gtk-plugin-manager.c:210
 msgid "There was an error displaying the help."
-msgstr "A apărut o eroare când se afișa ajutorul."
+msgstr "A apărut o eroare la afișarea ajutorului."
 
-#: libpeas-gtk/peas-gtk-plugin-manager.c:253
+#: libpeas-gtk/peas-gtk-plugin-manager.c:256
 msgid "_Close"
 msgstr "În_chide"
 
-#: libpeas-gtk/peas-gtk-plugin-manager.c:265
+#: libpeas-gtk/peas-gtk-plugin-manager.c:268
 msgid "_Help"
 msgstr "_Ajutor"
 
-#: libpeas-gtk/peas-gtk-plugin-manager.c:323
+#: libpeas-gtk/peas-gtk-plugin-manager.c:326
 msgid "Pr_eferences"
 msgstr "Pr_eferințe"
 
-#: libpeas-gtk/peas-gtk-plugin-manager.c:328
-#: libpeas-gtk/peas-gtk-plugin-manager.c:379
+#: libpeas-gtk/peas-gtk-plugin-manager.c:331
+#: libpeas-gtk/peas-gtk-plugin-manager.c:382
 msgid "_About"
 msgstr "_Despre"
 
-#: libpeas-gtk/peas-gtk-plugin-manager.c:387
+#: libpeas-gtk/peas-gtk-plugin-manager.c:390
 msgid "_Preferences"
 msgstr "_Preferințe"
 
-#: libpeas-gtk/peas-gtk-plugin-manager-view.c:351
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:352
 msgid "_Enabled"
 msgstr "_Activat"
 
-#: libpeas-gtk/peas-gtk-plugin-manager-view.c:362
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:363
 msgid "E_nable All"
 msgstr "Activează-le pe _toate"
 
-#: libpeas-gtk/peas-gtk-plugin-manager-view.c:366
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:367
 msgid "_Disable All"
 msgstr "_Dezactivează-le pe toate"
 
-#: libpeas-gtk/peas-gtk-plugin-manager-view.c:526
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:576
 msgid "Enabled"
 msgstr "Activat"
 
-#: libpeas-gtk/peas-gtk-plugin-manager-view.c:547
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:597
 msgid "Plugin"
 msgstr "Modul"
 
 #. Avoid having markup in a translated string
-#: libpeas-gtk/peas-gtk-plugin-manager-view.c:634
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:684
 #, c-format
 msgid "The plugin “%s” could not be loaded"
 msgstr "Modulul „%s” nu a putut fi încărcat"
@@ -130,49 +131,28 @@ msgstr "Modulul „%s” nu a putut fi încărcat"
 #. Keep separate because some translations do special things
 #. * for the ':' and might accidentally not keep the space after it
 #.
-#: libpeas-gtk/peas-gtk-plugin-manager-view.c:640
+#: libpeas-gtk/peas-gtk-plugin-manager-view.c:690
 #, c-format
 msgid "An error occurred: %s"
 msgstr "S-a produs o eroare: %s"
 
 #. Translators: The directory in which the demo program was compiled at
-#: peas-demo/peas-demo.c:41
+#: peas-demo/peas-demo.c:43
 msgid "Run from build directory"
-msgstr "Rulează din dosarul în care a fost construit programul"
+msgstr "Pornește din dosarul în care a fost construit programul"
 
-#: peas-demo/peas-demo.c:92
+#: peas-demo/peas-demo.c:94
 msgid "_Quit"
-msgstr "_Ieșire"
+msgstr "Înch_ide"
 
-#: peas-demo/peas-demo.c:108
+#: peas-demo/peas-demo.c:119
 msgid "— libpeas demo application"
 msgstr "— libpeas aplicație demo"
 
-#: tests/libpeas-gtk/plugin-manager.c:77
+#: tests/libpeas-gtk/plugin-manager.c:80
 msgid "About"
 msgstr "Despre"
 
-#: tests/libpeas-gtk/plugin-manager.c:82
+#: tests/libpeas-gtk/plugin-manager.c:85
 msgid "Preferences"
 msgstr "Preferințe"
-
-#~ msgid "Plugin Manager"
-#~ msgstr "Manager de module"
-
-#~ msgid "View"
-#~ msgstr "Vizualizare"
-
-#~ msgid "Plugin Manager View"
-#~ msgstr "Vizualizare manager de module"
-
-#~ msgid "Show Builtin"
-#~ msgstr "Arată modulele integrate"
-
-#~ msgid "Peas Gtk"
-#~ msgstr "Peas Gtk"
-
-#~ msgid "C_onfigure"
-#~ msgstr "C_onfigurează"
-
-#~ msgid "_Plugins:"
-#~ msgstr "_Module:"
