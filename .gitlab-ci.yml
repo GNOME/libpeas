@@ -55,6 +55,7 @@ reference:
       -Ddemos=false
       -Dglade_catalog=false
       -Dwidgetry=true
+      -Dlua51=false
   script:
     - mkdir -p _reference/libpeas-1.0
     - mkdir -p _reference/libpeas-gtk-1.0
