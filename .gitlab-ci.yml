@@ -17,7 +17,6 @@ stages:
       redhat-rpm-config
       glib2-devel
       gtk3-devel
-      python2-devel
       python3-devel
       xorg-x11-server-Xvfb
       git
@@ -56,6 +55,7 @@ reference:
       -Dglade_catalog=false
       -Dwidgetry=true
       -Dlua51=false
+      -Dpython2=false
   script:
     - mkdir -p _reference/libpeas-1.0
     - mkdir -p _reference/libpeas-gtk-1.0
