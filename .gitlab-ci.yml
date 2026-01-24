@@ -3,7 +3,7 @@ stages:
   - 'deploy'
 
 .build:
-  image: 'registry.fedoraproject.org/fedora:42'
+  image: 'registry.fedoraproject.org/fedora:43'
   stage: 'build'
   variables:
     CCACHE_BASEDIR: "${CI_PROJECT_DIR}"
@@ -37,13 +37,13 @@ stages:
 build peas:
   extends: '.build'
   script:
-    - 'meson -Dwidgetry=false -Dintrospection=true -Dvapi=true -Ddemos=false -Dgtk_doc=false _build .'
+    - 'meson setup -Dwidgetry=false -Dintrospection=true -Dvapi=true -Ddemos=false -Dgtk_doc=false _build .'
     - 'ninja -C _build test'
 
 build peas-gtk:
   extends: '.build'
   script:
-    - 'meson -Dwidgetry=true -Dglade_catalog=true -Dintrospection=true -Dvapi=true -Dgtk_doc=false _build .'
+    - 'meson setup -Dwidgetry=true -Dglade_catalog=true -Dintrospection=true -Dvapi=true -Dgtk_doc=false _build .'
     - 'xvfb-run -a -s "-screen 0 1024x768x24"  ninja -C _build test'
 
 reference:
@@ -59,7 +59,7 @@ reference:
   script:
     - mkdir -p _reference/libpeas-1.0
     - mkdir -p _reference/libpeas-gtk-1.0
-    - meson ${MESON_ARGS} _build
+    - meson setup ${MESON_ARGS} _build .
     - ninja -C _build
     - mv _build/docs/reference/libpeas-1.0/* _reference/libpeas-1.0
     - mv _build/docs/reference/libpeas-gtk-1.0/* _reference/libpeas-gtk-1.0
