@@ -21,6 +21,7 @@ stages:
       xorg-x11-server-Xvfb
       git
       pip
+      gobject-introspection-devel
   before_script:
     - "dnf install -y $DEPS"
     - 'mkdir -p _ccache'
