@@ -1,0 +1,46 @@
+# Cornish translation for libpeas.
+# Copyright (C) 2026 libpeas's COPYRIGHT HOLDER
+# This file is distributed under the same license as the libpeas package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Flynn Peck <cirilla@tuta.io>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: libpeas main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues/\n"
+"POT-Creation-Date: 2025-12-27 06:47+0000\n"
+"PO-Revision-Date: 2026-01-26 12:43+0000\n"
+"Last-Translator: Flynn Peck <cirilla@tuta.io>\n"
+"Language-Team: kw\n"
+"Language: kw\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-DL-VCS-Web: https://gitlab.gnome.org/GNOME/libpeas/\n"
+"X-DL-Lang: kw\n"
+"X-DL-Module: libpeas\n"
+"X-DL-Branch: main\n"
+"X-DL-Domain: po\n"
+"X-DL-State: Translating\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Gtranslator 49.0\n"
+
+#: libpeas/peas-engine.c:1126
+#, c-format
+msgid "Dependency “%s” was not found"
+msgstr "Medhelweyth serghek “%s” na kavosys"
+
+#: libpeas/peas-engine.c:1136
+#, c-format
+msgid "Dependency “%s” failed to load"
+msgstr "Medhelweyth serghek “%s” fyllis karga"
+
+#: libpeas/peas-engine.c:1150
+#, c-format
+msgid "Plugin loader “%s” was not found"
+msgstr "Karger ystynnans “%s” na kavosys"
+
+#: libpeas/peas-engine.c:1162
+#, c-format
+msgid "Failed to load"
+msgstr "Y fyllis karga"
