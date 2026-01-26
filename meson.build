@@ -31,7 +31,7 @@ endif
 # Compatibility with libtool versioning:
 #  current = minor * 100 + micro - interface
 #  revision = interface
-lib_version_soversion = 0
+lib_version_soversion = 1
 lib_version_current = version_minor * 100 + version_micro - interface_age
 lib_version_revision = interface_age
 lib_version = '@0@.@1@.@2@'.format(
