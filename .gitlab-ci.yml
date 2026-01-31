@@ -1,3 +1,16 @@
+include:
+  - project: "GNOME/citemplates"
+    file: "templates/default-rules.yml"
+  - component: "gitlab.gnome.org/GNOME/citemplates/gnomeos-basic-ci@master"
+    inputs:
+      # FIXME: currently we don't have lua, should fix that at some point
+      meson-options: "-Dlua51=false -Dgtk_doc=true -Dvapi=true"
+      # run-tests: "no"
+      scan-build: "disabled"
+  - component: "gitlab.gnome.org/GNOME/citemplates/release-service@master"
+    inputs:
+      dist-job-name: "build-gnomeos"
+
 stages:
   - 'build'
   - 'deploy'
