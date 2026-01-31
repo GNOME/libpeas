@@ -1,5 +1,10 @@
-Overview of Changes in libpeas 1.38.0.alpha
-===========================================
+Overview of Changes in libpeas 1.38.1
+=====================================
+
+ * CI fixes for our infrastructure
+
+Overview of Changes in libpeas 1.38.0
+======================================
 
  * Break ABI to support girepository-2.0. This is required as language
    bindings are moving to the same GIRepository version. We will try to
@@ -10,6 +15,11 @@ Overview of Changes in libpeas 1.38.0.alpha
    As libpeas-2.0 does not link against gobject-introspection-1.0 or
    libgirepository-2.0, it is unaffected. You may find it a better use
    of time to port to libpeas-2.x instead.
+* Translation updates:
+  - Kabyle
+  - Esperanto
+  - Uighur
+  - Romanian
 
 Overview of Changes in libpeas 1.36.0
 =====================================
