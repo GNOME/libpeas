@@ -5,7 +5,6 @@ include:
     inputs:
       # FIXME: currently we don't have lua, should fix that at some point
       meson-options: "-Dlua51=false -Dgtk_doc=true"
-      run-tests: "no"
       scan-build: "disabled"
   - component: "gitlab.gnome.org/GNOME/citemplates/basic-deploy-docs@master"
   - component: "gitlab.gnome.org/GNOME/citemplates/release-service@master"
