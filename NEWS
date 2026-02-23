@@ -1,3 +1,12 @@
+# Libpeas 2.2.1
+
+ * Fix grammar in error message (unknown).
+ * Improve engine documentation.
+ * Bump GLib requirement.
+ * Test suite fix (file name).
+ * Translation updates: Cornish, Norwegian Nynorsk, Romanian,
+   Turkish, Uighur.
+
 # Libpeas 2.2.0
 
 This is a stable release for GNOME 49.0
