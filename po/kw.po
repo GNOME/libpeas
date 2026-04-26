@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: libpeas main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues/\n"
 "POT-Creation-Date: 2025-12-27 06:47+0000\n"
-"PO-Revision-Date: 2026-01-26 12:43+0000\n"
+"PO-Revision-Date: 2026-04-26 20:20+0100\n"
 "Last-Translator: Flynn Peck <cirilla@tuta.io>\n"
 "Language-Team: kw\n"
 "Language: kw\n"
@@ -23,24 +23,24 @@ msgstr ""
 "X-DL-Domain: po\n"
 "X-DL-State: Translating\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 49.0\n"
+"X-Generator: Gtranslator 50.0\n"
 
 #: libpeas/peas-engine.c:1126
 #, c-format
 msgid "Dependency “%s” was not found"
-msgstr "Medhelweyth serghek “%s” na kavosys"
+msgstr "Medhelweyth serghek “%s” nyns o kevys"
 
 #: libpeas/peas-engine.c:1136
 #, c-format
 msgid "Dependency “%s” failed to load"
-msgstr "Medhelweyth serghek “%s” fyllis karga"
+msgstr "Medhelweyth serghek “%s” fyllis dhe garga"
 
 #: libpeas/peas-engine.c:1150
 #, c-format
 msgid "Plugin loader “%s” was not found"
-msgstr "Karger ystynnans “%s” na kavosys"
+msgstr "Kargell ystynnans “%s” nyns o kevys"
 
 #: libpeas/peas-engine.c:1162
 #, c-format
 msgid "Failed to load"
-msgstr "Y fyllis karga"
+msgstr "Ny yllir karga"
