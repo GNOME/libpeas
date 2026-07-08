@@ -1,0 +1,37 @@
+# Lao translation for libpeas.
+# Copyright (C) 2025 libpeas's COPYRIGHT HOLDER
+# This file is distributed under the same license as the libpeas package.
+# bone NI <bounkirdni@gmail.com>,  2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: libpeas main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues/\n"
+"POT-Creation-Date: 2025-09-20 15:45+0000\n"
+"PO-Revision-Date: 2025-09-20 15:45+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Lao <lo@li.org>\n"
+"Language: lo\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: libpeas/peas-engine.c:1123
+#, c-format
+msgid "Dependency “%s” was not found"
+msgstr "ບໍ່ພົບສ່ວນທີ່ຕ້ອງໃຊ້ “%s”"
+
+#: libpeas/peas-engine.c:1133
+#, c-format
+msgid "Dependency “%s” failed to load"
+msgstr "ໂຫຼດສ່ວນທີ່ຕ້ອງໃຊ້ “%s” ບໍ່ສຳເລັດ"
+
+#: libpeas/peas-engine.c:1147
+#, c-format
+msgid "Plugin loader “%s” was not found"
+msgstr "ບໍ່ພົບໂຕໂຫຼດປລັກອິນ “%s”"
+
+#: libpeas/peas-engine.c:1159
+#, c-format
+msgid "Failed to load"
+msgstr "ໂຫຼດບໍ່ສຳເລັດ"
