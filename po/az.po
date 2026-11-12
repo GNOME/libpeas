@@ -1,0 +1,38 @@
+# Azerbaijani translation for libpeas.
+# Copyright (C) 2026 libpeas's COPYRIGHT HOLDER
+# This file is distributed under the same license as the libpeas package.
+# Nicat Xalid <nicat.m@pm.me>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: libpeas main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/libpeas/issues/\n"
+"POT-Creation-Date: 2025-12-27 06:47+0000\n"
+"PO-Revision-Date: 2026-11-12 12:30+0400\n"
+"Last-Translator: \n"
+"Language-Team: Azerbaijani <Azerbaijani>\n"
+"Language: az\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.10\n"
+
+#: libpeas/peas-engine.c:1126
+#, c-format
+msgid "Dependency “%s” was not found"
+msgstr "\"%s\" asılılığı tapılmadı"
+
+#: libpeas/peas-engine.c:1136
+#, c-format
+msgid "Dependency “%s” failed to load"
+msgstr "\"%s\" asılılığı yüklənə bilmədi"
+
+#: libpeas/peas-engine.c:1150
+#, c-format
+msgid "Plugin loader “%s” was not found"
+msgstr "\"%s\" qoşma qovluğu tapılmadı"
+
+#: libpeas/peas-engine.c:1162
+#, c-format
+msgid "Failed to load"
+msgstr "Yüklənə bilmədi"
